@@ -1,0 +1,18 @@
+{
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 2017,
+		"sourceType": "module"
+	},
+	"plugins": ["prettier"],
+	"extends": ["standard", "prettier"],
+	"rules": {
+		"prettier/prettier": ["error"],
+		"no-console": "warn",
+		"no-unused-vars": "warn",
+		"yoda": ["error", "never", { "onlyEquality": true }]
+	}
+}

@@ -50,12 +50,52 @@ const animate = () => {
 		strokeDashoffset: [anime.setDashoffset, 0],
 		easing: "easeInOutQuint"
 	});
+	Array.from($wrap1.querySelectorAll(".title-wrap > .title")).forEach(
+		($title, index) => {
+			const duration = 650;
+			anime
+				.timeline({
+					targets: $title.querySelectorAll(".cover"),
+					duration
+				})
+				.add({
+					duration: 1000 + index * 100
+				})
+				.add({
+					easing: "easeInExpo",
+					translateX: [`${-101}%`, 0],
+					delay: (el, i) => (i % 2) * 50
+				})
+				.add({
+					easing: "easeOutExpo",
+					translateX: [0, `${101}%`],
+					delay: (el, i) => ((i + 1) % 2) * 50
+				})
+				.add({
+					targets: $title.querySelector("p.text"),
+					offset: `-=${duration}`,
+					duration,
+					easing: "easeOutCubic",
+					translateX: [`-${5}%`, 0],
+					opacity: [0, 1]
+				});
+		}
+	);
+	anime({
+		targets: $wrap1.querySelectorAll(".describe-wrap > p.describe"),
+		duration: 1000,
+		delay: (el, i) => i * 200 + 2000,
+		easing: "easeOutCubic",
+		translateY: [`${30}%`, 0],
+		opacity: [0, 1]
+	});
 };
 
 WebFont.load({
 	google: {
 		families: ["IBM Plex Sans:400,500", "IBM Plex Sans Condensed"]
 	},
+	timeout: 2000,
 	active() {
 		animate();
 	}

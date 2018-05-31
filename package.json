@@ -14,7 +14,7 @@
 		}
 	},
 	"lint-staged": {
-		"src/**/*.{js,json,vue}": [
+		"src/**/*.{js,json}": [
 			"prettier --write",
 			"eslint --fix",
 			"git add"
@@ -29,6 +29,7 @@
 		"autoprefixer": "^8.5.1",
 		"babel-loader": "^7.1.4",
 		"babel-preset-env": "^1.7.0",
+		"babel-preset-es2017": "^6.24.1",
 		"browserslist": "^3.2.8",
 		"case-sensitive-paths-webpack-plugin": "^2.1.2",
 		"clean-webpack-plugin": "^0.1.19",
@@ -81,6 +82,7 @@
 		"animejs": "^2.2.0",
 		"ress": "^1.2.2",
 		"sass-easing": "^1.0.3",
-		"sass-metallic-ratio": "^0.0.1"
+		"sass-metallic-ratio": "^0.0.1",
+		"webfontloader": "^1.6.28"
 	}
 }

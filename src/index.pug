@@ -28,7 +28,7 @@ html(lang="jp")
 		link(type="image/png", href=$image, rel="shortcut icon")
 		title #{$title}
 	body
-		header
+		section
 			.bg
 			.contents-wrap
 				.contents
@@ -36,8 +36,14 @@ html(lang="jp")
 						.icon-wrap
 							i.icon.sno2wman
 						.title-wrap
-							p.title SnO2WMaN
-							p.title Graphics
+							.title
+								.cover
+								.cover
+								p.text SnO2WMaN
+							.title
+								.cover
+								.cover
+								p.text Graphics
 						.describe-wrap
 							p.describe Webdesign nerd aged 16
 							p.describe Sushi hater in Japan

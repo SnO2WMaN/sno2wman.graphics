@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-html(lang="en")
+-const $title = "SnO2WMaN.Graphics"
+-const $description = "SnO2WMaN Website"
+-const $image = "https://www.gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57?s=512"
+
+doctype html
+html(lang="jp")
 	head
 		meta(charset="UTF-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible", content="ie=edge")
-		title SnO2WMaN
+		meta(name="google" contents="notranslate")
+		meta(name="description" contents=$description)
+
+		meta(property="og:title" contents=$title)
+		meta(property="og:locate" contents="ja_JP")
+		meta(property="og:type" contents="website")
+		meta(property="og:description" contents=$description)
+		meta(property="og:url" content="https://sno2wman.graphics")
+		meta(property="og:site_name" content=$title)
+		meta(property="og:image" content=$image)
+
+		meta(name="twitter:card" content="summary")
+		meta(name="twitter:site" content="@SnO2WMaN")
+		meta(name="twitter:creator" content="@SnO2WMaN")
+		meta(name="twitter:title" content=$title)
+		meta(name="twitter:description" content=$description)
+
+		link(type="image/png", href=$image, rel="shortcut icon")
+		title #{$title}
 	body
 		header
 			.bg
@@ -12,7 +34,7 @@ html(lang="en")
 				.contents
 					.wrap
 						.icon-wrap
-							include ./icons/sno2wman.svg
+							i.icon.sno2wman
 						.title-wrap
 							p.title SnO2WMaN
 							p.title Graphics
@@ -53,7 +75,7 @@ html(lang="en")
 							li.link.qiita
 								a.link(href="https://qiita.com/SnO2WMaN" target="_blank")
 								.icon-wrap
-									include ./icons/qiita.svg
+									i.icon.qiita
 									.border
 								.text-wrap
 									p.text SnO2WMaN
@@ -76,7 +98,7 @@ html(lang="en")
 							li.link.pixiv-fanbox
 								a.link(href="https://www.pixiv.net/fanbox/creator/31358190")
 								.icon-wrap
-									include ./icons/pixiv_fanbox_2.svg
+									i.icon.pixiv-fanbox
 									.border
 								.text-wrap
 									p.text 31358190

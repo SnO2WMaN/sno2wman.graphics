@@ -122,7 +122,7 @@ header {
 								margin-left: 0.75rem;
 								transform: scale(0);
 								transform-origin: left;
-								transition: transform 0.5s $easeInOutCubic;
+								transition: transform 0.5s $easeInOutQuad;
 							}
 						}
 						& > .text-wrap {

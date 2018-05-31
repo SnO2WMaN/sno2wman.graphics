@@ -74,10 +74,7 @@ module.exports = env => {
 				// Pug
 				{
 					test: /.pug$/i,
-					oneOf: [
-						{ resourceQuery: /^\?vue/, use: ["pug-plain-loader"] },
-						{ use: ["raw-loader", "pug-plain-loader"] }
-					]
+					use: [{ loader: "pug-loader" }]
 				},
 				// Sass / Scss
 				{
@@ -152,7 +149,8 @@ module.exports = env => {
 						{
 							loader: "svg-inline-loader",
 							options: {
-								removeTags: true
+								removeTags: true,
+								removingTagAttrs: ["style"]
 							}
 						}
 					]

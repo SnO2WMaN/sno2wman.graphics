@@ -1,5 +1,6 @@
 import "./index.scss";
 import anime from "animejs";
+import Clipboard from "clipboard";
 
 // Icon
 import fontawesome from "@fortawesome/fontawesome";
@@ -31,6 +32,13 @@ Array.from(document.querySelectorAll("i.icon")).forEach($icon => {
 			$parentEl.innerHTML = entry[1] + $parentEl.innerHTML;
 		}
 	});
+});
+
+// Clipboard
+new Clipboard(".clipboard", {
+	text: function(el) {
+		return el.getAttribute("text");
+	}
 });
 
 // Animetion

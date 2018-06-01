@@ -49,15 +49,29 @@ const $wrap3 = $wraps[2]; // Skills
 const $wrap4 = $wraps[3]; // Donation
 
 const animate = () => {
-	anime({
-		targets: $wrap1
-			.querySelector(".icon-wrap > svg")
-			.querySelectorAll("path,circle"),
-		duration: 1500,
-		delay: (el, i) => i * 100,
-		strokeDashoffset: [anime.setDashoffset, 0],
-		easing: "easeInOutQuint"
-	});
+	anime
+		.timeline()
+		.add({
+			targets: Array.from($wrap1.querySelectorAll(".icon-wrap > .cover")),
+			duration: 1500,
+			delay: (el, i) => i * 100,
+			easing: "easeInOutQuint",
+			scale: [0, 1]
+		})
+		.add({
+			targets: $wrap1
+				.querySelector(".icon-wrap > svg")
+				.querySelectorAll("path,circle"),
+			duration: 1500,
+			delay: (el, i) => i * 50,
+			easing: "easeInOutQuint",
+			strokeDashoffset: [anime.setDashoffset, 0],
+			opacity: [0.5, 1],
+			scaleY: {
+				value: [0.9, 1],
+				easing: "easeInOutCubic"
+			}
+		});
 	Array.from($wrap1.querySelectorAll(".title-wrap > .title")).forEach(
 		($title, index) => {
 			const duration = 650;
@@ -103,7 +117,6 @@ WebFont.load({
 	google: {
 		families: ["IBM Plex Sans:400,500", "IBM Plex Sans Condensed"]
 	},
-	timeout: 2000,
 	active() {
 		animate();
 	}

@@ -37,9 +37,25 @@ section {
 					user-select: none;
 					position: relative;
 					size: 9.5rem;
-					background: #3d5afe;
+					overflow: hidden;
+					& > .cover {
+						position: absolute;
+						left: -(sqrt(2) - 1) * 50%;
+						top: -(sqrt(2) - 1) * 50%;
+						size: (100% * sqrt(2));
+						border-radius: 50%;
+						&:nth-of-type(1) {
+							background: #8c9eff;
+							z-index: 0;
+						}
+						&:nth-of-type(2) {
+							background: #3d5afe;
+							z-index: 1;
+						}
+					}
 					& > svg {
 						position: absolute 0;
+						z-index: 2;
 						margin: auto;
 						size: (100% / metallic(1));
 						stroke: #fff;

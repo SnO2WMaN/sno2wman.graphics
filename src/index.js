@@ -42,24 +42,24 @@ new Clipboard(".clipboard", {
 });
 
 // Animetion
-const $wraps = Array.from(document.querySelectorAll(".contents > .wrap"));
-const $wrap1 = $wraps[0]; // Basic
-const $wrap2 = $wraps[1]; // Links
-const $wrap3 = $wraps[2]; // Skills
-const $wrap4 = $wraps[3]; // Donation
+const $mainWrap = document.querySelector(".contents > .wrap.main"); // Basic
+const $linksWraps = document.querySelectorAll(".contents > .wrap.links"); // Links
 
 const animate = () => {
+	// Main
 	anime
 		.timeline()
 		.add({
-			targets: Array.from($wrap1.querySelectorAll(".icon-wrap > .cover")),
+			targets: Array.from(
+				$mainWrap.querySelectorAll(".icon-wrap > .cover")
+			),
 			duration: 1500,
 			delay: (el, i) => i * 100,
 			easing: "easeInOutQuint",
 			scale: [0, 1]
 		})
 		.add({
-			targets: $wrap1
+			targets: $mainWrap
 				.querySelector(".icon-wrap > svg")
 				.querySelectorAll("path,circle"),
 			duration: 1500,
@@ -72,7 +72,7 @@ const animate = () => {
 				easing: "easeInOutCubic"
 			}
 		});
-	Array.from($wrap1.querySelectorAll(".title-wrap > .title")).forEach(
+	Array.from($mainWrap.querySelectorAll(".title-wrap > .title")).forEach(
 		($title, index) => {
 			const duration = 650;
 			anime
@@ -104,12 +104,61 @@ const animate = () => {
 		}
 	);
 	anime({
-		targets: $wrap1.querySelectorAll(".describe-wrap > p.describe"),
+		targets: $mainWrap.querySelectorAll(".describe-wrap > p.describe"),
 		duration: 1000,
 		delay: (el, i) => i * 200 + 2000,
 		easing: "easeOutCubic",
 		translateY: [`${30}%`, 0],
 		opacity: [0, 1]
+	});
+	// Links
+	Array.from($linksWraps).forEach(($linksWrap, wrapIndex) => {
+		Array.from($linksWrap.querySelectorAll("li.link")).forEach(
+			($link, linkIndex) => {
+				anime
+					.timeline()
+					.add({
+						targets: $link,
+						easing: "easeOutCubic",
+						duration: 1500,
+						delay: linkIndex * 100 + wrapIndex * 100 + 1000,
+						opacity: [0, 1],
+						translateY: [`${25}%`, 0]
+					})
+					.add({
+						targets: $link.querySelectorAll(".icon-wrap > .cover"),
+						duration: 750,
+						easing: "easeInExpo",
+						translateX: [`${-100}%`, 0],
+						offset: `-=${1000}`
+					})
+					.add({
+						targets: $link.querySelectorAll(".icon-wrap > .cover"),
+						duration: 750,
+						easing: "easeOutExpo",
+						translateX: `${100}%`
+					})
+					.add({
+						targets: $link.querySelectorAll(".icon-wrap > svg"),
+						duration: 500,
+						offset: `-=${750}`,
+						easing: "easeOutCubic",
+						translateY: [`${50}%`, 0],
+						opacity: [0, 1]
+					})
+					.add({
+						targets: $link.querySelectorAll(".text-wrap > .text"),
+						duration: 750,
+						offset: `-=${500}`,
+						easing: "easeOutQuint",
+						translateY: [`${50}%`, 0],
+						opacity: [0, 1]
+					})
+					.finished.then(() => {
+						$link.classList.add("animated");
+					});
+			}
+		);
 	});
 };
 

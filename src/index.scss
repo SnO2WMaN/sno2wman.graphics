@@ -135,13 +135,16 @@ section {
 						}
 						& > .link,
 						& > .clipboard {
+							z-index: 10;
 							position: absolute 0;
 							size: 100%;
 							cursor: pointer;
+							visibility: hidden;
 						}
 						& > .icon-wrap {
 							$size: 1.5rem;
 
+							position: relative;
 							width: $width;
 							height: $size * metallic(1);
 							font-size: $size;
@@ -152,6 +155,12 @@ section {
 							color: white;
 							fill: white;
 							padding: ($size * (metallic(1) - 1) / 2) 0.75rem;
+							overflow: hidden;
+							& > .cover {
+								position: absolute 0;
+								size: 100%;
+								background-color: rgba(white, 0.25);
+							}
 							& > .border {
 								width: 100%;
 								height: 1px;
@@ -175,10 +184,16 @@ section {
 								font-variant-numeric: lining-nums;
 							}
 						}
-						&:hover {
-							& > .icon-wrap {
-								& > .border {
-									transform: scale(1);
+						&.animated {
+							& > .link,
+							& > .clipboard {
+								visibility: visible;
+							}
+							&:hover {
+								& > .icon-wrap {
+									& > .border {
+										transform: scale(1);
+									}
 								}
 							}
 						}

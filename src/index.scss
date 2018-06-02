@@ -3,14 +3,82 @@
 @import "~sass-easing/easings";
 
 $text: #212121;
+$theme-1: #3d5afe;
+$theme-2: #8c9eff;
 
 html,
 body {
 	overflow: hidden;
+	width: 100vw;
+	height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-section {
-	width: 100%;
+#caution {
+	position: absolute;
+	z-index: 9999;
+	right: 2%;
+	bottom: 2%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-end;
+	opacity: 0.25;
+	& > .icon-wrap {
+		margin-bottom: 0.125rem;
+		& > svg {
+			height: 2rem;
+			fill: $text;
+		}
+	}
+	& > .text {
+		text-align: right;
+		font-size: 0.8rem;
+		color: $text;
+		font-family: "IBM Plex Sans Condensed", sans-serif;
+		font-kerning: normal;
+		& > strong {
+			position: relative;
+			font-weight: 700;
+			margin: 0 0.3rem;
+		}
+		&:not(:last-of-type) {
+			margin-bottom: 0.125rem;
+		}
+	}
+}
+
+#loading {
+	position: absolute 0;
+	size: 100%;
+	background: $theme-1;
+	z-index: 5000;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	& > .icon-wrap {
+		size: 10rem;
+		margin: 2.5rem;
+		& > svg {
+			fill: #fff;
+		}
+	}
+	& > .text-wrap {
+		& > .text {
+			font-size: 1rem;
+			font-weight: 700;
+			color: white;
+			font-family: "IBM Plex Sans Condensed", sans-serif;
+			letter-spacing: 4px;
+		}
+	}
+}
+
+#main {
+	position: absolute 0;
+	width: 100vw;
 	height: 100vh;
 	background: #fafafa;
 	& > .contents-wrap {
@@ -45,11 +113,11 @@ section {
 						size: (100% * sqrt(2));
 						border-radius: 50%;
 						&:nth-of-type(1) {
-							background: #8c9eff;
+							background: $theme-2;
 							z-index: 0;
 						}
 						&:nth-of-type(2) {
-							background: #3d5afe;
+							background: $theme-1;
 							z-index: 1;
 						}
 					}
@@ -84,10 +152,10 @@ section {
 							size: 100%;
 							z-index: 1;
 							&:nth-of-type(1) {
-								background: #8c9eff;
+								background: $theme-2;
 							}
 							&:nth-of-type(2) {
-								background: #3d5afe;
+								background: $theme-1;
 							}
 						}
 						& > p {
@@ -175,6 +243,7 @@ section {
 							width: $width;
 							padding: 0.5rem 0;
 							padding-left: 0.75rem;
+							overflow: hidden;
 							& > .text {
 								color: $text;
 								font-size: 0.8rem;

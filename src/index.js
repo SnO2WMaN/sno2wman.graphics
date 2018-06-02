@@ -3,6 +3,7 @@ import anime from "animejs";
 import Clipboard from "clipboard";
 
 // Icon
+
 import fontawesome from "@fortawesome/fontawesome";
 import faTwitter from "@fortawesome/fontawesome-free-brands/faTwitter";
 import faGithub from "@fortawesome/fontawesome-free-brands/faGithub";
@@ -14,6 +15,9 @@ import faRss from "@fortawesome/fontawesome-free-solid/faRss";
 import iconSnO2WMaN from "./icons/sno2wman.svg";
 import iconQiita from "./icons/qiita.svg";
 import iconPixivFanbox from "./icons/pixiv_fanbox_1.svg";
+import LogoSite from "./icons/logo_site.svg";
+import LogoEn from "./icons/logo_en.svg";
+import LogoJpEn from "./icons/logo_jpen.svg";
 
 import WebFont from "webfontloader";
 
@@ -26,7 +30,10 @@ Array.from(document.querySelectorAll("i.icon")).forEach($icon => {
 	Object.entries({
 		qiita: iconQiita,
 		"pixiv-fanbox": iconPixivFanbox,
-		sno2wman: iconSnO2WMaN
+		sno2wman: iconSnO2WMaN,
+		"logo-site": LogoSite,
+		"logo-en": LogoEn,
+		"logo-jp-en": LogoJpEn
 	}).forEach(entry => {
 		if (classList.contains(entry[0])) {
 			$parentEl.innerHTML = entry[1] + $parentEl.innerHTML;
@@ -42,10 +49,16 @@ new Clipboard(".clipboard", {
 });
 
 // Animetion
-const $mainWrap = document.querySelector(".contents > .wrap.main"); // Basic
-const $linksWraps = document.querySelectorAll(".contents > .wrap.links"); // Links
+const $caution = document.getElementById("caution");
+const $loading = document.getElementById("loading");
+const $main = document.getElementById("main");
 
-const animate = () => {
+console.log($main);
+
+const $mainWrap = $main.querySelector(".contents > .wrap.main"); // Basic
+const $linksWraps = $main.querySelectorAll(".contents > .wrap.links"); // Links
+
+const mainAnimate = () => {
 	// Main
 	anime
 		.timeline()
@@ -64,6 +77,7 @@ const animate = () => {
 				.querySelectorAll("path,circle"),
 			duration: 1500,
 			delay: (el, i) => i * 50,
+			offset: 500,
 			easing: "easeInOutQuint",
 			strokeDashoffset: [anime.setDashoffset, 0],
 			opacity: [0.5, 1],
@@ -127,14 +141,14 @@ const animate = () => {
 					})
 					.add({
 						targets: $link.querySelectorAll(".icon-wrap > .cover"),
-						duration: 750,
+						duration: 600,
 						easing: "easeInExpo",
 						translateX: [`${-100}%`, 0],
 						offset: `-=${1000}`
 					})
 					.add({
 						targets: $link.querySelectorAll(".icon-wrap > .cover"),
-						duration: 750,
+						duration: 600,
 						easing: "easeOutExpo",
 						translateX: `${100}%`
 					})
@@ -151,7 +165,7 @@ const animate = () => {
 						duration: 750,
 						offset: `-=${500}`,
 						easing: "easeOutQuint",
-						translateY: [`${50}%`, 0],
+						translateY: [`${20}%`, 0],
 						opacity: [0, 1]
 					})
 					.finished.then(() => {
@@ -164,9 +178,21 @@ const animate = () => {
 
 WebFont.load({
 	google: {
-		families: ["IBM Plex Sans:400,500", "IBM Plex Sans Condensed"]
+		families: ["IBM Plex Sans:400,500", "IBM Plex Sans Condensed:400,700"]
 	},
 	active() {
-		animate();
+		setTimeout(() => {
+			anime({
+				targets: $loading,
+				duration: 750,
+				easing: "easeInOutCubic",
+				opacity: 0,
+				scale: 1.05,
+				complete: () => {
+					$loading.style.visibility = "hidden";
+				}
+			});
+			mainAnimate();
+		}, 1000);
 	}
 });

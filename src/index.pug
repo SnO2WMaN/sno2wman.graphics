@@ -28,7 +28,20 @@ html(lang="jp")
 		link(type="image/png", href=$image, rel="shortcut icon")
 		title #{$title}
 	body
-		section
+		div#caution
+			.icon-wrap
+				i.icon.logo-jp-en
+			p.text This website uses Google Analytics.
+			p.text
+				| &copy;
+				strong 2018
+				| SnO2WMaN.
+		section#loading
+			.icon-wrap
+				i.icon.logo-site
+			.text-wrap
+				p.text PLEASE WAIT
+		section#main
 			.bg
 			.contents-wrap
 				.contents

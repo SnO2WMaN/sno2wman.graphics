@@ -57,6 +57,7 @@ console.log($main);
 
 const $mainWrap = $main.querySelector(".contents > .wrap.main"); // Basic
 const $linksWraps = $main.querySelectorAll(".contents > .wrap.links"); // Links
+const $bioWraps = $main.querySelector(".contents > .wrap.bio"); // Links
 
 const mainAnimate = () => {
 	// Main
@@ -174,13 +175,62 @@ const mainAnimate = () => {
 			}
 		);
 	});
+	// Bio
+	anime({
+		targets: $bioWraps.querySelector(".bio-wrap"),
+		duration: 2000,
+		delay: 500,
+		easing: "easeOutCubic",
+		opacity: [0, 1],
+		translateY: [`${50}%`, 0]
+	});
+	anime
+		.timeline()
+		.add({
+			targets: $bioWraps.querySelectorAll(".bio-wrap > .cover"),
+			duration: 500,
+			delay: (el, i) => {
+				return i * 100 + 1500;
+			},
+			easing: "easeInExpo",
+			translateY: [`${100}%`, 0]
+		})
+		.add({
+			targets: $bioWraps.querySelectorAll(".bio-wrap > .cover"),
+			duration: 500,
+			delay: (el, i) => {
+				return ((i + 1) % 2) * 100;
+			},
+			easing: "easeOutExpo",
+			translateY: `${-100}%`
+		});
+	anime({
+		targets: $bioWraps.querySelector(".bio-wrap > .title-wrap > .title"),
+		duration: 1200,
+		delay: 2000,
+		easing: "easeOutQuad",
+		opacity: [0, 1],
+		translateY: [`${50}%`, 0]
+	});
+	anime({
+		targets: $bioWraps.querySelectorAll(".bio-wrap > .text-wrap > p"),
+		duration: 1200,
+		easing: "easeOutQuad",
+		delay: (el, i) => i * 150 + 2000,
+		opacity: [0, 1],
+		translateY: [`${50}%`, 0]
+	});
 };
 
 WebFont.load({
 	google: {
 		families: ["IBM Plex Sans:400,500", "IBM Plex Sans Condensed:400,700"]
 	},
-	active() {
+	custom: {
+		families: ["Noto Sans Japanese:300,700"],
+		urls: ["https://fonts.googleapis.com/earlyaccess/notosansjapanese.css"]
+	},
+	loading() {
 		setTimeout(() => {
 			anime({
 				targets: $loading,

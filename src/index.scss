@@ -2,7 +2,7 @@
 @import "~sass-metallic-ratio/index";
 @import "~sass-easing/easings";
 
-$text: #212121;
+$text: #787878;
 $theme-1: #3d5afe;
 $theme-2: #8c9eff;
 
@@ -72,6 +72,7 @@ body {
 			color: white;
 			font-family: "IBM Plex Sans Condensed", sans-serif;
 			letter-spacing: 4px;
+			transform-origin: top;
 		}
 	}
 }
@@ -164,8 +165,9 @@ body {
 							color: $text;
 							font-size: 1.25rem;
 							font-weight: 500;
-							font-family: "IBM Plex Sans", sans-serif;
-							letter-spacing: 2px;
+							font-family: "Raleway", sans-serif;
+							letter-spacing: 3px;
+							font-variant-numeric: oldstyle-nums;
 						}
 					}
 				}
@@ -303,6 +305,58 @@ body {
 								& > .border {
 									width: 100% - $width;
 								}
+							}
+						}
+					}
+				}
+				& > .bio-wrap {
+					width: (10rem * metallic(1));
+					background: white;
+					box-shadow: 0 0 2px rgba(black, 0.05);
+					padding: 1rem (1rem * metallic(1));
+					position: relative;
+					overflow: hidden;
+					& > .cover {
+						position: absolute 0;
+						size: 100%;
+						z-index: 2;
+						&:nth-of-type(1) {
+							background: $theme-2;
+						}
+						&:nth-of-type(2) {
+							background: $theme-1;
+						}
+					}
+					& > .title-wrap {
+						position: relative;
+						z-index: 1;
+						margin-bottom: 1rem;
+						& > .title {
+							font-size: 1.1rem;
+							color: $text;
+							font-family: "Raleway", sans-serif;
+							font-weight: 500;
+							letter-spacing: 2px;
+						}
+					}
+					& > .text-wrap {
+						position: relative;
+						z-index: 1;
+						padding-left: 0.25rem;
+						& > p {
+							color: $text;
+							font-family: "Noto Sans Japanese", serif;
+							font-feature-settings: "palt" 1, "trad" 1;
+							font-variant-ligatures: common-ligatures;
+							font-weight: 300;
+							font-size: 0.75rem;
+							font-kerning: normal;
+							letter-spacing: -1px;
+							&:not(:last-of-type) {
+								margin-bottom: 0.4rem;
+							}
+							& > strong {
+								font-weight: 700;
 							}
 						}
 					}

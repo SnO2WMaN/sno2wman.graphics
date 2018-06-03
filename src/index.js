@@ -53,11 +53,9 @@ const $caution = document.getElementById("caution");
 const $loading = document.getElementById("loading");
 const $main = document.getElementById("main");
 
-console.log($main);
-
 const $mainWrap = $main.querySelector(".contents > .wrap.main"); // Basic
 const $linksWraps = $main.querySelectorAll(".contents > .wrap.links"); // Links
-const $bioWraps = $main.querySelector(".contents > .wrap.bio"); // Links
+const $bioWraps = $main.querySelector(".contents > .wrap.bio"); // Bio
 
 const mainAnimate = () => {
 	// Main
@@ -241,6 +239,22 @@ WebFont.load({
 				complete: () => {
 					$loading.style.visibility = "hidden";
 				}
+			});
+			anime({
+				targets: $loading.querySelectorAll(".icon-wrap > *"),
+				duration: 750,
+				easing: "linear",
+				opacity: 0,
+				translateX: (el, i) => `${(i < 2 ? -1 : 1) * 10}%`,
+				translateY: (el, i) => `${(i % 2 ? 1 : -1) * 10}%`
+			});
+			anime({
+				targets: $loading.querySelector(".text-wrap > .text"),
+				duration: 1000,
+				delay: 100,
+				easing: "easeOutQuad",
+				opacity: 0,
+				translateY: `${50}%`
 			});
 			mainAnimate();
 		}, 1000);

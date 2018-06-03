@@ -59,10 +59,39 @@ body {
 	justify-content: center;
 	align-items: center;
 	& > .icon-wrap {
-		size: 10rem;
+		$size: 10rem;
+
+		position: relative;
+		size: $size;
 		margin: 2.5rem;
-		& > svg {
-			fill: #fff;
+		& > * {
+			size: ($size * 0.5);
+			position: absolute;
+			overflow: hidden;
+
+			&.left {
+				left: 0;
+			}
+			&.right {
+				left: 50%;
+				& > svg {
+					left: -100%;
+				}
+			}
+			&.top {
+				top: 0;
+			}
+			&.bottom {
+				top: 50%;
+				& > svg {
+					top: -100%;
+				}
+			}
+			& > svg {
+				position: absolute;
+				size: $size;
+				fill: #fff;
+			}
 		}
 	}
 	& > .text-wrap {

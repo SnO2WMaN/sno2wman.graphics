@@ -224,7 +224,7 @@ const mainAnimate = () => {
 
 WebFont.load({
 	google: {
-		families: ["IBM Plex Sans:400,500", "IBM Plex Sans Condensed:400,700"]
+		families: ["IBM Plex Sans Condensed:400,700", "Raleway:500"]
 	},
 	custom: {
 		families: ["Noto Sans Japanese:300,700"],

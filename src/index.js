@@ -12,6 +12,11 @@ import faDiscord from "@fortawesome/fontawesome-free-brands/faDiscord";
 import faAmazon from "@fortawesome/fontawesome-free-brands/faAmazon";
 import faRss from "@fortawesome/fontawesome-free-solid/faRss";
 
+import faEnvelope from "@fortawesome/fontawesome-free-solid/faEnvelope";
+import faSnowflake from "@fortawesome/fontawesome-free-solid/faSnowflake";
+import faFire from "@fortawesome/fontawesome-free-solid/faFire";
+import faBolt from "@fortawesome/fontawesome-free-solid/faBolt";
+
 import iconSnO2WMaN from "./icons/sno2wman.svg";
 import iconQiita from "./icons/qiita.svg";
 import iconPixivFanbox from "./icons/pixiv_fanbox_1.svg";
@@ -21,8 +26,18 @@ import LogoJpEn from "./icons/logo_jpen.svg";
 
 import WebFont from "webfontloader";
 
-fontawesome.library.add(faTwitter, faGithub, faSteam, faDiscord, faAmazon);
-fontawesome.library.add(faRss);
+fontawesome.library.add(
+	faTwitter,
+	faGithub,
+	faSteam,
+	faDiscord,
+	faAmazon,
+	faRss,
+	faEnvelope,
+	faSnowflake,
+	faFire,
+	faBolt
+);
 Array.from(document.querySelectorAll("i.icon")).forEach($icon => {
 	const classList = $icon.classList;
 	const $parentEl = $icon.parentElement;
@@ -217,6 +232,83 @@ const mainAnimate = () => {
 		delay: (el, i) => i * 150 + 2000,
 		opacity: [0, 1],
 		translateY: [`${50}%`, 0]
+	});
+	// Timeline
+	anime({
+		targets: $bioWraps.querySelector(".timeline-wrap"),
+		duration: 2000,
+		delay: 750,
+		easing: "easeOutCubic",
+		opacity: [0, 1],
+		translateY: [`${50}%`, 0]
+	});
+	anime
+		.timeline()
+		.add({
+			targets: $bioWraps.querySelectorAll(
+				".timeline-wrap > .wrap > .cover"
+			),
+			duration: 500,
+			delay: (el, i) => {
+				return i * 100 + 1750;
+			},
+			easing: "easeInExpo",
+			translateY: [`${100}%`, 0]
+		})
+		.add({
+			targets: $bioWraps.querySelectorAll(
+				".timeline-wrap > .wrap > .cover"
+			),
+			duration: 500,
+			delay: (el, i) => {
+				return ((i + 1) % 2) * 100;
+			},
+			easing: "easeOutExpo",
+			translateY: `${-100}%`
+		});
+	anime({
+		targets: $bioWraps.querySelector(".timeline-wrap .title-wrap > .title"),
+		duration: 1200,
+		delay: 2250,
+		easing: "easeOutQuad",
+		opacity: [0, 1],
+		translateY: [`${50}%`, 0]
+	});
+	Array.from(
+		$bioWraps.querySelectorAll(".timeline-wrap .periods > .period")
+	).forEach(($period, periodIndex) => {
+		anime
+			.timeline()
+			.add({
+				targets: $period.querySelector(".icon-wrap"),
+				duration: 750,
+				delay: 2300 + periodIndex * 100,
+				easing: "easeInCubic",
+				opacity: [0, 1],
+				scale: [0, 1]
+			})
+			.add({
+				targets: $period.querySelector(".icon-wrap > svg"),
+				duration: 750,
+				easing: "easeOutCubic",
+				scale: [0, 1]
+			})
+			.add({
+				targets: $period.querySelector(".date-wrap > .date"),
+				offset: `-=${1000}`,
+				duration: 800,
+				easing: "easeOutQuint",
+				opacity: [0, 1],
+				translateY: [`${25}%`, 0]
+			})
+			.add({
+				targets: $period.querySelector(".text-wrap > .text"),
+				offset: `-=${800}`,
+				duration: 800,
+				easing: "easeOutQuint",
+				opacity: [0, 1],
+				translateY: [`${25}%`, 0]
+			});
 	});
 };
 

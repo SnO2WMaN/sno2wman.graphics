@@ -8,6 +8,7 @@ const autoprefixer = require("autoprefixer");
 const postcssSorting = require("postcss-sorting");
 const postcssShort = require("postcss-short");
 const cssnano = require("cssnano");
+const cssMqPacker = require("css-mqpacker");
 
 // Plugins
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -94,6 +95,7 @@ module.exports = env => {
 								parser: "postcss-scss",
 								plugins: [
 									autoprefixer,
+									cssMqPacker,
 									postcssSorting,
 									postcssShort
 								]

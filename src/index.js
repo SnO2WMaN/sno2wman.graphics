@@ -1,6 +1,8 @@
 import "./index.scss";
+
 import anime from "animejs";
 import Clipboard from "clipboard";
+import isMobile from "ismobilejs";
 
 // Icon
 
@@ -59,7 +61,11 @@ Array.from(document.querySelectorAll("i.icon")).forEach($icon => {
 // Clipboard
 new Clipboard(".clipboard", {
 	text: function(el) {
-		return el.getAttribute("text");
+		const text = el.getAttribute("text");
+		if (isMobile.phone) {
+			alert(`Copyed "${text}"`);
+		}
+		return text;
 	}
 });
 
@@ -144,7 +150,7 @@ const mainAnimate = () => {
 		Array.from($linksWrap.querySelectorAll("li.link")).forEach(
 			($link, linkIndex) => {
 				anime
-					.timeline()
+					.timeline({})
 					.add({
 						targets: $link,
 						easing: "easeOutCubic",
@@ -329,7 +335,7 @@ WebFont.load({
 				opacity: 0,
 				scale: 1.05,
 				complete: () => {
-					$loading.style.visibility = "hidden";
+					document.querySelector("body").classList.add("activated");
 				}
 			});
 			anime({

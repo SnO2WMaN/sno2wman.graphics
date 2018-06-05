@@ -6,8 +6,11 @@ $text: #787878;
 $theme-1: #3d5afe;
 $theme-2: #8c9eff;
 
+$media-phone: 1020px;
+
 html,
 body {
+	position: absolute 0;
 	overflow: hidden;
 	width: 100vw;
 	height: 100vh;
@@ -47,6 +50,9 @@ body {
 			margin-bottom: 0.125rem;
 		}
 	}
+	@media screen and (max-width: $media-phone) {
+		visibility: hidden;
+	}
 }
 
 #loading {
@@ -59,12 +65,14 @@ body {
 	justify-content: center;
 	align-items: center;
 	& > .icon-wrap {
-		$size: 10rem;
 		position: relative;
-		size: $size;
+		size: 10rem;
 		margin: 2.5rem;
+		@media screen and (max-width: $media-phone) {
+			size: 20vmax;
+		}
 		& > * {
-			size: ($size * 0.5);
+			size: 50%;
 			position: absolute;
 			overflow: hidden;
 
@@ -88,7 +96,7 @@ body {
 			}
 			& > svg {
 				position: absolute;
-				size: $size;
+				size: 200%;
 				fill: #fff;
 			}
 		}
@@ -105,23 +113,45 @@ body {
 	}
 }
 
+body.activated {
+	@media screen and (max-width: $media-phone) {
+		overflow-y: scroll;
+	}
+	#loading {
+		visibility: hidden;
+	}
+}
 #main {
 	position: absolute 0;
 	width: 100vw;
 	height: 100vh;
-	background: #fafafa;
+	& > .bg {
+		position: fixed;
+		top: 0;
+		size: 100%;
+		background-color: #fafafa;
+	}
 	& > .contents-wrap {
+		position: relative;
 		size: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+		@media screen and (max-width: $media-phone) {
+			margin: (100vh * (sqrt(2) - 1) / 2) 0;
+			padding: 0 (100vw / 4 / 2);
+			height: auto;
+		}
 		& > .contents {
-			position: relative;
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
 			align-items: flex-start;
+			@media screen and (max-width: $media-phone) {
+				flex-wrap: wrap;
+				justify-content: space-between;
+			}
 			& > .wrap {
 				display: flex;
 				flex-direction: column;
@@ -129,12 +159,25 @@ body {
 				align-items: center;
 				&:not(:first-of-type) {
 					margin-left: 1rem;
+					@media screen and (max-width: $media-phone) {
+						margin-left: 0;
+						margin-top: 7.5vh;
+					}
+				}
+				@media screen and (max-width: $media-phone) {
+					&.main,
+					&.bio {
+						width: 100%;
+					}
 				}
 				& > .icon-wrap {
 					user-select: none;
 					position: relative;
 					size: 160px;
 					overflow: hidden;
+					@media screen and (max-width: $media-phone) {
+						size: (100vmin / 3);
+					}
 					& > .cover {
 						position: absolute;
 						left: -(sqrt(2) - 1) * 50%;
@@ -169,12 +212,19 @@ body {
 					margin-top: 1rem * metallic(1);
 					margin-bottom: 1rem;
 					text-align: center;
+					@media screen and (max-width: $media-phone) {
+						margin-bottom: 2.5vh;
+						margin-top: 2.5vh * metallic(1);
+					}
 					& > .title {
 						position: relative;
 						overflow: hidden;
 						padding: 0 0.25rem;
 						&:not(:last-of-type) {
 							margin-bottom: 3px;
+							@media screen and (max-width: $media-phone) {
+								margin-bottom: 0.5vh;
+							}
 						}
 						& > .cover {
 							position: absolute 0;
@@ -210,6 +260,9 @@ body {
 						font-kerning: normal;
 						&:not(:last-of-type) {
 							margin-bottom: 3px;
+							@media screen and (max-width: $media-phone) {
+								margin-bottom: 0.25vh;
+							}
 						}
 					}
 				}
@@ -218,12 +271,16 @@ body {
 					flex-direction: column;
 					flex-wrap: wrap;
 					& > .link {
-						$width: 200px;
+						width: 200px;
 						position: relative;
 						margin: 0.5rem 0;
 						list-style: none;
 						background: white;
 						box-shadow: 0 0 2px rgba(black, 0.05);
+						@media screen and (max-width: $media-phone) {
+							width: (100vw / 3);
+							margin: 0.75vh;
+						}
 						&:first-of-type {
 							margin-top: 0;
 						}
@@ -241,7 +298,7 @@ body {
 						& > .icon-wrap {
 							$size: 1.5rem;
 							position: relative;
-							width: $width;
+							width: 100%;
 							height: $size * metallic(1);
 							font-size: $size;
 							display: flex;
@@ -250,8 +307,13 @@ body {
 							align-items: center;
 							color: white;
 							fill: white;
-							padding: ($size * (metallic(1) - 1) / 2) 0.75rem;
+							padding: 0 0.75rem;
 							overflow: hidden;
+							@media screen and (max-width: $media-phone) {
+								$size: 2.5vmax;
+								height: $size * metallic(1);
+								font-size: $size;
+							}
 							& > .cover {
 								position: absolute 0;
 								size: 100%;
@@ -268,10 +330,13 @@ body {
 							}
 						}
 						& > .text-wrap {
-							width: $width;
+							width: 100%;
 							padding: 0.5rem 0;
 							padding-left: 0.75rem;
 							overflow: hidden;
+							@media screen and (max-width: $media-phone) {
+								display: none;
+							}
 							& > .text {
 								color: $text;
 								font-size: 0.8rem;
@@ -345,6 +410,10 @@ body {
 					overflow: hidden;
 					margin-bottom: 1rem;
 					user-select: none;
+					@media screen and (max-width: $media-phone) {
+						width: 100%;
+						margin-bottom: 5vh;
+					}
 					& > .cover {
 						position: absolute 0;
 						size: 100%;
@@ -393,10 +462,16 @@ body {
 					width: 260px;
 					position: relative;
 					user-select: none;
+					@media screen and (max-width: $media-phone) {
+						width: 100%;
+					}
 					& > .placeholder {
 						width: 100%;
 						height: 3rem;
 						visibility: hidden;
+						@media screen and (max-width: $media-phone) {
+							display: none;
+						}
 					}
 					& > .wrap {
 						overflow: hidden;
@@ -418,6 +493,9 @@ body {
 						position: absolute;
 						top: 0;
 						left: 0;
+						@media screen and (max-width: $media-phone) {
+							position: relative;
+						}
 						& > .title-wrap {
 							position: relative;
 							z-index: 1;

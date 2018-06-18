@@ -1,573 +1,209 @@
-@import "~ress/ress";
+@import "ress/ress";
 @import "~sass-metallic-ratio/index";
 @import "~sass-easing/easings";
 
-$text: #787878;
-$theme-1: #3d5afe;
-$theme-2: #8c9eff;
+$theme: hsl(210, 20%, 24%);
+$bg: hsl(210, 8%, 89%);
 
-$media-phone: 1020px;
+:root {
+	--theme: #{$theme};
+	--bg: #{$bg};
+	font-size: 12px;
+}
 
-html,
 body {
-	position: absolute 0;
-	overflow: hidden;
-	width: 100vw;
-	height: 100vh;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	overflow-y: scroll;
+	background: $bg;
 }
 
-#caution {
-	position: absolute;
-	z-index: 9999;
-	right: 2%;
-	bottom: 2%;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: flex-end;
-	opacity: 0.25;
-	& > .icon-wrap {
-		margin-bottom: 0.125rem;
-		& > svg {
-			height: 2rem;
-			fill: $text;
-		}
-	}
-	& > .text {
-		text-align: right;
-		font-size: 0.8rem;
-		color: $text;
-		font-family: "IBM Plex Sans Condensed", sans-serif;
-		font-kerning: normal;
-		& > strong {
-			position: relative;
-			font-weight: 700;
-			margin: 0 0.3rem;
-		}
-		&:not(:last-of-type) {
-			margin-bottom: 0.125rem;
-		}
-	}
-	@media screen and (max-width: $media-phone) {
-		visibility: hidden;
-	}
+$frame-width: 0.75rem;
+
+#canvas,
+#canvas-placeholder {
+	position: fixed $frame-width;
+	size: calc(100% - #{$frame-width * 2});
+	z-index: 1;
+}
+#canvas-placeholder {
+	visibility: hidden;
 }
 
-#loading {
-	position: absolute 0;
+#frame {
+	position: fixed 0;
 	size: 100%;
-	background: $theme-1;
-	z-index: 5000;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	& > .icon-wrap {
-		position: relative;
-		size: 10rem;
-		margin: 2.5rem;
-		@media screen and (max-width: $media-phone) {
-			size: 20vmax;
-		}
-		& > * {
-			size: 50%;
-			position: absolute;
-			overflow: hidden;
-
-			&.left {
-				left: 0;
-			}
-			&.right {
-				left: 50%;
-				& > svg {
-					left: -100%;
-				}
-			}
-			&.top {
-				top: 0;
-			}
-			&.bottom {
-				top: 50%;
-				& > svg {
-					top: -100%;
-				}
-			}
-			& > svg {
-				position: absolute;
-				size: 200%;
-				fill: #fff;
-			}
-		}
+	z-index: 2;
+	& > * {
+		position: absolute;
+		size: 100%;
+		border: $frame-width $theme;
 	}
-	& > .text-wrap {
-		& > .text {
-			font-size: 1rem;
-			font-weight: 700;
-			color: white;
-			font-family: "IBM Plex Sans Condensed", sans-serif;
-			letter-spacing: 4px;
-			transform-origin: top;
+	@each $dir in top left bottom right {
+		& > .#{$dir} {
+			border-#{$dir}-style: solid;
 		}
 	}
 }
-
-body.activated {
-	@media screen and (max-width: $media-phone) {
-		overflow-y: scroll;
-	}
-	#loading {
-		visibility: hidden;
-	}
-}
-#main {
-	position: absolute 0;
-	width: 100vw;
-	height: 100vh;
-	& > .bg {
-		position: fixed;
-		top: 0;
-		size: 100%;
-		background-color: #fafafa;
-	}
-	& > .contents-wrap {
-		position: relative;
-		size: 100%;
+#globalnav {
+	position: fixed;
+	top: calc(#{$frame-width} + 7.5vh);
+	right: calc(#{$frame-width} + 7.5vw);
+	z-index: 10;
+	& > .menu {
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		@media screen and (max-width: $media-phone) {
-			margin: (100vh * (sqrt(2) - 1) / 2) 0;
-			padding: 0 (100vw / 4 / 2);
-			height: auto;
-		}
-		& > .contents {
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: flex-start;
-			@media screen and (max-width: $media-phone) {
-				flex-wrap: wrap;
-				justify-content: space-between;
-			}
-			& > .wrap {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				&:not(:first-of-type) {
-					margin-left: 1rem;
-					@media screen and (max-width: $media-phone) {
-						margin-left: 0;
-						margin-top: 7.5vh;
-					}
-				}
-				@media screen and (max-width: $media-phone) {
-					&.main,
-					&.bio {
-						width: 100%;
-					}
-				}
-				& > .icon-wrap {
+		list-style: none;
+		& > li {
+			width: 6rem;
+			& > .text-wrap {
+				width: 100%;
+				text-align: center;
+				& > .text {
+					color: $theme;
 					user-select: none;
-					position: relative;
-					size: 160px;
-					overflow: hidden;
-					@media screen and (max-width: $media-phone) {
-						size: (100vmin / 3);
-					}
-					& > .cover {
-						position: absolute;
-						left: -(sqrt(2) - 1) * 50%;
-						top: -(sqrt(2) - 1) * 50%;
-						size: (100% * sqrt(2));
-						border-radius: 50%;
-						&:nth-of-type(1) {
-							background: $theme-2;
-							z-index: 0;
-						}
-						&:nth-of-type(2) {
-							background: $theme-1;
-							z-index: 1;
-						}
-					}
+					font-size: 1rem;
+					font-family: "Dosis", sans-serif;
+					letter-spacing: 2px;
+				}
+			}
+		}
+	}
+}
+
+#left {
+	position: fixed;
+	left: calc(#{$frame-width} + (7.5vw / 2));
+	top: calc(#{$frame-width} + 7.5vh);
+	margin: auto 0;
+	height: calc(100vh - #{$frame-width * 2} - (7.5vh * 2));
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	z-index: 10;
+	& > .wrap {
+		&.top {
+			& > .icon-wrap {
+				size: 4rem;
+				&:not(:last-of-type) {
+					margin-bottom: 2rem;
+				}
+				&.site {
 					& > svg {
-						position: absolute 0;
-						z-index: 2;
-						margin: auto;
-						size: (100% / metallic(1));
-						stroke: #fff;
-						stroke-width: 6px;
+						fill: $theme;
+					}
+				}
+				&.me {
+					& > svg {
 						fill: transparent;
-					}
-				}
-				& > .title-wrap {
-					user-select: none;
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					margin-top: 1rem * metallic(1);
-					margin-bottom: 1rem;
-					text-align: center;
-					@media screen and (max-width: $media-phone) {
-						margin-bottom: 2.5vh;
-						margin-top: 2.5vh * metallic(1);
-					}
-					& > .title {
-						position: relative;
-						overflow: hidden;
-						padding: 0 0.25rem;
-						&:not(:last-of-type) {
-							margin-bottom: 3px;
-							@media screen and (max-width: $media-phone) {
-								margin-bottom: 0.5vh;
-							}
-						}
-						& > .cover {
-							position: absolute 0;
-							size: 100%;
-							z-index: 1;
-							&:nth-of-type(1) {
-								background: $theme-2;
-							}
-							&:nth-of-type(2) {
-								background: $theme-1;
-							}
-						}
-						& > p {
-							position: relative;
-							z-index: 0;
-							color: $text;
-							font-size: 1.25rem;
-							font-weight: 500;
-							font-family: "Raleway", sans-serif;
-							letter-spacing: 3px;
-							font-variant-numeric: oldstyle-nums;
-						}
-					}
-				}
-				& > .describe-wrap {
-					user-select: none;
-					text-align: center;
-					& > .describe {
-						color: $text;
-						font-family: "IBM Plex Sans Condensed", sans-serif;
-						font-size: 0.9rem;
-						font-weight: 400;
-						font-kerning: normal;
-						&:not(:last-of-type) {
-							margin-bottom: 3px;
-							@media screen and (max-width: $media-phone) {
-								margin-bottom: 0.25vh;
-							}
-						}
-					}
-				}
-				& > .links-wrap {
-					display: flex;
-					flex-direction: column;
-					flex-wrap: wrap;
-					& > .link {
-						width: 200px;
-						position: relative;
-						margin: 0.5rem 0;
-						list-style: none;
-						background: white;
-						box-shadow: 0 0 2px rgba(black, 0.05);
-						@media screen and (max-width: $media-phone) {
-							width: (100vw / 3);
-							margin: 0.75vh;
-						}
-						&:first-of-type {
-							margin-top: 0;
-						}
-						&:last-of-type {
-							margin-bottom: 0;
-						}
-						& > .link,
-						& > .clipboard {
-							z-index: 10;
-							position: absolute 0;
-							size: 100%;
-							cursor: pointer;
-							visibility: hidden;
-						}
-						& > .icon-wrap {
-							$size: 1.5rem;
-							position: relative;
-							width: 100%;
-							height: $size * metallic(1);
-							font-size: $size;
-							display: flex;
-							flex-direction: row;
-							justify-content: flex-start;
-							align-items: center;
-							color: white;
-							fill: white;
-							padding: 0 0.75rem;
-							overflow: hidden;
-							@media screen and (max-width: $media-phone) {
-								$size: 2.5vmax;
-								height: $size * metallic(1);
-								font-size: $size;
-							}
-							& > .cover {
-								position: absolute 0;
-								size: 100%;
-								background-color: rgba(white, 0.25);
-							}
-							& > .border {
-								width: 100%;
-								height: 1px;
-								background: white;
-								margin-left: 0.75rem;
-								transform: scale(0);
-								transform-origin: left;
-								transition: transform 0.5s $easeInOutQuad;
-							}
-						}
-						& > .text-wrap {
-							width: 100%;
-							padding: 0.5rem 0;
-							padding-left: 0.75rem;
-							overflow: hidden;
-							@media screen and (max-width: $media-phone) {
-								display: none;
-							}
-							& > .text {
-								color: $text;
-								font-size: 0.8rem;
-								font-weight: 300;
-								font-family: "IBM Plex Sans Condensed",
-									sans-serif;
-								font-variant-numeric: lining-nums;
-							}
-						}
-						&.animated {
-							& > .link,
-							& > .clipboard {
-								visibility: visible;
-							}
-							&:hover {
-								& > .icon-wrap {
-									& > .border {
-										transform: scale(1);
-									}
-								}
-							}
-						}
-						$brand-color: (
-							twitter: #1da1f2,
-							steam: #231f20,
-							github: #333,
-							discord: #7289da,
-							qiita: #55c500,
-							amazon: #ff9900,
-							pixiv-fanbox: #2c333c,
-							rss: #f26522,
-							envelope: #f44336
-						);
-						@each $key, $color in $brand-color {
-							&.#{$key} {
-								& > .icon-wrap {
-									background: $color;
-								}
-							}
-						}
-						&.qiita {
-							& > .icon-wrap {
-								$width: 100% / (579 / 200);
-								& > svg {
-									width: $width;
-								}
-								& > .border {
-									width: 100% - $width;
-								}
-							}
-						}
-						&.pixiv-fanbox {
-							& > .icon-wrap {
-								$width: 100% / (480 / 248);
-								& > svg {
-									width: $width;
-								}
-								& > .border {
-									width: 100% - $width;
-								}
-							}
-						}
-					}
-				}
-				& > .bio-wrap {
-					width: 260px;
-					background: white;
-					box-shadow: 0 0 2px rgba(black, 0.05);
-					padding: 1rem (1rem * metallic(1));
-					position: relative;
-					overflow: hidden;
-					margin-bottom: 1rem;
-					user-select: none;
-					@media screen and (max-width: $media-phone) {
-						width: 100%;
-						margin-bottom: 5vh;
-					}
-					& > .cover {
-						position: absolute 0;
-						size: 100%;
-						z-index: 2;
-						&:nth-of-type(1) {
-							background: $theme-2;
-						}
-						&:nth-of-type(2) {
-							background: $theme-1;
-						}
-					}
-					& > .title-wrap {
-						position: relative;
-						z-index: 1;
-						margin-bottom: 1rem;
-						& > .title {
-							font-size: 1.1rem;
-							color: $text;
-							font-family: "Raleway", sans-serif;
-							font-weight: 500;
-							letter-spacing: 2px;
-						}
-					}
-					& > .text-wrap {
-						position: relative;
-						z-index: 1;
-						padding-left: 0.25rem;
-						& > p {
-							color: $text;
-							font-family: "Noto Sans Japanese", serif;
-							font-feature-settings: "palt" 1;
-							font-weight: 300;
-							font-size: 0.75rem;
-							font-kerning: normal;
-							letter-spacing: -1px;
-							&:not(:last-of-type) {
-								margin-bottom: 0.4rem;
-							}
-							& > strong {
-								font-weight: 700;
-							}
-						}
-					}
-				}
-				& > .timeline-wrap {
-					width: 260px;
-					position: relative;
-					user-select: none;
-					@media screen and (max-width: $media-phone) {
-						width: 100%;
-					}
-					& > .placeholder {
-						width: 100%;
-						height: 3rem;
-						visibility: hidden;
-						@media screen and (max-width: $media-phone) {
-							display: none;
-						}
-					}
-					& > .wrap {
-						overflow: hidden;
-						& > .cover {
-							position: absolute 0;
-							size: 100%;
-							z-index: 2;
-							&:nth-of-type(1) {
-								background: $theme-2;
-							}
-							&:nth-of-type(2) {
-								background: $theme-1;
-							}
-						}
-						background: white;
-						width: 100%;
-						box-shadow: 0 0 2px rgba(black, 0.05);
-						padding: 1rem (1rem * metallic(1));
-						position: absolute;
-						top: 0;
-						left: 0;
-						@media screen and (max-width: $media-phone) {
-							position: relative;
-						}
-						& > .title-wrap {
-							position: relative;
-							z-index: 1;
-							margin-bottom: 1rem;
-							& > .title {
-								font-size: 1.1rem;
-								color: $text;
-								font-family: "Raleway", sans-serif;
-								font-weight: 500;
-								letter-spacing: 2px;
-							}
-						}
-						& > .periods {
-							display: flex;
-							flex-direction: column;
-							list-style-type: none;
-							& > .period {
-								display: flex;
-								flex-direction: row;
-								align-items: center;
-								&:not(:last-of-type) {
-									margin-bottom: 0.5rem;
-								}
-								& > .icon-wrap {
-									$size: 1.2rem;
-									margin-right: $size * (sqrt(2) - 1);
-									display: flex;
-									flex-direction: row;
-									align-items: center;
-									justify-content: center;
-									border-radius: 50%;
-									font-size: $size;
-									color: white;
-									size: $size;
-									padding: (metallic(1) - 1) * 0.5 * $size;
-									box-sizing: content-box;
-									background-color: $text;
-									&.born {
-										background-color: #ff8a65;
-									}
-									&.current {
-										background-color: #4fc3f7;
-									}
-									&.death {
-										background-color: #ffd54f;
-									}
-								}
-								& > .date-wrap {
-									color: $text;
-									font-size: 0.9rem;
-									font-family: "IBM Plex Sans Condensed",
-										sans-serif;
-									font-variant-numeric: tabular-nums;
-								}
-								& > .text-wrap {
-									text-align: right;
-									flex-grow: 2;
-									& > .text {
-										color: $text;
-										font-size: 0.8rem;
-										font-family: "Noto Sans Japanese",
-											sans-serif;
-										font-weight: 300;
-										font-feature-settings: "palt" 1;
-										letter-spacing: -1px;
-									}
-								}
-							}
-						}
+						stroke: $theme;
+						stroke-width: 8px;
 					}
 				}
 			}
 		}
+		&.bottom {
+			& > .text-wrap {
+				text-align: left;
+				& > .text {
+					user-select: none;
+					color: $theme;
+					letter-spacing: 0.1rem;
+					font-size: 0.9rem;
+					font-family: "Raleway", sans-serif;
+					font-variant-numeric: lining-nums;
+					&:not(:last-of-type) {
+						margin-bottom: 0.5rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+#main {
+	$header-height: (100vh / sqrt(2));
+	position: absolute;
+	top: calc(#{100vh - $header-height});
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: calc(100% - #{$frame-width * 2});
+	z-index: 100;
+
+	& > header {
+		position: relative;
+		width: 100%;
+		height: $header-height;
+		padding-bottom: $frame-width;
+		&::before {
+			content: "";
+			position: absolute auto 0;
+			bottom: 0;
+			width: (100% / metallic(1));
+			margin: 0 auto;
+			border-bottom: 1px $theme dashed;
+		}
+		& > .title-wrap {
+			position: absolute;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
+			text-align: center;
+			& > h1 {
+				color: $theme;
+				font-size: 4rem;
+				font-family: "Raleway", sans-serif;
+				font-weight: 100;
+				letter-spacing: 0.5rem;
+				margin-bottom: 1.5rem;
+			}
+			& > h2 {
+				color: $theme;
+				font-size: 1.25rem;
+				font-family: "Raleway", sans-serif;
+				font-weight: 300;
+				letter-spacing: 0.25rem;
+				font-variant-numeric: lining-nums;
+			}
+		}
+	}
+	& > .guide {
+		$size: 10rem;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		size: $size;
+		background: $theme;
+		border-radius: 50%;
+		top: calc(#{$header-height} - #{$size / 2});
+		overflow: hidden;
+		& > .inner {
+			content: "";
+			position: absolute 0;
+			margin: auto;
+			border-radius: 50%;
+			$scale: 25%;
+			$lighter: 5%;
+			@for $i from 1 through 4 {
+				&:nth-of-type(#{$i}) {
+					size: (100% - $scale * $i);
+					z-index: 1;
+					animation: header-guide-inner-#{$i} 1s infinite linear;
+				}
+				@keyframes header-guide-inner-#{$i} {
+					0% {
+						background: lighten($theme, $i * $lighter);
+					}
+					100% {
+						size: (100% - $scale * ($i - 1));
+						background: lighten($theme, ($i - 1) * $lighter);
+					}
+				}
+			}
+		}
+	}
+	& > section {
+		width: 100%;
+		height: 50vh;
 	}
 }

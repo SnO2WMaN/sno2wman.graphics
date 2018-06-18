@@ -28,162 +28,51 @@ html(lang="jp")
 		link(type="image/png", href=$image, rel="shortcut icon")
 		title #{$title}
 	body
-		div#caution
-			.icon-wrap
-				i.icon.logo-jp-en
-			p.text This website uses Google Analytics.
-			p.text
-				| &copy;
-				strong 2018
-				| SnO2WMaN.
-		section#loading
-			.icon-wrap
-				.left.top
+		#frame
+			.top
+			.left
+			.bottom
+			.right
+		#canvas-placeholder
+		canvas#canvas
+		#globalnav
+			ul.menu
+				li
+					.text-wrap
+						span.text HOME
+				li
+					.text-wrap
+						span.text ABOUT
+				li
+					.text-wrap
+						span.text WORKS
+				li
+					.text-wrap
+						span.text VOXEL
+				li
+					.text-wrap
+						span.text CONTACT
+				li
+					.text-wrap
+						span.text BLOG
+		#left
+			.wrap.top
+				.icon-wrap.site
 					i.icon.logo-site
-				.left.bottom
-					i.icon.logo-site
-				.right.top
-					i.icon.logo-site
-				.right.bottom
-					i.icon.logo-site
-			.text-wrap
-				p.text PLEASE WAIT
-		section#main
-			.bg
-			.contents-wrap
-				.contents
-					.wrap.main
-						.icon-wrap
-							.cover
-							.cover
-							i.icon.sno2wman
-						.title-wrap
-							.title
-								.cover
-								.cover
-								p.text SnO2WMaN
-							.title
-								.cover
-								.cover
-								p.text Graphics
-						.describe-wrap
-							p.describe Webdesign nerd aged 16
-							p.describe Sushi hater in Japan
-					.wrap.links
-						ul.links-wrap
-							li.link.twitter
-								a.link(href="https://twitter.com/SnO2WMaN" target="_blank")
-								.icon-wrap
-									.cover
-									i.fab.fa-twitter
-									.border
-								.text-wrap
-									p.text @SnO2WMaN
-							li.link.github
-								a.link(href="https://github.com/SnO2WMaN" target="_blank")
-								.icon-wrap
-									.cover
-									i.fab.fa-github
-									.border
-								.text-wrap
-									p.text SnO2WMaN
-							li.link.discord
-								.clipboard(text="SnO2WMaN#9459")
-								.icon-wrap
-									.cover
-									i.fab.fa-discord
-									.border
-								.text-wrap
-									p.text SnO2WMaN#9459
-							li.link.steam
-								a.link(href="https://steamcommunity.com/id/SnO2WMaN" target="_blank")
-								.icon-wrap
-									.cover
-									i.fab.fa-steam
-									.border
-								.text-wrap
-									p.text SnO2WMaN
-							li.link.envelope
-								a.link(href="mailto:sno2wman.official@gmail.com")
-								.icon-wrap
-									.cover
-									i.fas.fa-envelope
-									.border
-								.text-wrap
-									p.text sno2wman.official@gmail.com
-					.wrap.links
-						ul.links-wrap
-							li.link.qiita
-								a.link(href="https://qiita.com/SnO2WMaN" target="_blank")
-								.icon-wrap
-									.cover
-									i.icon.qiita
-									.border
-								.text-wrap
-									p.text SnO2WMaN
-							li.link.rss
-								a.link(href="http://blog.sno2wman.graphics" target="_blank")
-								.icon-wrap
-									.cover
-									i.fas.fa-rss
-									.border
-								.text-wrap
-									p.text blog.
-							li.link.amazon
-								a.link(href="http://amzn.asia/dx2NwFz" target="_blank")
-								.icon-wrap
-									.cover
-									i.fab.fa-amazon
-									.border
-								.text-wrap
-									p.text amzn.asia/dx2NwFz
-							li.link.pixiv-fanbox
-								a.link(href="https://www.pixiv.net/fanbox/creator/31358190" target="_blank")
-								.icon-wrap
-									.cover
-									i.icon.pixiv-fanbox
-									.border
-								.text-wrap
-									p.text 31358190
-					.wrap.bio
-						.bio-wrap
-							.cover
-							.cover
-							.title-wrap
-								p.title Biography
-							.text-wrap
-								p ウェブデザイナーをやっています。
-								p
-									| ウェブブラウザ上でクールな
-									br
-									| アニメーションを作るのが好きです。
-								p 時折ボクセルを作ります。
-								p
-									strong ペプシコーラ
-									| が好きです。
-								p
-									strong スシ
-									| は嫌いです。
-								p 依頼があれば可能な限り相談します。
-						.timeline-wrap
-							.placeholder
-							.wrap
-								.cover
-								.cover
-								.title-wrap
-									p.title Timeline
-								ul.periods
-									li.period
-										.icon-wrap.born
-											i.fas.fa-fire
-										.date-wrap
-											p.date 2001
-										.text-wrap
-											p.text 生誕
-									li.period
-										.icon-wrap.current
-											i.fas.fa-snowflake
-										.date-wrap
-											p.date 2018
-										.text-wrap
-											p.text 現在
+				.icon-wrap.me
+					i.icon.sno2wman
+			.wrap.bottom
+				.text-wrap
+					p.text &copy; 2018 SnO2WMaN.GRAPHICS
+					p.text ALL RIGHT RESERVED.
+		#main
+			header
+				.title-wrap
+					h1 BE(T_T)ER
+					h2 WEBDESIGN MACHINE 2001
+			.guide
+				.inner
+				.inner
+				.inner
+				.inner
+			section

@@ -1,0 +1,7 @@
+[Settings]
+ID = "sno2wman-graphics"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

@@ -35,7 +35,10 @@ module.exports = env => {
 		devServer: {
 			contentBase: distDir,
 			port: 8080,
-			inline: true
+			inline: true,
+			historyApiFallback: {
+				disableDotRule: true
+			}
 		},
 		performance: {
 			hints: false

@@ -1,5 +1,5 @@
--const $title = "SnO2WMaN.Graphics"
--const $description = "SnO2WMaN Website"
+-const $title = "SnO2WMaN.GRAPHICS"
+-const $description = "SnO2WMaNのウェブサイト"
 -const $image = "https://www.gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57?s=512"
 
 doctype html
@@ -35,26 +35,29 @@ html(lang="jp")
 			.right
 		#canvas-placeholder
 		canvas#canvas
+		#bottom-guide
+			.inner
+			.inner
+			.inner
+			.inner
 		#globalnav
+			.selected
 			ul.menu
-				li
+				li(data-target="home")
 					.text-wrap
 						span.text HOME
-				li
+				li(data-target="profile")
 					.text-wrap
 						span.text ABOUT
-				li
+				li(data-target="works")
 					.text-wrap
 						span.text WORKS
-				li
+				li(data-target="voxel")
 					.text-wrap
 						span.text VOXEL
-				li
+				li(data-target="contact")
 					.text-wrap
 						span.text CONTACT
-				li
-					.text-wrap
-						span.text BLOG
 		#left
 			.wrap.top
 				.icon-wrap.site
@@ -66,13 +69,8 @@ html(lang="jp")
 					p.text &copy; 2018 SnO2WMaN.GRAPHICS
 					p.text ALL RIGHT RESERVED.
 		#main
-			header
-				.title-wrap
-					h1 BE(T_T)ER
-					h2 WEBDESIGN MACHINE 2001
-			.guide
-				.inner
-				.inner
-				.inner
-				.inner
-			section
+			include pages/home
+			include pages/profile
+			include pages/voxel
+			include pages/works
+			include pages/contact

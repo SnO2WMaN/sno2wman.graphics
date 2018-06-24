@@ -1,0 +1,8 @@
+// Color
+
+$theme: hsl(195, 16%, 15%);
+$bg: hsl((hue($theme) + 240), 21%, 98%);
+
+// Size
+$frame-width: 1rem;
+$header-height: (100vh / sqrt(2));

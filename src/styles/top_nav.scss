@@ -1,0 +1,61 @@
+@import "./constants";
+
+#top-nav {
+	position: fixed;
+	top: calc(#{$frame-width} + 7.5vh);
+	right: calc(#{$frame-width} + 7.5vw);
+	z-index: 10;
+	$width: 6rem;
+	padding-bottom: 0.5rem;
+	& > .selected {
+		position: absolute;
+		width: $width;
+		height: 100%;
+		bottom: 0;
+		z-index: 1;
+		cursor: pointer;
+		transition: 0.5s transform $easeInOutCubic;
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			width: (50% / metallic(1));
+			border-bottom: 1px solid $theme;
+			transition: 0.25s transform ease;
+		}
+		&:hover {
+			&::after {
+				transform: scaleX(1 / metallic(1));
+			}
+		}
+		$menus: "home", "profile", "works", "voxel", "contact";
+		@each $menu in $menus {
+			&[data-current="#{$menu}"] {
+				transform: translateX((index($menus, $menu) - 1) * $width);
+			}
+		}
+	}
+	& > .menu {
+		display: flex;
+		flex-direction: row;
+		list-style: none;
+		& > li {
+			cursor: pointer;
+			width: $width;
+			& > .text-wrap {
+				width: 100%;
+				text-align: center;
+				& > .text {
+					color: $theme;
+					user-select: none;
+					font-size: 1rem;
+					font-family: "Dosis", sans-serif;
+					letter-spacing: 2px;
+				}
+			}
+		}
+	}
+}

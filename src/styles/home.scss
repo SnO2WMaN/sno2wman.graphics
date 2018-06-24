@@ -1,0 +1,304 @@
+@import "./constants";
+
+#home {
+	& > header {
+		position: relative;
+		width: 100%;
+		height: $header-height;
+		padding-bottom: $frame-width;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		&::before {
+			content: "";
+			position: absolute auto 0;
+			bottom: 0;
+			width: (100% / metallic(1));
+			margin: 0 auto;
+			border-bottom: 1px $theme dashed;
+		}
+		& > .titles-wrap {
+			position: relative;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			& > .title-wrap {
+				position: relative;
+				overflow: hidden;
+				padding: 0.05rem 0.5rem;
+				& > .cover {
+					content: "";
+					position: absolute 0;
+					size: 100%;
+					background: $theme;
+					animation: main_header_title_cover 0.8s $easeInOutCubic both;
+					z-index: 1;
+				}
+				& > .title {
+					position: relative;
+					z-index: 0;
+					color: $theme;
+					font-family: "Raleway", sans-serif;
+					animation: main-header-title 1.25s ease both;
+				}
+				&:nth-of-type(1) {
+					margin-bottom: 1.5rem;
+					& > .cover {
+						animation-delay: 0.5s;
+					}
+					& > .title {
+						font-size: 4rem;
+						font-weight: 100;
+						letter-spacing: 0.5rem;
+						animation-delay: 0.8s;
+					}
+				}
+				&:nth-of-type(2) {
+					& > .cover {
+						animation-delay: 0.6s;
+					}
+					& > .title {
+						font-size: 1.25rem;
+						font-weight: 300;
+						letter-spacing: 0.25rem;
+						font-variant-numeric: lining-nums;
+						animation-delay: 0.9s;
+					}
+				}
+			}
+			@keyframes main_header_title_cover {
+				0% {
+					transform-origin: bottom;
+					transform: scaleY(0) translateY(100%);
+				}
+				50% {
+					transform: scaleY(1) translateY(0);
+				}
+				100% {
+					transform-origin: top;
+					transform: scaleY(0) translateY(-100%);
+				}
+			}
+
+			@keyframes main-header-title {
+				0% {
+					opacity: 0;
+					transform: translateY(1rem);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+		}
+
+		& > .text-wrap {
+			margin-top: 5vh;
+			& > .text {
+				color: $theme;
+				font-size: 1.2rem;
+				font-weight: 300;
+				font-family: "IBM Plex Sans Condensed", sans-serif;
+				letter-spacing: 0.05rem;
+				text-align: center;
+				&:first-of-type {
+					font-size: 1.4rem;
+					letter-spacing: 0.2rem;
+					animation-delay: 1s;
+				}
+				&:nth-of-type(2) {
+					animation-delay: 1.125s;
+				}
+				&:not(:last-of-type) {
+					margin-bottom: 0.5rem;
+				}
+				animation: main-header-text 0.8s $easeInOutCubic both;
+				@keyframes main-header-text {
+					0% {
+						transform: translateY(0.5rem);
+						opacity: 0;
+					}
+					100% {
+						transform: translateY(0);
+						opacity: 1;
+					}
+				}
+			}
+		}
+		& > .detail-wrap {
+			position: relative;
+			list-style: none;
+			display: flex;
+			margin-top: 3vh;
+			padding-top: 2vh;
+			&::before {
+				content: "";
+				position: absolute;
+				width: (100% / metallic(1));
+				top: 0;
+				left: 0;
+				right: 0;
+				border-top: 1px $theme dotted;
+				margin: 0 auto;
+				animation: main-header-detail-border 1s 1.75s $easeOutQuint both;
+				@keyframes main-header-detail-border {
+					from {
+						transform: scaleX(0);
+					}
+					to {
+						transform: scaleX(1);
+					}
+				}
+			}
+			& > .detail {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				user-select: none;
+				margin: 0 0.5rem;
+				&:first-of-type {
+					margin-left: 0;
+				}
+				&:last-of-type {
+					margin-right: 0;
+				}
+				& > .icon-wrap {
+					$size: 1.6rem;
+					color: $theme;
+					size: $size;
+					font-size: ($size / sqrt(2));
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					animation: main-header-detail-icon 0.5s $easeOutQuad both;
+					@keyframes main-header-detail-icon {
+						from {
+							transform: translateY(25%);
+							opacity: 0;
+						}
+						to {
+							transform: translateY(0);
+							opacity: 1;
+						}
+					}
+				}
+				& > .text-wrap {
+					margin-left: 0.25rem;
+					& > .text {
+						font-weight: 300;
+						letter-spacing: 0.1rem;
+						font-size: 1rem;
+						color: $theme;
+						font-family: "IBM Plex Sans Condensed", sans-serif;
+						animation: main-header-detail-text 0.5s $easeOutQuad
+							both;
+						@keyframes main-header-detail-text {
+							from {
+								transform: translateY(25%);
+								opacity: 0;
+							}
+							to {
+								transform: translateY(0);
+								opacity: 1;
+							}
+						}
+					}
+				}
+				@for $i from 1 through 3 {
+					&:nth-of-type(#{$i}) {
+						& > .icon-wrap {
+							animation-delay: 1.75s + $i * 0.125s;
+						}
+						& > .text-wrap {
+							& > .text {
+								animation-delay: 1.8s + $i * 0.125s;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	& > section {
+		width: 100%;
+		padding: 0 (50% - 50% / metallic(2));
+		&:first-of-type {
+			margin-top: 10rem;
+		}
+		&:last-of-type {
+			padding-bottom: (50vh / metallic(1));
+		}
+
+		& > .title-wrap {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			& > .title {
+				font-weight: 400;
+				letter-spacing: 0.25rem;
+				font-size: 1.25rem;
+				color: $theme;
+				font-family: "Dosis", sans-serif;
+			}
+			&::before {
+				content: "";
+				width: 5%;
+				border-top: 1px dashed $theme;
+				margin-right: 1%;
+			}
+			&::after {
+				content: "";
+				width: 1%;
+				border-top: 1px solid $theme;
+				margin-left: 1%;
+			}
+		}
+		& > .activities {
+			margin-top: 3rem;
+			margin-left: 6%;
+			& > .activity {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				&:not(:last-of-type) {
+					margin-bottom: 0.5rem;
+				}
+				& > .date-wrap {
+					display: flex;
+					align-items: center;
+					margin-right: 5rem;
+					position: relative;
+					&::after {
+						content: "";
+						width: 0.5rem;
+						margin: auto 0;
+						border-bottom: 1px $theme solid;
+						margin-left: 1rem;
+					}
+					& > .date {
+						color: $theme;
+						font-size: 0.8rem;
+						letter-spacing: 0.05rem;
+						font-variant-numeric: tabular-nums;
+						font-family: "IBM Plex Sans Condensed", sans-serif;
+					}
+				}
+				& > .text-wrap {
+					& > .text {
+						color: $theme;
+						font-size: 1rem;
+						font-feature-settings: "palt";
+						letter-spacing: 0.05rem;
+					}
+				}
+			}
+		}
+	}
+}

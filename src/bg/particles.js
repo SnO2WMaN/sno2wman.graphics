@@ -1,5 +1,5 @@
 import color from "color";
-import { theme } from "./constants";
+import { theme } from "../constants";
 
 class ParticleSystem {
 	constructor(width, height, number, e) {

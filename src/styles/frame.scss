@@ -1,0 +1,17 @@
+@import "./constants";
+
+#frame {
+	position: fixed 0;
+	size: 100%;
+	z-index: 2;
+	& > * {
+		position: absolute;
+		size: 100%;
+		border: $frame-width $theme;
+	}
+	@each $dir in top left bottom right {
+		& > .#{$dir} {
+			border-#{$dir}-style: solid;
+		}
+	}
+}

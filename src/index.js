@@ -2,12 +2,12 @@ import "./index.scss";
 
 import WebFont from "webfontloader";
 
-import "./icons";
-import globalnav from "./globalnav";
-import "./particles";
+import "./icons/icons";
+import topNav from "./scripts/top_nav";
+import "./bg/particles";
 
 // main
-const $left = document.getElementById("left");
+const $left = document.getElementById("left-nav");
 const $canvas = document.getElementById("canvas");
 
 window.onscroll = function(e) {};
@@ -19,7 +19,7 @@ Promise.all([
 			google: {
 				families: [
 					"Raleway:600,300,100",
-					"Dosis",
+					"Dosis:400",
 					"IBM Plex Sans Condensed:300,400"
 				]
 			},
@@ -37,5 +37,5 @@ Promise.all([
 
 	$canvas.classList.add("animated");
 	$left.classList.add("animated");
-	globalnav.init();
+	topNav.init();
 });

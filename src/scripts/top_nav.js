@@ -1,4 +1,4 @@
-const $globalnav = document.getElementById("globalnav");
+const $globalnav = document.getElementById("top-nav");
 const $selected = $globalnav.querySelector(".selected");
 const $buttons = $globalnav.querySelectorAll("[data-target]");
 
@@ -39,8 +39,8 @@ function transit(target, init) {
 	})
 		.then(() => {
 			return new Promise(resolve => {
-				$current.style.top = "";
 				$current.classList.add("selected");
+				document.scrollingElement.scrollTo(0, 0);
 				$current.addEventListener(
 					"transitionend",
 					() => {
@@ -54,7 +54,6 @@ function transit(target, init) {
 			if ($current.classList.contains("animated")) {
 				return Promise.resolve();
 			} else {
-				document.scrollingElement.scrollTo(0, 0);
 				$current.classList.add("animated");
 				const promises = [];
 				$current.querySelectorAll("*").forEach($e => {
@@ -95,7 +94,7 @@ function transit(target, init) {
 export default {
 	init() {
 		if (!(history.state && history.state.hasOwnProperty("target"))) {
-			transit("home");
+			transit("home", true);
 		} else {
 			const target = history.state.target;
 			transit(

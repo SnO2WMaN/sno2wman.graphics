@@ -1,0 +1,39 @@
+@import "./constants";
+
+#bottom-guide {
+	$size: 10rem;
+	position: fixed;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	size: $size;
+	background: $theme;
+	border-radius: 50%;
+	top: calc(100vh - #{$size / 2});
+	overflow: hidden;
+	z-index: 10;
+	& > .inner {
+		content: "";
+		position: absolute 0;
+		margin: auto;
+		border-radius: 50%;
+		$scale: 25%;
+		$lighter: 5%;
+		@for $i from 1 through 4 {
+			&:nth-of-type(#{$i}) {
+				size: (100% - $scale * $i);
+				z-index: 1;
+				animation: header-guide-inner-#{$i} 1s infinite linear;
+			}
+			@keyframes header-guide-inner-#{$i} {
+				0% {
+					background: lighten($theme, $i * $lighter);
+				}
+				100% {
+					size: (100% - $scale * ($i - 1));
+					background: lighten($theme, ($i - 1) * $lighter);
+				}
+			}
+		}
+	}
+}

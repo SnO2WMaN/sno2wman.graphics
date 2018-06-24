@@ -1,0 +1,113 @@
+@import "./constants";
+
+#left-nav {
+	position: fixed;
+	left: calc(#{$frame-width} + (7.5vw / 2));
+	top: calc(#{$frame-width} + 7.5vh);
+	margin: auto 0;
+	height: calc(100vh - #{$frame-width * 2} - (7.5vh * 2));
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	z-index: 10;
+	& > .wrap {
+		&.top {
+			& > .icon-wrap {
+				size: 4rem;
+				&:not(:last-of-type) {
+					margin-bottom: 2rem;
+				}
+				& > svg {
+					animation-duration: 3s;
+					animation-delay: 1.5s;
+					animation-timing-function: $easeOutQuint;
+					animation-fill-mode: both;
+				}
+
+				&.site {
+					& > svg {
+						fill: $theme;
+						animation-name: left_icon_site;
+						@keyframes left_icon_site {
+							0% {
+								opacity: 0;
+								stroke-dashoffset: 1000;
+								transform: translateY(0.5rem);
+							}
+							75% {
+								opacity: 1;
+							}
+							100% {
+								stroke-dashoffset: 0;
+								transform: translateY(0);
+							}
+						}
+					}
+				}
+				&.me {
+					& > svg {
+						fill: transparent;
+						stroke: $theme;
+						stroke-width: 8px;
+						stroke-dasharray: 1000;
+						animation-name: left_icon_me;
+						@keyframes left_icon_me {
+							0% {
+								opacity: 0;
+								stroke-dashoffset: 1000;
+								transform: translateY(-0.5rem);
+							}
+							75% {
+								opacity: 1;
+							}
+							100% {
+								stroke-dashoffset: 0;
+								transform: translateY(0);
+							}
+						}
+					}
+				}
+			}
+		}
+		&.bottom {
+			& > .text-wrap {
+				text-align: left;
+				& > .text {
+					user-select: none;
+					color: $theme;
+					font-weight: 400;
+					letter-spacing: 0.1rem;
+					font-size: 0.9rem;
+					font-family: "IBM Plex Sans Condensed", sans-serif;
+					font-variant-numeric: lining-nums;
+					&:not(:last-of-type) {
+						margin-bottom: 0.5rem;
+					}
+					animation: left_bottom_text 2s $easeOutCubic both;
+					@keyframes left_bottom_text {
+						0% {
+							opacity: 0;
+							transform: translateX(-0.5rem);
+						}
+						100% {
+							opacity: 1;
+							transform: translateX(0);
+						}
+					}
+					@for $i from 1 through 2 {
+						&:nth-of-type(#{$i}) {
+							animation-delay: (2s + $i * 0.2s);
+						}
+					}
+				}
+			}
+		}
+	}
+	animation-play-state: paused;
+	&:not(.animated) * {
+		animation-play-state: inherit !important;
+	}
+	&.animated {
+		animation-play-state: running !important;
+	}
+}

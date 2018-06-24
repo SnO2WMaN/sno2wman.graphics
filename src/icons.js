@@ -1,9 +1,7 @@
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import {
-	faBirthdayCake,
-	faMapMarkerAlt,
-	faMars
-} from "@fortawesome/free-solid-svg-icons";
+import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons/faBirthdayCake";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons/faMapMarkerAlt";
+import { faMars } from "@fortawesome/free-solid-svg-icons/faMars";
 
 import iconSnO2WMaN from "./icons/sno2wman.svg";
 import LogoSite from "./icons/logo_site.svg";

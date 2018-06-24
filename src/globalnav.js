@@ -1,5 +1,3 @@
-import anime from "animejs";
-
 const $globalnav = document.getElementById("globalnav");
 const $selected = $globalnav.querySelector(".selected");
 const $buttons = $globalnav.querySelectorAll("[data-target]");
@@ -63,9 +61,13 @@ function transit(target, init) {
 					if (window.getComputedStyle($e).animationName !== "none") {
 						promises.push(
 							new Promise(resolve => {
-								$e.addEventListener("animationend", () => {
-									resolve();
-								});
+								$e.addEventListener(
+									"animationend",
+									() => {
+										resolve();
+									},
+									{ once: true }
+								);
 							})
 						);
 					}
@@ -75,12 +77,16 @@ function transit(target, init) {
 		});
 	Promise.all([
 		transitPromise,
-		anime({
-			targets: $selected,
-			translateX: position[target] * $buttons[0].clientWidth,
-			duration: init ? 0 : 1000,
-			easing: "easeOutCubic"
-		}).finished
+		new Promise(resolve => {
+			$selected.setAttribute("data-current", target);
+			$selected.addEventListener(
+				"transitionend",
+				() => {
+					resolve();
+				},
+				{ once: true }
+			);
+		})
 	]).then(() => {
 		stopper = false;
 	});

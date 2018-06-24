@@ -151,6 +151,7 @@ $frame-width: 1rem;
 		bottom: 0;
 		z-index: 1;
 		cursor: pointer;
+		transition: 0.5s transform $easeInOutCubic;
 		&::after {
 			content: "";
 			position: absolute;
@@ -165,6 +166,12 @@ $frame-width: 1rem;
 		&:hover {
 			&::after {
 				transform: scaleX(1 / metallic(1));
+			}
+		}
+		$menus: "home", "profile", "works", "voxel", "contact";
+		@each $menu in $menus {
+			&[data-current="#{$menu}"] {
+				transform: translateX((index($menus, $menu) - 1) * $width);
 			}
 		}
 	}

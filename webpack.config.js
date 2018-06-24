@@ -62,7 +62,7 @@ module.exports = env => {
 					? {}
 					: {
 							enforce: "pre",
-							test: /\.(js)$/i,
+							test: /\.(js|ts)$/i,
 							use: [
 								{
 									loader: "eslint-loader",
@@ -74,6 +74,11 @@ module.exports = env => {
 				{
 					test: /.js$/i,
 					use: [{ loader: "babel-loader" }]
+				},
+				// Typescript
+				{
+					test: /.ts$/i,
+					use: [{ loader: "ts-loader" }]
 				},
 				// Pug
 				{

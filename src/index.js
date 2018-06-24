@@ -4,7 +4,7 @@ import WebFont from "webfontloader";
 
 import "./icons/icons";
 import topNav from "./scripts/top_nav";
-import "./bg/particles";
+import "./bg/bg.ts";
 
 // main
 const $left = document.getElementById("left-nav");

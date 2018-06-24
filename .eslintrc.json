@@ -7,13 +7,15 @@
 		"ecmaVersion": 8,
 		"sourceType": "module"
 	},
-	"plugins": ["prettier"],
+	"parser": "typescript-eslint-parser",
+	"plugins": ["prettier", "typescript"],
 	"extends": ["standard", "prettier"],
 	"rules": {
 		"prettier/prettier": ["error"],
 		"no-console": "warn",
-		"no-unused-vars": "warn",
+		"no-unused-vars": "off",
 		"no-new": "off",
+		"no-undef": "off",
 		"yoda": ["error", "never", { "onlyEquality": true }]
 	}
 }

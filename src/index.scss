@@ -310,10 +310,23 @@ $header-height: (100vh / sqrt(2));
 	right: 0;
 	margin: 0 auto;
 	width: calc(100% - #{$frame-width * 2});
+	min-height: $header-height;
 	z-index: 9;
-	overflow: hidden;
 	& > * {
+		position: absolute;
 		animation-play-state: paused;
+		width: 100%;
+		transition-property: opacity, transform, visibility;
+		transition-duration: 0.5s;
+		transition-timing-function: ease-in-out;
+		& > p {
+			font-size: 4rem;
+			color: $theme;
+			font-family: "Raleway", sans-serif;
+			font-weight: 100;
+			text-align: center;
+			letter-spacing: 2rem;
+		}
 		&:not(.animated) {
 			*,
 			*::before,
@@ -326,19 +339,16 @@ $header-height: (100vh / sqrt(2));
 		}
 
 		&:not(.selected) {
-			visibility: hidden;
+			transform: translateY(1rem);
 			opacity: 0;
-			transform: translateY(1%);
+			visibility: hidden;
 		}
 
 		&.selected {
-			visibility: visible;
+			position: relative;
+			transform: translateY(0);
 			opacity: 1;
-		}
-
-		&.selected,
-		&.animated {
-			transition: 0.5s ease-in-out;
+			visibility: visible;
 		}
 	}
 }

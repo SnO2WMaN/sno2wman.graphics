@@ -20,24 +20,61 @@ $buttons.forEach(($button, i) => {
 function transit(target, init) {
 	if (stopper) return;
 	if (target === current) return;
+	stopper = true;
 	current = target;
 	history.replaceState({ target }, `page ${target}`, `${target}`);
 
 	$before = $current;
-	if ($before) $before.classList.remove("selected");
 	$current = document.getElementById(target);
-	$current.classList.add("selected");
-	$current.classList.add("animated");
-
-	$current.addEventListener("transitionend", () => {
-		const scrolling = document.scrollingElement;
-		scrolling.scrollTo(0, 0);
-	});
-
-	$current.classList.add("animated");
-	stopper = true;
-
+	const transitPromise = new Promise(resolve => {
+		if (!$before) resolve();
+		else {
+			$before.classList.remove("selected");
+			$before.addEventListener(
+				"transitionend",
+				() => {
+					resolve();
+				},
+				{ once: true }
+			);
+		}
+	})
+		.then(() => {
+			return new Promise(resolve => {
+				$current.style.top = "";
+				$current.classList.add("selected");
+				$current.addEventListener(
+					"transitionend",
+					() => {
+						resolve();
+					},
+					{ once: true }
+				);
+			});
+		})
+		.then(() => {
+			if ($current.classList.contains("animated")) {
+				return Promise.resolve();
+			} else {
+				document.scrollingElement.scrollTo(0, 0);
+				$current.classList.add("animated");
+				const promises = [];
+				$current.querySelectorAll("*").forEach($e => {
+					if (window.getComputedStyle($e).animationName !== "none") {
+						promises.push(
+							new Promise(resolve => {
+								$e.addEventListener("animationend", () => {
+									resolve();
+								});
+							})
+						);
+					}
+				});
+				return Promise.all(promises);
+			}
+		});
 	Promise.all([
+		transitPromise,
 		anime({
 			targets: $selected,
 			translateX: position[target] * $buttons[0].clientWidth,

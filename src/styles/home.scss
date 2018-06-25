@@ -296,6 +296,10 @@
 						font-size: 1rem;
 						font-feature-settings: "palt";
 						letter-spacing: 0.05rem;
+						& > span {
+							font-family: "IBM Plex Sans Condensed", sans-serif;
+							letter-spacing: 0;
+						}
 					}
 				}
 			}

@@ -1,3 +1,5 @@
+import { change } from "./bg";
+
 const $globalnav = document.getElementById("top-nav");
 const $selected = $globalnav.querySelector(".selected");
 const $buttons = $globalnav.querySelectorAll("[data-target]");
@@ -85,7 +87,15 @@ function transit(target, init) {
 				},
 				{ once: true }
 			);
-		})
+		}),
+		change(
+			(() => {
+				switch (target) {
+					default:
+						return "particle";
+				}
+			})()
+		)
 	]).then(() => {
 		stopper = false;
 	});
@@ -98,9 +108,14 @@ export default {
 		} else {
 			const target = history.state.target;
 			transit(
-				["home", "profile", "works", "voxel", "contact"].includes(
-					target
-				)
+				[
+					"home",
+					"profile",
+					"works",
+					"voxel",
+					"contact",
+					"system"
+				].includes(target)
 					? target
 					: "home",
 				true

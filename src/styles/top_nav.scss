@@ -5,7 +5,7 @@
 	top: calc(#{$frame-width} + 7.5vh);
 	right: calc(#{$frame-width} + 7.5vw);
 	z-index: 10;
-	$width: 6rem;
+	$width: 6.5rem;
 	padding-bottom: 0.5rem;
 	& > .selected {
 		position: absolute;
@@ -31,7 +31,7 @@
 				transform: scaleX(1 / metallic(1));
 			}
 		}
-		$menus: "home", "profile", "works", "voxel", "contact";
+		$menus: "home", "profile", "works", "voxel", "contact", "system";
 		@each $menu in $menus {
 			&[data-current="#{$menu}"] {
 				transform: translateX((index($menus, $menu) - 1) * $width);

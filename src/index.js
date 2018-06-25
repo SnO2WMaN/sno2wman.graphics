@@ -1,10 +1,12 @@
 import "./index.scss";
 
+import color from "color";
+
 import WebFont from "webfontloader";
 
 import "./icons/icons";
 import topNav from "./scripts/top_nav";
-import "./bg/bg.ts";
+import "./scripts/bg.ts";
 
 // main
 const $left = document.getElementById("left-nav");
@@ -34,8 +36,6 @@ Promise.all([
 	new Promise(resolve => window.addEventListener("load", resolve))
 ]).then(() => {
 	document.documentElement.style.visibility = "visible";
-
-	$canvas.classList.add("animated");
 	$left.classList.add("animated");
 	topNav.init();
 });

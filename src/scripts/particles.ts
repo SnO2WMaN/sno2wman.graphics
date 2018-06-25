@@ -1,4 +1,5 @@
-import IBackground from "./bg";
+import IBackground from "./Ibackground";
+
 import color from "color";
 
 class Particle {
@@ -97,7 +98,7 @@ class Particle {
 	}
 }
 
-export default class ParticleSystem implements IBackground {
+export default class ParticleManager implements IBackground {
 	rect: {
 		width: number;
 		height: number;
@@ -122,9 +123,14 @@ export default class ParticleSystem implements IBackground {
 		);
 		this.r = option.rad;
 		this.color = option.color;
-		this.number = Math.sqrt((rect.width * rect.height) / 1802060) * 180;
+		this.number = Math.floor(
+			Math.sqrt((rect.width * rect.height) / 1802060) * 180
+		);
 
 		this.particles = [];
+		for (let i = 0; i < this.number; i++) {
+			this.add(false);
+		}
 	}
 	draw(ctx: CanvasRenderingContext2D) {
 		this.particles.forEach((p, i) => {

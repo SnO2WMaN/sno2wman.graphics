@@ -4,6 +4,7 @@ import color from "color";
 
 import WebFont from "webfontloader";
 
+import "./voxels.js";
 import "./icons/icons";
 import topNav from "./scripts/top_nav";
 import "./scripts/bg.ts";

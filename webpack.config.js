@@ -44,7 +44,7 @@ module.exports = env => {
 			hints: false
 		},
 		resolve: {
-			extensions: [".js", ".ts"],
+			extensions: [".js", ".ts", ".tsx", ".jsx"],
 			modules: ["node_modules", srcDir],
 			alias: {
 				"@fortawesome/fontawesome-free-solid$":
@@ -62,7 +62,7 @@ module.exports = env => {
 					? {}
 					: {
 							enforce: "pre",
-							test: /\.(js|ts)$/i,
+							test: /\.(j|t)sx?$/i,
 							use: [
 								{
 									loader: "eslint-loader",
@@ -72,12 +72,17 @@ module.exports = env => {
 					  },
 				// Javascript
 				{
-					test: /.js$/i,
-					use: [{ loader: "babel-loader" }]
+					test: /.jsx?$/i,
+					use: [
+						{
+							loader: "babel-loader",
+							options: { cacheDirectory: true }
+						}
+					]
 				},
 				// Typescript
 				{
-					test: /.ts$/i,
+					test: /.tsx?$/i,
 					use: [{ loader: "ts-loader" }]
 				},
 				// Pug
@@ -180,7 +185,7 @@ module.exports = env => {
 		plugins: [
 			new CleanWebpackPlugin([distDir]),
 			new StyleLintPlugin({}),
-			new CaseSensitivePathsPlugin({ debug: !production }),
+			new CaseSensitivePathsPlugin({ debug: false }),
 			new MiniCSSExtractPlugin({
 				filename: production ? "[hash].css" : "[name].css",
 				chunkFilename: "[id].css"

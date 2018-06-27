@@ -1,0 +1,24 @@
+#voxel {
+	& > .cards-wrap {
+		& > ul {
+			display: flex;
+			list-style: none;
+			& > li {
+				width: 300px;
+				background: rgba(white, 0.5);
+				& > img {
+					width: 100%;
+				}
+				& > .title-wrap {
+					text-align: center;
+					& > p {
+						font-size: 1.5rem;
+						font-weight: 400;
+						font-family: "IBM Plex Sans Condensed", sans-serif;
+						letter-spacing: 1px;
+					}
+				}
+			}
+		}
+	}
+}

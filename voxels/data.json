@@ -5,7 +5,7 @@
 				"163130": {
 					"name": "Cherry Blossom & DeLorean 1",
 					"tags": ["vehicle", "landscape"],
-					"size": 2
+					"size": 3
 				},
 				"163338": {
 					"name": "Cherry Blossom & DeLorean 2",
@@ -17,7 +17,8 @@
 				},
 				"163610": {
 					"name": "Cherry Blossom & DeLorean 4",
-					"tags": ["vehicle", "landscape"]
+					"tags": ["vehicle", "landscape"],
+					"size": 2
 				}
 			}
 		},
@@ -67,15 +68,15 @@
 			},
 			"26": {
 				"055651": {
-					"name": "Yamanote line 1",
+					"name": "Yamanote Line 1",
 					"tags": ["vehicle"]
 				},
 				"060255": {
-					"name": "Yamanote line 1",
+					"name": "Yamanote Line 2",
 					"tags": ["vehicle"]
 				},
 				"060442": {
-					"name": "Yamanote line 1",
+					"name": "Yamanote Line 3",
 					"tags": ["vehicle"]
 				}
 			}
@@ -102,8 +103,7 @@
 				},
 				"011619": {
 					"name": "Richard 2",
-					"tags": ["people", "game"],
-					"size": 2
+					"tags": ["people", "game"]
 				},
 				"032223": {
 					"name": "Bloody Jacket 2",

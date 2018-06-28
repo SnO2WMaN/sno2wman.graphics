@@ -45,7 +45,7 @@ $voxel-card-split: 5;
 							font-size: 1.4rem;
 							font-weight: 400;
 							font-family: "Dosis", sans-serif;
-							letter-spacing: 0.1rem;
+							letter-spacing: 0.125rem;
 						}
 						&::after {
 							position: absolute;
@@ -60,8 +60,25 @@ $voxel-card-split: 5;
 							color: $theme;
 							font-size: 1rem;
 							font-weight: 300;
-							font-family: "IBM Plex Sans", sans-serif;
+							font-family: "IBM Plex Sans Condensed", sans-serif;
 							font-variant-numeric: proportional-nums;
+						}
+					}
+					& > .tags-wrap {
+						display: flex;
+						flex-direction: row;
+						& > li {
+							list-style: none;
+							&:not(:last-of-type) {
+								margin-right: 0.5rem;
+							}
+							& > p {
+								color: $theme;
+								font-size: 0.9rem;
+								font-weight: 300;
+								font-family: "IBM Plex Sans Condensed",
+									sans-serif;
+							}
 						}
 					}
 				}

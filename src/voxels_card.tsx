@@ -27,6 +27,20 @@ export default class Card extends React.Component<
 					<div className="date-wrap">
 						<p>{this.displayDate()}</p>
 					</div>
+					<ul className="tags-wrap">
+						{(() => {
+							return this.props.data.tags.map((tag, i) => {
+								return (
+									<li key={`tag${i}`}>
+										<p>
+											{tag.substr(0, 1).toUpperCase() +
+												tag.substr(1)}
+										</p>
+									</li>
+								);
+							});
+						})()}
+					</ul>
 				</div>
 			</li>
 		);

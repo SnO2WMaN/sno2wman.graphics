@@ -9,6 +9,7 @@ interface VoxelData {
 	};
 	name: string;
 	tags: [string];
+	size: number;
 }
 
 interface FormedVoxelData extends VoxelData {

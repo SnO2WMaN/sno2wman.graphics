@@ -4,7 +4,7 @@
 	position: fixed;
 	top: calc(#{$frame-width} + 7.5vh);
 	right: calc(#{$frame-width} + 7.5vw);
-	z-index: 10;
+	z-index: 21;
 	$width: 6.5rem;
 	padding-bottom: 0.5rem;
 	& > .selected {

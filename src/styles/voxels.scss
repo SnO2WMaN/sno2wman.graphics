@@ -1,21 +1,79 @@
+$voxel-card-width: 200px;
+$voxel-card-margin: 20px;
+$voxel-card-split: 5;
+
+:root {
+	--voxel-card-width: #{$voxel-card-width};
+	--voxel-card-margin: #{$voxel-card-margin};
+	--voxel-card-split: #{$voxel-card-split};
+}
+
 #voxel {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
 	& > .cards-wrap {
+		$width: ($voxel-card-width + $voxel-card-margin) * $voxel-card-split -
+			$voxel-card-margin;
+		width: $width;
 		& > ul {
-			display: flex;
+			width: 100%;
 			list-style: none;
-			& > li {
-				width: 300px;
-				background: rgba(white, 0.5);
-				& > img {
+			& > li.voxel {
+				margin: $voxel-card-margin 0;
+				display: flex;
+				flex-direction: column;
+				box-shadow: 0 2px 2px rgba($theme, 0.1);
+				& > .image-wrap {
 					width: 100%;
+					& > img {
+						width: 100%;
+						height: auto;
+						display: flex;
+					}
 				}
-				& > .title-wrap {
-					text-align: center;
-					& > p {
-						font-size: 1.5rem;
-						font-weight: 400;
-						font-family: "IBM Plex Sans Condensed", sans-serif;
-						letter-spacing: 1px;
+				& > .info-wrap {
+					width: 100%;
+					background: lighten($bg, 5%);
+					& > .title-wrap {
+						position: relative;
+						margin-bottom: 1rem;
+						padding-bottom: 1rem;
+						& > p {
+							color: $theme;
+							font-size: 1.4rem;
+							font-weight: 400;
+							font-family: "Dosis", sans-serif;
+							letter-spacing: 0.1rem;
+						}
+						&::after {
+							position: absolute;
+							content: "";
+							width: ($voxel-card-width / 2 / metallic(2));
+							bottom: 0;
+							border-bottom: 1px dashed $theme;
+						}
+					}
+					& > .date-wrap {
+						& > p {
+							color: $theme;
+							font-size: 1rem;
+							font-weight: 300;
+							font-family: "IBM Plex Sans", sans-serif;
+							font-variant-numeric: proportional-nums;
+						}
+					}
+				}
+				@for $i from 1 through $voxel-card-split {
+					&.x#{$i} {
+						width: $voxel-card-width *
+							$i +
+							$voxel-card-margin *
+							($i - 1);
+						& > .info-wrap {
+							padding: (1rem * $i) (1rem * metallic(1) * $i);
+						}
 					}
 				}
 			}

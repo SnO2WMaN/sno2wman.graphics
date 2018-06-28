@@ -12,19 +12,6 @@ const $listWrap = $voxel.querySelector(".cards-wrap");
 
 const voxels = [];
 
-/**
- *
-				srcs.push(
-					`snap${year}-${leftPad(month, 2, 0)}-${leftPad(
-						day,
-						2,
-						0
-					)}-${leftPad(date.substr(0, 2), 2, 0)}-${leftPad(
-						date.substr(2, 2),
-						2,
-						0
-					)}-${leftPad(date.substr(4, 2), 2, 0)}`
- */
 Object.keys(data).forEach(year =>
 	Object.keys(data[year]).forEach(month =>
 		Object.keys(data[year][month]).forEach(day =>

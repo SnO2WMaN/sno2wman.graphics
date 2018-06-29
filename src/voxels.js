@@ -7,8 +7,8 @@ import data from "../voxels/data.json";
 
 import List from "./voxels_cards_list.tsx";
 
-const $voxel = document.querySelector("#voxel");
-const $listWrap = $voxel.querySelector(".cards-wrap");
+const $voxelsRoot = document.querySelector("#voxels");
+const $listWrap = $voxelsRoot.querySelector(".cards-wrap");
 
 const voxels = [];
 

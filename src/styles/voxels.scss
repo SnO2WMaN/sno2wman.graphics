@@ -1,5 +1,5 @@
-$voxel-card-width: 200px;
-$voxel-card-margin: 20px;
+$voxel-card-width: 180px;
+$voxel-card-margin: 25px;
 $voxel-card-split: 5;
 
 :root {
@@ -8,7 +8,7 @@ $voxel-card-split: 5;
 	--voxel-card-split: #{$voxel-card-split};
 }
 
-#voxel {
+#voxels {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -21,7 +21,7 @@ $voxel-card-split: 5;
 			width: 100%;
 			list-style: none;
 			& > li.voxel {
-				margin: $voxel-card-margin 0;
+				margin: ($voxel-card-margin / 2) 0;
 				display: flex;
 				flex-direction: column;
 				box-shadow: 0 2px 2px rgba($theme, 0.1);
@@ -70,12 +70,13 @@ $voxel-card-split: 5;
 						& > li {
 							list-style: none;
 							&:not(:last-of-type) {
-								margin-right: 0.5rem;
+								margin-right: 0.25rem;
 							}
 							& > p {
 								color: $theme;
 								font-size: 0.9rem;
-								font-weight: 300;
+								letter-spacing: 0.05rem;
+								font-weight: 400;
 								font-family: "IBM Plex Sans Condensed",
 									sans-serif;
 							}

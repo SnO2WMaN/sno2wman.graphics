@@ -32,10 +32,7 @@ export default class Card extends React.Component<
 							return this.props.data.tags.map((tag, i) => {
 								return (
 									<li key={`tag${i}`}>
-										<p>
-											{tag.substr(0, 1).toUpperCase() +
-												tag.substr(1)}
-										</p>
+										<p>{tag}</p>
 									</li>
 								);
 							});

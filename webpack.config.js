@@ -144,7 +144,7 @@ module.exports = env => {
 								},
 								pngquant: {
 									quality: "65-90",
-									speed: 4
+									speed: 1
 								},
 								gifsicle: {
 									interlaced: false,

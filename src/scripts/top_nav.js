@@ -112,7 +112,7 @@ export default {
 					"home",
 					"profile",
 					"works",
-					"voxel",
+					"voxels",
 					"contact",
 					"system"
 				].includes(target)

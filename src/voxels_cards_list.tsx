@@ -10,52 +10,61 @@ export default class List extends React.Component<
 	{
 		voxels: VoxelData[];
 	},
-	{ voxels: FormedVoxelData[] }
+	{ voxels: FormedVoxelData[]; added: number }
 > {
 	constructor(props, state) {
 		super(props, state);
 
 		this.state = {
-			voxels: []
+			voxels: [],
+			added: 0
 		};
-		this.props.voxels
-			.sort((a, b) => {
-				if (a.date.year === b.date.year) {
-					if (a.date.month === b.date.month) {
-						if (a.date.day === b.date.day) {
-							if (a.date.hour === b.date.hour) {
-								if (a.date.minute === b.date.minute) {
-									return a.date.second - b.date.second;
-								} else return a.date.minute - b.date.minute;
-							} else return a.date.hour - b.date.hour;
-						} else return b.date.day - a.date.day;
-					} else return b.date.month - a.date.month;
-				} else return b.date.year - a.date.year;
-			})
-			.forEach(voxel => {
-				const date = voxel.date;
-				import(`../voxels/snap${date.year}-${leftPad(
-					date.month,
-					2,
-					0
-				)}-${leftPad(date.day, 2, 0)}-${leftPad(
-					date.hour,
-					2,
-					0
-				)}-${leftPad(date.minute, 2, 0)}-${leftPad(
-					date.second,
-					2,
-					0
-				)}.png`).then(l => {
-					this.add(l.default, voxel);
-				});
-			});
+		this.props.voxels.sort((a, b) => {
+			if (a.date.year === b.date.year) {
+				if (a.date.month === b.date.month) {
+					if (a.date.day === b.date.day) {
+						if (a.date.hour === b.date.hour) {
+							if (a.date.minute === b.date.minute) {
+								return a.date.second - b.date.second;
+							} else return a.date.minute - b.date.minute;
+						} else return a.date.hour - b.date.hour;
+					} else return b.date.day - a.date.day;
+				} else return b.date.month - a.date.month;
+			} else return b.date.year - a.date.year;
+		});
 	}
 
-	add(src: string, data: VoxelData) {
-		const ap = Object.assign(data, { src }) as FormedVoxelData;
-		this.setState({
-			voxels: this.state.voxels.concat(ap)
+	componentDidMount() {
+		this.add(5);
+	}
+
+	add(n: number) {
+		if (n <= 0) return;
+		const voxel = this.props.voxels[this.state.added];
+		import(`../voxels/snap${voxel.date.year}-${leftPad(
+			voxel.date.month,
+			2,
+			0
+		)}-${leftPad(voxel.date.day, 2, 0)}-${leftPad(
+			voxel.date.hour,
+			2,
+			0
+		)}-${leftPad(voxel.date.minute, 2, 0)}-${leftPad(
+			voxel.date.second,
+			2,
+			0
+		)}.png`).then(l => {
+			this.setState(
+				prev => ({
+					added: prev.added + 1,
+					voxels: prev.voxels.concat(Object.assign(voxel, {
+						src: l.default
+					}) as FormedVoxelData)
+				}),
+				() => {
+					this.add(n - 1);
+				}
+			);
 		});
 	}
 

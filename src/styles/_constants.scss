@@ -1,7 +1,7 @@
 // Color
 
-$theme: hsl(221, 16%, 15%);
-$bg: hsl((hue($theme) + 180), 21%, 94%);
+$theme: #2f2f2f;
+$bg: hsl((hue($theme) + 180), 8%, 94%);
 
 // Size
 $frame-width: 1rem;

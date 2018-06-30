@@ -42,8 +42,7 @@ $voxel-card-split: 5;
 		$width: ($voxel-card-width + $voxel-card-margin) * $voxel-card-split -
 			$voxel-card-margin;
 		width: $width + ($voxel-card-margin * 4);
-		margin-top: 5vh;
-		margin-bottom: 5vh;
+		margin: 10vh 0;
 		padding: 2.5vh 0;
 		border-top: 1px dashed $theme;
 		border-bottom: 1px dashed $theme;

@@ -1,18 +1,23 @@
 @import "./constants";
 
 #frame {
-	position: fixed 0;
-	size: 100%;
-	z-index: 20;
-	visibility: hidden;
 	& > * {
-		position: absolute;
-		size: 100%;
+		position: fixed;
 		border: $frame-width $theme;
+		z-index: 20;
 	}
-	@each $dir in top left bottom right {
+	$dirs: top, left, bottom, right;
+	@each $dir in $dirs {
+		$i: index($dirs, $dir);
 		& > .#{$dir} {
 			border-#{$dir}-style: solid;
+			#{$dir}: 0;
+
+			@if ($i % 2 == 1) {
+				width: 100%;
+			} @else {
+				height: 100%;
+			}
 		}
 	}
 }

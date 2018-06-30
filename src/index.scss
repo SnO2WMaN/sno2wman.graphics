@@ -31,7 +31,14 @@ body {
 	width: calc(100% - #{$frame-width * 2});
 	min-height: $header-height;
 	z-index: 9;
-	overflow: hidden;
+
+	--section-scroll-fix: 999px;
+	&:not(.transiting) {
+		overflow: hidden;
+	}
+	&.animating {
+		height: $header-height;
+	}
 	& > * {
 		position: absolute;
 		animation-play-state: paused;

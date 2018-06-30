@@ -3,7 +3,7 @@ import React from "react";
 
 import { render } from "react-dom";
 
-import data from "./data.json";
+import data from "./voxels.json";
 import Masonry from "react-masonry-component";
 
 interface VoxelData {
@@ -101,7 +101,7 @@ class Card extends React.Component<{ data: FormedVoxelData }, any> {
 	}
 }
 
-export default class List extends React.Component<
+class List extends React.Component<
 	{
 		voxels: VoxelData[];
 	},

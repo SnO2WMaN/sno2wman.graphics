@@ -1,4 +1,4 @@
-declare module "*/data.json" {
+declare module "*/voxels.json" {
 	const value: {
 		[year: string]: {
 			[month: string]: {

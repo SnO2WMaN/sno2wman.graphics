@@ -1,5 +1,6 @@
 import { change } from "./bg";
 
+const $main = document.getElementById("main");
 const $globalnav = document.getElementById("top-nav");
 const $selected = $globalnav.querySelector(".selected");
 const $buttons = $globalnav.querySelectorAll("[data-target]");
@@ -24,9 +25,14 @@ function transit(target, init) {
 	current = target;
 	history.replaceState({ target }, `page ${target}`, `${target}`);
 
+	const $scrl = document.scrollingElement;
+	const scrlTop = $scrl.scrollTop;
+
 	$before = $current;
 	$current = document.getElementById(target);
 	const transitPromise = new Promise(resolve => {
+		$main.classList.add("animating");
+		$main.classList.add("transiting");
 		if (!$before) resolve();
 		else {
 			$before.classList.remove("selected");
@@ -40,9 +46,9 @@ function transit(target, init) {
 		}
 	})
 		.then(() => {
+			$main.classList.remove("transiting");
 			return new Promise(resolve => {
 				$current.classList.add("selected");
-				document.scrollingElement.scrollTo(0, 0);
 				$current.addEventListener(
 					"transitionend",
 					() => {
@@ -97,6 +103,7 @@ function transit(target, init) {
 			})()
 		)
 	]).then(() => {
+		$main.classList.remove("animating");
 		stopper = false;
 	});
 }

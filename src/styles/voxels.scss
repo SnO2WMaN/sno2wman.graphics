@@ -10,15 +10,48 @@ $voxel-card-split: 5;
 
 #voxels {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	& > .title-wrap {
+		& > .title {
+			font-size: 4rem;
+			color: $theme;
+			font-family: "Raleway", sans-serif;
+			font-weight: 100;
+			text-align: center;
+			letter-spacing: 2rem;
+		}
+	}
+
+	& > .text-wrap {
+		margin-top: 3vh;
+		& > .text {
+			color: $theme;
+			font-size: 1.2rem;
+			font-weight: 300;
+			font-family: "IBM Plex Sans Condensed", sans-serif;
+			letter-spacing: 0.1rem;
+			text-align: center;
+			&:not(:last-of-type) {
+				margin-bottom: 0.5rem;
+			}
+		}
+	}
 
 	& > .cards-wrap {
 		$width: ($voxel-card-width + $voxel-card-margin) * $voxel-card-split -
 			$voxel-card-margin;
-		width: $width;
-		& > ul {
-			width: 100%;
+		width: $width + ($voxel-card-margin * 4);
+		margin-top: 5vh;
+		margin-bottom: 5vh;
+		padding: 2.5vh 0;
+		border-top: 1px dashed $theme;
+		border-bottom: 1px dashed $theme;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.cards {
+			width: $width;
 			list-style: none;
 			& > li.voxel {
 				margin: ($voxel-card-margin / 2) 0;
@@ -67,15 +100,29 @@ $voxel-card-split: 5;
 					& > .tags-wrap {
 						display: flex;
 						flex-direction: row;
+						flex-wrap: wrap;
+						margin-top: 0.75rem;
 						& > li {
+							$color: lighten($theme, 25%);
+							position: relative;
 							list-style: none;
+							padding: 0 0.5rem;
+							&::before {
+								content: "";
+								position: absolute;
+								height: (50% / metallic(1));
+								top: 0;
+								bottom: 0;
+								left: 0;
+								margin: auto 0;
+								border-left: 1px solid $color;
+							}
 							&:not(:last-of-type) {
 								margin-right: 0.25rem;
 							}
 							& > p {
-								color: $theme;
+								color: $color;
 								font-size: 0.9rem;
-								letter-spacing: 0.05rem;
 								font-weight: 400;
 								font-family: "IBM Plex Sans Condensed",
 									sans-serif;

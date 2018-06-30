@@ -4,6 +4,7 @@
 	position: fixed 0;
 	size: 100%;
 	z-index: 20;
+	visibility: hidden;
 	& > * {
 		position: absolute;
 		size: 100%;

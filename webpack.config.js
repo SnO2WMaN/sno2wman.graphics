@@ -76,7 +76,9 @@ module.exports = env => {
 					use: [
 						{
 							loader: "babel-loader",
-							options: { cacheDirectory: true }
+							options: {
+								presets: ["env", "react"],
+							}
 						}
 					]
 				},

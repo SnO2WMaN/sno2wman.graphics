@@ -31,7 +31,7 @@
 				transform: scaleX(1 / metallic(1));
 			}
 		}
-		$menus: "home", "profile", "works", "voxel", "contact", "system";
+		$menus: "home", "profile", "works", "voxels", "contact", "system";
 		@each $menu in $menus {
 			&[data-current="#{$menu}"] {
 				transform: translateX((index($menus, $menu) - 1) * $width);

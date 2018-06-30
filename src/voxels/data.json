@@ -17,8 +17,7 @@
 				},
 				"163610": {
 					"name": "Cherry Blossom & DeLorean 4",
-					"tags": ["vehicle", "landscape"],
-					"size": 2
+					"tags": ["vehicle", "landscape"]
 				}
 			}
 		},
@@ -91,7 +90,8 @@
 			"3": {
 				"001645": {
 					"name": "Jacket & DeLorean 1",
-					"tags": ["people", "game"]
+					"tags": ["people", "game"],
+					"size": 2
 				},
 				"005105": {
 					"name": "Jacket & DeLorean 2",

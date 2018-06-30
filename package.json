@@ -25,13 +25,16 @@
 			"git add"
 		]
 	},
+	"browserslist": [
+		"last 4 versions",
+		"ie 9"
+	],
 	"devDependencies": {
 		"@fortawesome/fontawesome-free": "^5.1.0",
 		"autoprefixer": "^8.6.3",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.4",
 		"babel-minify-webpack-plugin": "^0.3.1",
-		"babel-plugin-syntax-dynamic-import": "^6.18.0",
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-es2017": "^6.24.1",
 		"babel-preset-react": "^6.24.1",
@@ -105,6 +108,7 @@
 		"node-sass": "^4.9.0",
 		"react": "^16.4.1",
 		"react-dom": "^16.4.1",
+		"react-infinite-scroll-component": "^4.1.0",
 		"react-masonry-component": "^6.2.1",
 		"ress": "^1.2.2",
 		"sass-easing": "^1.0.3",

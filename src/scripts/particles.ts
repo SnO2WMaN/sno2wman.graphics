@@ -79,7 +79,7 @@ class Particle {
 		ctx.fill();
 		ctx.closePath();
 	}
-	update(rect: { width: number; height: number }) {
+	update(rect: { width: number; height: number }): boolean {
 		this.a += this.j;
 		this.a = Math.abs(this.a);
 		this.v += this.a;

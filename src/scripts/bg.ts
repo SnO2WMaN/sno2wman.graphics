@@ -3,7 +3,7 @@ import color from "color";
 import IBackground from "./Ibackground";
 
 import Particles from "./particles";
-import Donuts from "./donuts";
+import Arcs from "./arcs";
 
 const $canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const $canvasPlaceholder = document.getElementById(
@@ -41,7 +41,7 @@ function resized(rect: { width: number; height: number }) {
 	if (background) background.resize(rect);
 }
 
-function change(type: "particle" | "donuts") {
+function change(type: "particle" | "arcs") {
 	const list = $canvas.classList;
 	return new Promise(resolve => {
 		if (list.contains("visible")) {
@@ -69,8 +69,14 @@ function change(type: "particle" | "donuts") {
 					)
 				});
 				break;
-			case "donuts":
-				background = new Donuts(rect);
+			case "arcs":
+				background = new Arcs(rect, {
+					color: color(
+						getComputedStyle(document.documentElement)
+							.getPropertyValue("--theme")
+							.trim()
+					)
+				});
 				break;
 		}
 		return new Promise(resolve => {

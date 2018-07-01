@@ -97,6 +97,9 @@ function transit(target, init) {
 		change(
 			(() => {
 				switch (target) {
+					case "about":
+					case "voxels":
+						return "arcs";
 					default:
 						return "particle";
 				}
@@ -117,7 +120,7 @@ export default {
 			transit(
 				[
 					"home",
-					"profile",
+					"about",
 					"works",
 					"voxels",
 					"contact",

@@ -1,0 +1,189 @@
+$brand: (
+	twitter: $bc-twitter,
+	github: $bc-github,
+	discord: $bc-discord,
+	steam: #096295,
+	codepen: #000
+);
+#about {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	& > .title-wrap {
+		margin-bottom: 3rem;
+		& > .title {
+			font-size: 4rem;
+			color: $theme;
+			font-family: "Raleway", sans-serif;
+			font-weight: 100;
+			text-align: center;
+			letter-spacing: 2rem;
+		}
+	}
+	& > .wraps {
+		display: flex;
+		align-items: flex-start;
+		$wrap-width: 15rem;
+		$wrap-margin: ($wrap-width / 15);
+		& > .wrap {
+			width: $wrap-width;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: stretch;
+			box-shadow: 0 2px 2px $shadow;
+			margin: $wrap-margin;
+			margin-top: 0;
+			overflow: hidden;
+			& > .title-wrap {
+				border-left: 0.5rem solid $theme;
+				padding: 0.5rem 0;
+				padding-left: 1rem;
+				background: $whity;
+				& > .title {
+					color: $theme;
+					font-family: "Dosis", sans-serif;
+					font-size: 1.36rem;
+					letter-spacing: 0.2rem;
+				}
+			}
+			& > .text-wrap {
+				padding: 0.45rem 0;
+				padding-left: 1.5rem;
+				background: $whity;
+				& > .text {
+					color: $theme;
+					font-family: "IBM Plex Sans Condensed", sans-serif;
+					font-size: 0.95rem;
+					letter-spacing: 1px;
+					padding: 0.05rem 0;
+					&:not(:first-of-type) {
+						font-size: 0.5rem;
+					}
+				}
+			}
+		}
+		& > .links-wrap {
+			& > .links {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				& > .link {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					$icon-size: 3rem;
+					& > .icon-wrap {
+						position: relative;
+						size: $icon-size;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						& > a {
+							position: absolute;
+							z-index: 1;
+							size: 100%;
+						}
+						& > svg {
+							color: $whity;
+							font-size: ($icon-size / sqrt(2) / sqrt(2));
+						}
+					}
+					& > .text-wrap {
+						width: ($wrap-width - $icon-size);
+						$pad-per: (1 / metallic(1));
+						padding-right: ($icon-size * $pad-per);
+						padding-left: ($icon-size * (1 - $pad-per));
+						height: $icon-size;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						background: $whity;
+						& > p {
+							color: $theme;
+							font-size: 0.85rem;
+							font-family: "IBM Plex Sans Condensed", sans-serif;
+							letter-spacing: 1px;
+						}
+					}
+					@each $brand, $color in $brand {
+						&.#{$brand} {
+							& > .icon-wrap {
+								background: $color;
+							}
+						}
+					}
+				}
+			}
+		}
+		& > .avatar-wrap {
+			& > .image-wrap {
+				display: flex;
+				img {
+					size: 100%;
+				}
+			}
+			& > .logo-wrap {
+				width: 100%;
+				display: flex;
+				align-items: stretch;
+				& > .left,
+				& > .right {
+					width: 50%;
+					display: flex;
+					flex-direction: column;
+				}
+				& > .left {
+					background: $theme;
+				}
+				& > .right {
+					background: $whity;
+				}
+				.jp-en,
+				.en {
+					width: 100%;
+					height: 3rem;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					& > svg {
+						width: (100% / sqrt(2));
+					}
+				}
+				.en {
+					& > svg {
+						fill: $theme;
+					}
+				}
+				.jp-en {
+					& > svg {
+						fill: $whity;
+					}
+				}
+				.me,
+				.site {
+					width: 100%;
+					height: 6.5rem;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					& > svg {
+						height: (100% / metallic(1));
+					}
+				}
+				.me {
+					& > svg {
+						stroke: $whity;
+						stroke-width: 12px;
+						fill: transparent;
+					}
+				}
+				.site {
+					& > svg {
+						fill: $theme;
+					}
+				}
+			}
+		}
+	}
+}

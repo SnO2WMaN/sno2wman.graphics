@@ -35,6 +35,11 @@ $voxel-card-split: 5;
 			&:not(:last-of-type) {
 				margin-bottom: 0.5rem;
 			}
+			& > a {
+				color: $theme;
+				position: relative;
+				text-decoration: underline dotted $theme;
+			}
 		}
 	}
 
@@ -56,7 +61,7 @@ $voxel-card-split: 5;
 				margin: ($voxel-card-margin / 2) 0;
 				display: flex;
 				flex-direction: column;
-				box-shadow: 0 2px 2px rgba($theme, 0.1);
+				box-shadow: 0 2px 2px $shadow;
 				& > .image-wrap {
 					width: 100%;
 					& > img {
@@ -67,7 +72,7 @@ $voxel-card-split: 5;
 				}
 				& > .info-wrap {
 					width: 100%;
-					background: lighten($bg, 5%);
+					background: $whity;
 					& > .title-wrap {
 						position: relative;
 						margin-bottom: 1rem;
@@ -102,7 +107,7 @@ $voxel-card-split: 5;
 						flex-wrap: wrap;
 						margin-top: 0.75rem;
 						& > li {
-							$color: lighten($theme, 25%);
+							$color: $theme;
 							position: relative;
 							list-style: none;
 							padding: 0 0.5rem;

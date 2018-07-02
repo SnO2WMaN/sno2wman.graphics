@@ -100,6 +100,7 @@
 		"@types/react": "^16.4.2",
 		"@types/react-dom": "^16.0.6",
 		"animejs": "^2.2.0",
+		"brand-colors": "^2.0.1",
 		"clipboard": "^2.0.1",
 		"color": "^3.0.0",
 		"ismobilejs": "^0.4.1",

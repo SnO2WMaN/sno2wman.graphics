@@ -1,2 +1,46 @@
+-
+	var $links = {
+		twitter:"https://twitter.com/@SnO2WMaN",
+		github:"https://github.com/SnO2WMaN",
+		steam:"https://steamcommunity.com/id/SnO2WMaN",
+		discord:"SnO2WMaN#9459",
+		codepen:"https://codepen.io/SnO2WMaN",
+	};
+
 article#about
-	p ABOUT
+	.title-wrap
+		p.title ABOUT
+	.wraps
+		.wrap.links-wrap
+			.title-wrap
+				p.title ACCOUNTS
+			.text-wrap
+				p.text Follow me &amp; Be a friend.
+			ul.links
+				each $link,$key in $links
+					li.link(class=$key)
+						.icon-wrap
+							i.fab(class=`fa-${$key}`)
+							if $link.startsWith("https")
+								a(href=$link target="_blank")
+						.text-wrap
+							p #{$link.split("/")[$link.split("/").length - 1]}
+		.wrap.avatar-wrap
+			.title-wrap
+				p.title AVATAR &amp; LOGO
+			.text-wrap
+				p.text Current my avatar &amp; logo
+				p.text SnO2WMaN 2018 &copy;
+			.image-wrap
+				img(src=require("../icons/avatar.png"))
+			.logo-wrap
+				.left
+					.me
+						i.icon.sno2wman
+					.jp-en
+						i.icon.logo-jp-en
+				.right
+					.en
+						i.icon.logo-en
+					.site
+						i.icon.logo-site

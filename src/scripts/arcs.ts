@@ -82,7 +82,7 @@ export default class Donuts implements IBackground {
 					i,
 					this.color.lighten(4 * Math.random()),
 					Math.random() * Math.PI * 0.5 * (1 - i / (wmax + 1)),
-					Math.random() * (1 - Math.sqrt(r / rmax))
+					Math.random() * (1 - Math.sqrt(r / rmax)) * 0.8
 				)
 			);
 		}

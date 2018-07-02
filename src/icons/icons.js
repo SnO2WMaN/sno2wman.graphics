@@ -3,12 +3,19 @@ import { faBirthdayCake } from "@fortawesome/free-solid-svg-icons/faBirthdayCake
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons/faMapMarkerAlt";
 import { faMars } from "@fortawesome/free-solid-svg-icons/faMars";
 
+import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { faDiscord } from "@fortawesome/free-brands-svg-icons/faDiscord";
+import { faSteam } from "@fortawesome/free-brands-svg-icons/faSteam";
+import { faCodepen } from "@fortawesome/free-brands-svg-icons/faCodepen";
+
 import iconSnO2WMaN from "./sno2wman.svg";
 import LogoSite from "./logo_site.svg";
 import LogoEn from "./logo_en.svg";
 import LogoJpEn from "./logo_jpen.svg";
 
 library.add(faBirthdayCake, faMapMarkerAlt, faMars);
+library.add(faTwitter, faGithub, faDiscord, faSteam, faCodepen);
 
 dom.watch();
 

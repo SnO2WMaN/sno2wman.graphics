@@ -98,7 +98,6 @@ function transit(target, init) {
 			(() => {
 				switch (target) {
 					case "about":
-					case "voxels":
 						return "arcs";
 					default:
 						return "particle";

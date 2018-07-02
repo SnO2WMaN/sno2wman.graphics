@@ -1,4 +1,5 @@
-@import "ress/ress";
+@import "~ress/ress";
+@import "~brand-colors/dist/latest/scss/brand-colors.latest.scss";
 @import "~sass-metallic-ratio/index";
 @import "~sass-easing/easings";
 @import "./styles/constants";
@@ -54,6 +55,16 @@ body {
 			text-align: center;
 			letter-spacing: 2rem;
 		}
+		& > .title-wrap {
+			& > .title {
+				font-size: 4rem;
+				color: $theme;
+				font-family: "Raleway", sans-serif;
+				font-weight: 100;
+				text-align: center;
+				letter-spacing: 2rem;
+			}
+		}
 		&:not(.animated) {
 			*,
 			*::before,
@@ -81,4 +92,5 @@ body {
 }
 
 @import "./styles/home";
+@import "./styles/about";
 @import "./styles/voxels";

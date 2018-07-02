@@ -26,6 +26,12 @@ Promise.all([
 					"IBM Plex Sans Condensed:300,400"
 				]
 			},
+			custom: {
+				families: ["Noto Sans Japanese:n1,n2,n3,n4,n5,n7,n9"],
+				urls: [
+					"https://fonts.googleapis.com/earlyaccess/notosansjapanese.css"
+				]
+			},
 			loading: function() {
 				resolve();
 			},

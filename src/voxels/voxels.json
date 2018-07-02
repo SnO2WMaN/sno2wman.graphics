@@ -125,6 +125,10 @@
 				}
 			},
 			"8": {
+				"003250": {
+					"name": "Avatar v1",
+					"tags": ["avatar", "people"]
+				},
 				"210041": {
 					"name": "Pipe Chair 2",
 					"tags": ["thing", "wip"]

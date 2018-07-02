@@ -23,8 +23,10 @@ $brand: (
 	& > .wraps {
 		display: flex;
 		align-items: flex-start;
+		flex-wrap: wrap;
 		$wrap-width: 15rem;
 		$wrap-margin: ($wrap-width / 15);
+		width: ($wrap-width * 4 + $wrap-margin * 8);
 		& > .wrap {
 			width: $wrap-width;
 			display: flex;
@@ -35,6 +37,9 @@ $brand: (
 			margin: $wrap-margin;
 			margin-top: 0;
 			overflow: hidden;
+			&.x2 {
+				width: ($wrap-width * 2 + $wrap-margin * 2);
+			}
 			& > .title-wrap {
 				border-left: 0.5rem solid $theme;
 				padding: 0.5rem 0;
@@ -79,6 +84,7 @@ $brand: (
 						display: flex;
 						justify-content: center;
 						align-items: center;
+						cursor: pointer;
 						& > a {
 							position: absolute;
 							z-index: 1;
@@ -91,19 +97,27 @@ $brand: (
 					}
 					& > .text-wrap {
 						width: ($wrap-width - $icon-size);
-						$pad-per: (1 / metallic(1));
+						$pad-per: (1 - (1 / metallic(1)));
 						padding-right: ($icon-size * $pad-per);
 						padding-left: ($icon-size * (1 - $pad-per));
 						height: $icon-size;
 						display: flex;
 						flex-direction: row;
 						align-items: center;
+						justify-content: flex-end;
 						background: $whity;
 						& > p {
 							color: $theme;
 							font-size: 0.85rem;
 							font-family: "IBM Plex Sans Condensed", sans-serif;
 							letter-spacing: 1px;
+						}
+						&::before {
+							content: "";
+							border-bottom: 1px dotted $theme;
+							width: 100%;
+							margin-right: 0.5rem;
+							opacity: 0.25;
 						}
 					}
 					@each $brand, $color in $brand {
@@ -181,6 +195,40 @@ $brand: (
 				.site {
 					& > svg {
 						fill: $theme;
+					}
+				}
+			}
+		}
+		& > .bio-wrap {
+			& > .bio {
+				background: $whity;
+				padding: 1.5rem 1.5rem;
+				border-top: 1px dashed $theme;
+				& > p {
+					position: relative;
+					color: $theme;
+					font-size: 0.9rem;
+					font-family: "Noto Sans Japanese", sans-serif;
+					font-weight: 200;
+					letter-spacing: 1px;
+					& > a {
+						color: $theme;
+						font-weight: 400;
+						text-decoration: underline dotted $theme;
+						cursor: pointer;
+					}
+					&:not(:last-of-type) {
+						margin-bottom: 0.5rem;
+					}
+					&::before {
+						content: "";
+						position: absolute;
+						border-right: 1px solid $theme;
+						right: 0;
+						top: 0;
+						bottom: 0;
+						margin: auto 0;
+						height: (100% / metallic(1));
 					}
 				}
 			}

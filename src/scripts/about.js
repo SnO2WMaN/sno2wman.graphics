@@ -1,4 +1,5 @@
 import Masonry from "masonry-layout";
+import Clipboard from "clipboard";
 
 export default {
 	loaded() {
@@ -14,5 +15,16 @@ export default {
 					.slice(0, -2)
 			)
 		});
+
+		new Clipboard($about.querySelectorAll(".links-wrap .clipboard")).on(
+			"success",
+			e => {
+				const $wrap = e.trigger.parentElement.parentElement;
+				$wrap.classList.add("copyed");
+				setTimeout(() => {
+					$wrap.classList.remove("copyed");
+				}, 1000);
+			}
+		);
 	}
 };

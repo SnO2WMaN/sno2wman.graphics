@@ -39,13 +39,18 @@ article#about
 				p.text Follow me &amp; Be a friend.
 			ul.links
 				each $link,$key in $links
+					-const $isCb = !$link.startsWith("https");
 					li.link(class=$key)
 						.icon-wrap
 							i.fab(class=`fa-${$key}`)
-							if $link.startsWith("https")
+							if !$isCb
 								a(href=$link target="_blank")
+							else
+								.clipboard(data-clipboard-text=$link)
 						.text-wrap
 							p #{$link.split("/")[$link.split("/").length - 1]}
+							if $isCb
+								p.feedback Copyed.
 		.wrap.avatar-wrap
 			.title-wrap
 				p.title AVATAR &amp; LOGO

@@ -49,19 +49,6 @@ Object.keys(data).forEach(year =>
 	)
 );
 
-Promise.all([
-	new Promise(resolve =>
-		window.addEventListener("load", () => {
-			resolve();
-		})
-	)
-]).then(() => {
-	render(
-		<List voxels={voxels} />,
-		document.querySelector("#voxels .cards-wrap")
-	);
-});
-
 class Card extends React.Component<{ data: FormedVoxelData }, any> {
 	displayDate() {
 		return `${this.props.data.date.year}.${leftPad(
@@ -189,3 +176,12 @@ class List extends React.Component<
 		);
 	}
 }
+
+export default {
+	loaded() {
+		render(
+			<List voxels={voxels} />,
+			document.querySelector("#voxels .cards-wrap")
+		);
+	}
+};

@@ -111,7 +111,7 @@ function transit(target, init) {
 }
 
 export default {
-	init() {
+	loaded() {
 		if (!(history.state && history.state.hasOwnProperty("target"))) {
 			transit("home", true);
 		} else {

@@ -12,11 +12,11 @@ const $canvasPlaceholder = document.getElementById(
 
 let background: IBackground;
 
-window.addEventListener("load", () => {
+function loaded() {
 	if (!$canvasPlaceholder) throw new DOMException();
 	if (!$canvas) throw new DOMException();
 
-	resized($canvasPlaceholder.getBoundingClientRect());
+	sizing($canvasPlaceholder.getBoundingClientRect());
 	const ctx = $canvas.getContext("2d");
 
 	function draw() {
@@ -27,14 +27,22 @@ window.addEventListener("load", () => {
 		requestAnimationFrame(draw);
 	}
 	requestAnimationFrame(draw);
-});
-
-window.addEventListener("resize", function() {
+}
+function resized() {
 	if (!$canvasPlaceholder) throw new DOMException();
-	resized($canvasPlaceholder.getBoundingClientRect());
+	sizing($canvasPlaceholder.getBoundingClientRect());
+}
+
+export default {
+	loaded,
+	resized
+};
+
+window.addEventListener("resize", () => {
+	resized();
 });
 
-function resized(rect: { width: number; height: number }) {
+function sizing(rect: { width: number; height: number }) {
 	if (!$canvas) throw new DOMException();
 	$canvas.setAttribute("width", `${rect.width}`);
 	$canvas.setAttribute("height", `${rect.height}`);

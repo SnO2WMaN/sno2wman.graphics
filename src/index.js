@@ -6,16 +6,11 @@ import WebFont from "webfontloader";
 
 import "./icons/icons";
 import topNav from "./scripts/top_nav";
-import "./scripts/bg.ts";
-import "./voxels/voxels.tsx";
-import "./scripts/about";
+import bg from "./scripts/bg.ts";
+import voxels from "./voxels/voxels.tsx";
+import about from "./scripts/about";
 
 // main
-const $left = document.getElementById("left-nav");
-const $canvas = document.getElementById("canvas");
-
-window.onscroll = function(e) {};
-
 document.documentElement.style.visibility = "hidden";
 Promise.all([
 	new Promise((resolve, reject) => {
@@ -44,6 +39,9 @@ Promise.all([
 	new Promise(resolve => window.addEventListener("load", resolve))
 ]).then(() => {
 	document.documentElement.style.visibility = "visible";
-	$left.classList.add("animated");
-	topNav.init();
+	document.getElementById("left-nav").classList.add("animated");
+	topNav.loaded();
+	about.loaded();
+	voxels.loaded();
+	bg.loaded();
 });

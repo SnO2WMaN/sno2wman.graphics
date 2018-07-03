@@ -47,14 +47,14 @@
 					animation: main-header-title 1.25s ease both;
 				}
 				&:nth-of-type(1) {
-					margin-bottom: 1.5rem;
+					margin-bottom: 1rem;
 					& > .cover {
 						animation-delay: 0.5s;
 					}
 					& > .title {
-						font-size: 4rem;
+						font-size: 3rem;
 						font-weight: 100;
-						letter-spacing: 0.5rem;
+						letter-spacing: 0.65rem;
 						animation-delay: 0.8s;
 					}
 				}
@@ -63,7 +63,7 @@
 						animation-delay: 0.6s;
 					}
 					& > .title {
-						font-size: 1.25rem;
+						font-size: 1rem;
 						font-weight: 300;
 						letter-spacing: 0.25rem;
 						font-variant-numeric: lining-nums;
@@ -101,13 +101,13 @@
 			margin-top: 5vh;
 			& > .text {
 				color: $theme;
-				font-size: 1.2rem;
+				font-size: 0.9rem;
 				font-weight: 300;
 				font-family: "IBM Plex Sans Condensed", sans-serif;
 				letter-spacing: 0.05rem;
 				text-align: center;
 				&:first-of-type {
-					font-size: 1.4rem;
+					font-size: 1.25rem;
 					letter-spacing: 0.2rem;
 					animation-delay: 1s;
 				}
@@ -115,7 +115,7 @@
 					animation-delay: 1.125s;
 				}
 				&:not(:last-of-type) {
-					margin-bottom: 0.5rem;
+					margin-bottom: 0.3rem;
 				}
 				animation: main-header-text 0.8s $easeInOutCubic both;
 				@keyframes main-header-text {
@@ -134,7 +134,7 @@
 			position: relative;
 			list-style: none;
 			display: flex;
-			margin-top: 3vh;
+			margin-top: 2rem;
 			padding-top: 2vh;
 			&::before {
 				content: "";
@@ -169,7 +169,7 @@
 					margin-right: 0;
 				}
 				& > .icon-wrap {
-					$size: 1.6rem;
+					$size: 1.25rem;
 					color: $theme;
 					size: $size;
 					font-size: ($size / sqrt(2));
@@ -193,7 +193,7 @@
 					& > .text {
 						font-weight: 300;
 						letter-spacing: 0.1rem;
-						font-size: 1rem;
+						font-size: 0.8rem;
 						color: $theme;
 						font-family: "IBM Plex Sans Condensed", sans-serif;
 						animation: main-header-detail-text 0.5s $easeOutQuad
@@ -230,7 +230,7 @@
 		width: 100%;
 		padding: 0 (50% - 50% / metallic(2));
 		&:first-of-type {
-			margin-top: 10rem;
+			margin-top: 8.5rem;
 		}
 		&:last-of-type {
 			padding-bottom: (50vh / metallic(1));
@@ -243,7 +243,7 @@
 			& > .title {
 				font-weight: 400;
 				letter-spacing: 0.25rem;
-				font-size: 1.25rem;
+				font-size: 1rem;
 				color: $theme;
 				font-family: "Dosis", sans-serif;
 			}
@@ -273,7 +273,7 @@
 				& > .date-wrap {
 					display: flex;
 					align-items: center;
-					margin-right: 5rem;
+					margin-right: 3rem;
 					position: relative;
 					&::after {
 						content: "";
@@ -293,12 +293,15 @@
 				& > .text-wrap {
 					& > .text {
 						color: $theme;
-						font-size: 1rem;
+						font-size: 0.9rem;
 						font-feature-settings: "palt";
-						letter-spacing: 0.05rem;
+						letter-spacing: 0.1rem;
+						font-weight: 200;
+						font-family: "IBM Plex Sans Condensed",
+							"Noto Sans Japanese", sans-serif;
 						& > span {
-							font-family: "IBM Plex Sans Condensed", sans-serif;
-							letter-spacing: 0;
+							font-weight: 400;
+							letter-spacing: 0.05rem;
 						}
 					}
 				}

@@ -5,28 +5,27 @@ $brand: (
 	steam: #096295,
 	codepen: #000
 );
+
+$wrap-width: 12.5rem;
+$wrap-margin: 12px;
+:root {
+	--about-wrap-width: #{$wrap-width};
+	--about-wrap-margin: #{$wrap-margin};
+}
 #about {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	& > .title-wrap {
-		margin-bottom: 3rem;
-		& > .title {
-			font-size: 4rem;
-			color: $theme;
-			font-family: "Raleway", sans-serif;
-			font-weight: 100;
-			text-align: center;
-			letter-spacing: 2rem;
-		}
-	}
 	& > .wraps {
+		width: calc(#{$wrap-width * 4} + #{$wrap-margin * 3});
 		display: flex;
-		align-items: flex-start;
-		flex-wrap: wrap;
-		$wrap-width: 15rem;
-		$wrap-margin: ($wrap-width / 15);
-		width: ($wrap-width * 4 + $wrap-margin * 8);
+		justify-content: center;
+		align-items: center;
+		margin-top: 5rem;
+		& > .wrap-sizer {
+			width: $wrap-width;
+			visibility: hidden;
+		}
 		& > .wrap {
 			width: $wrap-width;
 			display: flex;
@@ -34,32 +33,31 @@ $brand: (
 			justify-content: flex-start;
 			align-items: stretch;
 			box-shadow: 0 2px 2px $shadow;
-			margin: $wrap-margin;
-			margin-top: 0;
 			overflow: hidden;
+			margin-bottom: $wrap-margin;
 			&.x2 {
-				width: ($wrap-width * 2 + $wrap-margin * 2);
+				width: calc(#{$wrap-width * 2} + #{$wrap-margin});
 			}
 			& > .title-wrap {
-				border-left: 0.5rem solid $theme;
-				padding: 0.5rem 0;
-				padding-left: 1rem;
+				border-left: 0.25rem solid $theme;
+				padding: 0.3rem 0;
+				padding-left: 0.8rem;
 				background: $whity;
 				& > .title {
 					color: $theme;
 					font-family: "Dosis", sans-serif;
-					font-size: 1.36rem;
+					font-size: 1.1rem;
 					letter-spacing: 0.2rem;
 				}
 			}
 			& > .text-wrap {
-				padding: 0.45rem 0;
-				padding-left: 1.5rem;
+				padding: 0.4rem 0;
+				padding-left: 1.05rem;
 				background: $whity;
 				& > .text {
 					color: $theme;
 					font-family: "IBM Plex Sans Condensed", sans-serif;
-					font-size: 0.95rem;
+					font-size: 0.75rem;
 					letter-spacing: 1px;
 					padding: 0.05rem 0;
 					&:not(:first-of-type) {
@@ -77,7 +75,7 @@ $brand: (
 					display: flex;
 					flex-direction: row;
 					align-items: center;
-					$icon-size: 3rem;
+					$icon-size: 2.25rem;
 					& > .icon-wrap {
 						position: relative;
 						size: $icon-size;
@@ -108,9 +106,9 @@ $brand: (
 						background: $whity;
 						& > p {
 							color: $theme;
-							font-size: 0.85rem;
+							font-size: 0.75rem;
 							font-family: "IBM Plex Sans Condensed", sans-serif;
-							letter-spacing: 1px;
+							letter-spacing: 0.1rem;
 						}
 						&::before {
 							content: "";
@@ -156,7 +154,7 @@ $brand: (
 				.jp-en,
 				.en {
 					width: 100%;
-					height: 3rem;
+					height: 2.5rem;
 					display: flex;
 					justify-content: center;
 					align-items: center;
@@ -177,7 +175,7 @@ $brand: (
 				.me,
 				.site {
 					width: 100%;
-					height: 6.5rem;
+					height: 5rem;
 					display: flex;
 					justify-content: center;
 					align-items: center;
@@ -202,12 +200,13 @@ $brand: (
 		& > .bio-wrap {
 			& > .bio {
 				background: $whity;
-				padding: 1.5rem 1.5rem;
+				padding: 1rem 1rem;
+				padding-left: 1.5rem;
 				border-top: 1px dashed $theme;
 				& > p {
 					position: relative;
 					color: $theme;
-					font-size: 0.9rem;
+					font-size: 0.75rem;
 					font-family: "Noto Sans Japanese", sans-serif;
 					font-weight: 200;
 					letter-spacing: 1px;

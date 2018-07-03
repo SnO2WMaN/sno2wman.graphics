@@ -12,26 +12,16 @@ $voxel-card-split: 5;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	& > .title-wrap {
-		& > .title {
-			font-size: 4rem;
-			color: $theme;
-			font-family: "Raleway", sans-serif;
-			font-weight: 100;
-			text-align: center;
-			letter-spacing: 2rem;
-		}
-	}
 
 	& > .text-wrap {
-		margin-top: 3vh;
+		margin-top: 1.5rem;
 		& > .text {
 			color: $theme;
-			font-size: 1.2rem;
+			font-size: 1rem;
 			font-weight: 200;
 			font-family: "IBM Plex Sans Condensed", "Noto Sans Japanese",
 				sans-serif;
-			letter-spacing: 0.1rem;
+			letter-spacing: 0.05rem;
 			text-align: center;
 			&:not(:last-of-type) {
 				margin-bottom: 0.5rem;
@@ -48,8 +38,8 @@ $voxel-card-split: 5;
 		$width: ($voxel-card-width + $voxel-card-margin) * $voxel-card-split -
 			$voxel-card-margin;
 		width: $width + ($voxel-card-margin * 4);
-		margin: 10vh 0;
-		padding: 2.5vh 0;
+		margin: 5rem 0;
+		padding: 5rem 0;
 		border-top: 1px dashed $theme;
 		border-bottom: 1px dashed $theme;
 		display: flex;
@@ -59,7 +49,7 @@ $voxel-card-split: 5;
 			width: $width;
 			list-style: none;
 			& > li.voxel {
-				margin: ($voxel-card-margin / 2) 0;
+				margin-bottom: $voxel-card-margin;
 				display: flex;
 				flex-direction: column;
 				box-shadow: 0 2px 2px $shadow;
@@ -76,14 +66,14 @@ $voxel-card-split: 5;
 					background: $whity;
 					& > .title-wrap {
 						position: relative;
-						margin-bottom: 1rem;
-						padding-bottom: 1rem;
-						& > p {
+						margin-bottom: 0.8rem;
+						padding-bottom: 0.8rem;
+						& > .title {
 							color: $theme;
-							font-size: 1.4rem;
+							font-size: 1.1rem;
 							font-weight: 400;
 							font-family: "Dosis", sans-serif;
-							letter-spacing: 0.125rem;
+							letter-spacing: 0.1rem;
 						}
 						&::after {
 							position: absolute;
@@ -94,9 +84,9 @@ $voxel-card-split: 5;
 						}
 					}
 					& > .date-wrap {
-						& > p {
+						& > .date {
 							color: $theme;
-							font-size: 1rem;
+							font-size: 0.8rem;
 							font-weight: 300;
 							font-family: "IBM Plex Sans Condensed", sans-serif;
 							font-variant-numeric: proportional-nums;
@@ -106,12 +96,12 @@ $voxel-card-split: 5;
 						display: flex;
 						flex-direction: row;
 						flex-wrap: wrap;
-						margin-top: 0.75rem;
+						margin-top: 0.25rem;
 						& > li {
 							$color: $theme;
 							position: relative;
 							list-style: none;
-							padding: 0 0.5rem;
+							padding: 0 0.4rem;
 							&::before {
 								content: "";
 								position: absolute;
@@ -123,11 +113,12 @@ $voxel-card-split: 5;
 								border-left: 1px solid $color;
 							}
 							&:not(:last-of-type) {
-								margin-right: 0.25rem;
+								margin-right: 0.1rem;
 							}
 							& > p {
 								color: $color;
-								font-size: 0.9rem;
+								font-size: 0.75rem;
+								letter-spacing: 0.05rem;
 								font-weight: 400;
 								font-family: "IBM Plex Sans Condensed",
 									sans-serif;

@@ -7,7 +7,7 @@
 :root {
 	--theme: #{$theme};
 	--bg: #{$bg};
-	font-size: 12px;
+	font-size: calc((1vmin + 1vmax) / 2);
 	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "arial",
 		"Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
@@ -47,22 +47,14 @@ body {
 		transition-property: opacity, transform, visibility;
 		transition-duration: 0.5s;
 		transition-timing-function: ease-in-out;
-		& > p {
-			font-size: 4rem;
-			color: $theme;
-			font-family: "Raleway", sans-serif;
-			font-weight: 100;
-			text-align: center;
-			letter-spacing: 2rem;
-		}
 		& > .title-wrap {
 			& > .title {
-				font-size: 4rem;
+				font-size: 3rem;
 				color: $theme;
 				font-family: "Raleway", sans-serif;
 				font-weight: 100;
 				text-align: center;
-				letter-spacing: 2rem;
+				letter-spacing: 1.5rem;
 			}
 		}
 		&:not(.animated) {
@@ -94,3 +86,6 @@ body {
 @import "./styles/home";
 @import "./styles/about";
 @import "./styles/voxels";
+@import "./styles/works";
+@import "./styles/contact";
+@import "./styles/system";

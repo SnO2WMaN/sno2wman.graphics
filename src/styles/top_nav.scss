@@ -5,7 +5,7 @@
 	top: calc(#{$frame-width} + 7.5vh);
 	right: calc(#{$frame-width} + 7.5vw);
 	z-index: 21;
-	$width: 6.5rem;
+	$width: 5rem;
 	padding-bottom: 0.5rem;
 	& > .selected {
 		position: absolute;
@@ -51,9 +51,9 @@
 				& > .text {
 					color: $theme;
 					user-select: none;
-					font-size: 1rem;
+					font-size: 0.8rem;
 					font-family: "Dosis", sans-serif;
-					letter-spacing: 2px;
+					letter-spacing: 0.15rem;
 				}
 			}
 		}

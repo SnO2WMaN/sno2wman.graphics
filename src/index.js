@@ -8,6 +8,7 @@ import "./icons/icons";
 import topNav from "./scripts/top_nav";
 import "./scripts/bg.ts";
 import "./voxels/voxels.tsx";
+import "./scripts/about";
 
 // main
 const $left = document.getElementById("left-nav");

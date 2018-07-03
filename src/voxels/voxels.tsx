@@ -79,10 +79,10 @@ class Card extends React.Component<{ data: FormedVoxelData }, any> {
 				</div>
 				<div className="info-wrap">
 					<div className="title-wrap">
-						<p>{this.props.data.name}</p>
+						<p className="title">{this.props.data.name}</p>
 					</div>
 					<div className="date-wrap">
-						<p>{this.displayDate()}</p>
+						<p className="date">{this.displayDate()}</p>
 					</div>
 					<ul className="tags-wrap">
 						{(() => {

@@ -13,9 +13,9 @@
 	& > .wrap {
 		&.top {
 			& > .icon-wrap {
-				size: 4rem;
+				size: 3rem;
 				&:not(:last-of-type) {
-					margin-bottom: 2rem;
+					margin-bottom: 1rem;
 				}
 				& > svg {
 					animation-duration: 3s;
@@ -77,7 +77,7 @@
 					color: $theme;
 					font-weight: 400;
 					letter-spacing: 0.1rem;
-					font-size: 0.9rem;
+					font-size: 0.8rem;
 					font-family: "IBM Plex Sans Condensed", sans-serif;
 					font-variant-numeric: lining-nums;
 					&:not(:last-of-type) {

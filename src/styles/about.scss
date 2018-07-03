@@ -25,6 +25,7 @@ $wrap-margin: 12px;
 		& > .wrap-sizer {
 			width: $wrap-width;
 			visibility: hidden;
+			margin: 0;
 		}
 		& > .wrap {
 			width: $wrap-width;

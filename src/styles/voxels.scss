@@ -1,5 +1,5 @@
-$voxel-card-width: 180px;
-$voxel-card-margin: 25px;
+$voxel-card-width: 12rem;
+$voxel-card-margin: 20px;
 $voxel-card-split: 5;
 
 :root {
@@ -35,10 +35,14 @@ $voxel-card-split: 5;
 	}
 
 	& > .cards-wrap {
-		$width: ($voxel-card-width + $voxel-card-margin) * $voxel-card-split -
-			$voxel-card-margin;
-		width: $width + ($voxel-card-margin * 4);
+		$width: calc(
+			#{$voxel-card-width * $voxel-card-split} + #{$voxel-card-margin * (
+					$voxel-card-split - 1
+				)}
+		);
+		width: calc(#{$width} + #{$voxel-card-margin * 4});
 		margin: 5rem 0;
+		margin-bottom: 7.5rem;
 		padding: 5rem 0;
 		border-top: 1px dashed $theme;
 		border-bottom: 1px dashed $theme;
@@ -53,6 +57,10 @@ $voxel-card-split: 5;
 				display: flex;
 				flex-direction: column;
 				box-shadow: 0 2px 2px $shadow;
+				&.wrap-sizer {
+					visibility: hidden;
+					margin: 0;
+				}
 				& > .image-wrap {
 					width: 100%;
 					& > img {
@@ -128,10 +136,12 @@ $voxel-card-split: 5;
 				}
 				@for $i from 1 through $voxel-card-split {
 					&.x#{$i} {
-						width: $voxel-card-width *
-							$i +
-							$voxel-card-margin *
-							($i - 1);
+						width: calc(
+							#{$voxel-card-width *
+								$i} +
+								#{$voxel-card-margin *
+								($i - 1)}
+						);
 						& > .info-wrap {
 							padding: (1rem * $i) (1rem * metallic(1) * $i);
 						}

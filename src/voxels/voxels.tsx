@@ -164,25 +164,22 @@ class List extends React.Component<
 	}
 
 	render() {
-		const rootStyle = getComputedStyle(document.documentElement);
+		const style = getComputedStyle(document.documentElement);
 		return (
 			<Masonry
 				className={"cards"}
 				elementType={"ul"}
 				options={{
-					columnWidth: Number(
-						rootStyle
-							.getPropertyValue("--voxel-card-width")
-							.slice(0, -2)
-					),
+					columnWidth: ".wrap-sizer",
 					gutter: Number(
-						rootStyle
+						style
 							.getPropertyValue("--voxel-card-margin")
 							.slice(0, -2)
 					),
 					transitionDuration: 0
 				}}
 			>
+				<li className="voxel x1 wrap-sizer" />
 				{(() => {
 					return this.state.voxels.map((s, index) => {
 						return <Card key={index} data={s} />;

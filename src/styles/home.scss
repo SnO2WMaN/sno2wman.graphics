@@ -98,17 +98,17 @@
 		}
 
 		& > .text-wrap {
-			margin-top: 5vh;
+			margin-top: 5rem;
 			& > .text {
 				color: $theme;
-				font-size: 0.9rem;
+				font-size: 0.8rem;
 				font-weight: 300;
 				font-family: "IBM Plex Sans Condensed", sans-serif;
 				letter-spacing: 0.05rem;
 				text-align: center;
 				&:first-of-type {
-					font-size: 1.25rem;
-					letter-spacing: 0.2rem;
+					font-size: 1rem;
+					letter-spacing: 0.15rem;
 					animation-delay: 1s;
 				}
 				&:nth-of-type(2) {

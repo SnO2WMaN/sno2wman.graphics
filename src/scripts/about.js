@@ -19,11 +19,11 @@ export default {
 		new Clipboard($about.querySelectorAll(".links-wrap .clipboard")).on(
 			"success",
 			e => {
-				const $wrap = e.trigger.parentElement.parentElement;
+				const $wrap = e.trigger.parentElement;
 				$wrap.classList.add("copyed");
 				setTimeout(() => {
 					$wrap.classList.remove("copyed");
-				}, 1000);
+				}, 500);
 			}
 		);
 	}

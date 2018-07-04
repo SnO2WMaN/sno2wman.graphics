@@ -5,8 +5,6 @@
 @import "./styles/constants";
 
 :root {
-	--theme: #{$theme};
-	--bg: #{$bg};
 	font-size: calc((1vmin + 1vmax) / 2);
 	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "arial",
 		"Hiragino Kaku Gothic ProN", Meiryo, sans-serif;

@@ -71,7 +71,7 @@ $voxel-card-split: 5;
 				}
 				& > .info-wrap {
 					width: 100%;
-					background: $whity;
+					background: $white;
 					& > .title-wrap {
 						position: relative;
 						margin-bottom: 0.8rem;
@@ -109,7 +109,7 @@ $voxel-card-split: 5;
 							$color: $theme;
 							position: relative;
 							list-style: none;
-							padding: 0 0.4rem;
+							padding: 0 0.25rem;
 							&::before {
 								content: "";
 								position: absolute;

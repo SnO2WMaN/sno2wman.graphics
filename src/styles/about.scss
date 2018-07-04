@@ -8,6 +8,7 @@ $brand: (
 
 $wrap-width: 12.5rem;
 $wrap-margin: 12px;
+$wrap-row: 4;
 :root {
 	--about-wrap-width: #{$wrap-width};
 	--about-wrap-margin: #{$wrap-margin};
@@ -17,7 +18,9 @@ $wrap-margin: 12px;
 	flex-direction: column;
 	align-items: center;
 	& > .wraps {
-		width: calc(#{$wrap-width * 4} + #{$wrap-margin * 3});
+		width: calc(
+			#{$wrap-width * $wrap-row} + #{$wrap-margin * ($wrap-row - 1)}
+		);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -36,14 +39,18 @@ $wrap-margin: 12px;
 			box-shadow: 0 2px 2px $shadow;
 			overflow: hidden;
 			margin-bottom: $wrap-margin;
-			&.x2 {
-				width: calc(#{$wrap-width * 2} + #{$wrap-margin});
+			@for $i from 2 through $wrap-row {
+				&.x#{$i} {
+					width: calc(
+						#{$wrap-width * $i} + #{$wrap-margin * ($i - 1)}
+					);
+				}
 			}
 			& > .title-wrap {
 				border-left: 0.25rem solid $theme;
-				padding: 0.3rem 0;
+				padding: 0.5rem 0;
 				padding-left: 0.8rem;
-				background: $whity;
+				background: $white;
 				& > .title {
 					color: $theme;
 					font-family: "Dosis", sans-serif;
@@ -54,7 +61,7 @@ $wrap-margin: 12px;
 			& > .text-wrap {
 				padding: 0.4rem 0;
 				padding-left: 1.05rem;
-				background: $whity;
+				background: $white;
 				& > .text {
 					color: $theme;
 					font-family: "IBM Plex Sans Condensed", sans-serif;
@@ -77,25 +84,21 @@ $wrap-margin: 12px;
 					flex-direction: row;
 					align-items: center;
 					$icon-size: 2.25rem;
+					position: relative;
+					& > a,
+					& > .clipboard {
+						position: absolute;
+						z-index: 1;
+						size: 100%;
+						cursor: pointer;
+					}
 					& > .icon-wrap {
-						position: relative;
 						size: $icon-size;
 						display: flex;
 						justify-content: center;
 						align-items: center;
-						cursor: pointer;
-						& > a {
-							position: absolute;
-							z-index: 1;
-							size: 100%;
-						}
-						& > .clipboard {
-							position: absolute;
-							z-index: 1;
-							size: 100%;
-						}
 						& > svg {
-							color: $whity;
+							color: $white;
 							font-size: ($icon-size / sqrt(2) / sqrt(2));
 						}
 					}
@@ -109,14 +112,16 @@ $wrap-margin: 12px;
 						flex-direction: row;
 						align-items: center;
 						justify-content: flex-end;
-						background: $whity;
+						background: $white;
 						position: relative;
+						transition: background-color 0.5s ease;
+						overflow: hidden;
 						& > p {
 							color: $theme;
 							font-size: 0.75rem;
 							font-family: "IBM Plex Sans Condensed", sans-serif;
 							letter-spacing: 0.1rem;
-							transition: 0.125s linear;
+							transition: 0.125s $easeInOutCubic;
 							transition-property: opacity, transform;
 							&.feedback {
 								opacity: 0;
@@ -126,10 +131,21 @@ $wrap-margin: 12px;
 						}
 						&::before {
 							content: "";
-							border-bottom: 1px dotted $theme;
+							border-bottom: 1px dotted $gray;
 							width: 100%;
 							margin-right: 0.5rem;
-							opacity: 0.25;
+						}
+						&::after {
+							content: "";
+							position: absolute;
+							left: ($icon-size * (1 - $pad-per)) * 0.5;
+							border-left: 1px solid $gray;
+							height: (50% / metallic(1));
+							top: 0;
+							bottom: 0;
+							margin: auto 0;
+							transform: scale(0);
+							transition: transform 0.5s $easeOutCubic;
 						}
 					}
 					&.copyed {
@@ -143,6 +159,14 @@ $wrap-margin: 12px;
 									opacity: 1;
 									transform: translateY(0%);
 								}
+							}
+						}
+					}
+					&:hover {
+						& > .text-wrap {
+							background: $lightgray;
+							&::after {
+								transform: scale(1);
 							}
 						}
 					}
@@ -177,7 +201,7 @@ $wrap-margin: 12px;
 					background: $theme;
 				}
 				& > .right {
-					background: $whity;
+					background: $white;
 				}
 				.jp-en,
 				.en {
@@ -197,7 +221,7 @@ $wrap-margin: 12px;
 				}
 				.jp-en {
 					& > svg {
-						fill: $whity;
+						fill: $white;
 					}
 				}
 				.me,
@@ -213,7 +237,7 @@ $wrap-margin: 12px;
 				}
 				.me {
 					& > svg {
-						stroke: $whity;
+						stroke: $white;
 						stroke-width: 12px;
 						fill: transparent;
 					}
@@ -227,7 +251,7 @@ $wrap-margin: 12px;
 		}
 		& > .bio-wrap {
 			& > .bio {
-				background: $whity;
+				background: $white;
 				padding: 1rem 1rem;
 				padding-left: 1.5rem;
 				border-top: 1px dashed $theme;
@@ -250,12 +274,143 @@ $wrap-margin: 12px;
 					&::before {
 						content: "";
 						position: absolute;
-						border-right: 1px solid $theme;
+						border-right: 1px solid $gray;
 						right: 0;
 						top: 0;
 						bottom: 0;
 						margin: auto 0;
 						height: (100% / metallic(1));
+					}
+				}
+			}
+		}
+		& > .detail-wrap {
+			& > .details {
+				li {
+					display: flex;
+					align-items: stretch;
+					$title-per: (1 - (1 / metallic(1)));
+					& > .icon-wrap {
+						width: 2.25rem;
+						background: $theme;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						color: $white;
+						font-size: 0.9rem;
+						padding: 0.5rem 0;
+					}
+					& > .title-wrap {
+						width: ($title-per * 100%);
+						background: $white;
+						padding-left: 0.5rem;
+						display: flex;
+						align-items: center;
+						position: relative;
+						& > .title {
+							color: $theme;
+							font-size: 0.75rem;
+							font-family: "IBM Plex Sans Condensed", sans-serif;
+							letter-spacing: 0.05rem;
+						}
+						&::before {
+							content: "";
+							position: absolute;
+							height: (50% / metallic(1));
+							right: 0;
+							border-right: 1px $gray solid;
+						}
+					}
+					& > .text-wrap {
+						display: flex;
+						justify-content: flex-end;
+						align-items: center;
+						width: ((1 - $title-per) * 100%);
+						background: $white;
+						padding-right: 0.5rem;
+						padding-left: (0.5rem * metallic(1));
+						&::before {
+							content: "";
+							width: 100%;
+							border-bottom: 1px $gray dotted;
+							margin-right: 0.5rem;
+						}
+						& > .text {
+							color: $theme;
+							font-family: "IBM Plex Sans Condensed", sans-serif;
+							font-variant-numeric: tabular-nums;
+							font-size: 0.75rem;
+							letter-spacing: 0.05rem;
+						}
+					}
+				}
+			}
+		}
+		& > .skills-wrap {
+			& > .skills {
+				background: $white;
+				display: flex;
+				flex-wrap: wrap;
+				border-top: 1px dashed $theme;
+				padding-top: 0.5rem;
+				padding: 0 2rem;
+				& > li {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					& > .icon-wrap {
+						color: $theme;
+						& > svg {
+							fill: $theme;
+						}
+					}
+					& > .text-wrap {
+						margin-bottom: 0.25rem;
+						& > .text {
+							color: $theme;
+							font-size: 0.8rem;
+							font-family: "IBM Plex Sans Condensed", sans-serif;
+							letter-spacing: 0.075rem;
+						}
+					}
+					&:not(.space) {
+						&::after {
+							content: "";
+							border-bottom: 1px dotted $gray;
+							width: (50% / metallic(1));
+						}
+					}
+					&.big {
+						width: (100% / 4);
+						padding: 0.5rem 0;
+						margin-bottom: 1rem;
+						& > .icon-wrap {
+							margin-bottom: 0.125rem;
+							padding: 0.25rem;
+							font-size: 2rem;
+							& > svg {
+								height: 2rem;
+							}
+						}
+					}
+					&.middle {
+						width: (100% / 5);
+						padding: 0.25rem 0;
+						margin-bottom: 0.5rem;
+						& > .icon-wrap {
+							margin-bottom: 0.1rem;
+							padding: 0.25rem;
+							font-size: 1.75rem;
+							& > svg {
+								height: 1.75rem;
+							}
+						}
+						& > .text-wrap {
+							& > .text {
+								font-size: 0.75rem;
+								letter-spacing: 0.05rem;
+							}
+						}
 					}
 				}
 			}

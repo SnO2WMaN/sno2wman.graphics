@@ -1,9 +1,18 @@
 // Color
-$theme: #2f2f2f;
-$bg: hsl((hue($theme) + 180), 8%, 94%);
-$whity: lighten($bg, 5%);
+$theme: hsl(191, 7%, 21%);
+$bg: hsl((hue($theme) + 180), 19%, 93%);
+$white: lighten($bg, 6%);
+$gray: lighten($theme, 22%);
+$lightgray: lighten($gray, 50%);
 $shadow: rgba($theme, 0.2);
 
 // Size
 $frame-width: 1rem;
 $header-height: (100vh / sqrt(2));
+
+:root {
+	--theme: #{$theme};
+	--bg: #{$bg};
+	--white: #{$white};
+	--gray: #{$gray};
+}

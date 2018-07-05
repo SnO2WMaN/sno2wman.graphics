@@ -1,5 +1,9 @@
 const path = require("path");
 const srcDir = path.resolve("src");
+
+const icons = path.resolve("src/icons");
+const brands = path.resolve("src/brands");
+
 const distDir = path.resolve("dist");
 const nodeModulesDir = path.resolve("node_modules");
 
@@ -77,7 +81,7 @@ module.exports = env => {
 						{
 							loader: "babel-loader",
 							options: {
-								presets: ["env", "react"],
+								presets: ["env", "react"]
 							}
 						}
 					]
@@ -162,6 +166,7 @@ module.exports = env => {
 				// SVG
 				{
 					test: /\.svg$/i,
+					include: [icons],
 					use: [
 						{
 							loader: "svg-inline-loader",
@@ -169,6 +174,15 @@ module.exports = env => {
 								removeTags: true,
 								removingTagAttrs: ["style"]
 							}
+						}
+					]
+				},
+				{
+					test: /\.svg$/i,
+					include: [brands],
+					use: [
+						{
+							loader: "svg-inline-loader"
 						}
 					]
 				},

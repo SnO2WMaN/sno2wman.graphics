@@ -109,31 +109,43 @@ article#about
 			.title-wrap
 				p.title SKILLSET
 			.text-wrap
-				p.text SkillTree Progress : 5%
+				p.text SkillTree / Workwith
 			ul.skills
-				li.skill.html5.big
-					.icon-wrap
-						i.fab.fa-html5
-					.text-wrap
-						p.text HTML5
-				li.skill.css.big
-					.icon-wrap
-						i.fab.fa-css3
-					.text-wrap
-						p.text CSS3
-				li.skill.js.big
-					.icon-wrap
-						i.fab.fa-js
-					.text-wrap
-						p.text Javascript
-				li.skill.big.space
-				li.skill.eslint.middle
-					.icon-wrap
-						i.icon.eslint
-					.text-wrap
-						p.text ESLint
-				li.skill.webpack.middle
-					.icon-wrap
-						i.icon.webpack
-					.text-wrap
-						p.text Webpack
+				-
+					const $bigs = {
+						html5:"HTML5",
+						css3:"CSS3",
+						javascript:"Javascript",
+						vscode:"VSCode",
+					}
+				for $text,$brand in $bigs
+					li.skill.big(class=$brand)
+						.brand-wrap
+							i.brand(class=$brand)
+						.text-wrap
+							p.text #{$text}
+				-
+					const $middles = {
+						pug:"Pug",
+						sass:"Sass/Scss",
+						babel:"Babel",
+						typescript:"Typescript",
+						react:"React",
+						vue:"Vue",
+						webpack:"Webpack",
+						eslint:"ESLint",
+						stylelint:"Stylelint",
+						prettier:"Prettier",
+						nodejs:"Node.js",
+						yarn:"Yarn",
+						git:"Git",
+						netlify:"Netlify",
+						fontawesome:"FontAwesome",
+						animejs:"Anime.js",
+					}
+				for $text,$brand in $middles
+					li.skill.middle(class=$brand)
+						.brand-wrap
+							i.brand(class=$brand)
+						.text-wrap
+							p.text #{$text}

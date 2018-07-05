@@ -2,6 +2,7 @@
 	"name": "sno2wman-graphics",
 	"version": "1.0.0",
 	"main": "index.js",
+	"private": true,
 	"license": "MIT",
 	"scripts": {
 		"dev": "npx webpack-dev-server --env development",
@@ -111,7 +112,6 @@
 		"node-sass": "^4.9.0",
 		"react": "^16.4.1",
 		"react-dom": "^16.4.1",
-		"react-infinite-scroll-component": "^4.1.0",
 		"react-masonry-component": "^6.2.1",
 		"ress": "^1.2.2",
 		"sass-easing": "^1.0.3",

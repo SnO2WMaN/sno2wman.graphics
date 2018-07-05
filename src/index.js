@@ -10,6 +10,8 @@ import bg from "./scripts/bg.ts";
 import voxels from "./voxels/voxels.tsx";
 import about from "./scripts/about";
 
+import "./brands/brands";
+
 // main
 document.documentElement.style.visibility = "hidden";
 Promise.all([

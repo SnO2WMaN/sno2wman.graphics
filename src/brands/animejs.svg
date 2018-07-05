@@ -1,0 +1,7 @@
+<svg viewBox="0 0 62 62">
+	<g fill="none" fill-rule="evenodd" stroke-width="2" transform="translate(1 1)">
+		<path class="icon-curve" stroke="#FF1554" d="M0 16a80.88 80.88 0 0 1 44 44"></path>
+		<path class="icon-line" stroke="rgba(94,137,251,1)" d="M4 0h54a2 2 0 0 1 2 2.01V58A2 2 0 0 1 58 60H2a2 2 0 0 1-2-2.01V2A2 2 0 0 1 2 0h2z" stroke-dasharray="236.56736755371094" stroke-dashoffset="236.56736755371094" style="stroke-dashoffset: 0px; stroke-width: 2px;"></path>
+		<rect width="40" height="40" x="10" y="10" stroke="#18FF92" rx="20"></rect>
+	</g>
+</svg>

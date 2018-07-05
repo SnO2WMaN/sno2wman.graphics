@@ -348,64 +348,98 @@ $wrap-row: 4;
 			}
 		}
 		& > .skills-wrap {
-			& > .skills {
-				background: $white;
-				display: flex;
-				flex-wrap: wrap;
+			& > .skilltype {
+				padding: 0.8rem (0.8rem / metallic(1));
 				border-top: 1px dashed $theme;
-				padding: 0.8rem (0.8rem * metallic(1));
-				& > li {
+				background: $white;
+				& > .title-wrap {
+					text-align: center;
+					padding-bottom: 0.25rem;
+					margin-bottom: 0.5rem;
 					display: flex;
-					flex-direction: column;
+					justify-content: center;
 					align-items: center;
-					& > .brand-wrap {
+					position: relative;
+					& > .title {
 						color: $theme;
+						font-size: 1.2rem;
+						font-family: "Dosis", sans-serif;
+						letter-spacing: 0.1rem;
 					}
-					& > .text-wrap {
-						margin-bottom: 0.25rem;
-						& > .text {
+					&::after {
+						content: "";
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						right: 0;
+						margin: 0 auto;
+						width: (50% / metallic(1));
+						border-bottom: dotted $gray 1px;
+					}
+				}
+				& > .skills {
+					display: flex;
+					flex-wrap: wrap;
+					& > li {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						& > .brand-wrap {
 							color: $theme;
-							font-size: 0.8rem;
-							font-family: "IBM Plex Sans Condensed", sans-serif;
-							letter-spacing: 0.075rem;
-						}
-					}
-					&:not(.space) {
-						&::after {
-							content: "";
-							border-bottom: 1px dotted $gray;
-							width: (50% / metallic(1));
-						}
-					}
-					&.big {
-						width: (100% / 4);
-						padding: 0.5rem 0;
-						margin-bottom: 1rem;
-						& > .brand-wrap {
-							margin-bottom: 0.125rem;
-							padding: 0.25rem;
-							font-size: 2rem;
-							& > svg {
-								height: 2.25rem;
-							}
-						}
-					}
-					&.middle {
-						width: (100% / 5);
-						padding: 0.25rem 0;
-						margin-bottom: 0.5rem;
-						& > .brand-wrap {
-							margin-bottom: 0.1rem;
-							padding: 0.25rem 0;
-							font-size: 1.75rem;
-							& > svg {
-								height: 1.75rem;
-							}
 						}
 						& > .text-wrap {
+							margin-bottom: 0.25rem;
 							& > .text {
-								font-size: 0.6rem;
-								letter-spacing: 0.05rem;
+								color: $theme;
+								font-family: "IBM Plex Sans Condensed",
+									sans-serif;
+							}
+						}
+						&:not(.space) {
+							&::after {
+								content: "";
+								border-bottom: 1px dotted $gray;
+								width: (50% / metallic(1));
+							}
+						}
+						&.big {
+							width: (100% / 4);
+							padding: 0.5rem 0;
+							margin-bottom: 1rem;
+							& > .brand-wrap {
+								margin-bottom: 0.125rem;
+								padding: 0.25rem;
+								font-size: 2rem;
+								& > svg,
+								& > img {
+									height: 2.25rem;
+								}
+							}
+							& > .text-wrap {
+								& > .text {
+									font-size: 0.8rem;
+									letter-spacing: 0.05rem;
+								}
+							}
+						}
+						&.middle {
+							width: (100% / 5);
+							padding: 0.25rem 0;
+							margin-bottom: 0.5rem;
+							& > .brand-wrap {
+								margin-bottom: 0.1rem;
+								padding: 0.25rem 0;
+								font-size: 1.75rem;
+								& > svg,
+								& > img {
+									height: 1.75rem;
+								}
+							}
+							& > .text-wrap {
+								& > .text {
+									font-size: 0.6rem;
+									letter-spacing: 0.05rem;
+								}
 							}
 						}
 					}

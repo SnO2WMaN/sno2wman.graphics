@@ -110,42 +110,73 @@ article#about
 				p.title SKILLSET
 			.text-wrap
 				p.text SkillTree / Workwith
-			ul.skills
-				-
-					const $bigs = {
-						html5:"HTML5",
-						css3:"CSS3",
-						javascript:"Javascript",
-						vscode:"VSCode",
-					}
-				for $text,$brand in $bigs
-					li.skill.big(class=$brand)
+			.skilltype.web
+				.title-wrap
+					p.title Web
+				ul.skills
+					-
+						const $bigs = {
+							html5:"HTML5",
+							css3:"CSS3",
+							javascript:"Javascript",
+							vscode:"VSCode",
+						}
+					for $text,$brand in $bigs
+						li.skill.big(class=$brand)
+							.brand-wrap
+								i.brand(class=$brand)
+							.text-wrap
+								p.text #{$text}
+					-
+						const $middles = {
+							pug:"Pug",
+							sass:"Sass/Scss",
+							babel:"Babel",
+							typescript:"Typescript",
+							react:"React",
+							vue:"Vue",
+							webpack:"Webpack",
+							eslint:"ESLint",
+							stylelint:"Stylelint",
+							prettier:"Prettier",
+							nodejs:"Node.js",
+							yarn:"Yarn",
+							git:"Git",
+							netlify:"Netlify",
+							fontawesome:"FontAwesome",
+							animejs:"Anime.js",
+						}
+					for $text,$brand in $middles
+						li.skill.middle(class=$brand)
+							.brand-wrap
+								i.brand(class=$brand)
+							.text-wrap
+								p.text #{$text}
+			.skilltype.web
+				.title-wrap
+					p.title Tools
+				ul.skills
+					li.skill.big.magicavoxel
 						.brand-wrap
 							i.brand(class=$brand)
+							img(src=require("../brands/magicavoxel.png"))
 						.text-wrap
-							p.text #{$text}
-				-
-					const $middles = {
-						pug:"Pug",
-						sass:"Sass/Scss",
-						babel:"Babel",
-						typescript:"Typescript",
-						react:"React",
-						vue:"Vue",
-						webpack:"Webpack",
-						eslint:"ESLint",
-						stylelint:"Stylelint",
-						prettier:"Prettier",
-						nodejs:"Node.js",
-						yarn:"Yarn",
-						git:"Git",
-						netlify:"Netlify",
-						fontawesome:"FontAwesome",
-						animejs:"Anime.js",
-					}
-				for $text,$brand in $middles
-					li.skill.middle(class=$brand)
+							p.text Magicavoxel
+					li.skill.big.magicavoxel
 						.brand-wrap
 							i.brand(class=$brand)
+							img(src=require("../brands/processing.png"))
 						.text-wrap
-							p.text #{$text}
+							p.text Processing
+					li.skill.big.magicavoxel
+						.brand-wrap
+							i.brand(class=$brand)
+							img(src=require("../brands/affinitydesigner.png"))
+						.text-wrap
+							p.text Affinity Designer
+					li.skill.big.magicavoxel
+						.brand-wrap
+							i.brand(class=$brand)
+							img(src=require("../brands/affinityphoto.png"))
+						.text-wrap
+							p.text Affinity Photo

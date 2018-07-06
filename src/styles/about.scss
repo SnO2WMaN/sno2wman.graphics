@@ -145,7 +145,7 @@ $wrap-row: 4;
 							top: 0;
 							bottom: 0;
 							margin: auto 0;
-							transform: scale(0);
+							transform: scaleY(0);
 							transition: transform 0.5s $easeOutCubic;
 						}
 					}
@@ -167,7 +167,7 @@ $wrap-row: 4;
 						& > .text-wrap {
 							background: $lightgray;
 							&::after {
-								transform: scale(1);
+								transform: scaleY(1);
 							}
 						}
 					}
@@ -384,31 +384,58 @@ $wrap-row: 4;
 						display: flex;
 						flex-direction: column;
 						align-items: center;
+						position: relative;
 						& > .brand-wrap {
 							color: $theme;
 							display: flex;
 						}
 						& > .text-wrap {
+							width: 100%;
 							text-align: center;
 							margin-bottom: 0.4rem;
 							white-space: nowrap;
+							position: relative;
+							padding-bottom: 0.25rem;
 							& > .text {
 								color: $theme;
 								font-family: "IBM Plex Sans Condensed",
 									sans-serif;
 							}
-						}
-						&:not(.space) {
 							&::after {
 								content: "";
 								border-bottom: 1px dotted $gray;
 								width: (50% / metallic(1));
+								position: absolute;
+								bottom: 0;
+								left: 0;
+								right: 0;
+								margin: 0 auto;
+							}
+						}
+						& > a {
+							position: absolute 0;
+							size: 100%;
+							z-index: 1;
+						}
+						transition: background-color 0.5s ease;
+						&::after {
+							content: "";
+							border-bottom: 1px solid $gray;
+							width: (100% / metallic(1));
+							position: absolute;
+							bottom: 0;
+							transform: scaleX(0);
+							transition: transform 0.25s ease;
+						}
+						&:hover {
+							background: $lightgray;
+							&::after {
+								transform: scaleX(1);
 							}
 						}
 						&.big {
 							width: (100% / 3);
-							padding: 0.5rem 0;
-							margin-bottom: 1.25rem;
+							padding: 1rem 0;
 							& > .brand-wrap {
 								margin-bottom: 0.5rem;
 								font-size: 2rem;
@@ -426,7 +453,7 @@ $wrap-row: 4;
 						}
 						&.middle {
 							width: (100% / 5);
-							margin-bottom: 1rem;
+							padding: 0.75rem 0;
 							& > .brand-wrap {
 								margin-bottom: 0.25rem;
 								font-size: 1.75rem;

@@ -13,6 +13,7 @@
 		"scss/dollar-variable-pattern": "^[a-z]+(-[a-z0-9]+)*$",
 
 		"declaration-empty-line-before": "never",
+		"selector-pseudo-element-colon-notation": "single",
 
 		"order/properties-alphabetical-order": null
 	}

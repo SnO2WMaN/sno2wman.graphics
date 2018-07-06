@@ -6,8 +6,9 @@
 
 :root {
 	font-size: calc((1vmin + 1vmax) / 2);
-	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "arial",
-		"Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+	font-family: "Noto Sans Japanese", -apple-system, BlinkMacSystemFont,
+		"Helvetica Neue", "arial", "Hiragino Kaku Gothic ProN", Meiryo,
+		sans-serif;
 }
 
 body {
@@ -57,8 +58,8 @@ body {
 		}
 		&:not(.animated) {
 			*,
-			*::before,
-			*::after {
+			*:before,
+			*:after {
 				animation-play-state: inherit !important;
 			}
 		}

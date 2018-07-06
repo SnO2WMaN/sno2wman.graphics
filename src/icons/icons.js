@@ -29,17 +29,20 @@ library.add(
 	faCodepen
 );
 
-dom.watch();
-
-Array.from(document.querySelectorAll("i.icon")).forEach($icon => {
-	Object.entries({
-		sno2wman: iconSnO2WMaN,
-		"logo-site": LogoSite,
-		"logo-en": LogoEn,
-		"logo-jp-en": LogoJpEn
-	}).forEach(entry => {
-		if ($icon.classList.contains(entry[0]))
-			$icon.insertAdjacentHTML("afterend", entry[1]);
-	});
-	$icon.remove();
-});
+export default {
+	loaded() {
+		dom.watch();
+		Array.from(document.querySelectorAll("i.icon")).forEach($icon => {
+			Object.entries({
+				sno2wman: iconSnO2WMaN,
+				"logo-site": LogoSite,
+				"logo-en": LogoEn,
+				"logo-jp-en": LogoJpEn
+			}).forEach(entry => {
+				if ($icon.classList.contains(entry[0]))
+					$icon.insertAdjacentHTML("afterend", entry[1]);
+			});
+			$icon.remove();
+		});
+	}
+};

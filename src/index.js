@@ -4,13 +4,13 @@ import color from "color";
 
 import WebFont from "webfontloader";
 
-import "./icons/icons";
+import icons from "./icons/icons";
+import brands from "./brands/brands";
+
 import topNav from "./scripts/top_nav";
 import bg from "./scripts/bg.ts";
 import voxels from "./voxels/voxels.tsx";
 import about from "./scripts/about";
-
-import "./brands/brands";
 
 // main
 document.documentElement.style.visibility = "hidden";
@@ -42,6 +42,8 @@ Promise.all([
 ]).then(() => {
 	document.documentElement.style.visibility = "visible";
 	document.getElementById("left-nav").classList.add("animated");
+	icons.loaded();
+	brands.loaded();
 	topNav.loaded();
 	about.loaded();
 	voxels.loaded();

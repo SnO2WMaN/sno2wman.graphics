@@ -1,8 +1,8 @@
 // Color
-$theme: hsl(191, 7%, 21%);
+$theme: hsl(191, 8%, 15%);
 $bg: hsl((hue($theme) + 180), 19%, 93%);
 $white: lighten($bg, 6%);
-$gray: lighten($theme, 22%);
+$gray: lighten($theme, 35%);
 $lightgray: lighten($gray, 50%);
 $shadow: rgba($theme, 0.2);
 

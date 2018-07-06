@@ -83,7 +83,7 @@ $voxel-card-split: 5;
 							font-family: "Dosis", sans-serif;
 							letter-spacing: 0.1rem;
 						}
-						&::after {
+						&:after {
 							position: absolute;
 							content: "";
 							width: ($voxel-card-width / 2 / metallic(2));
@@ -110,7 +110,7 @@ $voxel-card-split: 5;
 							position: relative;
 							list-style: none;
 							padding: 0 0.25rem;
-							&::before {
+							&:before {
 								content: "";
 								position: absolute;
 								height: (50% / metallic(1));

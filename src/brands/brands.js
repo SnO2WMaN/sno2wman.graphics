@@ -20,32 +20,36 @@ import babel from "./babel.svg";
 import fontawesome from "./fontawesome.svg";
 import gitkraken from "./gitkraken.svg";
 
-Array.from(document.querySelectorAll("i.brand")).forEach($icon => {
-	Object.entries({
-		html5,
-		css3,
-		javascript,
-		sass,
-		webpack,
-		prettier,
-		eslint,
-		stylelint,
-		react,
-		vue,
-		pug,
-		typescript,
-		yarn,
-		git,
-		netlify,
-		vscode,
-		animejs,
-		nodejs,
-		babel,
-		fontawesome,
-		gitkraken
-	}).forEach(entry => {
-		if ($icon.classList.contains(entry[0]))
-			$icon.insertAdjacentHTML("afterend", entry[1]);
-	});
-	$icon.remove();
-});
+export default {
+	loaded() {
+		Array.from(document.querySelectorAll("i.brand")).forEach($icon => {
+			Object.entries({
+				html5,
+				css3,
+				javascript,
+				sass,
+				webpack,
+				prettier,
+				eslint,
+				stylelint,
+				react,
+				vue,
+				pug,
+				typescript,
+				yarn,
+				git,
+				netlify,
+				vscode,
+				animejs,
+				nodejs,
+				babel,
+				fontawesome,
+				gitkraken
+			}).forEach(entry => {
+				if ($icon.classList.contains(entry[0]))
+					$icon.insertAdjacentHTML("afterend", entry[1]);
+			});
+			$icon.remove();
+		});
+	}
+};

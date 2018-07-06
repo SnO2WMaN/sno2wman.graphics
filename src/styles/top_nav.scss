@@ -15,7 +15,7 @@
 		z-index: 1;
 		cursor: pointer;
 		transition: 0.5s transform $easeInOutCubic;
-		&::after {
+		&:after {
 			content: "";
 			position: absolute;
 			bottom: 0;
@@ -27,7 +27,7 @@
 			transition: 0.25s transform ease;
 		}
 		&:hover {
-			&::after {
+			&:after {
 				transform: scaleX(1 / metallic(1));
 			}
 		}

@@ -27,11 +27,10 @@
 		]
 	},
 	"browserslist": [
-		"last 4 versions",
+		"last 2 versions",
 		"ie 9"
 	],
 	"devDependencies": {
-		"@fortawesome/fontawesome-free": "^5.1.0",
 		"autoprefixer": "^8.6.3",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.4",
@@ -51,7 +50,6 @@
 		"eslint-config-typescript": "^1.0.2",
 		"eslint-loader": "^2.0.0",
 		"eslint-plugin-import": "^2.12.0",
-		"eslint-plugin-inferno": "^7.8.0",
 		"eslint-plugin-node": "^6.0.1",
 		"eslint-plugin-prettier": "^2.6.1",
 		"eslint-plugin-promise": "^3.8.0",

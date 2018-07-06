@@ -112,10 +112,10 @@ function transit(target, init) {
 
 export default {
 	loaded() {
-		if (!(history.state && history.state.hasOwnProperty("target"))) {
+		const path = location.pathname.substr(1);
+		if (path === "") {
 			transit("home", true);
 		} else {
-			const target = history.state.target;
 			transit(
 				[
 					"home",
@@ -124,8 +124,8 @@ export default {
 					"voxels",
 					"contact",
 					"system"
-				].includes(target)
-					? target
+				].includes(path)
+					? path
 					: "home",
 				true
 			);

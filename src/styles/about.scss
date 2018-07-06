@@ -386,9 +386,12 @@ $wrap-row: 4;
 						align-items: center;
 						& > .brand-wrap {
 							color: $theme;
+							display: flex;
 						}
 						& > .text-wrap {
-							margin-bottom: 0.25rem;
+							text-align: center;
+							margin-bottom: 0.4rem;
+							white-space: nowrap;
 							& > .text {
 								color: $theme;
 								font-family: "IBM Plex Sans Condensed",
@@ -403,12 +406,11 @@ $wrap-row: 4;
 							}
 						}
 						&.big {
-							width: (100% / 4);
+							width: (100% / 3);
 							padding: 0.5rem 0;
-							margin-bottom: 1rem;
+							margin-bottom: 1.25rem;
 							& > .brand-wrap {
-								margin-bottom: 0.125rem;
-								padding: 0.25rem;
+								margin-bottom: 0.5rem;
 								font-size: 2rem;
 								& > svg,
 								& > img {
@@ -418,17 +420,15 @@ $wrap-row: 4;
 							& > .text-wrap {
 								& > .text {
 									font-size: 0.8rem;
-									letter-spacing: 0.05rem;
+									letter-spacing: 0.075rem;
 								}
 							}
 						}
 						&.middle {
 							width: (100% / 5);
-							padding: 0.25rem 0;
-							margin-bottom: 0.5rem;
+							margin-bottom: 1rem;
 							& > .brand-wrap {
-								margin-bottom: 0.1rem;
-								padding: 0.25rem 0;
+								margin-bottom: 0.25rem;
 								font-size: 1.75rem;
 								& > svg,
 								& > img {

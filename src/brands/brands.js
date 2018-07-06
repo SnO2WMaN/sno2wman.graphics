@@ -18,6 +18,7 @@ import animejs from "./animejs.svg";
 import nodejs from "./nodejs.svg";
 import babel from "./babel.svg";
 import fontawesome from "./fontawesome.svg";
+import gitkraken from "./gitkraken.svg";
 
 Array.from(document.querySelectorAll("i.brand")).forEach($icon => {
 	Object.entries({
@@ -40,7 +41,8 @@ Array.from(document.querySelectorAll("i.brand")).forEach($icon => {
 		animejs,
 		nodejs,
 		babel,
-		fontawesome
+		fontawesome,
+		gitkraken
 	}).forEach(entry => {
 		if ($icon.classList.contains(entry[0]))
 			$icon.insertAdjacentHTML("afterend", entry[1]);

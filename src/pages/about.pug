@@ -119,7 +119,6 @@ article#about
 							html5:"HTML5",
 							css3:"CSS3",
 							javascript:"Javascript",
-							vscode:"VSCode",
 						}
 					for $text,$brand in $bigs
 						li.skill.big(class=$brand)
@@ -156,27 +155,33 @@ article#about
 				.title-wrap
 					p.title Tools
 				ul.skills
+					li.skill.big.vscode
+						.brand-wrap
+							i.brand.vscode
+						.text-wrap
+							p.text VSCode
+					li.skill.big.gitkraken
+						.brand-wrap
+							i.brand.gitkraken
+						.text-wrap
+							p.text GitKraken
 					li.skill.big.magicavoxel
 						.brand-wrap
-							i.brand(class=$brand)
 							img(src=require("../brands/magicavoxel.png"))
 						.text-wrap
 							p.text Magicavoxel
 					li.skill.big.magicavoxel
 						.brand-wrap
-							i.brand(class=$brand)
 							img(src=require("../brands/processing.png"))
 						.text-wrap
 							p.text Processing
 					li.skill.big.magicavoxel
 						.brand-wrap
-							i.brand(class=$brand)
 							img(src=require("../brands/affinitydesigner.png"))
 						.text-wrap
 							p.text Affinity Designer
 					li.skill.big.magicavoxel
 						.brand-wrap
-							i.brand(class=$brand)
 							img(src=require("../brands/affinityphoto.png"))
 						.text-wrap
 							p.text Affinity Photo

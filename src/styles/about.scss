@@ -546,6 +546,12 @@ $wrap-row: 4;
 						& > svg {
 							fill: $white;
 							animation-delay: $root-delay + 1.6s;
+							g,
+							path {
+								&:not([fill="#39d8d0"]) {
+									fill: $white;
+								}
+							}
 						}
 					}
 					.me,
@@ -563,11 +569,6 @@ $wrap-row: 4;
 					}
 					.me {
 						& > svg {
-							stroke: $white;
-							stroke-width: 12px;
-							fill: transparent;
-							stroke-dasharray: 1000;
-							stroke-dashoffset: 1000;
 							@keyframes about_wrap_avatar_logo_me {
 								to {
 									stroke-dashoffset: 0;
@@ -575,6 +576,11 @@ $wrap-row: 4;
 							}
 							path,
 							circle {
+								stroke: $white;
+								stroke-width: 12px;
+								fill: transparent;
+								stroke-dasharray: 1000;
+								stroke-dashoffset: 1000;
 								animation: about_wrap_avatar_logo_me 0.5s
 									$easeInCubic both;
 								@for $i from 1 through 15 {

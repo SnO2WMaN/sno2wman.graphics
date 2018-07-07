@@ -132,6 +132,19 @@ module.exports = env => {
 				// Image
 				{
 					test: /.(png|jpe?g|webp|gif)$/i,
+					include: [brands],
+					use: [
+						{
+							loader: "file-loader",
+							options: {
+								name: "images/[hash].[ext]"
+							}
+						}
+					]
+				},
+				{
+					test: /.(png|jpe?g|webp|gif)$/i,
+					exclude: [brands],
 					use: [
 						{
 							loader: "url-loader",
@@ -174,6 +187,16 @@ module.exports = env => {
 								removeTags: true,
 								removingTagAttrs: ["style"]
 							}
+						},
+						{
+							loader: "svgo-loader",
+							options: {
+								plugins: [
+									{ removeTitle: true },
+									{ convertColors: { shorthex: true } },
+									{ convertPathData: false }
+								]
+							}
 						}
 					]
 				},
@@ -183,6 +206,16 @@ module.exports = env => {
 					use: [
 						{
 							loader: "svg-inline-loader"
+						},
+						{
+							loader: "svgo-loader",
+							options: {
+								plugins: [
+									{ removeTitle: true },
+									{ convertColors: { shorthex: true } },
+									{ convertPathData: false }
+								]
+							}
 						}
 					]
 				},
@@ -206,12 +239,12 @@ module.exports = env => {
 				filename: production ? "[hash].css" : "[name].css",
 				chunkFilename: "[id].css"
 			}),
-			new OptimizeCSSAssetsPlugin({
+			/*		new OptimizeCSSAssetsPlugin({
 				assetNameRegExp: /.css$/i,
 				cssProcessor: cssnano,
 				cssProcessorOptions: { discardComments: { removeAll: true } },
 				canPrint: true
-			}),
+			}), */
 			new HTMLWebpackPlugin({
 				chunks: ["index"],
 				template: "index.pug",

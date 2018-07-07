@@ -91,7 +91,7 @@ $wrap-row: 4;
 			margin: 0;
 		}
 		& > .wrap {
-			$root-delay-base: 0.25s;
+			$root-delay-base: 0.2s;
 			width: $wrap-width;
 			display: flex;
 			flex-direction: column;
@@ -206,7 +206,7 @@ $wrap-row: 4;
 					@keyframes about_wrap_text {
 						from {
 							transform: translateY(100%);
-							opacity: 0.1;
+							opacity: 0;
 						}
 						to {
 							transform: translateX(0);
@@ -415,16 +415,67 @@ $wrap-row: 4;
 				}
 			}
 			&.avatar-wrap {
+				$root-delay: ($root-delay-base * 3);
 				& > .image-wrap {
 					display: flex;
+					position: relative;
+					overflow: hidden;
+					background: $white;
 					img {
 						size: 100%;
+						animation: about_wrap_avatar_img 0.1s linear both;
+						animation-delay: $root-delay + 1.6s;
+						@keyframes about_wrap_avatar_img {
+							0% {
+								opacity: 0;
+							}
+							to {
+								opacity: 1;
+								transform: rotate(0);
+							}
+						}
+					}
+					&:before,
+					&:after {
+						content: "";
+						position: absolute;
+						$size: $wrap-width;
+						size: $size * sqrt(2);
+						top: (1 - sqrt(2)) * $size * 0.5;
+						left: (1 - sqrt(2)) * $size * 0.5;
+						border-radius: 50%;
+						z-index: 0;
+						animation: about_wrap_avatar_img_border 0.8s
+							$easeInOutExpo both;
+						border: ($size * sqrt(2) / 2) solid;
+						@keyframes about_wrap_avatar_img_border {
+							0% {
+								transform: scale(0);
+							}
+							50% {
+								transform: scale(1);
+							}
+							to {
+								border-width: 0;
+							}
+						}
+					}
+					&:before {
+						animation-delay: $root-delay + 1s;
+						border-color: $theme;
+						z-index: 2;
+					}
+					&:after {
+						animation-delay: $root-delay + 1.1s;
+						border-color: $lightgray;
+						z-index: 1;
 					}
 				}
 				& > .logo-wrap {
 					width: 100%;
 					display: flex;
 					align-items: stretch;
+					background: $white;
 					& > .left,
 					& > .right {
 						width: 50%;
@@ -432,10 +483,32 @@ $wrap-row: 4;
 						flex-direction: column;
 					}
 					& > .left {
-						background: $theme;
-					}
-					& > .right {
-						background: $white;
+						position: relative;
+						&:before,
+						&:after {
+							content: "";
+							position: absolute 0;
+							size: 100%;
+							transform-origin: left;
+							animation: about_wrap_avatar_logo_right_bg 1.5s
+								$easeOutExpo both;
+							@keyframes about_wrap_avatar_logo_right_bg {
+								0% {
+									transform: scaleX(0);
+								}
+								100% {
+									transform: scaleX(1);
+								}
+							}
+						}
+						&:before {
+							background: $lightgray;
+							animation-delay: $root-delay + 1s;
+						}
+						&:after {
+							background: $theme;
+							animation-delay: $root-delay + 1.1s;
+						}
 					}
 					.jp-en,
 					.en {
@@ -444,18 +517,35 @@ $wrap-row: 4;
 						display: flex;
 						justify-content: center;
 						align-items: center;
+						overflow: hidden;
+						position: relative;
+						z-index: 1;
 						& > svg {
 							width: (100% / sqrt(2));
+							animation: about_wrap_avatar_logo_name 1s
+								$easeInOutCubic both;
+							@keyframes about_wrap_avatar_logo_name {
+								from {
+									opacity: 0;
+									transform: translateY(50%);
+								}
+								to {
+									opacity: 1;
+									transform: translateY(0);
+								}
+							}
 						}
 					}
 					.en {
 						& > svg {
 							fill: $theme;
+							animation-delay: $root-delay + 1.5s;
 						}
 					}
 					.jp-en {
 						& > svg {
 							fill: $white;
+							animation-delay: $root-delay + 1.6s;
 						}
 					}
 					.me,
@@ -465,6 +555,8 @@ $wrap-row: 4;
 						display: flex;
 						justify-content: center;
 						align-items: center;
+						position: relative;
+						z-index: 1;
 						& > svg {
 							height: (100% / metallic(1));
 						}
@@ -474,21 +566,77 @@ $wrap-row: 4;
 							stroke: $white;
 							stroke-width: 12px;
 							fill: transparent;
+							stroke-dasharray: 1000;
+							stroke-dashoffset: 1000;
+							@keyframes about_wrap_avatar_logo_me {
+								to {
+									stroke-dashoffset: 0;
+								}
+							}
+							path,
+							circle {
+								animation: about_wrap_avatar_logo_me 0.5s
+									$easeInCubic both;
+								@for $i from 1 through 15 {
+									&:nth-of-type(#{$i}) {
+										animation-delay: $root-delay +
+											1.25s +
+											($i * 0.1s);
+									}
+								}
+							}
 						}
 					}
 					.site {
 						& > svg {
 							fill: $theme;
+							animation: about_wrap_avatar_logo_site 1s
+								$easeInOutCubic both;
+							animation-delay: $root-delay + 1.8s;
+							@keyframes about_wrap_avatar_logo_site {
+								from {
+									opacity: 0;
+									transform: translateY(-10%);
+								}
+								to {
+									opacity: 1;
+									transform: translateY(0);
+								}
+							}
 						}
 					}
 				}
 			}
 			&.bio-wrap {
+				$root-delay: ($root-delay-base * 1);
 				& > .bio {
 					background: $white;
 					padding: 1rem 1rem;
 					padding-left: 1.5rem;
-					border-top: 1px dashed $theme;
+					overflow: hidden;
+					position: relative;
+					&:before {
+						content: "";
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						border-top: 1px dashed $theme;
+						transform-origin: left;
+						animation: about_wrap_bio_border 0.75s $easeInOutExpo
+							both;
+						animation-delay: $root-delay + 1s;
+						@keyframes about_wrap_bio_border {
+							from {
+								opacity: 0.5;
+								transform: translateX(-100%);
+							}
+							to {
+								opacity: 1;
+								transform: translateX(0);
+							}
+						}
+					}
 					& > p {
 						position: relative;
 						color: $theme;
@@ -505,6 +653,18 @@ $wrap-row: 4;
 						&:not(:last-of-type) {
 							margin-bottom: 0.5rem;
 						}
+						animation: about_wrap_bio_text 0.75s $easeInOutCubic
+							both;
+						@keyframes about_wrap_bio_text {
+							from {
+								opacity: 0;
+								transform: translateY(50%);
+							}
+							to {
+								opacity: 1;
+								transform: translateY(0);
+							}
+						}
 						&:before {
 							content: "";
 							position: absolute;
@@ -514,29 +674,86 @@ $wrap-row: 4;
 							bottom: 0;
 							margin: auto 0;
 							height: (100% / metallic(1));
+							animation: about_wrap_bio_text_before 0.25s
+								$easeInOutExpo both;
+							@keyframes about_wrap_bio_text_before {
+								from {
+									transform: scale(0);
+								}
+								to {
+									transform: scale(1);
+								}
+							}
+						}
+						@for $i from 1 through 5 {
+							&:nth-of-type(#{$i}) {
+								animation-delay: $root-delay +
+									0.8s +
+									($i * 0.1s);
+								&:before {
+									animation-delay: $root-delay +
+										1.25s +
+										($i * 0.1s);
+								}
+							}
 						}
 					}
 				}
 			}
 			&.detail-wrap {
+				$root-delay: ($root-delay-base * 5);
 				& > .details {
 					li {
 						display: flex;
 						align-items: stretch;
+						background: $white;
 						$title-per: (1 - (1 / metallic(1)));
 						& > .icon-wrap {
 							width: 2.25rem;
-							background: $theme;
 							display: flex;
 							justify-content: center;
 							align-items: center;
 							color: $white;
 							font-size: 0.9rem;
 							padding: 0.5rem 0;
+							position: relative;
+							overflow: hidden;
+							& > svg {
+								animation: about_wrap_links_icon_bg 0.8s
+									$easeInOutQuint both;
+								@keyframes about_wrap_links_icon_bg {
+									from {
+										transform: scale(0) rotate(2rad);
+									}
+									to {
+										transform: scale(1) rotate(0);
+									}
+								}
+							}
+							&:before {
+								content: "";
+								position: absolute;
+								$size: 105%;
+								size: ($size * sqrt(2));
+								top: (1 - sqrt(2)) * $size * 0.5;
+								left: (1 - sqrt(2)) * $size * 0.5;
+								border-radius: 50%;
+								z-index: 0;
+								background: $theme;
+								animation: about_wrap_details_icon_bg 0.8s
+									$easeInOutQuint both;
+								@keyframes about_wrap_details_icon_bg {
+									from {
+										transform: scale(0);
+									}
+									to {
+										transform: scale(1);
+									}
+								}
+							}
 						}
 						& > .title-wrap {
 							width: ($title-per * 100%);
-							background: $white;
 							padding-left: 0.5rem;
 							display: flex;
 							align-items: center;
@@ -547,6 +764,18 @@ $wrap-row: 4;
 								font-family: "IBM Plex Sans Condensed",
 									sans-serif;
 								letter-spacing: 0.05rem;
+								animation: about_wrap_details_title 0.5s
+									$easeOutQuint both;
+								@keyframes about_wrap_details_title {
+									from {
+										opacity: 0;
+										transform: translateX(-10%);
+									}
+									to {
+										opacity: 1;
+										transform: translateY(0);
+									}
+								}
 							}
 							&:before {
 								content: "";
@@ -554,6 +783,16 @@ $wrap-row: 4;
 								height: (50% / metallic(1));
 								right: 0;
 								border-right: 1px $gray solid;
+								animation: about_wrap_details_title_border 0.25s
+									$easeOutExpo both;
+								@keyframes about_wrap_details_title_border {
+									from {
+										transform: scaleY(0);
+									}
+									to {
+										transform: scaleY(1);
+									}
+								}
 							}
 						}
 						& > .text-wrap {
@@ -569,6 +808,17 @@ $wrap-row: 4;
 								width: 100%;
 								border-bottom: 1px $gray dotted;
 								margin-right: 0.5rem;
+								animation: about_wrap_details_text_border 0.5s
+									$easeOutExpo both;
+								transform-origin: left;
+								@keyframes about_wrap_details_text_border {
+									from {
+										transform: scaleX(0);
+									}
+									to {
+										transform: scaleX(1);
+									}
+								}
 							}
 							& > .text {
 								color: $theme;
@@ -577,16 +827,87 @@ $wrap-row: 4;
 								font-variant-numeric: tabular-nums;
 								font-size: 0.75rem;
 								letter-spacing: 0.05rem;
+								animation: about_wrap_details_text 0.4s
+									$easeOutQuint both;
+								@keyframes about_wrap_details_text {
+									from {
+										opacity: 0;
+										transform: translateY(-50%);
+									}
+									to {
+										opacity: 1;
+										transform: translateY(0);
+									}
+								}
+							}
+						}
+						@for $i from 1 through 5 {
+							&:nth-of-type(#{$i}) {
+								$t: ($i * 0.1s);
+								& > .icon-wrap {
+									&:before {
+										animation-delay: $root-delay +
+											0.8s +
+											$t;
+									}
+									& > svg {
+										animation-delay: $root-delay + 1s + $t;
+									}
+								}
+								& > .title-wrap {
+									& > p {
+										animation-delay: $root-delay +
+											1.5s +
+											$t;
+									}
+									&:before {
+										animation-delay: $root-delay +
+											1.75s +
+											$t;
+									}
+								}
+								& > .text-wrap {
+									&:before {
+										animation-delay: $root-delay + 2s + $t;
+									}
+									& > .text {
+										animation-delay: $root-delay +
+											2.25s +
+											$t;
+									}
+								}
 							}
 						}
 					}
 				}
 			}
 			&.skills-wrap {
+				$root-delay: ($root-delay-base * 4);
 				& > .skilltype {
 					padding: 0.8rem (0.8rem / metallic(1));
-					border-top: 1px dashed $theme;
 					background: $white;
+					position: relative;
+					&:before {
+						content: "";
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						border-top: 1px dashed $theme;
+						transform-origin: left;
+						animation: about_wrap_skills_border 0.75s $easeInOutExpo
+							both;
+						@keyframes about_wrap_skills_border {
+							from {
+								opacity: 0.5;
+								transform: translateX(-100%);
+							}
+							to {
+								opacity: 1;
+								transform: translateX(0);
+							}
+						}
+					}
 					& > .title-wrap {
 						text-align: center;
 						padding-bottom: 0.25rem;
@@ -595,11 +916,24 @@ $wrap-row: 4;
 						justify-content: center;
 						align-items: center;
 						position: relative;
+						overflow: hidden;
 						& > .title {
 							color: $theme;
 							font-size: 1.2rem;
 							font-family: "Dosis", sans-serif;
 							letter-spacing: 0.1rem;
+							animation: about_wrap_skills_title 0.6s
+								$easeOutCubic both;
+							@keyframes about_wrap_skills_title {
+								from {
+									opacity: 0;
+									transform: translateY(-100%);
+								}
+								to {
+									opacity: 1;
+									transform: translateY(0);
+								}
+							}
 						}
 						&:after {
 							content: "";
@@ -610,6 +944,29 @@ $wrap-row: 4;
 							margin: 0 auto;
 							width: (50% / metallic(1));
 							border-bottom: dotted $gray 1px;
+							animation: about_wrap_skills_title_border 0.5s
+								$easeInOutExpo both;
+							@keyframes about_wrap_skills_title_border {
+								from {
+									transform: scaleX(0);
+								}
+								to {
+									transform: scaleX(1);
+								}
+							}
+						}
+					}
+					@for $i from 1 through 2 {
+						&:before {
+							animation-delay: $root-delay + 1s;
+						}
+						& > .title-wrap {
+							& > .title {
+								animation-delay: $root-delay + 1.9s;
+							}
+							&:after {
+								animation-delay: $root-delay + 2s;
+							}
 						}
 					}
 					& > .skills {
@@ -620,21 +977,46 @@ $wrap-row: 4;
 							flex-direction: column;
 							align-items: center;
 							position: relative;
+							overflow: hidden;
 							& > .brand-wrap {
-								color: $theme;
 								display: flex;
+								animation: about_wrap_skills_skill_brand 0.5s
+									$easeOutCubic both;
+								transform-origin: bottom;
+								@keyframes about_wrap_skills_skill_brand {
+									from {
+										transform: translateY(50%);
+										opacity: 0;
+									}
+									to {
+										opacity: 1;
+										transform: translateY(0);
+									}
+								}
 							}
-							& > .text-wrap {
+							& > .name-wrap {
 								width: 100%;
 								text-align: center;
 								margin-bottom: 0.4rem;
 								white-space: nowrap;
 								position: relative;
 								padding-bottom: 0.25rem;
-								& > .text {
+								& > .name {
 									color: $theme;
 									font-family: "IBM Plex Sans Condensed",
 										sans-serif;
+									animation: about_wrap_skills_skill_name 0.5s
+										$easeOutQuad both;
+									@keyframes about_wrap_skills_skill_name {
+										from {
+											opacity: 0;
+											transform: translateY(100%);
+										}
+										to {
+											opacity: 1;
+											transform: translateY(0);
+										}
+									}
 								}
 								&:after {
 									content: "";
@@ -645,14 +1027,45 @@ $wrap-row: 4;
 									left: 0;
 									right: 0;
 									margin: 0 auto;
+									animation: about_wrap_skills_skill_name_border
+										0.5s $easeInOutCubic both;
+									@keyframes about_wrap_skills_skill_name_border {
+										from {
+											transform: scaleX(0);
+										}
+										to {
+											transform: scaleX(1);
+										}
+									}
 								}
 							}
 							& > a {
 								position: absolute 0;
 								size: 100%;
-								z-index: 1;
+								z-index: 2;
 							}
 							transition: background-color 0.5s ease;
+							&:before {
+								content: "";
+								position: absolute 0;
+								size: 100%;
+								animation: about_wrap_skills_skill_bg 1s
+									$easeInOutExpo both;
+								transform-origin: bottom;
+								background: $lightgray;
+								z-index: 1;
+								@keyframes about_wrap_skills_skill_bg {
+									from {
+										transform: scaleY(0);
+									}
+									50% {
+										transform: scaleY(1);
+									}
+									100% {
+										transform: translateY(-100%);
+									}
+								}
+							}
 							&:after {
 								content: "";
 								border-bottom: 1px solid $gray;
@@ -679,8 +1092,8 @@ $wrap-row: 4;
 										height: 2.25rem;
 									}
 								}
-								& > .text-wrap {
-									& > .text {
+								& > .name-wrap {
+									& > .name {
 										font-size: 0.8rem;
 										letter-spacing: 0.075rem;
 									}
@@ -697,10 +1110,36 @@ $wrap-row: 4;
 										height: 1.75rem;
 									}
 								}
-								& > .text-wrap {
-									& > .text {
+								& > .name-wrap {
+									& > .name {
 										font-size: 0.6rem;
 										letter-spacing: 0.05rem;
+									}
+								}
+							}
+							@for $i from 1 through 20 {
+								&:nth-of-type(#{$i}) {
+									&:before {
+										animation-delay: $root-delay +
+											1.5s +
+											($i * 0.05s);
+									}
+									& > .brand-wrap {
+										animation-delay: $root-delay +
+											2.2s +
+											($i * 0.05s);
+									}
+									& > .name-wrap {
+										& > .name {
+											animation-delay: $root-delay +
+												2.4s +
+												($i * 0.05s);
+										}
+										&:after {
+											animation-delay: $root-delay +
+												2.45s +
+												($i * 0.05s);
+										}
 									}
 								}
 							}

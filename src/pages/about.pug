@@ -87,13 +87,6 @@ article#about
 							css3:"CSS3",
 							javascript:"Javascript",
 						}
-					for $text,$brand in $bigs
-						li.skill.big(class=$brand)
-							.brand-wrap
-								i.brand(class=$brand)
-							.text-wrap
-								p.text #{$text}
-					-
 						const $middles = {
 							pug:["Pug","https://pugjs.org"],
 							sass:["Sass/Scss","https://sass-lang.com"],
@@ -112,53 +105,48 @@ article#about
 							fontawesome:["FontAwesome","https://fontawesome.com/"],
 							animejs:["Anime.js","http://animejs.com"],
 						}
+					for $text,$brand in $bigs
+						li.skill.big(class=$brand)
+							.brand-wrap
+								i.brand(class=$brand)
+							.name-wrap
+								p.name #{$text}
 					for $text,$brand in $middles
 						li.skill.middle(class=$brand)
 							.brand-wrap
 								i.brand(class=$brand)
-							.text-wrap
-								p.text #{$text[0]}
+							.name-wrap
+								p.name #{$text[0]}
 							a(href=$text[1] target="_blank")
 			.skilltype.web
 				.title-wrap
 					p.title Tools
 				ul.skills
-					li.skill.big.vscode
-						.brand-wrap
-							i.brand.vscode
-						.text-wrap
-							p.text VSCode
-						a(href="https://code.visualstudio.com/" target="_blank")
-					li.skill.big.gitkraken
-						.brand-wrap
-							i.brand.gitkraken
-						.text-wrap
-							p.text GitKraken
-						a(href="https://code.visualstudio.com" target="_blank")
-					li.skill.big.magicavoxel
-						.brand-wrap
-							img(src=require("../brands/magicavoxel.png"))
-						.text-wrap
-							p.text Magicavoxel
-						a(href="https://ephtracy.github.io" target="_blank")
-					li.skill.big.magicavoxel
-						.brand-wrap
-							img(src=require("../brands/processing.png"))
-						.text-wrap
-							p.text Processing
-						a(href="https://processing.org" target="_blank")
-					li.skill.big.magicavoxel
-						.brand-wrap
-							img(src=require("../brands/affinitydesigner.png"))
-						.text-wrap
-							p.text Affinity Designer
-						a(href="https://affinity.serif.com/designer" target="_blank")
-					li.skill.big.magicavoxel
-						.brand-wrap
-							img(src=require("../brands/affinityphoto.png"))
-						.text-wrap
-							p.text Affinity Photo
-						a(href="https://affinity.serif.com/photo" target="_blank")
+					-
+						const $svgs = {
+							vscode:["VSCode","https://code.visualstudio.com"],
+							gitkraken:["GitKraken","https://code.visualstudio.com"],
+						}
+						const $imgs = {
+							magicavoxel:["MagicaVoxel","https://ephtracy.github.io"],
+							processing:["Processing","https://processing.org"],
+							affinitydesigner:["Affinity Designer","https://affinity.serif.com/designer"],
+							affinityphoto:["Affinity Photo","https://affinity.serif.com/photo"],
+						}
+					for $text,$brand in $svgs
+						li.skill.big(class=$brand)
+							.brand-wrap
+								i.brand(class=$brand)
+							.name-wrap
+								p.name #{$text[0]}
+							a(href=$text[1] target="_blank")
+					for $text,$brand in $imgs
+						li.skill.big(class=$brand)
+							.brand-wrap
+								img(src=require("../brands/" + $brand + ".png"))
+							.name-wrap
+								p.name #{$text[0]}
+							a(href=$text[1] target="_blank")
 		.wrap.detail-wrap
 			.title-wrap
 				p.title DETAIL

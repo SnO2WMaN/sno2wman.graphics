@@ -156,21 +156,18 @@ module.exports = env => {
 						{
 							loader: "image-webpack-loader",
 							options: {
-								bypassOnDebug: !production,
+								disable: !production,
 								mozjpeg: {
 									progressive: true,
 									quality: 65
 								},
 								pngquant: {
-									quality: "65-90",
+									quality: "65-85",
 									speed: 1
 								},
 								gifsicle: {
 									interlaced: false,
 									optimizationLevel: 3
-								},
-								webp: {
-									quality: 75
 								}
 							}
 						}

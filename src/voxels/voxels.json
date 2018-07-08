@@ -171,20 +171,37 @@
 			"22": {
 				"000001": {
 					"name": "2018 My Birthday 1",
-					"tags": ["landscape", "event", "wip"],
+					"tags": ["landscape", "event"],
 					"size": 3
 				},
 				"000002": {
 					"name": "2018 My Birthday 2",
-					"tags": ["landscape", "event", "wip"]
+					"tags": ["landscape", "event"]
 				},
 				"000003": {
 					"name": "2018 My Birthday 3",
-					"tags": ["landscape", "event", "wip"]
+					"tags": ["landscape", "event"]
 				},
 				"000004": {
 					"name": "2018 My Birthday 4",
-					"tags": ["landscape", "event", "wip"]
+					"tags": ["landscape", "event"]
+				}
+			}
+		},
+		"7": {
+			"8": {
+				"195738": {
+					"name": "Laboratory Ruin 1",
+					"tags": ["landscape"],
+					"size": 3
+				},
+				"200157": {
+					"name": "Laboratory Ruin 2",
+					"tags": ["landscape"]
+				},
+				"201931": {
+					"name": "Laboratory Ruin 3",
+					"tags": ["landscape"]
 				}
 			}
 		}

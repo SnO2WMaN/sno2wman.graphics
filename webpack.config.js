@@ -236,12 +236,12 @@ module.exports = env => {
 				filename: production ? "[hash].css" : "[name].css",
 				chunkFilename: "[id].css"
 			}),
-			/*		new OptimizeCSSAssetsPlugin({
+			new OptimizeCSSAssetsPlugin({
 				assetNameRegExp: /.css$/i,
 				cssProcessor: cssnano,
 				cssProcessorOptions: { discardComments: { removeAll: true } },
 				canPrint: true
-			}), */
+			}),
 			new HTMLWebpackPlugin({
 				chunks: ["index"],
 				template: "index.pug",

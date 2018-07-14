@@ -1,14 +1,18 @@
 // Color
-$theme: hsl(191, 8%, 15%);
+$theme: hsl(191, 9%, 17%);
 $bg: hsl((hue($theme) + 180), 19%, 93%);
 $white: lighten($bg, 6%);
 $gray: lighten($theme, 35%);
-$lightgray: lighten($gray, 45%);
-$shadow: rgba($theme, 0.2);
+$lightgray: lighten($gray, 25%);
+$shadow: rgba($theme, 0.05);
 
 // Size
 $frame-width: 1rem;
 $header-height: (100vh / sqrt(2));
+
+//Font
+$root-font-family: "Noto Sans Japanese", -apple-system, BlinkMacSystemFont,
+	"Helvetica Neue", "arial", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 
 :root {
 	--theme: #{$theme};

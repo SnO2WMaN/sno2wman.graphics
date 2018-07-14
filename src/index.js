@@ -8,7 +8,7 @@ import icons from "./icons/icons";
 import brands from "./brands/brands";
 
 import topNav from "./scripts/top_nav";
-import bg from "./scripts/bg.ts";
+import bg from "./scripts/bg";
 import voxels from "./voxels/voxels.tsx";
 import about from "./scripts/about";
 

@@ -1,3 +1,94 @@
 #contact {
 	color: $theme;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 10vh;
+	& > .form-wrap {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background: rgba($white, 0.5);
+		padding: 2rem 0;
+		margin-top: 1.5rem;
+		& > form {
+			width: 30rem;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			padding: 0 1rem;
+			& > * {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+				&:not(.submit) {
+					margin-bottom: 1.25rem;
+					width: 50%;
+					padding: 0 0.5rem;
+					&.x2 {
+						width: 100%;
+					}
+					& > .title-wrap {
+						margin-bottom: 0.25rem;
+						& > .title {
+							font-size: 1rem;
+							font-feature-settings: "palt";
+							letter-spacing: 2px;
+						}
+					}
+					& > input,
+					& > textarea {
+						width: 100%;
+						background: $white;
+						font-size: 0.8rem;
+						outline: none;
+						color: $theme;
+						font-feature-settings: "palt";
+						padding: 0 (0.25rem * metallic(1));
+						border: 1px solid $lightgray;
+						letter-spacing: 1px;
+						box-shadow: 0 1px 2px $shadow;
+						height: 2.25rem;
+						&::placeholder {
+							color: $lightgray;
+							font-family: $root-font-family;
+						}
+						&:focus {
+							border-color: $gray;
+						}
+						&:-webkit-autofill {
+							-webkit-box-shadow: 0 0 0 1000px $white inset;
+						}
+					}
+					& > textarea {
+						min-height: (2.25em * 5);
+						padding-top: 0.5rem;
+						resize: none;
+					}
+				}
+				&.submit {
+					width: 100%;
+					padding: 0 0.5rem;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					margin-top: 1rem;
+					& > button {
+						background: $theme;
+						color: $white;
+						padding: 0.5rem (0.5rem * metallic(3));
+						box-shadow: 0 2px 4px $shadow;
+						& > span {
+							font-weight: 200;
+							font-size: 1rem;
+							letter-spacing: 1px;
+							font-feature-settings: "palt";
+						}
+					}
+				}
+			}
+		}
+	}
 }

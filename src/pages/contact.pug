@@ -1,3 +1,18 @@
 article#contact
 	.title-wrap
 		p.title CONTACT
+	.form-wrap
+		form(name="contact" data-netlify="true" method="POST")
+			.name
+				input(name="name" type="text" placeholder="名前")
+			.org
+				input(name="organization" type="text" placeholder="所属")
+			.email.x2
+				input(name="email" type="email" placeholder="メールアドレス")
+			.website.x2
+				input(name="website" type="text" placeholder="ウェブサイト")
+			.body.x2
+				textarea(name="name" type="text" placeholder="ここにテキストを入力")
+			.submit
+				button(name="submit" type="submit")
+					span 送信

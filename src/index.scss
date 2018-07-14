@@ -6,9 +6,7 @@
 
 :root {
 	font-size: calc((1vmin + 1vmax) / 2);
-	font-family: "Noto Sans Japanese", -apple-system, BlinkMacSystemFont,
-		"Helvetica Neue", "arial", "Hiragino Kaku Gothic ProN", Meiryo,
-		sans-serif;
+	font-family: $root-font-family;
 }
 
 body {

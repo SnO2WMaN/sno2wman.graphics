@@ -8,7 +8,7 @@ const distDir = path.resolve("dist");
 const nodeModulesDir = path.resolve("node_modules");
 
 // PostCSS
-const autoprefixer = require("autoprefixer");
+const autoprefixer = require("autoprefixer/lib/autoprefixer");
 const postcssSorting = require("postcss-sorting");
 const postcssShort = require("postcss-short");
 const cssnano = require("cssnano");

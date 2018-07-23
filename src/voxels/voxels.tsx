@@ -18,6 +18,7 @@ interface VoxelData {
 	name: string;
 	tags: [string];
 	size?: number;
+	jpg?: boolean;
 }
 
 interface FormedVoxelData extends VoxelData {
@@ -42,7 +43,8 @@ Object.keys(data).forEach(year =>
 					},
 					name: d.name,
 					tags: d.tags,
-					size: d.size || 1
+					size: d.size || 1,
+					jpg: d.jpg || false
 				});
 			})
 		)
@@ -135,7 +137,7 @@ class List extends React.Component<
 			voxel.date.second,
 			2,
 			0
-		)}.png`).then(l => {
+		)}.${voxel.jpg ? "jpg" : "png"}`).then(l => {
 			this.setState(
 				prev => ({
 					added: prev.added + 1,

@@ -7,6 +7,7 @@ declare module "*/voxels.json" {
 						name: string;
 						tags: [string];
 						size?: number;
+						jpg?: boolean;
 					};
 				};
 			};

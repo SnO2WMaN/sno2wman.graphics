@@ -180,11 +180,13 @@
 				},
 				"000003": {
 					"name": "2018 My Birthday 3",
-					"tags": ["landscape", "event"]
+					"tags": ["landscape", "event"],
+					"size": 2
 				},
 				"000004": {
 					"name": "2018 My Birthday 4",
-					"tags": ["landscape", "event"]
+					"tags": ["landscape", "event"],
+					"size": 2
 				}
 			}
 		},
@@ -197,11 +199,76 @@
 				},
 				"200157": {
 					"name": "Laboratory Ruin 2",
-					"tags": ["landscape"]
+					"tags": ["landscape"],
+					"size": 2
 				},
 				"201931": {
 					"name": "Laboratory Ruin 3",
-					"tags": ["landscape"]
+					"tags": ["landscape"],
+					"size": 2
+				}
+			},
+			"9": {
+				"023953": {
+					"name": "Old PC",
+					"tags": ["machine", "wip"]
+				},
+				"195549": {
+					"name": "Old PC & Power Source",
+					"tags": ["machine", "wip"]
+				}
+			},
+			"10": {
+				"055649": {
+					"name": "Hose",
+					"tags": ["thing", "wip"]
+				},
+				"061253": {
+					"name": "Some Machines w/ Cup",
+					"tags": ["thing", "machine", "wip"]
+				},
+				"225933": {
+					"name": "Labo Table",
+					"tags": ["thing", "machine", "wip"]
+				},
+				"232757": {
+					"name": "PEPSI Tower",
+					"tags": ["pepsi", "thing", "wip"]
+				}
+			},
+			"12": {
+				"143605": {
+					"name": "Labo Table mk.2",
+					"tags": ["thing", "machine", "wip"]
+				},
+				"225010": {
+					"name": "Quantum Chamber",
+					"tags": ["machine", "wip"]
+				}
+			},
+			"13": {
+				"212116": {
+					"name": "Old Laboratory wip",
+					"tags": ["landscape", "wip"],
+					"jpg": true,
+					"size": 2
+				}
+			},
+			"16": {
+				"231409": {
+					"name": "Cool Labo",
+					"tags": ["landscape"],
+					"size": 3
+				}
+			},
+			"23": {
+				"053552": {
+					"name": "CDJ Set x2",
+					"tags": ["dj", "thing", "wip"]
+				},
+				"054451": {
+					"name": "CDJ Set x4",
+					"tags": ["dj", "thing", "wip"]
 				}
 			}
 		}

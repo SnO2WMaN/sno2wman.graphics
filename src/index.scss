@@ -5,13 +5,13 @@
 @import "./styles/constants";
 
 :root {
-	font-size: calc((1vmin + 1vmax) / 2);
-	font-family: $root-font-family;
+  font-size: calc((1vmin + 1vmax) / 2);
+  font-family: $root-font-family;
 }
 
 body {
-	overflow-y: scroll;
-	background: $bg;
+  overflow-y: scroll;
+  background: $bg;
 }
 
 @import "./styles/canvas";
@@ -21,63 +21,63 @@ body {
 @import "./styles/left_nav";
 
 #main {
-	position: absolute;
-	top: calc(#{100vh - $header-height});
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	width: calc(100% - #{$frame-width * 2});
-	min-height: $header-height;
-	z-index: 9;
+  position: absolute;
+  top: calc(#{100vh - $header-height});
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: calc(100% - #{$frame-width * 2});
+  min-height: $header-height;
+  z-index: 9;
 
-	--section-scroll-fix: 999px;
-	&:not(.transiting) {
-		overflow: hidden;
-	}
-	&.animating {
-		height: $header-height;
-	}
-	& > * {
-		position: absolute;
-		animation-play-state: paused;
-		width: 100%;
-		transition-property: opacity, transform, visibility;
-		transition-duration: 0.5s;
-		transition-timing-function: ease-in-out;
-		& > .title-wrap {
-			& > .title {
-				font-size: 3rem;
-				color: $theme;
-				font-family: "Raleway", sans-serif;
-				font-weight: 100;
-				text-align: center;
-				letter-spacing: 1.5rem;
-			}
-		}
-		&:not(.animated) {
-			*,
-			*:before,
-			*:after {
-				animation-play-state: inherit !important;
-			}
-		}
-		&.animated {
-			animation-play-state: running !important;
-		}
+  --section-scroll-fix: 999px;
+  &:not(.transiting) {
+    overflow: hidden;
+  }
+  &.animating {
+    height: $header-height;
+  }
+  & > * {
+    position: absolute;
+    animation-play-state: paused;
+    width: 100%;
+    transition-property: opacity, transform, visibility;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    & > .title-wrap {
+      & > .title {
+        font-size: 3rem;
+        color: $theme;
+        font-family: "Raleway", sans-serif;
+        font-weight: 100;
+        text-align: center;
+        letter-spacing: 1.5rem;
+      }
+    }
+    &:not(.animated) {
+      *,
+      *:before,
+      *:after {
+        animation-play-state: inherit !important;
+      }
+    }
+    &.animated {
+      animation-play-state: running !important;
+    }
 
-		&:not(.selected) {
-			transform: translateY(1rem);
-			opacity: 0;
-			visibility: hidden;
-		}
+    &:not(.selected) {
+      transform: translateY(1rem);
+      opacity: 0;
+      visibility: hidden;
+    }
 
-		&.selected {
-			position: relative;
-			transform: translateY(0);
-			opacity: 1;
-			visibility: visible;
-		}
-	}
+    &.selected {
+      position: relative;
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 @import "./styles/home";

@@ -1,23 +1,22 @@
 {
-	"env": {
-		"browser": true,
-		"node": true,
-		"es6": true
-	},
-	"parserOptions": {
-		"ecmaVersion": 8,
-		"jsx": true,
-		"sourceType": "module"
-	},
-	"parser": "typescript-eslint-parser",
-	"plugins": ["prettier", "typescript", "react"],
-	"extends": ["standard", "prettier", "plugin:react/recommended"],
-	"rules": {
-		"prettier/prettier": ["error"],
-		"no-console": "warn",
-		"no-unused-vars": "off",
-		"no-new": "off",
-		"no-undef": "off",
-		"yoda": ["error", "never", { "onlyEquality": true }]
-	}
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "jsx": true,
+    "sourceType": "module"
+  },
+  "parser": "typescript-eslint-parser",
+  "plugins": ["prettier", "typescript", "react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-console": "warn",
+    "no-unused-vars": "off",
+    "no-new": "off",
+    "no-undef": "off"
+  }
 }

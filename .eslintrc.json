@@ -14,9 +14,6 @@
   "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "rules": {
     "prettier/prettier": ["error"],
-    "no-console": "warn",
-    "no-unused-vars": "off",
-    "no-new": "off",
-    "no-undef": "off"
+    "no-console": "warn"
   }
 }

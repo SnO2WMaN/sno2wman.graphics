@@ -1,6 +1,6 @@
 import color from "color"
 
-import IBackground from "./Ibackground"
+import IBackground from "./Ibackground" // eslint-disable-line no-unused-vars
 
 import Particles from "./particles"
 import Arcs from "./arcs"

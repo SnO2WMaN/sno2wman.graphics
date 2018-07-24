@@ -1,3 +1,5 @@
+/* eslint no-unused-vars:0 */
+/* eslint no-undef:0 */
 import leftPad from "left-pad"
 import React from "react"
 

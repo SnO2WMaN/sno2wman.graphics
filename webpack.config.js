@@ -18,7 +18,6 @@ const cssMqPacker = require("css-mqpacker")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin")
 const StyleLintPlugin = require("stylelint-webpack-plugin")
 const StylishReporter = require("webpack-stylish")
@@ -84,7 +83,7 @@ module.exports = () => {
             {
               loader: "babel-loader",
               options: {
-                presets: ["env", "react"],
+                presets: [["env", { modules: false }], "react"],
               },
             },
           ],
@@ -101,7 +100,7 @@ module.exports = () => {
         },
         // Sass / Scss
         {
-          test: /.(scss|sass)$/i,
+          test: /.s(a|c)ss$/i,
           use: [
             production
               ? MiniCSSExtractPlugin.loader
@@ -116,6 +115,7 @@ module.exports = () => {
                 sourceMap: !production,
                 parser: "postcss-scss",
                 plugins: [
+                  cssnano,
                   autoprefixer,
                   cssMqPacker,
                   postcssSorting,
@@ -238,12 +238,6 @@ module.exports = () => {
       new MiniCSSExtractPlugin({
         filename: production ? "[hash].css" : "[name].css",
         chunkFilename: "[id].css",
-      }),
-      new OptimizeCSSAssetsPlugin({
-        assetNameRegExp: /.css$/i,
-        cssProcessor: cssnano,
-        cssProcessorOptions: { discardComments: { removeAll: true } },
-        canPrint: true,
       }),
       new HTMLWebpackPlugin({
         chunks: ["index"],

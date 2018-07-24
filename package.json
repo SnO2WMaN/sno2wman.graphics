@@ -10,7 +10,7 @@
     "test": "npx serve dist",
     "lint": "npx npm-run-all lint:*",
     "lint:eslint": "npx eslint src/**/*.{js,ts,jsx,tsx} --fix",
-    "lint:stylelint": "npx stylelint src/*.{css,scss} --fix",
+    "lint:stylelint": "npx stylelint src/**/*.{css,scss} --fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {

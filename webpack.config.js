@@ -38,13 +38,9 @@ module.exports = () => {
       path: distDir,
       filename: "[hash].js",
     },
-    devServer: {
-      contentBase: distDir,
+    serve: {
+      host: "::1",
       port: 8080,
-      inline: true,
-      historyApiFallback: {
-        disableDotRule: true,
-      },
     },
     performance: {
       hints: false,
@@ -52,14 +48,6 @@ module.exports = () => {
     resolve: {
       extensions: [".js", ".ts", ".tsx", ".jsx"],
       modules: ["node_modules", srcDir],
-      alias: {
-        "@fortawesome/fontawesome-free-solid$":
-          "@fortawesome/fontawesome-free-solid/shakable.es.js",
-        "@fortawesome/fontawesome-free-regular$":
-          "@fortawesome/fontawesome-free-regular/shakable.es.js",
-        "@fortawesome/fontawesome-free-brands$":
-          "@fortawesome/fontawesome-free-brands/shakable.es.js",
-      },
     },
     module: {
       rules: [
@@ -98,9 +86,9 @@ module.exports = () => {
           test: /.pug$/i,
           use: [{ loader: "pug-loader" }],
         },
-        // Sass / Scss
+        // CSS / Sass / Scss
         {
-          test: /.s(a|c)ss$/i,
+          test: /.(css|scss|sass)$/i,
           use: [
             production
               ? MiniCSSExtractPlugin.loader
@@ -115,11 +103,11 @@ module.exports = () => {
                 sourceMap: !production,
                 parser: "postcss-scss",
                 plugins: [
-                  cssnano,
+                  postcssShort,
                   autoprefixer,
                   cssMqPacker,
                   postcssSorting,
-                  postcssShort,
+                  cssnano,
                 ],
               },
             },
@@ -225,7 +213,9 @@ module.exports = () => {
           use: [
             {
               loader: "file-loader",
-              options: { name: "fonts/[hash].[ext]" },
+              options: {
+                name: "fonts/[hash].[ext]",
+              },
             },
           ],
         },

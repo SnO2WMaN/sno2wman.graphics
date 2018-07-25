@@ -2,7 +2,9 @@
 @import "~brand-colors/dist/latest/scss/brand-colors.latest.scss";
 @import "~sass-metallic-ratio/index";
 @import "~sass-easing/easings";
+
 @import "./styles/constants";
+@import "./fonts/notosansjp/index.css";
 
 :root {
   font-size: calc((1vmin + 1vmax) / 2);

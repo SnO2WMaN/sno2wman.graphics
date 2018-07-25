@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Noto Sans Japanese";
+  src: url("./light.woff2") format("woff2"), url("./light.woff") format("woff"),
+    url("./light.otf") format("otf");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Noto Sans Japanese";
+  src: url("./regular.woff2") format("woff2"),
+    url("./regular.woff") format("woff"), url("./regular.otf") format("otf");
+  font-weight: 400;
+}

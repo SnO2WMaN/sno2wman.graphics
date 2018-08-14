@@ -1,0 +1,102 @@
+extends _layout.pug
+
+block head
+  link(href="./styles/bundle.scss", rel="stylesheet")
+  title Profile
+
+block contents
+  #barba-wrapper
+    .barba-container(data-namespace="profile")    
+      header
+        .image-wrap
+          .image
+        .icon-wrap
+          .icon
+        .contents
+          .title-wrap
+            h1 SnO2WMaN
+            h2 A Webdesigner
+            h2 In Japan
+            h2 Born in 2001
+        .guide-wrap
+          p SCROLL DOWN
+      section
+        .wrap
+          .titles
+            .title-wrap.social
+              h2 SOCIAL
+            .title-wrap.profile
+              h2 PROFILE
+          .contents
+            .socials-wrap
+              ul.socials
+                -
+                  $links = {
+                    twitter:"https://twitter.com/SnO2WMaN",
+                    github:"https://github.com/SnO2WMaN",
+                    tumblr:"https://sno2wman.tumblr.com",
+                    steam:"https://steamcommunity.com/id/SnO2WMaN",
+                    twitch:"https://www.twitch.tv/sno2wman",
+                    spotify:"https://open.spotify.com/user/sno2wman",
+                    mastodon:"https://mstdn.jp/@SnO2WMaN",
+                  }
+                  $copies = {
+                    discord:"SnO2WMaN#9459"
+                  }
+                each $link,$social in $links
+                  li(class=$social)
+                    a(href=$link target="_blank")
+                    .icon-wrap
+                      i.fab(class="fa-"+$social)
+                    .text-wrap
+                      p #{$social.charAt(0).toUpperCase()}#{$social.substring(1)}
+                      .icon
+                        i.fas.fa-external-link-alt
+                each $copy,$social in $copies  
+                  li.discord
+                    a(data-copy=$copy)
+                    .icon-wrap
+                      i.fab(class="fa-"+$social)
+                    .text-wrap
+                      p #{$social.charAt(0).toUpperCase()}#{$social.substring(1)}
+                      .icon
+                        i.fas.fa-copy
+            .profile-wrap
+              .wrap
+                .icon-wrap
+                  img(src="./images/me.png")
+                .text-wrap
+                  p ナード的活動をしている無軌道な学生
+                  p ウェブデザイン、ボクセルなどをしています
+                  p 飲食物ではペプシコーラが好きです
+                  p 文章を書いたり会話を行うのがヘタクソ
+              .wrap
+                ul.details                  
+                  li.detail.gender
+                    .icon-wrap
+                      i.fas.fa-mars
+                    .title-wrap
+                      p GENDER
+                    .data-wrap
+                      p MALE
+                  li.detail.birthday
+                    .icon-wrap
+                      i.fas.fa-birthday-cake
+                    .title-wrap
+                      p BIRTHDAY
+                    .data-wrap
+                      p 2001.06.22
+                  li.detail.age
+                    .icon-wrap
+                      i.fas.fa-clock
+                    .title-wrap
+                      p AGE
+                    .data-wrap
+                      p 17
+                  li.detail.live
+                    .icon-wrap
+                      i.fas.fa-umbrella-beach
+                    .title-wrap
+                      p LIVE
+                    .data-wrap
+                      p Japan &gt; Aichi

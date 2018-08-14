@@ -1,0 +1,60 @@
+{
+  "name": "windbell",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "author": {
+    "name": "SnO2WMaN",
+    "email": "sno2wman.official@gmail.com",
+    "url": "https://sno2wman.graphics"
+  },
+  "scripts": {
+    "dev": "npx parcel ./src/index.pug",
+    "build": "npx parcel build ./src/index.pug --experimental-scope-hoisting",
+    "precommit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.1.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "css-mqpacker": "^7.0.0",
+    "eslint": "^5.3.0",
+    "eslint-config-precure": "^2.7.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
+    "node-sass": "^4.9.3",
+    "node-sass-package-importer": "^5.2.0",
+    "parcel-bundler": "^1.9.7",
+    "postcss": "^7.0.2",
+    "postcss-scss": "^2.0.0",
+    "postcss-short": "^4.1.0",
+    "postcss-sorting": "^4.0.0",
+    "posthtml": "^0.11.3",
+    "posthtml-favicons": "^1.2.0",
+    "precommit": "^1.2.2",
+    "prettier": "^1.14.0",
+    "pug": "^2.0.3",
+    "stylelint": "^9.4.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-scss": "^3.2.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.2",
+    "@fortawesome/free-brands-svg-icons": "^5.2.0",
+    "@fortawesome/free-regular-svg-icons": "^5.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "awesome-sass-easing": "^1.1.2",
+    "barba.js": "^1.0.0",
+    "mathsass": "^0.10.1",
+    "minireset.css": "^0.0.3",
+    "sass-metallic-ratio": "^0.0.1",
+    "webfontloader": "^1.6.28"
+  }
+}

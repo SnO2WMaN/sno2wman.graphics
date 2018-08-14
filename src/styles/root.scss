@@ -1,0 +1,92 @@
+@import '~minireset.css/minireset';
+@import '~awesome-sass-easing/sass-easing';
+@import '~mathsass/dist/math';
+@import '~sass-metallic-ratio/index';
+@import './const';
+@import './utils';
+
+:root {
+  font-size: 16px;
+  overflow: hidden;
+}
+
+::selection {
+  background-color: $dark;
+}
+
+body {
+  position: fixed;
+  width: calc(100vw - #{$root-frame * 2});
+  height: calc(100vh - #{$root-frame * 2});
+  top: $root-frame;
+  left: $root-frame;
+}
+
+#frame {
+  $margin: 0px;
+  z-index: 9999;
+  & > * {
+    background: $dark;
+    position: fixed;
+  }
+  & > .top,
+  & > .bottom {
+    width: calc(100% - #{$margin * 2});
+    height: $root-frame;
+  }
+  & > .left,
+  & > .right {
+    height: calc(100% - #{$margin * 2});
+    width: $root-frame;
+  }
+  & > .top {
+    top: $margin;
+    left: $margin;
+  }
+  & > .left {
+    top: $margin;
+    left: $margin;
+  }
+  & > .right {
+    right: $margin;
+    bottom: $margin;
+  }
+  & > .bottom {
+    right: $margin;
+    bottom: $margin;
+  }
+}
+
+#barba-wrapper {
+  width: (100% / (1 + $navRatio)) * $navRatio;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  overflow: hidden;
+  background: $whity;
+  & > .barba-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    &.fadeIn {
+      animation: 1s barba-fade-in ease;
+      visibility: visible !important;
+      @keyframes barba-fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(-5%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+    &.fadeOut {
+      transition: 1s ease;
+      transition-property: opacity, transform;
+      opacity: 0;
+      transform: translateY(5%);
+    }
+  }
+}

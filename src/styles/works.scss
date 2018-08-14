@@ -1,0 +1,6 @@
+@import './const';
+
+[data-namespace='works'] {
+  overflow-y: scroll;
+  @import './wip';
+}

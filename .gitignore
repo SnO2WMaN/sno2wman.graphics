@@ -1,0 +1,6 @@
+dist
+.cache
+node_modules
+*.log
+*.afdesign
+*.afphoto

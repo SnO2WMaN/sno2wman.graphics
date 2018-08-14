@@ -1,0 +1,325 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosansjp.css);
+@import './const';
+
+[data-namespace='profile'] {
+  overflow-y: scroll;
+  & > header {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    & > .image-wrap {
+      width: 100%;
+      height: (100% / metallic(1));
+      position: relative;
+      & > .image {
+        position: absolute;
+        size: 100%;
+        background-position: center;
+        background-size: cover;
+        background-image: url('../images/profile.jpg');
+      }
+    }
+    & > .icon-wrap {
+      $size: 9rem;
+      size: $size;
+      position: absolute;
+      background: $dark;
+      left: 0;
+      right: 0;
+      top: calc(#{100% / metallic(1)} - #{$size / 2});
+      margin: 0 auto;
+      display: flex;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba($dark, 0.5);
+      & > .icon {
+        position: absolute 0;
+        size: 90%;
+        margin: auto;
+        background-position: center;
+        background-size: cover;
+        background-image: url('http://www.gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57');
+        border-radius: 50%;
+      }
+    }
+    & > .contents {
+      width: 100%;
+      height: 100% / (1 + metallic(1));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: $whity;
+      & > .title-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        & > h1 {
+          color: $dark;
+          font-size: 2.5rem;
+          letter-spacing: 0.25rem;
+          margin-bottom: 1rem;
+          font-family: 'VT323', sans-serif;
+        }
+        & > h2 {
+          color: $dark;
+          font-size: 0.75rem;
+          letter-spacing: 0.1rem;
+          font-family: 'Poppins', sans-serif;
+          &:not(:last-of-type) {
+            margin-bottom: 0.25rem;
+          }
+        }
+      }
+    }
+    & > .guide-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      bottom: 1%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & > p {
+        color: $dark;
+        font-size: 0.6rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 0.18rem;
+        font-family: 'Poppins', sans-serif;
+        white-space: nowrap;
+        padding: 0 1rem;
+      }
+      &:before,
+      &:after {
+        content: '';
+        border-bottom: 1px $dark dotted;
+        width: 5rem;
+      }
+    }
+  }
+  & > section {
+    width: 100%;
+    height: 100%;
+    background: $whity;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > .wrap {
+      $social-width: (100% / (metallic(2) + 1));
+      $profile-width: 100% - $social-width;
+      width: (100% / metallic(1));
+      height: (100% / metallic(1));
+      display: flex;
+      flex-direction: column;
+      & > .titles {
+        display: flex;
+        width: 100%;
+        margin-bottom: 2rem;
+        & > .title-wrap {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          & > h2 {
+            color: $dark;
+            font-size: 1.25rem;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5rem;
+            font-weight: 400;
+          }
+          &.social {
+            width: $social-width;
+          }
+          &.profile {
+            width: $profile-width;
+          }
+        }
+      }
+      & > .contents {
+        flex-grow: 2;
+        display: flex;
+        & > .socials-wrap {
+          width: $social-width;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          & > .socials {
+            display: flex;
+            flex-direction: column;
+            $margin: 0.75rem;
+            margin-bottom: -$margin;
+            & > li {
+              display: flex;
+              flex-direction: row;
+              align-items: stretch;
+              position: relative;
+              overflow: hidden;
+              box-shadow: 0 2px 4px rgba(black, 0.125);
+              margin-bottom: $margin;
+              transition: 0.1s ease transform;
+              user-select: none;
+              & > a {
+                position: absolute 0;
+                size: 100%;
+                cursor: pointer;
+                z-index: 1;
+              }
+              & > .icon-wrap {
+                $iconSize: 1.2rem;
+                size: $iconSize * metallic(2);
+                font-size: $iconSize;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgba(white, 0.9);
+              }
+              & > .text-wrap {
+                flex-grow: 2;
+                display: flex;
+                align-items: center;
+                padding-left: 1.25rem;
+                padding-right: 3.25rem;
+                background-color: rgba(white, 0.1);
+                box-shadow: 0 0 4px rgba(black, 0.1);
+                transition: 0.1s ease;
+                transition-property: background-color;
+                & > p {
+                  color: rgba(white, 0.75);
+                  letter-spacing: 0.1rem;
+                  font-size: 0.7rem;
+                  font-family: 'Poppins', sans-serif;
+                }
+                & > .icon {
+                  position: absolute;
+                  right: 1rem;
+                  margin-left: 0.8rem;
+                  font-size: 0.75rem;
+                  color: rgba(white, 0.3);
+                }
+              }
+              $colors: (
+                twitter: #1da1f2,
+                tumblr: #35465c,
+                twitch: #6441a5,
+                discord: #7289da,
+                spotify: #1db954,
+                steam: #2b3647,
+                github: #24292e,
+                behance: #1769ff,
+                dribbble: #ea4c89,
+                soundcloud: #ff8800,
+                youtube: #ff0000,
+                mastodon: #3088d4,
+                facebook: #3b5998,
+              );
+              @each $brand, $color in $colors {
+                &.#{$brand} {
+                  background-color: $color;
+                  order: floor(strip-unit(hue($color)));
+                  ::selection {
+                    background-color: $color;
+                  }
+                }
+              }
+              &:hover {
+                & > .text-wrap {
+                  background-color: rgba(white, 0.2);
+                }
+              }
+              &:active {
+                transform: translateY(2px);
+              }
+            }
+          }
+        }
+        & > .profile-wrap {
+          width: $profile-width;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          & > .wrap {
+            display: flex;
+            &:nth-of-type(1) {
+              background: white;
+              box-shadow: 0 2px 4px rgba(black, 0.125);
+              & > .icon-wrap {
+                display: flex;
+                & > img {
+                  size: 7rem;
+                }
+              }
+              & > .text-wrap {
+                padding: 0 1.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                & > p {
+                  color: $dark;
+                  font-size: 0.68rem;
+                  letter-spacing: 0.025rem;
+                  font-family: 'Sawarabi Gothic', sans-serif;
+                  &:not(:last-of-type) {
+                    margin-bottom: 0.1rem;
+                  }
+                }
+              }
+            }
+            &:nth-of-type(2) {
+              height: (100% / (metallic(1)));
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              & > .details {
+                display: flex;
+                flex-direction: column;
+                & > .detail {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  padding: 0.5rem;
+                  & > .icon-wrap {
+                    color: $dark;
+                    $iconSize: 0.9rem;
+                    size: ($iconSize * metallic(1));
+                    font-size: $iconSize;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 1rem;
+                  }
+                  & > .title-wrap {
+                    margin-right: 2.5rem;
+                    & > p {
+                      color: $dark;
+                      letter-spacing: 0.15rem;
+                      font-size: 0.6rem;
+                      font-family: 'Poppins', sans-serif;
+                    }
+                  }
+                  & > .data-wrap {
+                    flex-grow: 2;
+                    display: flex;
+                    justify-content: flex-end;
+                    & > p {
+                      color: $dark;
+                      letter-spacing: 0.1rem;
+                      font-size: 0.8rem;
+                      font-family: 'Poppins', sans-serif;
+                    }
+                  }
+                  &:not(:last-of-type) {
+                    margin-bottom: 0.5rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

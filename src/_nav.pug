@@ -1,0 +1,61 @@
+nav#nav
+  .menu-wrap
+    .title-wrap
+      p.site
+        span SnO2WMaN
+        span GRAPHICS
+      p.profile
+        span webdesign
+        span voxel
+        span generative
+        span nerd
+    ul.menu
+      li.index
+        span INDEX
+        a(href="./index.pug")
+      li.profile
+        span PROFILE
+        a(href="./profile.pug")
+      li.works
+        span WORKS
+        a(href="./works.pug")              
+      li.contact
+        span CONTACT
+        a(href="./contact.pug")
+    ul.socials
+      li.social.twitter
+        i.fab.fa-twitter
+        a(href="https://twitter.com/SnO2WMaN" target="_blank")
+      li.social.tumblr
+        i.fab.fa-tumblr
+        a(href="https://sno2wman.tumblr.com" target="_blank")
+      li.social.github
+        i.fab.fa-github
+        a(href="https://github.com/SnO2WMaN" target="_blank")
+      li.social.email
+        i.fas.fa-envelope
+        a(href="mailto:sno2wman.official@gmail.com")
+    .licence-wrap
+      .licence 
+        p CopyRight:2018 SnO2WMaN
+      .licence
+        p ALL RIGHT RESERVED
+  .hero-guide
+    .number-wrap
+      .ten
+        span 0
+      .one
+        -$i = 0;
+        while $i++ < $index_heroes
+          span #{$i}
+        span.inner 0
+    .wrap
+      .title-wrap
+        p Laboratory
+        p Spring
+        p Windbell
+        p.inner wow.
+      .buttons
+        -$i = 0;
+        while $i++ < $index_heroes
+          .button

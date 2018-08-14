@@ -1,0 +1,293 @@
+#nav {
+  width: (100% / (1 + $navRatio));
+  height: 100%;
+  background: $light;
+  position: absolute;
+  left: 0;
+  z-index: 9000;
+  &.disable {
+    a {
+      display: none;
+    }
+  }
+  & > .menu-wrap {
+    position: absolute;
+    width: (100% / metallic(1));
+    top: 5vh;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    & > .title-wrap {
+      display: flex;
+      align-items: center;
+      & > p.site {
+        display: flex;
+        flex-direction: column;
+        & > span {
+          color: $dark;
+          letter-spacing: 3px;
+          font-size: 1.25rem;
+          font-family: 'VT323', monospace;
+        }
+      }
+      & > p.profile {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        & > span {
+          color: $dark;
+          letter-spacing: 0.05rem;
+          font-size: 1rem;
+          font-family: 'Lobster Two', monospace;
+          font-style: italic;
+          &:not(:last-of-type) {
+            &:after {
+              content: '/';
+              margin: 0 0.25rem;
+            }
+          }
+        }
+      }
+    }
+    & > .menu {
+      margin-top: 7.5vh;
+      width: (100% / metallic(1));
+      & > li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        padding: 0.25rem 0;
+        & > span {
+          color: $dark;
+          font-family: 'Poppins', sans-serif;
+          letter-spacing: 0.25rem;
+          font-size: 1.1rem;
+          padding-right: 1rem;
+        }
+        & > a {
+          position: absolute 0;
+          size: 100%;
+        }
+        &:after {
+          content: '';
+          width: 0.5rem;
+          height: 1px;
+          background: $dark;
+          transform-origin: left;
+          transition: 0.75s width $easeInOutCubic;
+        }
+        &:not(:last-of-type) {
+          margin-bottom: 0.8rem;
+        }
+        &:hover {
+          &:after {
+            width: 100%;
+          }
+        }
+      }
+      &.disable {
+        & > li {
+          cursor: wait;
+          & > a {
+            visibility: hidden;
+          }
+        }
+      }
+      @each $l in index, profile, works, contact {
+        &.#{$l} {
+          & > .#{$l} {
+            &:after {
+              width: 4rem;
+            }
+          }
+        }
+      }
+    }
+    & > .socials {
+      margin-top: 5vh;
+      display: flex;
+      & > .social {
+        $icon: 0.8rem;
+        size: ($icon * metallic(3));
+        color: $dark;
+        font-size: $icon;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.125s ease;
+        transition-property: color, background-color;
+        position: relative;
+        border: 1px solid $dark;
+        &:not(:last-of-type) {
+          margin-right: 1.25rem;
+        }
+        &:hover {
+          background-color: $dark;
+          color: $light;
+        }
+        & > a {
+          position: absolute;
+          size: 100%;
+        }
+      }
+    }
+    & > .licence-wrap {
+      display: flex;
+      flex-direction: column;
+      margin-top: 7.5vh;
+      & > .licence {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        & > p {
+          font-family: 'Poppins', sans-serif;
+          font-size: 0.6rem;
+          letter-spacing: 0.1rem;
+          white-space: nowrap;
+          padding: 0 1rem;
+        }
+        &:before,
+        &:after {
+          content: '';
+          border-top: 1px dotted $dark;
+        }
+        &:before {
+          width: 100%;
+        }
+        &:after {
+          width: 100%;
+        }
+        &:not(:last-of-type) {
+          margin-bottom: 0.75rem;
+        }
+      }
+    }
+  }
+  & > .hero-guide {
+    position: absolute;
+    bottom: 5vh;
+    width: (100% / metallic(1));
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: 1s $easeInOutQuint;
+    transition-property: bottom, transform;
+    & > .wrap {
+      width: 100%;
+    }
+    .number-wrap {
+      display: flex;
+      & > .ten,
+      & > .one {
+        position: relative;
+        & > span {
+          font-size: 6rem;
+          font-family: 'Roboto Mono', monospace;
+          color: transparent;
+          -webkit-text-stroke: $dark 1px;
+        }
+      }
+      & > .one {
+        overflow-y: hidden;
+        position: relative;
+        & > span {
+          &.inner {
+            visibility: hidden;
+          }
+          &:not(.inner) {
+            position: absolute;
+            left: 0;
+            transition: 0.5s transform ease;
+            @for $i from 1 through $heroes {
+              &:nth-of-type(#{$i}) {
+                top: (($i - 1) * 100%);
+              }
+            }
+          }
+        }
+      }
+    }
+    .title-wrap {
+      text-align: right;
+      position: relative;
+      overflow-y: hidden;
+      & > p {
+        color: $dark;
+        font-size: 0.9rem;
+        letter-spacing: 0.15rem;
+        font-family: 'Poppins', sans-serif;
+        &.inner {
+          visibility: hidden;
+        }
+        &:not(.inner) {
+          position: absolute;
+          right: 0;
+          transition: 0.5s transform ease;
+          @for $i from 1 through $heroes {
+            &:nth-of-type(#{$i}) {
+              top: (($i - 1) * 100%);
+            }
+          }
+        }
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+      & > .button {
+        size: 0.75rem;
+        border: 1px solid lighten($dark, 50%);
+        background-color: transparent;
+        cursor: pointer;
+        transform-origin: center;
+        transition: 0.25s ease;
+        transition-property: background-color, border-color;
+        border-radius: 50%;
+        &:not(:last-of-type) {
+          margin-right: 0.5rem;
+        }
+        &:hover {
+          border-color: lighten($dark, 35%);
+          background-color: lighten($dark, 35%);
+        }
+      }
+    }
+    @for $i from 1 through $heroes {
+      &.hero-#{$i} {
+        .number-wrap {
+          & > .one {
+            & > span:not(.inner) {
+              transform: translateY(($i - 1) * -100%);
+            }
+          }
+        }
+        .title-wrap {
+          & > p:not(.inner) {
+            transform: translateY(($i - 1) * -100%);
+          }
+        }
+        .buttons {
+          & > .button {
+            &:nth-of-type(#{$i}) {
+              border-color: $dark;
+              background-color: $dark;
+              cursor: default;
+            }
+          }
+        }
+      }
+    }
+    &:not(.visible) {
+      bottom: 0;
+      transform: translateY(100%);
+    }
+  }
+}

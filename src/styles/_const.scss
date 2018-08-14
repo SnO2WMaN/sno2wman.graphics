@@ -1,0 +1,7 @@
+$heroes: 3;
+$root-frame: 1rem;
+
+$dark: hsl(225, 13%, 22%);
+$light: hsl(hue($dark) + 180, 8%, 86%);
+$whity: hsl(hue($dark), 15%, 93%);
+$navRatio: metallic(3);

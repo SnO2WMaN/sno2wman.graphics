@@ -1,0 +1,14 @@
+extends _layout
+
+block head
+  title Index
+  link(href="./styles/bundle.scss", rel="stylesheet")
+
+block contents
+  #barba-wrapper
+    .barba-container(data-namespace="index")
+      section#heroes
+        .hero-images
+          -$i = 0;
+          while $i++ < $index_heroes
+            .image

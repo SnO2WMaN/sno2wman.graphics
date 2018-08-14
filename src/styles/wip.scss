@@ -1,0 +1,44 @@
+& > header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $whity;
+  & > .wrap {
+    size: (100% / metallic(1));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    box-shadow: 0 2px 4px rgba(black, 0.125);
+    & > .image {
+      width: (100% / metallic(1));
+    }
+    & > .contents {
+      margin-top: 2rem;
+      & > .titles-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & > h1 {
+          color: $dark;
+          font-family: 'VT323', monospace;
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          letter-spacing: 0.2rem;
+        }
+        & > h2 {
+          color: $dark;
+          font-family: 'Poppins', monospace;
+          font-size: 0.8rem;
+          letter-spacing: 0.075rem;
+          &:not(:last-of-type) {
+            margin-bottom: 0.25rem;
+          }
+        }
+      }
+    }
+  }
+}

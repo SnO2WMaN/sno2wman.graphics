@@ -5,7 +5,7 @@ const webfont = new Promise(resolve => {
     google: {
       families: [
         'VT323',
-        'Lobster Two',
+        'Lobster Two:400i',
         'Poppins',
         'Roboto Mono',
         'Sawarabi Gothic:latin,japanese',

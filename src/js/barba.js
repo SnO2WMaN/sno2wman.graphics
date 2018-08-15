@@ -1,4 +1,5 @@
 import Barba from 'barba.js'
+import imagesLoaded from 'imagesloaded'
 import index from '.'
 import nav from './nav'
 
@@ -32,18 +33,24 @@ Barba.Pjax.getTransition = () =>
     },
     fadeIn() {
       const $new = this.newContainer
-      $new.classList.add('fadeIn')
-      return new Promise(resolve =>
-        $new.addEventListener(
-          'animationend',
-          () => {
-            $new.classList.remove('fadeIn')
-            nav.linkStop(false)
-            resolve()
-          },
-          { once: true }
+      return new Promise((resolve, reject) => {
+        const imgLoad = imagesLoaded($new, { background: true })
+        imgLoad.on('done', resolve)
+        imgLoad.on('fail', reject)
+      }).then(() => {
+        $new.classList.add('fadeIn')
+        return new Promise(resolve =>
+          $new.addEventListener(
+            'animationend',
+            () => {
+              $new.classList.remove('fadeIn')
+              nav.linkStop(false)
+              resolve()
+            },
+            { once: true }
+          )
         )
-      )
+      })
     },
     finish() {
       this.done()

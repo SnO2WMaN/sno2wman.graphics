@@ -9,8 +9,13 @@ html(lang="en")
     link(href="./icons/favicon.png", rel="icon")
     block head
   body
-    include _frame.pug
+    #frame
+      .top
+      .right
+      .bottom
+      .left
     include _nav.pug
+    include _loading.pug
     block contents
     block scripts
     script(src="./js/bundle.js")

@@ -1,0 +1,159 @@
+#loading {
+  position: fixed $root-frame;
+  width: calc(100vw - #{$root-frame * 2});
+  height: calc(100vh - #{$root-frame * 2});
+  background: $light;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  overflow: hidden;
+  & > .icon-wrap {
+    height: 10vh;
+    & > svg {
+      path,
+      circle {
+        stroke: $dark;
+        stroke-width: 0.25rem;
+        stroke-linecap: round;
+        stroke-dasharray: 400;
+        stroke-dashoffset: 400;
+        animation: loading-svg 1.25s $easeInOutCubic;
+        animation-direction: reverse;
+        animation-play-state: paused;
+        @keyframes loading-svg {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+      }
+    }
+  }
+  & > .loaders {
+    position: absolute 0;
+    margin: auto;
+    animation: loading-loaders-wrap 1.5s $easeOutCubic;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    @keyframes loading-loaders-wrap {
+      to {
+        opacity: 0;
+      }
+    }
+    & > .loader {
+      position: absolute;
+      overflow: hidden;
+      right: 50%;
+      bottom: 50%;
+      transform-origin: right bottom;
+      animation: loading-loaders 3s infinite $easeInOutBack;
+      &:after {
+        content: '';
+        position: absolute;
+        size: 200%;
+        border: 1rem solid;
+        border-radius: 50%;
+      }
+      @for $i from 1 through 20 {
+        &:nth-of-type(#{$i}) {
+          size: 7.5rem + $i * 0.5rem;
+          animation-delay: $i * 0.025s;
+          &:after {
+            border-color: lighten($dark, 2.5% * $i);
+          }
+        }
+      }
+      @keyframes loading-loaders {
+        from {
+          transform: rotateZ(0deg);
+        }
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+    }
+  }
+  & > .faders {
+    position: absolute;
+    left: 0;
+    top: 0;
+    size: 100%;
+    & > .fader {
+      position: absolute;
+      size: 100%;
+      animation: loading-fader 1s $easeInOutQuint;
+      animation-fill-mode: both;
+      animation-play-state: paused;
+      @for $i from 1 through 3 {
+        &:nth-of-type(#{$i}) {
+          background-color: lighten($dark, 5% * ($i - 1));
+          animation-delay: ($i - 1) * 0.125s;
+        }
+      }
+      @keyframes loading-fader {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1.025);
+        }
+      }
+    }
+  }
+  & > .rects {
+    position: absolute;
+    left: 0;
+    top: 0;
+    size: 100%;
+    & > .left,
+    & > .right {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      & > .rect {
+        position: absolute;
+        size: 100%;
+        left: 0;
+        top: 0;
+        animation: loading-rects 0.8s;
+        animation-play-state: paused;
+        animation-fill-mode: forwards;
+        visibility: hidden;
+        @keyframes loading-rects {
+          from {
+            transform: scaleY(1);
+          }
+          to {
+            transform: scaleY(0);
+          }
+        }
+        @for $i from 1 through 3 {
+          &:nth-of-type(#{$i}) {
+            background-color: lighten($dark, 5% * ($i - 1));
+            animation-timing-function: cubic-bezier(
+              0.19,
+              0.6 + ($i - 1) * 0.2,
+              0.22,
+              1
+            );
+          }
+        }
+      }
+    }
+    & > .left {
+      left: 0;
+      & > .rect {
+        transform-origin: top;
+      }
+    }
+    & > .right {
+      right: 0;
+      & > .rect {
+        transform-origin: bottom;
+      }
+    }
+  }
+}

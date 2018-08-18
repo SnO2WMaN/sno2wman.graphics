@@ -11,8 +11,11 @@
   user-select: none;
   overflow: hidden;
   & > .icon-wrap {
-    height: 10vh;
+    size: 10vh;
+    position: relative;
     & > svg {
+      position: absolute;
+      size: 100%;
       path,
       circle {
         stroke: $dark;

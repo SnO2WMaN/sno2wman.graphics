@@ -1,7 +1,12 @@
 import webfontloader from 'webfontloader'
 
 const debug = false
+
 const $loading = document.getElementById('loading')
+$loading.querySelector(
+  '.icon-wrap'
+).innerHTML = require('../images/sno2wman.svg')
+
 const $nav = document.getElementById('nav')
 
 const webfont = new Promise(resolve => {

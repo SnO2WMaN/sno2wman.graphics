@@ -20,6 +20,7 @@ body {
   height: calc(100vh - #{$root-frame * 2});
   top: $root-frame;
   left: $root-frame;
+  background: $whity;
 }
 
 #frame {
@@ -28,6 +29,7 @@ body {
   & > * {
     background: $dark;
     position: fixed;
+    z-index: 9999;
   }
   & > .top,
   & > .bottom {

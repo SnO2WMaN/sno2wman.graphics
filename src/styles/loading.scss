@@ -2,7 +2,7 @@
   position: fixed $root-frame;
   width: calc(100vw - #{$root-frame * 2});
   height: calc(100vh - #{$root-frame * 2});
-  background: $light;
+  background-color: $light;
   z-index: 9999;
   display: flex;
   flex-direction: column;

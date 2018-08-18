@@ -1,45 +1,61 @@
 nav#nav
   .menu-wrap
     .title-wrap
-      p.site
-        span SnO2WMaN
-        span GRAPHICS
-      p.profile
-        span webdesign
-        span voxel
-        span generative
-        span nerd
+      .site
+        p
+          each $char in "SnO2WMaN".split("")
+            span #{$char}
+        p
+          each $char in "GRAPHICS".split("")
+            span #{$char}
+      .profile
+        p
+          span webdesign
+          span voxel
+          span generative
+          span nerd
     ul.menu
-      li.index
-        span INDEX
-        a(href="./index.pug")
-      li.profile
-        span PROFILE
-        a(href="./profile.pug")
-      li.works
-        span WORKS
-        a(href="./works.pug")              
-      li.contact
-        span CONTACT
-        a(href="./contact.pug")
+      each $text in ["index","profile","works","contact"]
+        li(class=$text)
+          p #{$text.toUpperCase()}
+          .border
+          a(href="./"+$text+".pug")
+          .covers
+            .cover
+            .cover
     ul.socials
-      li.social.twitter
-        i.fab.fa-twitter
-        a(href="https://twitter.com/SnO2WMaN" target="_blank")
-      li.social.tumblr
-        i.fab.fa-tumblr
-        a(href="https://sno2wman.tumblr.com" target="_blank")
-      li.social.github
-        i.fab.fa-github
-        a(href="https://github.com/SnO2WMaN" target="_blank")
-      li.social.email
-        i.fas.fa-envelope
-        a(href="mailto:sno2wman.official@gmail.com")
+      -
+        $socials={
+          twitter:"https://twitter.com/SnO2WMaN",
+          tumblr:"https://sno2wman.tumblr.com",
+          github:"https://github.com/SnO2WMaN",
+          email:"mailto:sno2wman.official@gmail.com"
+        }
+      each $link,$social in $socials
+        li.social(class=$social)
+          a(href=$link target="_blank")
+          .covers
+            .cover
+            .cover
+          .borders
+            .border
+            .border
+            .border
+            .border
+          .icon
+            if $social == "email"
+              i.fas.fa-envelope
+            else
+              i.fab(class="fa-"+$social)
     .licence-wrap
       .licence 
+        .border
         p CopyRight:2018 SnO2WMaN
+        .border
       .licence
+        .border
         p ALL RIGHT RESERVED
+        .border
   .hero-guide
     .number-wrap
       .ten

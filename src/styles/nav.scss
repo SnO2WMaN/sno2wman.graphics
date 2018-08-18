@@ -5,6 +5,16 @@
   position: absolute;
   left: 0;
   z-index: 9000;
+  animation: nav-root 0.5s both $easeInOutQuint;
+  animation-play-state: paused;
+  @keyframes nav-root {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
   &.disable {
     a {
       display: none;
@@ -20,32 +30,88 @@
     & > .title-wrap {
       display: flex;
       align-items: center;
-      & > p.site {
+      & > .site {
         display: flex;
         flex-direction: column;
-        & > span {
+        & > p {
           color: $dark;
           letter-spacing: 3px;
           font-size: 1.25rem;
           font-family: 'VT323', monospace;
+          display: flex;
+          overflow: hidden;
+          & > span {
+            display: inline-block;
+            animation: 0.5s both paused $easeInOutCubic;
+            @for $i from 1 through 8 {
+              &:nth-of-type(#{$i}) {
+                animation-delay: sin($PI / 2 / 8 * ($i - 1)) * 0.25s;
+              }
+            }
+          }
+          &:nth-of-type(1) {
+            & > span {
+              animation-name: nav-title-site-1;
+              @keyframes nav-title-site-1 {
+                from {
+                  transform: translateY(100%);
+                }
+                to {
+                  transform: translateY(0);
+                }
+              }
+            }
+          }
+          &:nth-of-type(2) {
+            & > span {
+              animation-name: nav-title-site-2;
+              @keyframes nav-title-site-2 {
+                from {
+                  transform: translateY(-100%);
+                }
+                to {
+                  transform: translateY(0);
+                }
+              }
+            }
+          }
         }
       }
-      & > p.profile {
+      & > .profile {
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
         flex-wrap: wrap;
-        & > span {
-          color: $dark;
-          letter-spacing: 0.05rem;
-          font-size: 1rem;
-          font-family: 'Lobster Two', monospace;
-          font-style: italic;
-          &:not(:last-of-type) {
-            &:after {
-              content: '/';
-              margin: 0 0.25rem;
+        & > p {
+          & > span {
+            color: $dark;
+            letter-spacing: 0.05rem;
+            font-size: 1rem;
+            font-family: 'Lobster Two', monospace;
+            font-style: italic;
+            display: inline-block;
+            &:not(:last-of-type) {
+              &:after {
+                content: '/';
+                margin: 0 0.25rem;
+              }
+            }
+            animation: nav-title-profile 0.25s $easeOutCubic both paused;
+            @for $i from 1 through 4 {
+              &:nth-of-type(#{$i}) {
+                animation-delay: ($i - 1) * 0.125s + 0.5s;
+              }
+            }
+            @keyframes nav-title-profile {
+              from {
+                transform: translateX(-15%);
+                opacity: 0;
+              }
+              to {
+                transform: translateX(0);
+                opacity: 1;
+              }
             }
           }
         }
@@ -60,31 +126,105 @@
         align-items: center;
         position: relative;
         padding: 0.25rem 0;
-        & > span {
+        & > p {
           color: $dark;
           font-family: 'Poppins', sans-serif;
           letter-spacing: 0.25rem;
           font-size: 1.1rem;
           padding-right: 1rem;
+          animation: nav-menu-text 0.5s $easeOutExpo both paused;
+          @keyframes nav-menu-text {
+            from {
+              transform: translateX(-10%);
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
         }
         & > a {
           position: absolute 0;
           size: 100%;
+          z-index: 1;
         }
-        &:after {
-          content: '';
+        & > .covers {
+          position: absolute;
+          size: 100%;
+          overflow: hidden;
+          & > .cover {
+            position: absolute;
+            size: 100%;
+            @for $i from 1 through 2 {
+              &:nth-of-type(#{$i}) {
+                background-color: lighten($dark, 10% * ($i - 1));
+              }
+            }
+            animation: nav-menu-cover 1s $easeInOutExpo both paused;
+            transform-origin: left;
+            @keyframes nav-menu-cover {
+              from {
+                transform: scaleX(0);
+              }
+              50% {
+                transform: scaleX(1);
+              }
+              to {
+                transform: translateX(100%);
+                visibility: hidden;
+              }
+            }
+          }
+        }
+        & > .border {
           width: 0.5rem;
           height: 1px;
           background: $dark;
+          transition: 0.5s width $easeInOutCubic;
+          animation: nav-menu-border 0.25s $easeInOutCubic both paused;
           transform-origin: left;
-          transition: 0.75s width $easeInOutCubic;
+          @keyframes nav-menu-border {
+            from {
+              transform: scaleX(0);
+            }
+            to {
+              transform: scaleX(1);
+            }
+          }
         }
         &:not(:last-of-type) {
           margin-bottom: 0.8rem;
         }
         &:hover {
-          &:after {
+          & > .border {
             width: 100%;
+          }
+        }
+        @for $i from 1 through 4 {
+          &:nth-of-type(#{$i}) {
+            & > p {
+              animation-delay: ($i - 1) * 0.1s + 0.7s;
+            }
+            & > .border {
+              animation-delay: ($i - 1) * 0.1s + 0.95s;
+            }
+            & > .covers {
+              & > .cover {
+                @for $j from 1 through 2 {
+                  &:nth-of-type(#{$j}) {
+                    animation-delay: ($i - 1) * 0.1s + ($j - 1) * 0.2s;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &.running {
+          & > p,
+          & > .covers > .cover,
+          & > .border {
+            animation-play-state: running;
           }
         }
       }
@@ -99,7 +239,7 @@
       @each $l in index, profile, works, contact {
         &.#{$l} {
           & > .#{$l} {
-            &:after {
+            & > .border {
               width: 4rem;
             }
           }
@@ -111,16 +251,13 @@
       display: flex;
       & > .social {
         $icon: 0.8rem;
-        size: ($icon * metallic(3));
+        $size: ($icon * metallic(3));
+        size: $size;
         color: $dark;
-        font-size: $icon;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         transition: 0.125s ease;
         transition-property: color, background-color;
         position: relative;
-        border: 1px solid $dark;
+        overflow: hidden;
         &:not(:last-of-type) {
           margin-right: 1.25rem;
         }
@@ -131,6 +268,142 @@
         & > a {
           position: absolute;
           size: 100%;
+        }
+        & > .icon {
+          position: absolute 0;
+          margin: auto;
+          font-size: $icon;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          animation: nav-socials-icon 0.5s $easeOutCubic both paused;
+          @keyframes nav-socials-icon {
+            from {
+              transform: scale(0);
+            }
+            to {
+              transform: scale(1) rotateZ(360deg);
+            }
+          }
+        }
+        & > .covers {
+          position: absolute 0;
+          size: 100%;
+          & > .cover {
+            position: absolute;
+            size: 100% * sqrt(2);
+            left: -(50% * (sqrt(2) - 1));
+            top: -(50% * (sqrt(2) - 1));
+            border: solid;
+            background: $dark;
+            animation: nav-socials-cover 1s $easeInOutQuint both paused;
+            border-radius: 50%;
+            z-index: 1;
+            @keyframes nav-socials-cover {
+              from {
+                transform: scale(0);
+              }
+              50% {
+                transform: scale(1);
+                background: transparent;
+                border-width: ($size * sqrt(2) / 2);
+              }
+              to {
+                background: transparent;
+                border-width: 0;
+              }
+            }
+            @for $i from 1 through 2 {
+              &:nth-of-type(#{$i}) {
+                $color: lighten($dark, ($i - 1) * 10%);
+                background-color: $color;
+                border-color: $color;
+              }
+            }
+          }
+        }
+        & > .borders {
+          size: 100%;
+          position: absolute 0;
+          & > .border {
+            position: absolute 0;
+            size: 100%;
+            border: 1px $dark;
+            animation: 0.2s paused both $easeOutCubic;
+            &:nth-of-type(1) {
+              border-left-style: solid;
+              transform-origin: bottom;
+            }
+            &:nth-of-type(2) {
+              border-top-style: solid;
+              transform-origin: left;
+            }
+            &:nth-of-type(3) {
+              border-right-style: solid;
+              transform-origin: top;
+            }
+            &:nth-of-type(4) {
+              border-bottom-style: solid;
+              transform-origin: right;
+            }
+            &:nth-of-type(1),
+            &:nth-of-type(3) {
+              animation-name: nav-social-border-y;
+            }
+            &:nth-of-type(2),
+            &:nth-of-type(4) {
+              animation-name: nav-social-border-x;
+            }
+            @keyframes nav-social-border-x {
+              from {
+                transform: scaleX(0);
+              }
+              to {
+                transform: scaleX(1);
+              }
+            }
+            @keyframes nav-social-border-y {
+              from {
+                transform: scaleY(0);
+              }
+              to {
+                transform: scaleY(1);
+              }
+            }
+          }
+        }
+        @for $i from 1 through 4 {
+          &:nth-of-type(#{$i}) {
+            & > .icon {
+              animation-delay: ($i - 1) * 0.1s + 0.6s;
+            }
+            & > .covers {
+              & > .cover {
+                @for $j from 1 through 2 {
+                  &:nth-of-type(#{$j}) {
+                    animation-delay: ($i - 1) * 0.1s + ($j - 1) * 0.075s;
+                  }
+                }
+              }
+            }
+            & > .borders {
+              & > .border {
+                @for $j from 1 through 4 {
+                  &:nth-of-type(#{$j}) {
+                    animation-delay: ($i - 1) * 0.1s + ($j - 1) * 0.1s + 0.75s;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &.running {
+          & > .icon,
+          & > .covers > .cover,
+          & > .borders > .border {
+            animation-play-state: running;
+          }
         }
       }
     }
@@ -149,20 +422,57 @@
           letter-spacing: 0.1rem;
           white-space: nowrap;
           padding: 0 1rem;
+          animation: nav-licence-text 0.5s $easeOutQuint both paused;
+          @keyframes nav-licence-text {
+            from {
+              transform: translateY(50%);
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
         }
-        &:before,
-        &:after {
-          content: '';
+        & > .border {
+          width: 100%;
           border-top: 1px dotted $dark;
-        }
-        &:before {
-          width: 100%;
-        }
-        &:after {
-          width: 100%;
+          animation: nav-licence-border 0.5s $easeInOutQuint both paused;
+          @keyframes nav-licence-border {
+            from {
+              transform: scaleX(0);
+            }
+            to {
+              transform: scaleX(1);
+            }
+          }
+          &:nth-of-type(1) {
+            transform-origin: right;
+          }
+          &:nth-of-type(2) {
+            transform-origin: left;
+          }
         }
         &:not(:last-of-type) {
           margin-bottom: 0.75rem;
+        }
+
+        @for $i from 1 through 2 {
+          &:nth-of-type(#{$i}) {
+            & > p {
+              animation-delay: 0.125s * ($i - 1) + 0.6s;
+            }
+            & > .border {
+              animation-delay: 0.125s * ($i - 1) + 0.725s;
+            }
+          }
+        }
+
+        &.running {
+          & > p,
+          & > .border {
+            animation-play-state: running;
+          }
         }
       }
     }

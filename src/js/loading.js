@@ -1,6 +1,6 @@
 import webfontloader from 'webfontloader'
 
-const debug = true
+const debug = false
 const $loading = document.getElementById('loading')
 const $nav = document.getElementById('nav')
 

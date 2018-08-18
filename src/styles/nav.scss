@@ -15,11 +15,6 @@
       transform: translateX(0);
     }
   }
-  &.disable {
-    a {
-      display: none;
-    }
-  }
   & > .menu-wrap {
     position: absolute;
     width: (100% / metallic(1));
@@ -241,6 +236,9 @@
           & > .#{$l} {
             & > .border {
               width: 4rem;
+            }
+            & > a {
+              visibility: hidden;
             }
           }
         }

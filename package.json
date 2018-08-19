@@ -15,12 +15,12 @@
     "precommit": "npx lint-staged"
   },
   "lint-staged": {
-    "*.{js}": [
+    "src/**/*.js": [
       "prettier --write",
       "eslint --fix",
       "git add"
     ],
-    "*.{css,scss}": [
+    "src/**/*.{css,scss}": [
       "prettier --write",
       "stylelint",
       "git add"

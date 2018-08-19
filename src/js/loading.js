@@ -1,13 +1,12 @@
 import webfontloader from 'webfontloader'
+import sno2wmanSVG from '../images/sno2wman.svg'
+import nav from './nav'
 
 const debug = false
 
 const $loading = document.getElementById('loading')
-$loading.querySelector(
-  '.icon-wrap'
-).innerHTML = require('../images/sno2wman.svg')
 
-const $nav = document.getElementById('nav')
+$loading.querySelector('.icon-wrap').innerHTML = sno2wmanSVG
 
 const webfont = new Promise(resolve => {
   webfontloader.load({
@@ -91,77 +90,6 @@ const loading = debug
           })
       })
 
-const nav = () => {
-  return new Promise(resolve => {
-    $nav.style.animationPlayState = 'running'
-    $nav.addEventListener('animationend', resolve)
-  }).then(() => {
-    return Promise.all([
-      ...[...$nav.querySelectorAll('.title-wrap .site span')].map($span => {
-        return new Promise(resolve => {
-          $span.style.animationPlayState = 'running'
-          const ch = $span.innerHTML
-          const shuffler = setInterval(() => {
-            $span.innerHTML = String.fromCharCode(
-              48 + Math.floor(Math.random() * 74)
-            )
-          }, 40)
-          $span.addEventListener('animationend', () => {
-            clearInterval(shuffler)
-            $span.innerHTML = ch
-            resolve()
-          })
-        })
-      }),
-      ...[...$nav.querySelectorAll('.title-wrap .profile span')].map($span => {
-        return new Promise(resolve => {
-          $span.style.animationPlayState = 'running'
-          $span.addEventListener('animationend', resolve)
-        })
-      }),
-      ...[...$nav.querySelectorAll('.socials > .social')].map($social => {
-        $social.classList.add('running')
-        return Promise.all([
-          ...[
-            ...$social.querySelectorAll(
-              '.covers > .cover,.icon,.borders > .border'
-            ),
-          ].map(
-            $e =>
-              new Promise(resolve =>
-                $e.addEventListener('animationend', resolve)
-              )
-          ),
-        ])
-      }),
-      ...[...$nav.querySelectorAll('.menu > li')].map($social => {
-        $social.classList.add('running')
-        return Promise.all([
-          ...[...$social.querySelectorAll('p,.covers > .cover,.border')].map(
-            $e =>
-              new Promise(resolve =>
-                $e.addEventListener('animationend', resolve)
-              )
-          ),
-        ])
-      }),
-      ...[...$nav.querySelectorAll('.licence-wrap > .licence')].map(
-        $licence => {
-          $licence.classList.add('running')
-          return Promise.all([
-            ...[...$licence.querySelectorAll('p,border')].map(
-              $e =>
-                new Promise(resolve =>
-                  $e.addEventListener('animationend', resolve)
-                )
-            ),
-          ])
-        }
-      ),
-    ])
-  })
-}
-
 export default Promise.all([webfont])
   .then(() => loading())
-  .then(() => nav())
+  .then(() => nav.animation())

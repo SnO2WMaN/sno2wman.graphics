@@ -14,8 +14,8 @@
     size: 10vh;
     position: relative;
     & > svg {
-      position: absolute;
-      size: 100%;
+      position: absolute 0;
+      size: 10vh;
       path,
       circle {
         stroke: $dark;

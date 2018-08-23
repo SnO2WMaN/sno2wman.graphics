@@ -4,11 +4,12 @@ module.exports = {
     quality: 65,
   },
   pngquant: {
-    quality: '65-90',
+    quality: 65,
     speed: 4,
   },
   gifsicle: {
     interlaced: false,
     optimizationLevel: 3,
   },
+  webp: { quality: 50 },
 }

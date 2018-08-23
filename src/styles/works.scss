@@ -1,6 +1,242 @@
 @import './const';
 
 [data-namespace='works'] {
-  overflow-y: scroll;
-  @import './wip';
+  display: flex;
+  flex-direction: row;
+  $nav: (100% / (metallic(6) + 1));
+  $section: (100% - $nav);
+  & > nav {
+    width: $nav;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: lighten($light, 5%);
+    & > .genre,
+    & > .type,
+    & > .year {
+      width: (100% / metallic(1));
+      display: flex;
+      flex-direction: column;
+      &:not(:last-of-type) {
+        margin-bottom: 2rem;
+      }
+      & > li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &:not(:last-of-type) {
+          margin-bottom: 0.9rem;
+        }
+        & > .name-wrap {
+          & > p {
+            color: $dark;
+            font-size: 0.8rem;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.2rem;
+          }
+        }
+        & > .border {
+          width: 0.25rem;
+          border-bottom: 1px solid $dark;
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+  & > section {
+    width: $section;
+    height: 100%;
+    overflow-y: scroll;
+    padding: calc((100vh - #{$root-frame * 2}) / #{metallic(6) + 1}) 0;
+    & > ._2017,
+    & > ._2018 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &:not(:last-of-type) {
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+        border-bottom: dashed 1px $dark;
+      }
+      & > .title-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5rem;
+        & > h1 {
+          color: $dark;
+          font-family: 'Roboto Mono', sans-serif;
+          font-weight: 700;
+          letter-spacing: 0.5rem;
+          font-size: 2.5rem;
+          margin-bottom: 0.75rem;
+        }
+        & > h2 {
+          color: $dark;
+          font-family: 'Roboto Mono', sans-serif;
+          font-weight: 700;
+          letter-spacing: 0.05rem;
+          font-size: 0.9rem;
+          margin-bottom: 0.5rem;
+        }
+        &::after {
+          content: '';
+          width: 3rem;
+          border-bottom: 0.125rem $dark solid;
+        }
+      }
+      & > .works {
+        position: relative;
+        width: 95%;
+        & > li {
+          $split: 4;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 2rem;
+          position: absolute;
+          &:after {
+            content: '';
+            width: 5%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            border-bottom: solid 2px $dark;
+          }
+          animation: works-card 0.5s $easeInOutCubic paused both;
+          @keyframes works-card {
+            from {
+              transform: translateY(5%);
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
+          @for $i from 1 through $split {
+            &.x#{$i} {
+              width: (100% / $split * $i);
+            }
+          }
+          &.sizer {
+            visibility: hidden;
+            position: absolute;
+          }
+          & > .images {
+            display: flex;
+
+            width: 90%;
+            & > li {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              & > picture {
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 2px 4px rgba(black, 0.125);
+              }
+            }
+            &.x1 {
+              flex-direction: column;
+            }
+            @for $i from 2 through 3 {
+              &.x#{$i} {
+                flex-wrap: wrap;
+                & > li {
+                  width: (100% / $i);
+                }
+              }
+            }
+          }
+          & > .contents {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 0;
+            & > .title-wrap {
+              text-align: center;
+              width: 100%;
+              margin-bottom: 1rem;
+              & > h2 {
+                color: $dark;
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.25rem;
+                font-weight: 700;
+                letter-spacing: 0.25rem;
+              }
+            }
+            & > .wrap {
+              width: (50% * metallic(1));
+              display: flex;
+              align-items: center;
+              margin-top: 0.75rem;
+              & > .tags {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                width: (100% / metallic(1));
+                & > li {
+                  & > p {
+                    color: $dark;
+                    font-size: 0.5rem;
+                    font-weight: 400;
+                    font-family: 'Poppins', sans-serif;
+                    letter-spacing: 0.15rem;
+                  }
+                  &:not(:last-of-type) {
+                    margin-right: 0.5rem;
+                  }
+                }
+              }
+              & > .links {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                width: (100% / (metallic(1) + 1));
+                $icon: 0.75rem;
+                & > li {
+                  position: relative;
+                  size: $icon * metallic(2);
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  border-radius: 50%;
+                  & > .icon {
+                    color: $dark;
+                    font-size: $icon;
+                  }
+                  & > a {
+                    position: absolute 0;
+                    size: 100%;
+                  }
+                  &:not(:last-of-type) {
+                    margin-right: 0.25rem;
+                  }
+                  &:hover {
+                    background: rgba(black, 0.1);
+                  }
+                }
+              }
+            }
+          }
+        }
+        &.loaded {
+          & > li {
+            animation-play-state: running;
+          }
+        }
+      }
+    }
+  }
 }

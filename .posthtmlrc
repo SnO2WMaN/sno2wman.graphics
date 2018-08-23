@@ -1,7 +1,0 @@
-{
-  "plugins": {
-    "posthtml-favicons": {
-      "root": "./src"
-    }
-  }
-}

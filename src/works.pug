@@ -1,5 +1,52 @@
 extends _layout.pug
 
+mixin picture($path,$types)
+  picture
+    each $type in $types
+      case $type
+        when "webp"
+          source(type="image/webp" srcset=$path+"."+$type)
+        when "gif"
+          img(src=$path+"."+$type)
+        when "png"
+          img(src=$path+"."+$type)
+        when "jpg"
+          img(src=$path+"."+$type)
+
+mixin links($links)
+  ul.links
+    each $link in $links
+      li
+        .icon
+          if $link.match(/tumblr/)
+            i.fab.fa-tumblr
+          else if $link.match(/twitter/)
+            i.fab.fa-twitter
+          else
+            i.fas.fa-external-link-alt
+        a(href=$link)
+
+mixin work($year,$id,$title,$size,$imgNum,$imgTypes,$tags,$links,$imageColumn=1)
+  li.work(class="x"+$size class=$id)
+    ul.images(class="x"+$imageColumn)
+      if $imgNum == 1
+        li
+          +picture("./images/works/"+$year+"/"+$id,$imgTypes)
+      else 
+        -$i = 0
+        while $i++ < $imgNum
+          li
+            +picture("./images/works/"+$year+"/"+$id+$i,$imgTypes)
+    .contents
+      .title-wrap
+        h2 #{$title}
+      .wrap
+        ul.tags
+          each $tag in $tags
+            li(class=$tag)
+              p ##{$tag.toUpperCase()}
+        +links($links)
+
 block head
   link(href="./styles/bundle.scss", rel="stylesheet")
   title Works
@@ -7,4 +54,50 @@ block head
 block contents
   #barba-wrapper
     .barba-container(data-namespace="works")
-      include _wip
+      nav
+        -
+          $menus={
+            genre:["webdesign","webmotion","voxel","generative"],
+            type:["business","personal"],
+            year:["2018","2017"]
+          }
+        each $menu,$tp in $menus 
+          ul(class=$tp)          
+            each $t in $menu
+              li(class=$t)
+                .name-wrap
+                  p #{$t.toUpperCase()}
+                .border
+      section#works
+        ._2018
+          .title-wrap
+            h1 2018
+            h2 16 =&gt; 17
+          ul.works
+            li.sizer.x1
+            +work(2018,"eom2018","FAKE TWITTER MOTION",2,1,["webp","gif"],["webmotion","personal"],["https://twitter.com/motions_work/status/980449970443583490","https://sno2wman.tumblr.com/post/177172567150/eom-2018"])
+            +work(2018,"cool","COOL",1,1,["webp","gif"],["webmotion","personal"],["https://sno2wman.tumblr.com/post/177172173315/cool"])
+            +work(2018,"scifiloading","SCIFI LOADING",1,1,["webp","gif"],["webmotion","personal"],["https://sno2wman.tumblr.com/post/177282451360/scifi-loading"])
+            +work(2018,"parallaxive","PARALLAXIVE",1,1,["webp","gif"],["webmotion","personal"],["https://sno2wman.tumblr.com/post/177172253910/parallaxive"])
+            +work(2018,"sunset","SUNSET",1,1,["webp","gif"],["webmotion","personal"],["https://sno2wman.tumblr.com/post/177172342775/sunset"])
+            +work(2018,"nintendoswitch","NINTENDO SWITCH",1,4,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176340083035/nintendo-switch-20180727"])
+            +work(2018,"breakfast","BREAKFAST",1,1,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/177096443750/breakfast"])
+            +work(2018,"birthday","BIRTHDAY 2018",2,4,["webp","jpg"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176333702430/birthday-2018-my-17th-birthday-alone"],2)
+            +work(2018,"laboruin","LABORUIN",3,2,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/177230514350/laboratory-i-posted-magicamagazinecom"])
+            +work(2018,"cdj","CDJ",1,4,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176341628125/cdj-set-20180725"])
+            +work(2018,"windbell","WINDBELL",1,2,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176340660455/wind-bell-20180728-voxel-1-hour"])
+            +work(2018,"readyplayerone","READYPLAYER1",2,1,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176340906650/ready-player-one-akira-kanedas-bike-bttf"])
+            +work(2018,"fuckgravity","F#$K GRAVITY",1,1,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176341220070/f-k-gravity-20180727"])
+            +work(2018,"oldpc","OLD PC",1,1,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176333557715/laboratory-1-20180709-20180712"])
+            +work(2018,"pepsitower","PEPSI TOWER",2,1,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176333557715/laboratory-1-20180709-20180712"])
+            +work(2018,"labothings","LABOTHINGS",1,1,["webp","png"],["voxel","personal"],["https://sno2wman.tumblr.com/post/176333557715/laboratory-1-20180709-20180712"])
+        ._2017
+          .title-wrap
+            h1 2017
+            h2 15 =&gt; 16
+          ul.works
+            li.sizer.x1
+            +work(2017,"vivid","VIVID",2,2,["webp","gif"],["webmotion","personal"],["https://sno2wman.tumblr.com/post/177172285290/vivid"])
+            +work(2017,"cyanmotion","CYANMOTION",2,1,["webp","gif"],["webmotion","personal"],["https://sno2wman.tumblr.com/post/177172196480/cyanmotion"])
+            +work(2017,"hyperfuture","HYPERFUTURE",2,1,["webp","gif"],["webmotion","personal"],["https://sno2wman.tumblr.com/post/177172236615/hyperfuture"])
+            

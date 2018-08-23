@@ -149,7 +149,6 @@
       &:not(:last-of-type) {
         margin-bottom: 5rem;
         padding-bottom: 5rem;
-        border-bottom: dashed 1px $dark;
       }
       & > .title-wrap {
         display: flex;
@@ -177,6 +176,20 @@
           content: '';
           width: 3rem;
           border-bottom: 0.125rem $dark solid;
+        }
+        animation: works-year-title 0.5s $easeInOutCubic paused both;
+        @keyframes works-year-title {
+          from {
+            transform: translateY(25%);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        &.loaded {
+          animation-play-state: running;
         }
       }
       & > .works {

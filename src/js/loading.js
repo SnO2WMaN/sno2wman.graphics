@@ -1,6 +1,5 @@
 import webfontloader from 'webfontloader'
 // import sno2wmanSVG from '../images/sno2wman.svg'
-import nav from './nav'
 
 const debug = true
 
@@ -89,6 +88,4 @@ const loading = debug
           })
       })
 
-export default Promise.all([webfont])
-  .then(() => loading())
-  .then(() => nav.animation())
+export default Promise.all([webfont]).then(() => loading())

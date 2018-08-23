@@ -15,6 +15,7 @@ function moved(target) {
   }
   $socials.classList.add((before = target))
 }
+
 function animation() {
   return new Promise(resolve => {
     $nav.style.animationPlayState = 'running'

@@ -6,6 +6,9 @@ export default Barba.BaseView.extend({
   namespace: 'works',
   onEnter() {
     nav.moved('works')
+    const $menu = document.getElementById('menu')
+    $menu.classList.add('animate')
+
     const $worksRoot = document.getElementById('works')
     $worksRoot.querySelectorAll('._2018,._2017').forEach($year => {
       const $works = $year.querySelector('.works')

@@ -54,7 +54,7 @@ block head
 block contents
   #barba-wrapper
     .barba-container(data-namespace="works")
-      nav
+      nav#menu
         -
           $menus={
             genre:["webdesign","webmotion","voxel","generative"],
@@ -65,6 +65,9 @@ block contents
           ul(class=$tp)          
             each $t in $menu
               li(class=$t)
+                .covers
+                  .cover
+                  .cover
                 .name-wrap
                   p #{$t.toUpperCase()}
                 .border

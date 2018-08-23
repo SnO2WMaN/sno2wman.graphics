@@ -1,10 +1,10 @@
 import webfontloader from 'webfontloader'
-// import sno2wmanSVG from '../images/sno2wman.svg'
+import sno2wmanSVG from '../images/sno2wman.svg'
 
-const debug = true
+const debug = false
 
 const $loading = document.getElementById('loading')
-// $loading.querySelector('.icon-wrap').innerHTML = sno2wmanSVG
+$loading.querySelector('.icon-wrap').innerHTML = sno2wmanSVG
 
 const webfont = new Promise(resolve => {
   webfontloader.load({

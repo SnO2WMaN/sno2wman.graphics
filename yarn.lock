@@ -3418,6 +3418,14 @@ fs-constants@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs-constants/-/fs-constants-1.0.0.tgz#6be0de9be998ce16af8afc24497b9ee9b7ccd9ad"
 
+fs-extra@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.0.tgz#8cc3f47ce07ef7b3593a11b9fb245f7e34c041d6"
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
+
 fs-minipass@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
@@ -3772,7 +3780,7 @@ got@^7.0.0:
     url-parse-lax "^1.0.0"
     url-to-options "^1.0.1"
 
-graceful-fs@^4.0.0, graceful-fs@^4.1.10, graceful-fs@^4.1.2:
+graceful-fs@^4.0.0, graceful-fs@^4.1.10, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
@@ -4762,6 +4770,12 @@ json5@^1.0.1:
   resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
   dependencies:
     minimist "^1.2.0"
+
+jsonfile@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
+  optionalDependencies:
+    graceful-fs "^4.1.6"
 
 jsonify@~0.0.0:
   version "0.0.0"
@@ -6057,17 +6071,17 @@ parcel-bundler@^1.5.0, parcel-bundler@^1.9.7:
     v8-compile-cache "^2.0.0"
     ws "^5.1.1"
 
-parcel-plugin-imagemin@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/parcel-plugin-imagemin/-/parcel-plugin-imagemin-2.1.0.tgz#18c02a69f0071726e6d251f12475cf07dec3993e"
+parcel-plugin-imagemin@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/parcel-plugin-imagemin/-/parcel-plugin-imagemin-2.1.1.tgz#c24b20bae84c46e8e0db48ac36fedf27856e7e39"
   dependencies:
+    fs-extra "^7.0.0"
     imagemin "^5.3.1"
     imagemin-gifsicle "^5.2.0"
     imagemin-mozjpeg "^7.0.0"
     imagemin-pngquant "^5.0.1"
     imagemin-svgo "^6.0.0"
     imagemin-webp "^4.1.0"
-    mkdirp "^0.5.1"
     parcel-bundler "^1.5.0"
 
 parcel-plugin-inlinesvg@^0.0.14:
@@ -8744,6 +8758,10 @@ unist-util-visit@^1.1.0:
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-1.4.0.tgz#1cb763647186dc26f5e1df5db6bd1e48b3cc2fb1"
   dependencies:
     unist-util-visit-parents "^2.0.0"
+
+universalify@^0.1.0:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
 
 unquote@~1.1.1:
   version "1.1.1"

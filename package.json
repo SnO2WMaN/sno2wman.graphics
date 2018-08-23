@@ -38,7 +38,7 @@
     "node-sass": "^4.9.3",
     "node-sass-package-importer": "^5.2.0",
     "parcel-bundler": "^1.9.7",
-    "parcel-plugin-imagemin": "^2.1.0",
+    "parcel-plugin-imagemin": "^2.1.1",
     "parcel-plugin-inlinesvg": "^0.0.14",
     "postcss": "^7.0.2",
     "postcss-scss": "^2.0.0",

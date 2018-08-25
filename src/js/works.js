@@ -6,6 +6,8 @@ export default Barba.BaseView.extend({
   namespace: 'works',
   onEnter() {
     nav.moved('works')
+  },
+  onEnterCompleted() {
     const $menu = document.getElementById('menu')
     $menu.classList.add('animate')
 
@@ -13,7 +15,7 @@ export default Barba.BaseView.extend({
     $worksRoot.querySelectorAll('._2018,._2017').forEach($year => {
       const $works = $year.querySelector('.works')
       $works.querySelectorAll('.work').forEach(($work, i) => {
-        $work.style.animationDelay = `${i * 0.1}s`
+        $work.style.animationDelay = `${i * 0.15}s`
       })
       const msnry = new Masonry($works, {
         itemSelector: '.work',

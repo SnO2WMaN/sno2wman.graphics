@@ -84,7 +84,7 @@
           & > .cover {
             position: absolute;
             size: 100%;
-            animation: works-nav-menu 1s $easeInOutCubic paused both;
+            animation: works-nav-menu 0.5s $easeInOutQuint paused both;
             transform-origin: left;
             @keyframes works-nav-menu {
               from {
@@ -107,10 +107,10 @@
         @for $i from 1 through 4 {
           &:nth-of-type(#{$i}) {
             & > .name-wrap > p {
-              animation-delay: ($i - 1) * 0.125s + 1.25s;
+              animation-delay: ($i - 1) * 0.125s + 1.05s;
             }
             & > .border {
-              animation-delay: ($i - 1) * 0.125s + 1.75s;
+              animation-delay: ($i - 1) * 0.125s + 1.55s;
             }
             & > .covers > .cover {
               @for $j from 1 through 2 {
@@ -201,7 +201,6 @@
           flex-direction: column;
           align-items: center;
           margin-bottom: 2rem;
-          position: absolute;
           &:after {
             content: '';
             width: 5%;
@@ -223,15 +222,16 @@
               opacity: 1;
             }
           }
+          &.sizer {
+            visibility: hidden;
+            position: absolute;
+          }
           @for $i from 1 through $split {
             &.x#{$i} {
               width: (100% / $split * $i);
             }
           }
-          &.sizer {
-            visibility: hidden;
-            position: absolute;
-          }
+
           & > .images {
             display: flex;
 

@@ -1,7 +1,7 @@
 import webfontloader from 'webfontloader'
 import sno2wmanSVG from '../images/sno2wman.svg'
 
-const debug = false
+const debug = !(process.env.NODE_ENV === 'production')
 
 const $loading = document.getElementById('loading')
 $loading.querySelector('.icon-wrap').innerHTML = sno2wmanSVG

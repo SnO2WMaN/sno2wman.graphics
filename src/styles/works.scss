@@ -236,6 +236,7 @@
             display: flex;
 
             width: 90%;
+            flex-direction: column;
             & > li {
               width: 100%;
               display: flex;
@@ -247,16 +248,8 @@
                 flex-direction: column;
                 box-shadow: 0 2px 4px rgba(black, 0.125);
               }
-            }
-            &.x1 {
-              flex-direction: column;
-            }
-            @for $i from 2 through 3 {
-              &.x#{$i} {
-                flex-wrap: wrap;
-                & > li {
-                  width: (100% / $i);
-                }
+              &:not(:last-of-type) {
+                margin-bottom: 0.5rem;
               }
             }
           }

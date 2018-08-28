@@ -143,17 +143,17 @@
   & > #works-wrap {
     width: $section;
     height: 100%;
+    //padding: calc((100vh - #{$root-frame * 2}) / #{metallic(6) + 1}) 0;
     overflow-y: scroll;
-    padding: calc((100vh - #{$root-frame * 2}) / #{metallic(6) + 1}) 0;
     & > ._2017,
     & > ._2018 {
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      &:not(:last-of-type) {
-        margin-bottom: 5rem;
-        padding-bottom: 5rem;
+      padding-top: calc((100vh - #{$root-frame * 2}) / #{metallic(6) + 1});
+      &:last-of-type {
+        padding-bottom: calc((100vh - #{$root-frame * 2}) / #{metallic(6) + 1});
       }
       & > .title-wrap {
         display: flex;

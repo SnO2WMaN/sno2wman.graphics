@@ -16,7 +16,7 @@ export default Barba.BaseView.extend({
     $worksWrap.querySelectorAll('._2018,._2017').forEach($year => {
       const $works = $year.querySelector('.works')
       $works.querySelectorAll('.work').forEach(($work, i) => {
-        $work.style.animationDelay = `${(i - 1) * 0.15}s`
+        $work.style.animationDelay = `${i * 0.15}s`
       })
       const msnry = new Masonry($works, {
         itemSelector: '.work',
@@ -56,6 +56,9 @@ export default Barba.BaseView.extend({
                 .split(',')
                 .includes(selector)
             )
+            appended.forEach(($work, i) => {
+              $work.style.animationDelay = `${i * 0.15}s`
+            })
             msnry.remove(msnry.getItemElements())
             $yearWorks.append(...appended)
             msnry.appended(appended)

@@ -64,7 +64,7 @@
           width: 0.25rem;
           border-bottom: 1px solid $dark;
           margin-left: 0.5rem;
-          transition: 0.5s $easeInOutQuad;
+          transition: 0.25s $easeInOutQuad;
           transition-property: width;
           animation: works-nav-border 0.25s $easeInOutCubic paused both;
           transform-origin: left;
@@ -101,7 +101,7 @@
         }
         &:hover {
           & > .border {
-            width: 1rem;
+            width: 50%;
           }
         }
         @for $i from 1 through 4 {
@@ -122,6 +122,11 @@
             }
           }
         }
+        &.selected {
+          & > .border {
+            width: 100%;
+          }
+        }
       }
     }
     &.animate {
@@ -135,7 +140,7 @@
       }
     }
   }
-  & > section {
+  & > #works-wrap {
     width: $section;
     height: 100%;
     overflow-y: scroll;

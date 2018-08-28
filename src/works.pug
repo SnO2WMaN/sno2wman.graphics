@@ -27,7 +27,7 @@ mixin links($links)
         a(href=$link target="_blank")
 
 mixin work($year,$id,$title,$size,$imgNum,$imgTypes,$tags,$links)
-  li.work(class="x"+$size class=$id)
+  li.work(class="x"+$size,class=$id,data-tags=$tags.join(","))
     ul.images
       if $imgNum == 1
         li
@@ -57,21 +57,21 @@ block contents
       nav#menu
         -
           $menus={
-            genre:["webdesign","webmotion","voxel","generative"],
+            genre:["webmotion","voxel","generative"],
             type:["business","personal"],
             year:["2018","2017"]
           }
         each $menu,$tp in $menus 
           ul(class=$tp)          
             each $t in $menu
-              li(class=$t)
+              li(data-selector=$t)
                 .covers
                   .cover
                   .cover
                 .name-wrap
                   p #{$t.toUpperCase()}
                 .border
-      section#works
+      section#works-wrap
         ._2018
           .title-wrap
             h1 2018

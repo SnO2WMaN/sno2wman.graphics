@@ -31,15 +31,15 @@ const loading = debug
       })
   : () =>
       new Promise(r => {
-        Promise.all([
-          ...[...$loading.querySelectorAll('.loaders > .loader')].map($e => {
+        Promise.all(
+          [...$loading.querySelectorAll('.loaders > .loader')].map($e => {
             return new Promise(resolve =>
               $e.addEventListener('animationiteration', () => {
                 resolve()
               })
             )
-          }),
-        ])
+          })
+        )
           .then(() =>
             Promise.all([
               new Promise(resolve => {

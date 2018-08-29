@@ -1,0 +1,35 @@
+#transit {
+  position: absolute;
+  right: 0;
+  width: (100% / (1 + $navRatio)) * $navRatio;
+  height: 100%;
+  background: $whity;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 1s ease;
+  transition-property: opacity transform;
+  & > .terminal {
+    background: $dark;
+    padding: 1rem;
+    size: (100% / (metallic(2) + 1));
+    box-shadow: 0 2px 4px rgba(black, 0.5);
+    & > p {
+      color: $whity;
+      font-family: 'Roboto Mono', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.06rem;
+      &:not(:last-of-type) {
+        margin-bottom: 0.125rem;
+      }
+    }
+  }
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(5%);
+  }
+}

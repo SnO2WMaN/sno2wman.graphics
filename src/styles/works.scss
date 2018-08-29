@@ -84,7 +84,7 @@
           & > .cover {
             position: absolute;
             size: 100%;
-            animation: works-nav-menu 0.5s $easeInOutQuint paused both;
+            animation: works-nav-menu 0.75s $easeInOutExpo paused both;
             transform-origin: left;
             @keyframes works-nav-menu {
               from {
@@ -121,7 +121,7 @@
               @for $j from 1 through 2 {
                 &:nth-of-type(#{$j}) {
                   background: lighten($dark, ($j - 1) * 10%);
-                  animation-delay: ($i - 1) * 0.125s + ($j - 1) * 0.1s + 0.75s;
+                  animation-delay: ($i - 1) * 0.1s + ($j - 1) * 0.175s + 0.75s;
                 }
               }
             }

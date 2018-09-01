@@ -7,6 +7,7 @@ import {
   faBirthdayCake,
   faClock,
   faUmbrellaBeach,
+  faPastafarianism,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faTwitter,
@@ -33,6 +34,7 @@ library.add(
   faBirthdayCake,
   faClock,
   faUmbrellaBeach,
+  faPastafarianism,
   // bland
   faTwitter,
   faTumblr,

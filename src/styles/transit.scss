@@ -11,7 +11,7 @@
   visibility: hidden;
   opacity: 0;
   transition: 1s ease;
-  transition-property: opacity transform;
+  transition-property: opacity, transform, visibility;
   & > .terminal {
     background: $dark;
     padding: 1rem;

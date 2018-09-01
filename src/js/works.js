@@ -53,7 +53,7 @@ export default Barba.BaseView.extend({
           $worksWrap.classList.add('scrolling')
           const easing = bezierEasing(0.77, 0.0, 0.175, 1.0)
           let i = 0
-          const v = 0.025 * (3000 / Math.abs(move))
+          const v = 0.01
           const scroll = () => {
             if (i > 1) {
               $worksWrap.scrollTop = to

@@ -9,35 +9,115 @@
     & > .image-wrap {
       width: 100%;
       height: (100% / metallic(1));
-      position: relative;
+      display: flex;
+      overflow: hidden;
       & > .image {
-        position: absolute;
-        size: 100%;
-        background-position: center;
+        width: 100%;
+        height: 100%;
         background-size: cover;
         background-image: url('../images/profile.jpg');
+        background-attachment: fixed;
+        background-position: center;
+        animation: $easeInOutCubic paused both;
+
+        $images: 10;
+        @for $i from 0 to $images {
+          &:nth-of-type(#{$i + 1}) {
+            animation-delay: 0.25s +
+              (1 - sin($i / ($images - 1) * $PI)) *
+              0.25s;
+            animation-duration: 0.5s + (1 - sin($i / ($images - 1) * $PI)) * 2s;
+            animation-name: profile-header-image-#{$i % 2 + 1};
+          }
+        }
+
+        $translate: 5%;
+        @keyframes profile-header-image-1 {
+          0% {
+            transform: translateY($translate);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        @keyframes profile-header-image-2 {
+          0% {
+            transform: translateY(-$translate);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
+      &.animated {
+        & > .image {
+          animation-play-state: running;
+        }
       }
     }
     & > .icon-wrap {
       $size: 9rem;
       size: $size;
       position: absolute;
-      background: $dark;
       left: 0;
       right: 0;
       top: calc(#{100% / metallic(1)} - #{$size / 2});
       margin: 0 auto;
       display: flex;
       border-radius: 50%;
-      box-shadow: 0 2px 8px rgba($dark, 0.5);
       & > .icon {
         position: absolute 0;
         size: 90%;
         margin: auto;
-        background-position: center;
-        background-size: cover;
-        background-image: url('http://www.gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57');
         border-radius: 50%;
+        z-index: 1;
+        animation: profile-header-icon 0.5s $easeInOutExpo paused both;
+        animation-delay: 0.55s;
+        @keyframes profile-header-icon {
+          0% {
+            transform: scale(0) rotate(1rad);
+          }
+          100% {
+            transform: scale(1) rotate(0);
+          }
+        }
+      }
+      & > .covers {
+        position: absolute;
+        size: 100%;
+        & > .cover {
+          position: absolute;
+          size: 100%;
+          border-radius: 50%;
+          &:first-of-type {
+            box-shadow: 0 2px 8px rgba($dark, 0.5);
+          }
+          animation: profile-header-icon-covers 0.5s $easeInOutExpo paused both;
+          @for $i from 1 through 2 {
+            &:nth-of-type(#{$i}) {
+              background-color: lighten($dark, (2 - $i) * 10%);
+              animation-delay: ($i - 1) * 0.1s + 0.25s;
+            }
+          }
+          @keyframes profile-header-icon-covers {
+            0% {
+              transform: scale(0);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        }
+      }
+      &.animated {
+        & > .covers > .cover,
+        & > .icon {
+          animation-play-state: running;
+        }
       }
     }
     & > .contents {
@@ -59,7 +139,31 @@
           letter-spacing: 0.25rem;
           margin-bottom: 1rem;
           font-family: 'VT323', sans-serif;
+          overflow: hidden;
+          & > span {
+            display: inline-block;
+            animation: profile-header-title 0.25s $easeInOutCubic paused both;
+            @for $i from 1 through 8 {
+              &:nth-of-type(#{$i}) {
+                animation-delay: ($i - 1) * 0.05s + 0.25s;
+              }
+            }
+            @keyframes profile-header-title {
+              0% {
+                transform: translateY(100%);
+              }
+              100% {
+                transform: translateY(0);
+              }
+            }
+          }
         }
+      }
+      & > .subtitles-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         & > h2 {
           color: $dark;
           font-size: 0.75rem;
@@ -67,6 +171,27 @@
           font-family: 'Poppins', sans-serif;
           &:not(:last-of-type) {
             margin-bottom: 0.25rem;
+          }
+          animation: profile-header-subtitles 0.25s $easeInOutCubic paused both;
+          @for $i from 1 through 3 {
+            &:nth-of-type(#{$i}) {
+              animation-delay: ($i - 1) * 0.1s + 0.45s;
+            }
+          }
+          @keyframes profile-header-subtitles {
+            0% {
+              transform: translateY(25%);
+              opacity: 0;
+            }
+            100% {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
+        }
+        &.animated {
+          & > h2 {
+            animation-play-state: running;
           }
         }
       }
@@ -89,11 +214,48 @@
         white-space: nowrap;
         padding: 0 1rem;
       }
+      animation: profile-header-guide 0.5s $easeOutExpo paused both;
+      animation-delay: 1.25s;
+      @keyframes profile-header-guide {
+        0% {
+          opacity: 0;
+          transform: translateY(50%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
       &:before,
       &:after {
         content: '';
         border-bottom: 1px $dark dotted;
         width: 5rem;
+        animation: profile-header-guide-border 0.25s $easeInOutExpo paused both;
+        animation-delay: 1.3s;
+        @keyframes profile-header-guide-border {
+          0% {
+            transform: scaleX(0);
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+            transform: scaleX(1);
+          }
+        }
+      }
+      &:before {
+        transform-origin: right;
+      }
+      &:after {
+        transform-origin: left;
+      }
+      &.animated {
+        animation-play-state: running;
+        &:before,
+        &:after {
+          animation-play-state: running;
+        }
       }
     }
   }
@@ -212,6 +374,7 @@
                 youtube: #ff0000,
                 mastodon: #3088d4,
                 facebook: #3b5998,
+                codepen: #191a1d,
               );
               @each $brand, $color in $colors {
                 &.#{$brand} {

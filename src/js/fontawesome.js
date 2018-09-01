@@ -16,6 +16,7 @@ import {
   faDiscord,
   faGithub,
   faSteam,
+  faCodepen,
   faDribbble,
   faBehance,
   faYoutube,
@@ -44,6 +45,7 @@ library.add(
   faBehance,
   faYoutube,
   faSoundcloud,
-  faMastodon
+  faMastodon,
+  faCodepen
 )
 dom.watch()

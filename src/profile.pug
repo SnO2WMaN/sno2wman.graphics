@@ -9,12 +9,20 @@ block contents
     .barba-container(data-namespace="profile")    
       header
         .image-wrap
-          .image
+          -$i = 0
+          while $i++ < 10
+            .image
         .icon-wrap
-          .icon
+          .covers
+            .cover
+            .cover
+          img.icon(src="http://www.gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57")
         .contents
           .title-wrap
-            h1 SnO2WMaN
+            h1 
+              each $char in "SnO2WMaN".split("")
+                span #{$char}
+          .subtitles-wrap
             h2 A Webdesigner
             h2 In Japan
             h2 Born in 2001
@@ -39,6 +47,7 @@ block contents
                     twitch:"https://www.twitch.tv/sno2wman",
                     spotify:"https://open.spotify.com/user/sno2wman",
                     mastodon:"https://mstdn.jp/@SnO2WMaN",
+                    codepen:"https://codepen.io/SnO2WMaN"
                   }
                   $copies = {
                     discord:"SnO2WMaN#9459"
@@ -64,7 +73,7 @@ block contents
             .profile-wrap
               .wrap
                 .icon-wrap
-                  img(src="./images/me.png")
+                  img(src="./images/me.jpg")
                 .text-wrap
                   p ナード的活動をしている無軌道な学生
                   p ウェブデザイン、ボクセルなどをしています

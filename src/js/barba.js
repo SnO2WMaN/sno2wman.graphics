@@ -1,6 +1,7 @@
 import Barba from 'barba.js'
 import imagesLoaded from 'imagesloaded'
 import index from '.'
+import profile from './profile'
 import works from './works'
 import nav from './nav'
 import terminal from './terminal'
@@ -15,7 +16,7 @@ function createSimpleView(namespace) {
 }
 
 index.init()
-createSimpleView('profile').init()
+profile.init()
 works.init()
 createSimpleView('contact').init()
 Barba.Pjax.getTransition = () =>

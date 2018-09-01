@@ -24,16 +24,16 @@ function animation() {
     return Promise.all([
       ...[...$nav.querySelectorAll('.title-wrap .site span')].map($span => {
         return new Promise(resolve => {
-          $span.style.animationPlayState = 'running'
-          const ch = $span.innerHTML
-          const shuffler = setInterval(() => {
+          const origin = $span.innerHTML
+          const ticker = setInterval(() => {
             $span.innerHTML = String.fromCharCode(
               48 + Math.floor(Math.random() * 74)
             )
           }, 40)
+          $span.style.animationPlayState = 'running'
           $span.addEventListener('animationend', () => {
-            clearInterval(shuffler)
-            $span.innerHTML = ch
+            clearInterval(ticker)
+            $span.innerHTML = origin
             resolve()
           })
         })

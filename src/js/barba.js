@@ -25,7 +25,7 @@ Barba.Pjax.getTransition = () =>
       nav.linkStop(true)
       terminal.appear()
       terminal.clear()
-      terminal.addLine(`cd ${location.href}`)
+      terminal.addLine(`cat ${location.href}`)
       Promise.all([this.newContainerLoading, this.fadeOut()])
         .then(() => this.fadeIn())
         .then(this.finish.bind(this))

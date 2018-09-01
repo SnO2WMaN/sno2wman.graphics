@@ -45,7 +45,10 @@ export default Barba.BaseView.extend({
             return
           }
           const from = $worksWrap.scrollTop
-          const to = $worksWrap.querySelector(`._${selector}`).offsetTop
+          const to = Math.max(
+            0,
+            $worksWrap.querySelector(`._${selector}`).offsetTop
+          )
           const move = to - from
           if (Math.abs(move) < 100) {
             return

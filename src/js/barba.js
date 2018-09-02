@@ -2,23 +2,15 @@ import Barba from 'barba.js'
 import imagesLoaded from 'imagesloaded'
 import index from '.'
 import profile from './profile'
+import contact from './contact'
 import works from './works'
 import nav from './nav'
 import terminal from './terminal'
 
-function createSimpleView(namespace) {
-  return Barba.BaseView.extend({
-    namespace,
-    onEnter() {
-      nav.moved(namespace)
-    },
-  })
-}
-
 index.init()
 profile.init()
 works.init()
-createSimpleView('contact').init()
+contact.init()
 Barba.Pjax.getTransition = () =>
   Barba.BaseTransition.extend({
     start() {

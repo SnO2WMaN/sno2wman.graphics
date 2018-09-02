@@ -7,18 +7,21 @@ block head
 block contents
   #barba-wrapper
     .barba-container(data-namespace="contact")
-      form(name="contact" method="POST" netlify)
+      form#form(name="contact" method="POST" netlify-honeypot="honeypot" netlify)
         .left
           label(for="message") Message
-          textarea(name="message" type="text")
+          textarea(name="message" type="text" required)
         .right
           .inputs
+            .honeypot
+              label(for="honeypot") Honeypot
+              input(name="honeypot", type="text", placeholder="For Bot, not for Human.")  
             .name
               label(for="name") Name
-              input(name="name" type="text")  
+              input(name="name" type="text" required)  
             .email
               label(for="email") Email
-              input(name="email" type="email")  
+              input(name="email" type="email" required)  
             .org
               label(for="org") 
                 |Org
@@ -29,6 +32,5 @@ block contents
                 |Website
                 span option
               input(name="website" type="text")
-          .data-netlify-recaptcha
           .button
             button(type="submit") SEND

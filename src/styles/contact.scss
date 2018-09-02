@@ -4,12 +4,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  & > form {
+  #form {
     $height: 420px;
     height: $height;
     width: $height * metallic(2);
     display: flex;
     $ratio: metallic(2);
+    animation: contact-form 1s $easeInOutQuad both paused;
+    @keyframes contact-form {
+      0% {
+        opacity: 0;
+        transform: translateY(10%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     & > .left {
       width: (100% / (1 + $ratio) * $ratio);
       background: $light;
@@ -29,6 +40,7 @@
         resize: none;
         padding: 0.5em;
         font-family: 'Sawarabi Gothic', sans-serif;
+        letter-spacing: 0.0125rem;
         background-color: $whity;
         border: 1px rgba($dark, 0.125) solid;
         outline: none;
@@ -62,6 +74,11 @@
           flex-direction: column;
           &:not(:last-of-type) {
             margin-bottom: 0.75rem;
+          }
+          &.honeypot {
+            visibility: hidden;
+            height: 0;
+            margin: 0;
           }
           & > label {
             color: $whity;

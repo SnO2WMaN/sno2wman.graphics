@@ -12,7 +12,7 @@ const webfont = new Promise(resolve => {
       families: [
         'VT323',
         'Lobster Two:400i',
-        'Poppins',
+        'Poppins;400,300',
         'Roboto Mono',
         'Sawarabi Gothic:latin,japanese',
       ],

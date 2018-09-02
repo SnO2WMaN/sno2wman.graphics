@@ -7,4 +7,28 @@ block head
 block contents
   #barba-wrapper
     .barba-container(data-namespace="contact")
-      include _wip
+      form(name="contact" method="POST" netlify)
+        .left
+          label(for="message") Message
+          textarea(name="message" type="text")
+        .right
+          .inputs
+            .name
+              label(for="name") Name
+              input(name="name" type="text")  
+            .email
+              label(for="email") Email
+              input(name="email" type="email")  
+            .org
+              label(for="org") 
+                |Org
+                span option
+              input(name="org" type="text")  
+            .website
+              label(for="website") 
+                |Website
+                span option
+              input(name="website" type="text")
+          .data-netlify-recaptcha
+          .button
+            button(type="submit") SEND

@@ -1,6 +1,131 @@
 @import './const';
 
 [data-namespace='contact'] {
-  overflow-y: scroll;
-  @import './wip';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > form {
+    $height: 420px;
+    height: $height;
+    width: $height * metallic(2);
+    display: flex;
+    $ratio: metallic(2);
+    & > .left {
+      width: (100% / (1 + $ratio) * $ratio);
+      background: $light;
+      padding: (1.5rem * metallic(1)) 1.5rem;
+      display: flex;
+      flex-direction: column;
+      & > label {
+        font-family: 'Poppins', sans-serif;
+        color: $dark;
+        font-size: 1.25rem;
+        letter-spacing: 0.1rem;
+        margin-bottom: 0.5rem;
+        user-select: none;
+      }
+      & > textarea {
+        size: 100%;
+        resize: none;
+        padding: 0.5em;
+        font-family: 'Sawarabi Gothic', sans-serif;
+        background-color: $whity;
+        border: 1px rgba($dark, 0.125) solid;
+        outline: none;
+        color: $dark;
+        &::selection {
+          background-color: rgba($dark, 0.25);
+        }
+        &:hover,
+        &:focus {
+          box-shadow: 0 1px 2px rgba(black, 0.05);
+        }
+      }
+    }
+    & > .right {
+      width: (100% / (1 + $ratio));
+      background: $dark;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: (1.5rem * metallic(1)) 1.5rem;
+      & > .inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        & > * {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          &:not(:last-of-type) {
+            margin-bottom: 0.75rem;
+          }
+          & > label {
+            color: $whity;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.1rem;
+            margin-bottom: 0.5rem;
+            user-select: none;
+            & > span {
+              margin-left: 0.25rem;
+              font-size: 0.5em;
+              color: rgba($whity, 0.5);
+            }
+          }
+          & > input {
+            width: 100%;
+            font-size: 0.75rem;
+            letter-spacing: 0.025rem;
+            font-family: 'Sawarabi Gothic', sans-serif;
+            padding: 0.125em 0;
+            padding-left: 0.25em;
+            background-color: $whity;
+            border: 1px rgba($dark, 0.125) solid;
+            outline: none;
+            color: $dark;
+            &:hover,
+            &:focus {
+              box-shadow: 0 1px 2px rgba(black, 0.05);
+            }
+            &::selection {
+              background-color: rgba($dark, 0.25);
+            }
+            &:-webkit-autofill {
+              -webkit-box-shadow: 0 0 0px 1000px $whity inset;
+            }
+          }
+        }
+      }
+      & > .button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        & > button {
+          padding: 0.5rem (0.5rem * metallic(2));
+          background: $whity;
+          font-size: 0.8rem;
+          letter-spacing: 0.25rem;
+          font-family: 'Poppins', sans-serif;
+          border: 0;
+          outline: none;
+          cursor: pointer;
+          user-select: none;
+          transition: 0.125s ease;
+          transition-property: box-shadow, transform;
+          &:hover,
+          &:active {
+            box-shadow: 0 4px 8px rgba(black, 0.5);
+          }
+          &:active {
+            transform: translateY(4px);
+          }
+        }
+      }
+    }
+  }
 }

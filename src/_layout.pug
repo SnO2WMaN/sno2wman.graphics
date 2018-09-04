@@ -1,4 +1,7 @@
 -$index_heroes = 3
+-const $title = "SnO2WMaN.GRAPHICS"
+-const $description = "SnO2WMaN was here."
+-const $favicon = "https://www.gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57?s=512"
 
 <!DOCTYPE html>
 html(lang="en")
@@ -6,7 +9,25 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    link(href="./icons/favicon.png", rel="icon")
+    link(href=$favicon, rel="icon")
+
+    meta(name="google" contents="notranslate")
+    meta(name="description" contents=$description)
+
+    meta(property="og:title" contents=$title)
+    meta(property="og:locate" contents="ja_JP")
+    meta(property="og:type" contents="website")
+    meta(property="og:description" contents=$description)
+    meta(property="og:url" content="https://sno2wman.graphics")
+    meta(property="og:site_name" content=$title)
+    meta(property="og:image" content=$favicon)
+
+    meta(name="twitter:card" content="summary")
+    meta(name="twitter:site" content="@SnO2WMaN")
+    meta(name="twitter:creator" content="@SnO2WMaN")
+    meta(name="twitter:title" content=$title)
+    meta(name="twitter:description" content=$description)
+
     block head
   body
     #frame

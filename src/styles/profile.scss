@@ -278,7 +278,7 @@
       & > .card {
         $split: 3;
         width: (100% / $split);
-        padding-bottom: 8rem;
+        margin-bottom: 5rem;
         @for $i from 2 through $split {
           &.x#{$i} {
             width: (100% / $split * $i);
@@ -333,10 +333,10 @@
                 margin-bottom: $margin;
                 transition: 0.1s ease transform;
                 user-select: none;
+                cursor: pointer;
                 & > a {
                   position: absolute 0;
                   size: 100%;
-                  cursor: pointer;
                   z-index: 1;
                 }
                 & > .icon-wrap {
@@ -522,7 +522,7 @@
                   display: flex;
                   justify-content: center;
                   align-items: center;
-                  color: rgba($dark, 0.75);
+                  color: white;
                 }
                 & > .image-wrap {
                   & > .image {

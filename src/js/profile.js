@@ -2,6 +2,7 @@
 
 import Barba from 'barba.js'
 import Masonry from 'masonry-layout'
+import Clipboard from 'clipboard'
 import nav from './nav'
 
 export default Barba.BaseView.extend({
@@ -41,5 +42,7 @@ export default Barba.BaseView.extend({
       percentPosition: true,
       transitionDuration: 0,
     })
+    const $cardSocial = $section.querySelector('.card.socials')
+    new Clipboard($cardSocial.querySelectorAll('.socials > .copy'))
   },
 })

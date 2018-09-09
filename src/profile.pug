@@ -87,7 +87,7 @@ block contents
           .card.socials
             .title-wrap
               h2 SOCIAL
-              h3 ここにいるぞ
+              h3 私が来た
             .contents
               ul.socials
                 -
@@ -114,8 +114,7 @@ block contents
                       .icon
                         i.fas.fa-external-link-alt
                 each $copy,$social in $copies  
-                  li.discord
-                    a(data-copy=$copy)
+                  li.copy(class=$social data-clipboard-text=$copy)
                     .icon-wrap
                       i.fab(class="fa-"+$social)
                     .text-wrap
@@ -125,7 +124,7 @@ block contents
           .card.playlist
             .title-wrap
               h2 PLAYLIST
-              h3 音楽の好み
+              h3 こういう音楽が好き
             .contents
               ul.playlists
                 -
@@ -167,3 +166,8 @@ block contents
                     .texts-wrap
                       h2 #{$choise[1]}
                       h3 #{$choise[2]}
+          .card.skillset.x2
+            .title-wrap
+              h2 SKILLSET
+              h3 ﾁｮｯﾄﾃﾞｷﾙ
+        

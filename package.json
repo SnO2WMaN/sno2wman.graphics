@@ -57,6 +57,7 @@
     "awesome-sass-easing": "^1.1.2",
     "barba.js": "^1.0.0",
     "bezier-easing": "^2.1.0",
+    "clipboard": "^2.0.1",
     "imagesloaded": "^4.1.4",
     "masonry-layout": "^4.2.2",
     "mathsass": "^0.10.1",

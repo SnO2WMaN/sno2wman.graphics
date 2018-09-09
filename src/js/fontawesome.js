@@ -36,6 +36,7 @@ import { faClock } from '@fortawesome/free-solid-svg-icons/faClock'
 import { faUmbrellaBeach } from '@fortawesome/free-solid-svg-icons/faUmbrellaBeach'
 import { faPastafarianism } from '@fortawesome/free-solid-svg-icons/faPastafarianism'
 
+import { faAmazon } from '@fortawesome/free-brands-svg-icons/faAmazon'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter'
 import { faTumblr } from '@fortawesome/free-brands-svg-icons/faTumblr'
 import { faTwitch } from '@fortawesome/free-brands-svg-icons/faTwitch'
@@ -49,6 +50,7 @@ import { faBehance } from '@fortawesome/free-brands-svg-icons/faBehance'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube'
 import { faSoundcloud } from '@fortawesome/free-brands-svg-icons/faSoundcloud'
 import { faMastodon } from '@fortawesome/free-brands-svg-icons/faMastodon'
+import { faPaypal } from '@fortawesome/free-brands-svg-icons/faPaypal'
 
 library.add(
   // solid
@@ -61,6 +63,7 @@ library.add(
   faUmbrellaBeach,
   faPastafarianism,
   // bland
+  faAmazon,
   faTwitter,
   faTumblr,
   faTwitch,
@@ -73,6 +76,7 @@ library.add(
   faYoutube,
   faSoundcloud,
   faMastodon,
-  faCodepen
+  faCodepen,
+  faPaypal
 )
 dom.watch()

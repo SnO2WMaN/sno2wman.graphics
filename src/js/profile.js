@@ -1,4 +1,7 @@
+/* eslint-disable no-new */
+
 import Barba from 'barba.js'
+import Masonry from 'masonry-layout'
 import nav from './nav'
 
 export default Barba.BaseView.extend({
@@ -8,7 +11,7 @@ export default Barba.BaseView.extend({
   },
   onEnterCompleted() {
     const $root = document.querySelector('#barba-wrapper > .barba-container')
-    const $header = $root.querySelector('header')
+    const $header = $root.querySelector(':scope header')
     $header.querySelector('.image-wrap').classList.add('animated')
     $header.querySelector('.icon-wrap').classList.add('animated')
     $header
@@ -30,5 +33,13 @@ export default Barba.BaseView.extend({
       .querySelector('.contents > .subtitles-wrap')
       .classList.add('animated')
     $header.querySelector('.guide-wrap').classList.add('animated')
+
+    const $section = $root.querySelector(':scope section')
+    new Masonry($section.querySelector('.cards'), {
+      itemSelector: '.card',
+      columnWidth: '.sizer',
+      percentPosition: true,
+      transitionDuration: 0,
+    })
   },
 })

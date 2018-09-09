@@ -2,6 +2,74 @@
 
 [data-namespace='profile'] {
   overflow-y: scroll;
+  & > header,
+  & > section {
+    & > .guide-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      bottom: 1%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & > p {
+        color: $dark;
+        font-size: 0.6rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 0.18rem;
+        font-family: 'Poppins', sans-serif;
+        white-space: nowrap;
+        padding: 0 1rem;
+      }
+      animation: profile-header-guide 0.5s cubic-bezier(1, 0.11, 0.725, 0.96)
+        paused both;
+      @keyframes profile-header-guide {
+        0% {
+          opacity: 0;
+          transform: translateY(100%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      &:before,
+      &:after {
+        content: '';
+        border-bottom: 1px $dark dotted;
+        width: 5rem;
+        animation: profile-header-guide-border 0.5s
+          cubic-bezier(1, 0.11, 0.725, 0.96) paused both;
+        animation-delay: 0.5s;
+        @keyframes profile-header-guide-border {
+          0% {
+            transform: scaleX(0);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: scaleX(1);
+          }
+        }
+      }
+      &:before {
+        transform-origin: right;
+      }
+      &:after {
+        transform-origin: left;
+      }
+      &.animated {
+        animation-play-state: running;
+        &:before,
+        &:after {
+          animation-play-state: running;
+        }
+      }
+    }
+  }
   & > header {
     width: 100%;
     height: 100%;
@@ -198,220 +266,161 @@
         }
       }
     }
-    & > .guide-wrap {
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      bottom: 1%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      & > p {
-        color: $dark;
-        font-size: 0.6rem;
-        margin-bottom: 0.25rem;
-        letter-spacing: 0.18rem;
-        font-family: 'Poppins', sans-serif;
-        white-space: nowrap;
-        padding: 0 1rem;
-      }
-      animation: profile-header-guide 0.5s $easeOutExpo paused both;
-      animation-delay: 1.25s;
-      @keyframes profile-header-guide {
-        0% {
-          opacity: 0;
-          transform: translateY(50%);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      &:before,
-      &:after {
-        content: '';
-        border-bottom: 1px $dark dotted;
-        width: 5rem;
-        animation: profile-header-guide-border 0.25s $easeInOutExpo paused both;
-        animation-delay: 1.3s;
-        @keyframes profile-header-guide-border {
-          0% {
-            transform: scaleX(0);
-            opacity: 0;
-          }
-          100% {
-            opacity: 1;
-            transform: scaleX(1);
-          }
-        }
-      }
-      &:before {
-        transform-origin: right;
-      }
-      &:after {
-        transform-origin: left;
-      }
-      &.animated {
-        animation-play-state: running;
-        &:before,
-        &:after {
-          animation-play-state: running;
-        }
-      }
-    }
   }
   & > section {
     width: 100%;
-    height: 100%;
     background: $whity;
     display: flex;
     justify-content: center;
-    align-items: center;
-    & > .wrap {
-      $social-width: (100% / (metallic(2) + 1));
-      $profile-width: 100% - $social-width;
+    padding: (100% / (metallic(1) + 1) / 2) 0;
+    & > .cards {
       width: (100% / metallic(1));
-      height: (100% / metallic(1));
-      display: flex;
-      flex-direction: column;
-      & > .titles {
-        display: flex;
-        width: 100%;
-        margin-bottom: 2rem;
+      & > .card {
+        $split: 3;
+        width: (100% / $split);
+        padding-bottom: 8rem;
+        @for $i from 2 through $split {
+          &.x#{$i} {
+            width: (100% / $split * $i);
+          }
+        }
         & > .title-wrap {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          margin-bottom: 2rem;
           & > h2 {
             color: $dark;
             font-size: 1.25rem;
             font-family: 'Poppins', sans-serif;
             letter-spacing: 0.5rem;
             font-weight: 400;
+            margin-bottom: 0.5em;
+            margin-left: 0.5rem;
           }
-          &.social {
-            width: $social-width;
-          }
-          &.profile {
-            width: $profile-width;
+          & > h3 {
+            color: $dark;
+            font-size: 0.66rem;
+            font-family: 'Sawarabi Gothic', sans-serif;
+            letter-spacing: 0.05rem;
+            font-weight: 400;
           }
         }
-      }
-      & > .contents {
-        flex-grow: 2;
-        display: flex;
-        & > .socials-wrap {
-          width: $social-width;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          & > .socials {
+        &.sizer {
+          visibility: hidden;
+          height: 0;
+          padding: 0;
+        }
+        &.socials {
+          & > .contents {
             display: flex;
             flex-direction: column;
-            $margin: 0.75rem;
-            margin-bottom: -$margin;
-            & > li {
+            justify-content: center;
+            align-items: center;
+            & > .socials {
               display: flex;
-              flex-direction: row;
-              align-items: stretch;
-              position: relative;
-              overflow: hidden;
-              box-shadow: 0 2px 4px rgba(black, 0.125);
-              margin-bottom: $margin;
-              transition: 0.1s ease transform;
-              user-select: none;
-              & > a {
-                position: absolute 0;
-                size: 100%;
-                cursor: pointer;
-                z-index: 1;
-              }
-              & > .icon-wrap {
-                $iconSize: 1.2rem;
-                size: $iconSize * metallic(2);
-                font-size: $iconSize;
+              flex-direction: column;
+              $margin: 0.75rem;
+              margin-bottom: -$margin;
+              & > li {
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                color: rgba(white, 0.9);
-              }
-              & > .text-wrap {
-                flex-grow: 2;
-                display: flex;
-                align-items: center;
-                padding-left: 1.25rem;
-                padding-right: 3.25rem;
-                background-color: rgba(white, 0.1);
-                box-shadow: 0 0 4px rgba(black, 0.1);
-                transition: 0.1s ease;
-                transition-property: background-color;
-                & > p {
-                  color: rgba(white, 0.75);
-                  letter-spacing: 0.1rem;
-                  font-size: 0.7rem;
-                  font-family: 'Poppins', sans-serif;
+                flex-direction: row;
+                align-items: stretch;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 1px 3px rgba(black, 0.1);
+                margin-bottom: $margin;
+                transition: 0.1s ease transform;
+                user-select: none;
+                & > a {
+                  position: absolute 0;
+                  size: 100%;
+                  cursor: pointer;
+                  z-index: 1;
                 }
-                & > .icon {
-                  position: absolute;
-                  right: 1rem;
-                  margin-left: 0.8rem;
-                  font-size: 0.75rem;
-                  color: rgba(white, 0.3);
+                & > .icon-wrap {
+                  $iconSize: 1.2rem;
+                  size: $iconSize * metallic(2);
+                  font-size: $iconSize;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  color: rgba(white, 0.9);
                 }
-              }
-              $colors: (
-                twitter: #1da1f2,
-                tumblr: #35465c,
-                twitch: #6441a5,
-                discord: #7289da,
-                spotify: #1db954,
-                steam: #2b3647,
-                github: #24292e,
-                behance: #1769ff,
-                dribbble: #ea4c89,
-                soundcloud: #ff8800,
-                youtube: #ff0000,
-                mastodon: #3088d4,
-                facebook: #3b5998,
-                codepen: #191a1d,
-              );
-              @each $brand, $color in $colors {
-                &.#{$brand} {
-                  background-color: $color;
-                  order: floor(strip-unit(hue($color)));
-                  ::selection {
-                    background-color: $color;
+                & > .text-wrap {
+                  flex-grow: 2;
+                  display: flex;
+                  align-items: center;
+                  padding-left: 1.25rem;
+                  padding-right: 3.25rem;
+                  background-color: rgba(white, 0.1);
+                  box-shadow: 0 0 4px rgba(black, 0.1);
+                  transition: 0.1s ease;
+                  transition-property: background-color;
+                  & > p {
+                    color: rgba(white, 0.75);
+                    letter-spacing: 0.1rem;
+                    font-size: 0.7rem;
+                    font-family: 'Poppins', sans-serif;
+                  }
+                  & > .icon {
+                    position: absolute;
+                    right: 1rem;
+                    margin-left: 0.8rem;
+                    font-size: 0.75rem;
+                    color: rgba(white, 0.3);
                   }
                 }
-              }
-              &:hover {
-                & > .text-wrap {
-                  background-color: rgba(white, 0.2);
+                $colors: (
+                  twitter: #1da1f2,
+                  tumblr: #35465c,
+                  twitch: #6441a5,
+                  discord: #7289da,
+                  spotify: #1db954,
+                  steam: #2b3647,
+                  github: #24292e,
+                  behance: #1769ff,
+                  dribbble: #ea4c89,
+                  soundcloud: #ff8800,
+                  youtube: #ff0000,
+                  mastodon: #3088d4,
+                  facebook: #3b5998,
+                  codepen: #191a1d,
+                );
+                @each $brand, $color in $colors {
+                  &.#{$brand} {
+                    background-color: $color;
+                    order: floor(strip-unit(hue($color)));
+                  }
                 }
-              }
-              &:active {
-                transform: translateY(2px);
+                &:hover {
+                  & > .text-wrap {
+                    background-color: rgba(white, 0.2);
+                  }
+                }
+                &:active {
+                  transform: translateY(2px);
+                }
               }
             }
           }
         }
-        & > .profile-wrap {
-          width: $profile-width;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          & > .wrap {
+        &.profile {
+          & > .contents {
             display: flex;
-            &:nth-of-type(1) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            & > .explain {
+              display: flex;
               background: white;
-              box-shadow: 0 2px 4px rgba(black, 0.125);
+              box-shadow: 0 1px 3px rgba(black, 0.1);
+              margin-bottom: 2rem;
               & > .icon-wrap {
                 display: flex;
-                & > img {
+                user-select: none;
+                & > .icon {
                   size: 7rem;
                 }
               }
@@ -432,52 +441,217 @@
                 }
               }
             }
-            &:nth-of-type(2) {
+            & > .details {
               height: (100% / (metallic(1)));
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              & > .details {
+              & > .detail {
                 display: flex;
-                flex-direction: column;
-                & > .detail {
+                flex-direction: row;
+                align-items: center;
+                padding: 0.5rem;
+                & > .icon-wrap {
+                  color: $dark;
+                  $iconSize: 0.9rem;
+                  size: ($iconSize * metallic(1));
+                  font-size: $iconSize;
                   display: flex;
-                  flex-direction: row;
+                  justify-content: center;
                   align-items: center;
-                  padding: 0.5rem;
-                  & > .icon-wrap {
+                  margin-right: 1rem;
+                }
+                & > .title-wrap {
+                  margin-right: 2.5rem;
+                  & > p {
                     color: $dark;
-                    $iconSize: 0.9rem;
-                    size: ($iconSize * metallic(1));
-                    font-size: $iconSize;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    margin-right: 1rem;
+                    letter-spacing: 0.15rem;
+                    font-size: 0.6rem;
+                    font-family: 'Poppins', sans-serif;
                   }
-                  & > .title-wrap {
-                    margin-right: 2.5rem;
-                    & > p {
-                      color: $dark;
-                      letter-spacing: 0.15rem;
-                      font-size: 0.6rem;
-                      font-family: 'Poppins', sans-serif;
+                }
+                & > .data-wrap {
+                  flex-grow: 2;
+                  display: flex;
+                  justify-content: flex-end;
+                  & > p {
+                    color: $dark;
+                    letter-spacing: 0.1rem;
+                    font-size: 0.8rem;
+                    font-family: 'Poppins', sans-serif;
+                  }
+                }
+                &:not(:last-of-type) {
+                  margin-bottom: 0.75rem;
+                }
+              }
+            }
+          }
+        }
+        &.playlist {
+          & > .contents {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            & > .playlists {
+              display: flex;
+              flex-direction: column;
+              & > .playlist {
+                position: relative;
+                display: flex;
+                box-shadow: 0 1px 3px rgba(black, 0.1);
+                background: white;
+                user-select: none;
+                transition: 0.1s ease transform;
+                &:not(:last-of-type) {
+                  margin-bottom: 2rem;
+                }
+                & > .link {
+                  position: absolute;
+                  size: 100%;
+                  z-index: 1;
+                }
+                & > .icon {
+                  $font: 0.9rem;
+                  position: absolute;
+                  left: 0;
+                  bottom: 0;
+                  font-size: $font;
+                  size: $font * metallic(1);
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  color: rgba($dark, 0.75);
+                }
+                & > .image-wrap {
+                  & > .image {
+                    display: flex;
+                    size: 5rem;
+                  }
+                }
+                & > .texts-wrap {
+                  width: 100%;
+                  padding: 0.5rem 1.25rem;
+                  transition: 0.1s ease;
+                  transition-property: background-color;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  & > h2 {
+                    color: $dark;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 1.1rem;
+                    letter-spacing: 0.25rem;
+                  }
+                  & > h3 {
+                    color: $dark;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 0.7rem;
+                    letter-spacing: 0.05rem;
+                    text-align: left;
+                    display: flex;
+                    flex-wrap: wrap;
+                    & > span {
+                      &:not(:last-of-type) {
+                        margin-right: 0.25rem;
+                        &:after {
+                          content: ',';
+                        }
+                      }
                     }
                   }
-                  & > .data-wrap {
-                    flex-grow: 2;
+                }
+                &:hover {
+                  & > .texts-wrap {
+                    background-color: rgba(black, 0.05);
+                  }
+                }
+                &:active {
+                  transform: translateY(2px);
+                }
+              }
+            }
+          }
+        }
+        &.donation {
+          & > .contents {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            & > .choises {
+              display: flex;
+              flex-direction: column;
+              & > .choise {
+                width: 100%;
+                position: relative;
+                box-shadow: 0 1px 3px rgba(black, 0.1);
+                background: white;
+                user-select: none;
+                display: flex;
+                transition: 0.1s ease transform;
+                &:not(:last-of-type) {
+                  margin-bottom: 1rem;
+                }
+                & > .link {
+                  position: absolute;
+                  size: 100%;
+                  z-index: 1;
+                }
+                & > .icon-wrap {
+                  $font-size: 1.4rem;
+                  color: white;
+                  font-size: $font-size;
+                  size: $font-size * metallic(3);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+                & > .texts-wrap {
+                  padding: 0.25rem 1rem;
+                  transition: 0.1s ease;
+                  transition-property: background-color;
+                  flex-grow: 1;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  & > h2 {
+                    color: $dark;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 0.8rem;
+                    letter-spacing: 0.1rem;
+                    margin-bottom: 0.125rem;
+                  }
+                  & > h3 {
+                    color: $dark;
+                    font-family: 'Sawarabi Gothic', sans-serif;
+                    font-size: 0.5rem;
+                    letter-spacing: 0.01rem;
+                    text-align: left;
                     display: flex;
-                    justify-content: flex-end;
-                    & > p {
-                      color: $dark;
-                      letter-spacing: 0.1rem;
-                      font-size: 0.8rem;
-                      font-family: 'Poppins', sans-serif;
+                    flex-wrap: wrap;
+                  }
+                }
+                $colors: (
+                  amazon: #ff9900,
+                  steam: #2b3647,
+                  paypal: #003087,
+                );
+                @each $brand, $color in $colors {
+                  &.#{$brand} {
+                    & > .icon-wrap {
+                      background: $color;
                     }
                   }
-                  &:not(:last-of-type) {
-                    margin-bottom: 0.5rem;
+                }
+                &:hover {
+                  & > .texts-wrap {
+                    background-color: rgba(black, 0.05);
                   }
+                }
+                &:active {
+                  transform: translateY(2px);
                 }
               }
             }

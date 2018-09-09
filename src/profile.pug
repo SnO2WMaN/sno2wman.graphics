@@ -7,7 +7,9 @@ block head
 block contents
   #barba-wrapper
     .barba-container(data-namespace="profile")    
-      header
+      header        
+        .guide-wrap
+          p SCROLL DOWN
         .image-wrap
           -$i = 0
           while $i++ < 10
@@ -28,17 +30,65 @@ block contents
             h2 A Webdesigner
             h2 In Japan
             h2 Born in 2001
-        .guide-wrap
-          p SCROLL DOWN
       section
-        .wrap
-          .titles
-            .title-wrap.social
-              h2 SOCIAL
-            .title-wrap.profile
+        .cards
+          .card.sizer
+          .card.profile.x3
+            .title-wrap
               h2 PROFILE
-          .contents
-            .socials-wrap
+              h3 こいつはこんなやつ
+            .contents
+              .explain
+                .icon-wrap
+                  picture.icon
+                    source(type="image/webp" srcset="./images/me.webp")
+                    img(src="./images/me.jpg")
+                .text-wrap
+                  p ナード的活動をしている無軌道な学生
+                  p ウェブデザイン、ボクセルなどをしています
+                  p 飲食物ではペプシコーラが好きです
+                  p 文章を書いたり会話を行うのがヘタクソ
+              ul.details                  
+                li.detail.gender
+                  .icon-wrap
+                    i.fas.fa-mars
+                  .title-wrap
+                    p GENDER
+                  .data-wrap
+                    p MALE
+                li.detail.birthday
+                  .icon-wrap
+                    i.fas.fa-birthday-cake
+                  .title-wrap
+                    p BIRTHDAY
+                  .data-wrap
+                    p 2001.06.22
+                li.detail.age
+                  .icon-wrap
+                    i.fas.fa-clock
+                  .title-wrap
+                    p AGE
+                  .data-wrap
+                    p 17
+                li.detail.live
+                  .icon-wrap
+                    i.fas.fa-umbrella-beach
+                  .title-wrap
+                    p LIVE
+                  .data-wrap
+                    p Japan &gt; Aichi &gt; Nagoya
+                li.detail.live
+                  .icon-wrap
+                    i.fas.fa-pastafarianism
+                  .title-wrap
+                    p RELIGION
+                  .data-wrap
+                    p Pastafarianism
+          .card.socials
+            .title-wrap
+              h2 SOCIAL
+              h3 ここにいるぞ
+            .contents
               ul.socials
                 -
                   $links = {
@@ -72,49 +122,48 @@ block contents
                       p #{$social.charAt(0).toUpperCase()}#{$social.substring(1)}
                       .icon
                         i.fas.fa-copy
-            .profile-wrap
-              .wrap
-                .icon-wrap
-                  img(src="./images/me.jpg")
-                .text-wrap
-                  p ナード的活動をしている無軌道な学生
-                  p ウェブデザイン、ボクセルなどをしています
-                  p 飲食物ではペプシコーラが好きです
-                  p 文章を書いたり会話を行うのがヘタクソ
-              .wrap
-                ul.details                  
-                  li.detail.gender
+          .card.playlist
+            .title-wrap
+              h2 PLAYLIST
+              h3 音楽の好み
+            .contents
+              ul.playlists
+                -
+                  $playlists = {
+                    chill:["https://open.spotify.com/user/sno2wman/playlist/79ZtfjWCNJNRPpE8WyUuny?si=lYAi15QXS1aXYaFg9idWaA",["Future Bass","Glitch Hop"]],
+                    loud:["https://open.spotify.com/user/sno2wman/playlist/5ReAR9tFAEBrKDvRobOwMq?si=xAPPnkjUR0mB28NKQs0WJw",["Dubstep","Trap","Riddim"]]
+                  }
+                each $playlist,$name in $playlists
+                  li.playlist(class=$name)
+                    a.link(href=$playlist[0] target="_blank")
+                    .icon
+                      i.fab.fa-spotify
+                    .image-wrap      
+                      picture.image
+                        source(type="image/webp" srcset="./images/playlists/"+$name+".webp")
+                        img(src="./images/playlists/"+$name+".png")
+                    .texts-wrap
+                      h2.title #{$name.toUpperCase()}
+                      h3.genre
+                        each $tag in $playlist[1]
+                          span #{$tag}
+          .card.donation
+            .title-wrap
+              h2 DONATE
+              h3 恵まれない子供のために
+            .contents
+              ul.choises
+                -
+                  $choises = {
+                    amazon:["https://www.amazon.co.jp/hz/wishlist/dl/invite/3aFrzX5","Amazon","物質"],
+                    steam:["https://steamcommunity.com/id/SnO2WMaN/wishlist","Steam","ゲーム"],
+                    paypal:["","Paypal","金銭"]
+                  }
+                each $choise,$name in $choises
+                  li.choise(class=$name)
+                    a.link(href=$choise[0] target="_blank")
                     .icon-wrap
-                      i.fas.fa-mars
-                    .title-wrap
-                      p GENDER
-                    .data-wrap
-                      p MALE
-                  li.detail.birthday
-                    .icon-wrap
-                      i.fas.fa-birthday-cake
-                    .title-wrap
-                      p BIRTHDAY
-                    .data-wrap
-                      p 2001.06.22
-                  li.detail.age
-                    .icon-wrap
-                      i.fas.fa-clock
-                    .title-wrap
-                      p AGE
-                    .data-wrap
-                      p 17
-                  li.detail.live
-                    .icon-wrap
-                      i.fas.fa-umbrella-beach
-                    .title-wrap
-                      p LIVE
-                    .data-wrap
-                      p Japan &gt; Aichi &gt; Nagoya
-                  li.detail.live
-                    .icon-wrap
-                      i.fas.fa-pastafarianism
-                    .title-wrap
-                      p RELIGION
-                    .data-wrap
-                      p Pastafarianism
+                      i.fab(class="fa-"+$name)
+                    .texts-wrap
+                      h2 #{$choise[1]}
+                      h3 #{$choise[2]}

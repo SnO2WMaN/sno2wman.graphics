@@ -79,42 +79,22 @@
       height: (100% / metallic(1));
       display: flex;
       overflow: hidden;
+      position: relative;
       & > .image {
-        background-size: cover;
-        background-image: url('../images/profile.jpeg');
-        background-attachment: fixed;
-        background-position: center;
-        animation: $easeInOutCubic paused both;
-
-        $images: 10;
-        width: (100% / $images);
-        height: 100%;
-        @for $i from 0 to $images {
-          &:nth-of-type(#{$i + 1}) {
-            animation-delay: 0.25s +
-              (1 - sin($i / ($images - 1) * $PI)) *
-              0.25s;
-            animation-duration: 0.5s +
-              (1 - sin($i / ($images - 1) * $PI)) *
-              1.5s;
-            animation-name: profile-header-image-#{$i % 2 + 1};
-          }
+        position: absolute;
+        size: 100%;
+        & > * {
+          position: absolute;
+          width: 100%;
+          top: 0;
+          bottom: 0;
+          margin: auto 0;
         }
-
-        $translate: 5%;
-        @keyframes profile-header-image-1 {
+        animation: profile-header-image paused both 1s;
+        animation-delay: 0.5s;
+        @keyframes profile-header-image {
           0% {
-            transform: translateY($translate);
-            opacity: 0;
-          }
-          100% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-        @keyframes profile-header-image-2 {
-          0% {
-            transform: translateY(-$translate);
+            transform: translateY(20%);
             opacity: 0;
           }
           100% {
@@ -123,8 +103,43 @@
           }
         }
       }
+      & > .covers {
+        position: absolute;
+        size: 100%;
+        & > .cover {
+          position: absolute;
+          size: 100%;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          &:first-of-type {
+            box-shadow: 0 2px 8px rgba($dark, 0.5);
+          }
+          animation: profile-header-image-covers paused both $easeInOutQuad;
+          @for $i from 1 through 3 {
+            &:nth-of-type(#{$i}) {
+              background-color: lighten($dark, (3 - $i) * 7.25%);
+              animation-delay: ($i - 1) * 0.2s;
+              animation-duration: 1.2s - ($i - 1) * 0.2s * 1.5;
+            }
+          }
+          transform-origin: top;
+          @keyframes profile-header-image-covers {
+            0% {
+              transform: translateY(100%);
+            }
+            50% {
+              transform: translateY(0) scaleY(1);
+            }
+            100% {
+              transform: translateY(0) scaleY(0);
+            }
+          }
+        }
+      }
       &.animated {
-        & > .image {
+        & > .image,
+        & > .covers > .cover {
           animation-play-state: running;
         }
       }
@@ -139,6 +154,7 @@
       margin: 0 auto;
       display: flex;
       border-radius: 50%;
+      z-index: 2;
       & > .icon {
         position: absolute 0;
         size: 90%;

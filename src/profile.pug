@@ -11,9 +11,13 @@ block contents
         .guide-wrap
           p SCROLL DOWN
         .image-wrap
-          -$i = 0
-          while $i++ < 10
-            .image
+          .covers
+            .cover
+            .cover
+            .cover
+          picture.image
+            source(type="image/webp" srcset="./images/profile.webp")
+            img(src="./images/profile.jpeg")
         .icon-wrap
           .covers
             .cover

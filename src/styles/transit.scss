@@ -16,7 +16,7 @@
     background: $dark;
     padding: 1rem;
     size: (100% / (metallic(2) + 1));
-    box-shadow: 0 2px 4px rgba(black, 0.5);
+    box-shadow: 0 1px 3px rgba(black, 0.25);
     & > p {
       color: $whity;
       font-family: 'Roboto Mono', sans-serif;

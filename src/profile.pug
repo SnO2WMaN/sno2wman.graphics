@@ -33,7 +33,7 @@ block contents
       section
         .cards
           .card.sizer
-          .card.profile.x3
+          .card.profile.x2
             .title-wrap
               h2 PROFILE
               h3 こいつはこんなやつ
@@ -84,10 +84,55 @@ block contents
                     p RELIGION
                   .data-wrap
                     p Pastafarianism
+          .card.skillset.x2
+            .title-wrap
+              h2 SKILLSET
+              h3 ﾁｮｯﾄﾃﾞｷﾙ
+            .contents
+              -
+                $skills = {
+                  html:["HTML","HTML5","Pug"],
+                  css:["CSS","SCSS","PostCSS"],
+                  javascript:["JavaScript","Babel","TypeScript","node.js"],
+                  tools:["Browserslist"],
+                  build:["Webpack","Parcel"],
+                  deploy:["Netlify"],
+                  lint:["ESLint","Prettier","Stylelint","EditorConfig"],
+                  versioning:["Git","GitKraken"],
+                  editor:["VSCode"],
+                  design:["Affinity Designer","Affinity Photo"],
+                }
+                $genreIcon = {
+                  html:["html5",true],
+                  css:["css3",true],
+                  javascript:["js",true],
+                  framework:"cogs",
+                  build:"building",
+                  tools:"toolbox",
+                  lint:"broom",
+                  versioning:"code-branch",
+                  design:"pencil-alt",
+                  editor:"code",
+                  deploy:"rocket"
+                }
+              ul.genres
+                each $genre,$genreName in $skills
+                  li.genre(class=$genreName)
+                    .icon-wrap
+                      if(Array.isArray($genreIcon[$genreName]))
+                        i.fab(class="fa-"+$genreIcon[$genreName][0])
+                      else
+                        i.fas(class="fa-"+$genreIcon[$genreName])
+                    .title-wrap
+                      p #{$genreName.toUpperCase()}
+                    ul.skills
+                      each $skill in $genre
+                        li.skill
+                          p #{$skill}
           .card.socials
             .title-wrap
               h2 SOCIAL
-              h3 私が来た
+              h3 ここにいるぞ！
             .contents
               ul.socials
                 -
@@ -156,7 +201,6 @@ block contents
                   $choises = {
                     amazon:["https://www.amazon.co.jp/hz/wishlist/dl/invite/3aFrzX5","Amazon","物質"],
                     steam:["https://steamcommunity.com/id/SnO2WMaN/wishlist","Steam","ゲーム"],
-                    paypal:["","Paypal","金銭"]
                   }
                 each $choise,$name in $choises
                   li.choise(class=$name)
@@ -166,8 +210,3 @@ block contents
                     .texts-wrap
                       h2 #{$choise[1]}
                       h3 #{$choise[2]}
-          .card.skillset.x2
-            .title-wrap
-              h2 SKILLSET
-              h3 ﾁｮｯﾄﾃﾞｷﾙ
-        

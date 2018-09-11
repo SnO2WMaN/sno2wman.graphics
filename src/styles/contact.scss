@@ -2,19 +2,75 @@
 
 [data-namespace='contact'] {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  & > #title {
+    user-select: none;
+    margin-bottom: 1.5em;
+    & > h1 {
+      color: $dark;
+      font-size: 1.5rem;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.5rem;
+      font-weight: 400;
+    }
+    animation: contact-title 1s $easeInOutCubic both paused;
+    animation-delay: 0.1s;
+    @keyframes contact-title {
+      0% {
+        opacity: 0;
+        transform: translateY(-10%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  & > #texts {
+    user-select: none;
+    & > p {
+      color: $dark;
+      font-size: 0.75rem;
+      font-family: 'Sawarabi Gothic', sans-serif;
+      letter-spacing: 0.05rem;
+      font-weight: 400;
+      &.shade {
+        font-size: 0.7rem;
+        opacity: 0.5;
+      }
+      &:not(:last-of-type) {
+        margin-bottom: 0.5rem;
+      }
+    }
+    animation: contact-text 1s $easeInOutCubic both paused;
+    animation-delay: 0.3s;
+    @keyframes contact-text {
+      0% {
+        opacity: 0;
+        transform: translateY(-10%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
   #form {
     $height: 420px;
     height: $height;
     width: $height * metallic(2);
     display: flex;
     $ratio: metallic(2);
-    animation: contact-form 1s $easeInOutQuad both paused;
+    padding: 1.5rem;
+    box-sizing: content-box;
+    animation: contact-form 1s $easeInOutCubic both paused;
+    animation-delay: 0.5s;
     @keyframes contact-form {
       0% {
         opacity: 0;
-        transform: translateY(10%);
+        transform: translateY(5%);
       }
       100% {
         opacity: 1;
@@ -27,6 +83,7 @@
       padding: (1.5rem * metallic(1)) 1.5rem;
       display: flex;
       flex-direction: column;
+      box-sizing: border-box;
       & > label {
         font-family: 'Poppins', sans-serif;
         color: $dark;
@@ -41,8 +98,8 @@
         padding: 0.5em;
         font-family: 'Sawarabi Gothic', sans-serif;
         letter-spacing: 0.0125rem;
-        background-color: $whity;
-        border: 1px rgba($dark, 0.125) solid;
+        background-color: white;
+        border: 1px transparent solid;
         outline: none;
         color: $dark;
         &::selection {
@@ -50,7 +107,7 @@
         }
         &:hover,
         &:focus {
-          box-shadow: 0 1px 2px rgba(black, 0.05);
+          box-shadow: 0 1px 3px rgba(black, 0.1);
         }
       }
     }
@@ -62,6 +119,7 @@
       justify-content: center;
       align-items: flex-start;
       padding: (1.5rem * metallic(1)) 1.5rem;
+      box-sizing: border-box;
       & > .inputs {
         display: flex;
         flex-direction: column;
@@ -101,16 +159,16 @@
             font-family: 'Sawarabi Gothic', sans-serif;
             padding: 0.125em 0;
             padding-left: 0.25em;
-            background-color: $whity;
+            background-color: white;
             border: 1px rgba($dark, 0.125) solid;
             outline: none;
             color: $dark;
             &:hover,
             &:focus {
-              box-shadow: 0 1px 2px rgba(black, 0.05);
+              box-shadow: 0 1px 3px rgba(black, 0.1);
             }
             &:-webkit-autofill {
-              -webkit-box-shadow: 0 0 0px 1000px $whity inset;
+              -webkit-box-shadow: 0 0 0px 1000px white inset;
             }
           }
         }
@@ -133,10 +191,10 @@
           transition-property: box-shadow, transform;
           &:hover,
           &:active {
-            box-shadow: 0 4px 8px rgba(black, 0.5);
+            box-shadow: 0 3px 6px rgba(black, 0.5);
           }
           &:active {
-            transform: translateY(4px);
+            transform: translateY(3px);
           }
         }
       }

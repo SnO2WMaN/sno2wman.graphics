@@ -174,12 +174,12 @@ block contents
               ul.playlists
                 -
                   $playlists = {
-                    chill:["https://open.spotify.com/user/sno2wman/playlist/79ZtfjWCNJNRPpE8WyUuny?si=lYAi15QXS1aXYaFg9idWaA",["Future Bass","Glitch Hop"]],
-                    loud:["https://open.spotify.com/user/sno2wman/playlist/5ReAR9tFAEBrKDvRobOwMq?si=xAPPnkjUR0mB28NKQs0WJw",["Dubstep","Trap","Riddim"]]
+                    chill:["Chill",["Future Bass","Glitch Hop"],"https://open.spotify.com/user/sno2wman/playlist/79ZtfjWCNJNRPpE8WyUuny?si=lYAi15QXS1aXYaFg9idWaA"],
+                    loud:["Loud",["Dubstep","Riddim","Trap"],"https://open.spotify.com/user/sno2wman/playlist/5ReAR9tFAEBrKDvRobOwMq?si=xAPPnkjUR0mB28NKQs0WJw"]
                   }
                 each $playlist,$name in $playlists
                   li.playlist(class=$name)
-                    a.link(href=$playlist[0] target="_blank")
+                    a.link(href=$playlist[2] target="_blank")
                     .icon
                       i.fab.fa-spotify
                     .image-wrap      
@@ -187,7 +187,7 @@ block contents
                         source(type="image/webp" srcset="./images/playlists/"+$name+".webp")
                         img(src="./images/playlists/"+$name+".png")
                     .texts-wrap
-                      h2.title #{$name.toUpperCase()}
+                      h2.title #{$playlist[0]}
                       h3.genre
                         each $tag in $playlist[1]
                           span #{$tag}
@@ -199,14 +199,14 @@ block contents
               ul.choises
                 -
                   $choises = {
-                    amazon:["https://www.amazon.co.jp/hz/wishlist/dl/invite/3aFrzX5","Amazon","物質"],
-                    steam:["https://steamcommunity.com/id/SnO2WMaN/wishlist","Steam","ゲーム"],
+                    amazon:["Amazon Wishlist","物質","https://www.amazon.co.jp/hz/wishlist/dl/invite/3aFrzX5"],
+                    steam:["Steam Wishlist","ゲーム","https://steamcommunity.com/id/SnO2WMaN/wishlist"],
                   }
                 each $choise,$name in $choises
                   li.choise(class=$name)
-                    a.link(href=$choise[0] target="_blank")
+                    a.link(href=$choise[2] target="_blank")
                     .icon-wrap
                       i.fab(class="fa-"+$name)
                     .texts-wrap
-                      h2 #{$choise[1]}
-                      h3 #{$choise[2]}
+                      h2 #{$choise[0]}
+                      h3 #{$choise[1]}

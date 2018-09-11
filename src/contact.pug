@@ -7,6 +7,11 @@ block head
 block contents
   #barba-wrapper
     .barba-container(data-namespace="contact")
+      #title
+        h1 CONTACT
+      #texts
+        p 依頼など、気軽にお問い合わせください。可能な限り対応します。
+        p.shade ※ スパム防止用にreCAPTCHAを行います。
       form#form(name="contact" method="POST" netlify-honeypot="honeypot" netlify)
         .left
           label(for="message") Message
@@ -17,20 +22,18 @@ block contents
               label(for="honeypot") Honeypot
               input(name="honeypot", type="text", placeholder="For Bot, not for Human.")  
             .name
-              label(for="name") Name
+              label(for="title") TITLE
+              input(name="title" type="text" required)  
+            .name
+              label(for="name") NAME
               input(name="name" type="text" required)  
             .email
-              label(for="email") Email
+              label(for="email") EMAIL
               input(name="email" type="email" required)  
             .org
               label(for="org") 
-                |Org
+                |ORG
                 span option
               input(name="org" type="text")  
-            .website
-              label(for="website") 
-                |Website
-                span option
-              input(name="website" type="text")
           .button
             button(type="submit") SEND

@@ -112,9 +112,6 @@
           top: 0;
           left: 0;
           z-index: 1;
-          &:first-of-type {
-            box-shadow: 0 2px 8px rgba($dark, 0.5);
-          }
           animation: profile-header-image-covers paused both $easeInOutQuad;
           @for $i from 1 through 3 {
             &:nth-of-type(#{$i}) {

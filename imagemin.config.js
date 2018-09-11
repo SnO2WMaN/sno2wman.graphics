@@ -11,5 +11,5 @@ module.exports = {
     interlaced: false,
     optimizationLevel: 3,
   },
-  webp: { quality: 25 },
+  webp: { quality: 80 },
 }

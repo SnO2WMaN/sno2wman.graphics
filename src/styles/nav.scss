@@ -266,6 +266,7 @@
         & > a {
           position: absolute;
           size: 100%;
+          z-index: 6;
         }
         & > .icon {
           position: absolute 0;

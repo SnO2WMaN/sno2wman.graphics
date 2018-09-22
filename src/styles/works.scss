@@ -230,15 +230,8 @@
             visibility: hidden;
             position: absolute;
           }
-          @for $i from 1 through $split {
-            &.x#{$i} {
-              width: (100% / $split * $i);
-            }
-          }
-
           & > .images {
             display: flex;
-
             width: 90%;
             flex-direction: column;
             & > li {
@@ -254,6 +247,28 @@
               }
               &:not(:last-of-type) {
                 margin-bottom: 0.5rem;
+              }
+            }
+          }
+          &.vertical {
+            & > .images {
+              flex-direction: row;
+              flex-wrap: wrap;
+              & > li {
+                margin-bottom: 0.5rem;
+              }
+            }
+          }
+          @for $i from 1 through $split {
+            &.x#{$i} {
+              width: (100% / $split * $i);
+              &.vertical {
+                & > .images {
+                  justify-content: space-around;
+                  & > li {
+                    width: calc(100% / #{$i} - 0.5rem);
+                  }
+                }
               }
             }
           }

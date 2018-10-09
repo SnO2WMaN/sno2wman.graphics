@@ -1,0 +1,10 @@
+@import '~minireset.css/minireset';
+@import '~awesome-sass-easing/sass-easing';
+@import '~mathsass/dist/math';
+@import '~sass-metallic-ratio/dist/metallic';
+
+:root {
+    font-size: 14px;
+}
+
+@import './loading';

@@ -1,0 +1,129 @@
+$bg: hsl(226, 15%, 95%);
+$grad1: hsl(160, 85%, 65%);
+$grad2: hsl(280, 85%, 65%);
+$grad3: hsl(190, 85%, 65%);
+$text: hsl(hue($bg), 9%, 25%);
+$shadow: rgba(darken($bg, 20%), 0.75);
+
+#loading {
+    position: relative;
+    background: $bg;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    & > .credit {
+        position: absolute;
+        bottom: 2.5vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        & > p {
+            color: $text;
+            font-size: 0.9rem;
+            letter-spacing: 0.025rem;
+            font-family: 'Cutive Mono', monospace;
+        }
+    }
+    & > .bars {
+        $bars-height: 60px;
+        $bars-width: $bars-height * metallic(1);
+        width: $bars-width;
+        height: $bars-height;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+        & > .bar {
+            $width: 1px;
+            width: $width;
+            animation: loading-bar-animation 1.6s $easeInOutSine infinite;
+            transform-origin: bottom;
+            @for $i from 0 to 16 {
+                &:nth-of-type(#{$i + 1}) {
+                    animation-delay: -0.9s * $i;
+                    height: abs(100%);
+                    background: linear-gradient(
+                        $i * 4deg + 180deg,
+                        $grad1,
+                        $grad2,
+                        $grad3
+                    );
+                }
+            }
+            @keyframes loading-bar-animation {
+                0% {
+                    transform: scaleY(sin(0deg));
+                }
+                50% {
+                    transform: scaleY(sin(90deg));
+                }
+                100% {
+                    transform: scaleY(sin(180deg));
+                }
+            }
+        }
+    }
+    & > .text {
+        & > p {
+            color: $text;
+            font-size: 1.125rem;
+            letter-spacing: 0.25rem;
+            font-family: 'Cutive Mono', monospace;
+            &:not(:last-of-type) {
+                margin-bottom: 0.25rem;
+            }
+        }
+    }
+    & > .button {
+        position: relative;
+        padding: 0.8rem (0.8rem * metallic(1));
+        margin-top: 2.5rem;
+        cursor: pointer;
+        background: transparent;
+        border: 1px solid;
+        border-image: linear-gradient(140deg, $grad1, $grad2, $grad3);
+        border-image-slice: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: 0 1px 3px $shadow inset;
+        transition: box-shadow 0.25s $easeInOutCubic;
+        & > p {
+            color: $text;
+            font-family: 'Cutive Mono', monospace;
+            font-size: 1rem;
+            letter-spacing: 0.125rem;
+            position: relative;
+            transition-property: filter;
+            transition-duration: inherit;
+            transition-timing-function: inherit;
+        }
+        &:before {
+            content: '';
+            position: absolute 0;
+            size: 100%;
+            margin: auto;
+            background: linear-gradient(135deg, $grad1, $grad2, $grad3);
+            opacity: 0;
+            z-index: 1;
+            transition-property: opacity;
+            transition-duration: inherit;
+            transition-timing-function: inherit;
+        }
+        &:hover {
+            box-shadow: 0 2px 6px $shadow inset;
+            & > p {
+                filter: blur(0.5px);
+            }
+            &:before {
+                opacity: 0.1;
+            }
+        }
+    }
+}

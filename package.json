@@ -10,27 +10,35 @@
     },
     "scripts": {
         "dev": "./node_modules/.bin/parcel src/index.pug",
-        "build": "./node_modules/.bin/parcel build src/index.pug --experimental-scope-hoisting"
+        "build": "./node_modules/.bin/parcel build src/index.pug --experimental-scope-hoisting",
+        "lint": "npm run lint:eslint && npm run lint:stylelint",
+        "lint:eslint": "./node_modules/.bin/eslint src --ext .js --ignore-path .gitignore",
+        "lint:stylelint": "./node_modules/.bin/stylelint src/**/*.vue src/**/*.s?css --ignore-pattern .gitignore"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint"
+        }
     },
     "dependencies": {
         "autoprefixer": "^9.1.5",
+        "awesome-sass-easing": "^1.1.2",
         "mathsass": "^0.10.1",
         "minireset.css": "^0.0.3",
         "node-sass": "^4.9.3",
+        "node-sass-package-importer": "^5.2.0",
         "parcel-bundler": "^1.10.2",
         "postcss-scss": "^2.0.0",
         "postcss-short": "^4.1.0",
         "postcss-sorting": "^4.0.0",
         "pug": "^2.0.3",
-        "sass-loader": "^7.1.0",
         "sass-metallic-ratio": "^0.0.3"
     },
     "devDependencies": {
-        "babel-eslint": "^10.0.1",
         "eslint": "^5.6.1",
         "eslint-config-prettier": "^3.1.0",
         "eslint-plugin-prettier": "^3.0.0",
-        "eslint-plugin-vue": "^4.7.1",
+        "husky": "^1.1.1",
         "prettier": "^1.14.3",
         "stylelint": "^9.6.0",
         "stylelint-config-prettier": "^4.0.0",

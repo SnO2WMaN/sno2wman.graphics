@@ -13,15 +13,15 @@ class Particle {
     constructor(x, y) {
         // size
         this.r = Math.random() * 16 + 3
-        this.rv = -this.r * 0.01
+        this.rv = -this.r * 0.0125 * Math.random()
         this.x = x + (Math.random() - 0.5) * this.r * 2
         this.y = y + (Math.random() - 0.5) * this.r * 2
 
         // speed
-        this.vMax = Math.random() * 12 + 3
+        this.vMax = Math.random() * 8 + 3
         this.v = Math.random() * this.vMax
-        this.a = Math.random() * 0.04
-        this.j = -0.004 * this.r
+        this.a = Math.random() * 0.28
+        this.j = -0.003 * this.r
 
         // color
         this.hue = Math.random() * 360
@@ -53,7 +53,7 @@ class Particle {
      * @returns Boolean
      */
     isAlive() {
-        return !(this.v < 0 || this.r < 0)
+        return 0 <= this.v && 0 < this.r
     }
 }
 
@@ -79,7 +79,7 @@ window.addEventListener('resize', () => {
 })
 window.dispatchEvent(new Event('resize'))
 
-setInterval(() => {
+function draw() {
     const ctx = $canvas.getContext('2d')
     ctx.clearRect(0, 0, $canvas.width, $canvas.height)
     ctx.globalCompositeOperation = 'hard-light'
@@ -87,7 +87,7 @@ setInterval(() => {
     particles.forEach(particle => {
         particle.step(ctx)
     })
-    if (!$loading.classList.contains('clicked') && Math.random() < 0.4) {
+    if (!$loading.classList.contains('clicked') && Math.random() < 0.15) {
         particles.push(
             new Particle(
                 $canvas.width * Math.random(),
@@ -95,4 +95,6 @@ setInterval(() => {
             )
         )
     }
-}, 1000 / 30)
+    requestAnimationFrame(draw)
+}
+requestAnimationFrame(draw)

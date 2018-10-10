@@ -23,6 +23,7 @@
     "dependencies": {
         "autoprefixer": "^9.1.5",
         "awesome-sass-easing": "^1.1.2",
+        "loading.js": "^0.1.1",
         "mathsass": "^0.10.1",
         "minireset.css": "^0.0.3",
         "node-sass": "^4.9.3",
@@ -35,6 +36,8 @@
         "sass-metallic-ratio": "^0.0.3"
     },
     "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-preset-env": "^1.7.0",
         "eslint": "^5.6.1",
         "eslint-config-prettier": "^3.1.0",
         "eslint-plugin-prettier": "^3.0.0",

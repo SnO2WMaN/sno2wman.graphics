@@ -15,6 +15,16 @@ $shadow: rgba(darken($bg, 20%), 0.75);
     justify-content: center;
     align-items: center;
     user-select: none;
+    & > .canvas {
+        position: absolute;
+        size: 100%;
+        z-index: 0;
+    }
+    &.clicked {
+        & > .canvas {
+            z-index: 9999;
+        }
+    }
     & > .credit {
         position: absolute;
         bottom: 2.5vh;
@@ -37,6 +47,9 @@ $shadow: rgba(darken($bg, 20%), 0.75);
         justify-content: space-between;
         align-items: flex-end;
         margin-bottom: 2rem;
+        transition-property: transform;
+        transition-duration: 2s;
+        transition-timing-function: $easeInQuart;
         & > .bar {
             $width: 1px;
             width: $width;
@@ -67,6 +80,12 @@ $shadow: rgba(darken($bg, 20%), 0.75);
             }
         }
     }
+    &.clicked {
+        & > .bars {
+            transform: scaleY(0);
+            transform-origin: bottom;
+        }
+    }
     & > .text {
         & > p {
             color: $text;
@@ -76,13 +95,33 @@ $shadow: rgba(darken($bg, 20%), 0.75);
             &:not(:last-of-type) {
                 margin-bottom: 0.25rem;
             }
+            & > span {
+                transition-property: transform, opacity;
+                transition-duration: 1s;
+                transition-timing-function: $easeInCubic;
+                display: inline-block;
+                @for $i from 0 to 8 {
+                    &:nth-of-type(#{$i + 1}) {
+                        transition-delay: $i * 0.15s;
+                    }
+                }
+            }
+        }
+    }
+    &.clicked {
+        & > .text {
+            & > p {
+                & > span {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+            }
         }
     }
     & > .button {
         position: relative;
         padding: 0.8rem (0.8rem * metallic(1));
         margin-top: 2.5rem;
-        cursor: pointer;
         background: transparent;
         border: 1px solid;
         border-image: linear-gradient(140deg, $grad1, $grad2, $grad3);
@@ -92,8 +131,11 @@ $shadow: rgba(darken($bg, 20%), 0.75);
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        box-shadow: 0 1px 3px $shadow inset;
-        transition: box-shadow 0.25s $easeInOutCubic;
+        transition-property: transform, opacity;
+        transition-duration: 1s;
+        transition-delay: 1s;
+        transition-timing-function: $easeInOutQuad;
+        cursor: pointer;
         & > p {
             color: $text;
             font-family: 'Cutive Mono', monospace;
@@ -109,21 +151,28 @@ $shadow: rgba(darken($bg, 20%), 0.75);
             position: absolute 0;
             size: 100%;
             margin: auto;
-            background: linear-gradient(135deg, $grad1, $grad2, $grad3);
+            background: linear-gradient(95deg, $grad1, $grad2, $grad3);
             opacity: 0;
             z-index: 1;
             transition-property: opacity;
             transition-duration: inherit;
             transition-timing-function: inherit;
         }
-        &:hover {
-            box-shadow: 0 2px 6px $shadow inset;
+        &:hover,
+        &:focus {
             & > p {
                 filter: blur(0.5px);
             }
             &:before {
-                opacity: 0.1;
+                opacity: 0.3;
+                box-shadow: 0 2px 6px $shadow inset;
             }
+        }
+    }
+    &.clicked {
+        & > .button {
+            transform: translateY(25%);
+            opacity: 0;
         }
     }
 }

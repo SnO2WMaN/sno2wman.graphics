@@ -1,8 +1,12 @@
 const $loading = document.getElementById('loading')
 const $button = $loading.querySelector('.button')
 
+const $info = $loading.querySelector('.info')
+const $infoParticles = $info.querySelector('.particles > .data')
+
 // canvas
 const $canvas = $loading.querySelector('canvas')
+const $clicker = $loading.querySelector('.clicker')
 let particles = []
 class Particle {
     /**
@@ -12,16 +16,16 @@ class Particle {
      */
     constructor(x, y) {
         // size
-        this.r = Math.random() * 16 + 3
-        this.rv = -this.r * 0.0125 * Math.random()
+        this.r = Math.random() * 18 + 3
+        this.rv = -0.125 * Math.random()
         this.x = x + (Math.random() - 0.5) * this.r * 2
         this.y = y + (Math.random() - 0.5) * this.r * 2
 
         // speed
         this.vMax = Math.random() * 8 + 3
         this.v = Math.random() * this.vMax
-        this.a = Math.random() * 0.28
-        this.j = -0.003 * this.r
+        this.a = Math.random() * 0.38
+        this.j = -0.002 * this.r
 
         // color
         this.hue = Math.random() * 360
@@ -36,7 +40,9 @@ class Particle {
      * @param {CanvasRenderingContext2D } ctx
      */
     step(ctx) {
-        ctx.fillStyle = `hsla(${this.hue},75%,79%,${this.v / this.vMax})`
+        ctx.fillStyle = `hsla(${this.hue},75%,76%,${Math.sqrt(
+            this.v / this.vMax
+        )})`
         ctx.beginPath()
         ctx.arc(this.x, this.y, Math.abs(this.r), 0, 2 * Math.PI)
         ctx.fill()
@@ -53,7 +59,7 @@ class Particle {
      * @returns Boolean
      */
     isAlive() {
-        return 0 <= this.v && 0 < this.r
+        return 0 <= this.v && 1 < this.r
     }
 }
 
@@ -62,13 +68,11 @@ $button.addEventListener('click', e => {
     $loading.classList.add('clicked')
     addParticles(e.clientX, e.clientY)
 })
-
-$canvas.addEventListener('click', e => {
+$clicker.addEventListener('click', e => {
     addParticles(e.clientX, e.clientY)
 })
-
 function addParticles(x, y) {
-    for (let i = 0; i < Math.ceil(Math.random() * 40 + 30); i++) {
+    for (let i = 0; i < Math.ceil(Math.random() * 60 + 40); i++) {
         particles.push(new Particle(x, y))
     }
 }
@@ -83,11 +87,11 @@ function draw() {
     const ctx = $canvas.getContext('2d')
     ctx.clearRect(0, 0, $canvas.width, $canvas.height)
     ctx.globalCompositeOperation = 'hard-light'
-    particles = particles.filter(particle => particle.isAlive)
+    particles = particles.filter(particle => particle.isAlive())
     particles.forEach(particle => {
         particle.step(ctx)
     })
-    if (!$loading.classList.contains('clicked') && Math.random() < 0.15) {
+    if (!$loading.classList.contains('clicked') && Math.random() < 0.25) {
         particles.push(
             new Particle(
                 $canvas.width * Math.random(),
@@ -95,6 +99,8 @@ function draw() {
             )
         )
     }
+    // Info
+    $infoParticles.innerHTML = `${particles.length}`.padStart(4, '0')
     requestAnimationFrame(draw)
 }
 requestAnimationFrame(draw)

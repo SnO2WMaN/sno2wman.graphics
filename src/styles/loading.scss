@@ -1,3 +1,5 @@
+@import './constants';
+
 $bg: hsl(226, 15%, 95%);
 $grad1: hsl(160, 85%, 65%);
 $grad2: hsl(280, 85%, 65%);
@@ -15,18 +17,92 @@ $shadow: rgba(darken($bg, 20%), 0.75);
     justify-content: center;
     align-items: center;
     user-select: none;
-    & > .canvas {
+    & > canvas {
         position: absolute;
         size: 100%;
         z-index: 0;
     }
+    & > .clicker {
+        position: absolute;
+        size: 100%;
+        z-index: 2;
+    }
+    & > .info {
+        position: absolute;
+        z-index: 1;
+        left: 2.5vw;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        & > li {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 1rem 0;
+            & > p {
+                color: $text;
+                font-size: 1.1rem;
+                letter-spacing: 0.05rem;
+                font-family: 'Cutive Mono', monospace;
+                transition-property: transform, opacity;
+                transition-duration: 1s;
+                transition-timing-function: $easeInQuad;
+                &:nth-of-type(2) {
+                    transition-delay: 0.1s;
+                }
+            }
+            & > .title {
+                margin-bottom: 0.5rem;
+            }
+            &:not(:last-of-type) {
+                margin-bottom: 1rem;
+            }
+            &:before {
+                content: '';
+                border-top: 1px solid $text;
+                width: 0.5rem;
+                margin-bottom: 0.75rem;
+            }
+            &:last-of-type {
+                &:after {
+                    content: '';
+                    border-top: 1px solid $text;
+                    width: 0.5rem;
+                    margin-top: 0.75rem;
+                }
+            }
+            &:before,
+            &:after {
+                transition-property: transform;
+                transition-duration: 0.5s;
+                transition-timing-function: $easeInQuart;
+                transform-origin: left;
+            }
+        }
+        @media screen and (max-width: $mq-mobile) {
+            visibility: hidden;
+        }
+    }
     &.clicked {
-        & > .canvas {
-            z-index: 9999;
+        & > .info {
+            & > li {
+                & > p {
+                    transform: translateX(-2.5vw);
+                    opacity: 0;
+                }
+                &:before,
+                &:after {
+                    transform: scaleX(0);
+                }
+            }
         }
     }
     & > .credit {
         position: absolute;
+        z-index: 1;
         bottom: 2.5vh;
         width: 100%;
         display: flex;
@@ -39,6 +115,8 @@ $shadow: rgba(darken($bg, 20%), 0.75);
         }
     }
     & > .bars {
+        position: relative;
+        z-index: 1;
         $bars-height: 60px;
         $bars-width: $bars-height * metallic(1);
         width: $bars-width;
@@ -83,17 +161,18 @@ $shadow: rgba(darken($bg, 20%), 0.75);
     &.clicked {
         & > .bars {
             transform: scaleY(0);
-            transform-origin: bottom;
         }
     }
     & > .text {
+        position: relative;
+        z-index: 1;
         & > p {
             color: $text;
-            font-size: 1.125rem;
+            font-size: 1.2rem;
             letter-spacing: 0.25rem;
             font-family: 'Cutive Mono', monospace;
             &:not(:last-of-type) {
-                margin-bottom: 0.25rem;
+                margin-bottom: 0.125rem;
             }
             & > span {
                 transition-property: transform, opacity;
@@ -120,6 +199,7 @@ $shadow: rgba(darken($bg, 20%), 0.75);
     }
     & > .button {
         position: relative;
+        z-index: 3;
         padding: 0.8rem (0.8rem * metallic(1));
         margin-top: 2.5rem;
         background: transparent;

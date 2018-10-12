@@ -1,0 +1,26 @@
+@keyframes scale_100_0 {
+    from {
+        transform: scale(100%);
+    }
+    to {
+        transform: scale(0);
+    }
+}
+
+@keyframes scaleX_100_0 {
+    from {
+        transform: scaleY(100%);
+    }
+    to {
+        transform: scaleY(0);
+    }
+}
+
+@keyframes scaleY_100_0 {
+    from {
+        transform: scaleY(100%);
+    }
+    to {
+        transform: scaleY(0);
+    }
+}

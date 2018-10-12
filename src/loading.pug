@@ -1,24 +1,30 @@
 mixin split($text)
-    p
         each $char in $text.split("")
             span #{$char}
 
 #loading
+    .bg
+        .rect
+        .rect
     canvas
     .clicker
     ul.info
         li.particles
             p.title Particles
             p.data 0
-    .credit
-        p 2018 SnO2WMaN ver.3.0
     .bars
         -$i = 0
         while $i++ < 16
             .bar
     .text
-        +split("HTTPS://")
-        +split("SnO2WMaN")
-        +split("Graphics")
+        p
+            +split("HTTPS://")
+        p
+            +split("SnO2WMaN")
+        p
+            +split("Graphics")
     .button
-        p START
+        p.loading
+            +split("loading")
+        p.execute
+            +split("execute")

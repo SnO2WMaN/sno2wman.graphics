@@ -1,18 +1,25 @@
+import imagesLoaded from 'imagesloaded'
+
+const $root = document.getElementsByTagName('body')[0]
 const $loading = document.getElementById('loading')
+
+const $bgRects = $loading.querySelector('.bg > .rect')
 const $button = $loading.querySelector('.button')
 
 const $info = $loading.querySelector('.info')
 const $infoParticles = $info.querySelector('.particles > .data')
 
-// canvas
+/**
+ * Particle
+ */
 const $canvas = $loading.querySelector('canvas')
 const $clicker = $loading.querySelector('.clicker')
 let particles = []
 class Particle {
     /**
      *
-     * @param {Number} x
-     * @param {Number} y
+     * @param {Number} x Position X
+     * @param {Number} y Position Y
      */
     constructor(x, y) {
         // size
@@ -22,7 +29,7 @@ class Particle {
         this.y = y + (Math.random() - 0.5) * this.r * 2
 
         // speed
-        this.vMax = Math.random() * 8 + 3
+        this.vMax = Math.random() * 4 + 3
         this.v = Math.random() * this.vMax
         this.a = Math.random() * 0.38
         this.j = -0.002 * this.r
@@ -37,7 +44,7 @@ class Particle {
     }
     /**
      *
-     * @param {CanvasRenderingContext2D } ctx
+     * @param {CanvasRenderingContext2D } ctx Context
      */
     step(ctx) {
         ctx.fillStyle = `hsla(${this.hue},75%,76%,${Math.sqrt(
@@ -56,17 +63,41 @@ class Particle {
         this.r += this.rv
     }
     /**
-     * @returns Boolean
+     * @returns {Boolean} Is particle alive
      */
     isAlive() {
-        return 0 <= this.v && 1 < this.r
+        return this.v >= 0 && this.r > 1
     }
 }
 
+/**
+ * Loading
+ */
+Promise.all([
+    new Promise(resolve => {
+        imagesLoaded($root, { background: true }, resolve)
+    }),
+    new Promise(resolve => {
+        setTimeout(resolve, 1000)
+    }),
+]).then(() => {
+    $button.classList.add('active')
+})
+
+/**
+ * Button Click
+ */
 $button.addEventListener('click', e => {
-    if ($loading.classList.contains('clicked')) return
+    if (!$button.classList.contains('active')) {
+        return
+    }
+    if ($loading.classList.contains('clicked')) {
+        return
+    }
     $loading.classList.add('clicked')
     addParticles(e.clientX, e.clientY)
+
+    $bgRects.addEventListener('transitionend', dispose)
 })
 $clicker.addEventListener('click', e => {
     addParticles(e.clientX, e.clientY)
@@ -77,12 +108,19 @@ function addParticles(x, y) {
     }
 }
 
+/**
+ * Resize
+ */
 window.addEventListener('resize', () => {
     $canvas.width = window.innerWidth
     $canvas.height = window.innerHeight
 })
 window.dispatchEvent(new Event('resize'))
 
+/**
+ * Draw
+ */
+let raf
 function draw() {
     const ctx = $canvas.getContext('2d')
     ctx.clearRect(0, 0, $canvas.width, $canvas.height)
@@ -101,6 +139,15 @@ function draw() {
     }
     // Info
     $infoParticles.innerHTML = `${particles.length}`.padStart(4, '0')
-    requestAnimationFrame(draw)
+    raf = requestAnimationFrame(draw)
 }
-requestAnimationFrame(draw)
+raf = requestAnimationFrame(draw)
+
+/**
+ * Dispose
+ */
+
+function dispose() {
+    cancelAnimationFrame(raf)
+    $loading.style.display = 'none'
+}

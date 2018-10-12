@@ -1,0 +1,7 @@
+$loading_bg: hsl(226, 15%, 95%);
+$profile_bg: hsl(hue($loading_bg), 13%, 8%);
+$grad1: hsl(160, 85%, 65%);
+$grad2: hsl(280, 85%, 65%);
+$grad3: hsl(190, 85%, 65%);
+$text: hsl(hue($loading_bg), 9%, 25%);
+$shadow: rgba(darken($loading_bg, 20%), 0.75);

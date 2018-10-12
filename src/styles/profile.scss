@@ -1,0 +1,18 @@
+@import './constants';
+@import './colors';
+
+#profile {
+    & > .bg {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: $profile_bg;
+        & > .pattern {
+            position: absolute;
+            size: 100%;
+            background-image: url('../assets/pattern/13_point_w.png');
+            background-repeat: repeat;
+            opacity: 0.1;
+        }
+    }
+}

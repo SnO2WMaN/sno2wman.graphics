@@ -138,7 +138,6 @@ $bg: hsl($base_hue, 8%, 8%);
                 & > h1 {
                     color: rgba(white, 0.8);
                     font-size: 2rem;
-                    font-weight: 400;
                     font-family: 'Dosis', sans-serif;
                     letter-spacing: 0.25rem;
                     margin-bottom: 0.5rem;
@@ -146,7 +145,7 @@ $bg: hsl($base_hue, 8%, 8%);
                 & > h2 {
                     color: rgba(white, 0.5);
                     font-size: 0.9rem;
-                    font-family: 'Assistant', monospace;
+                    font-family: 'Assistant', sans-serif;
                     letter-spacing: 0.05rem;
                     &:not(:last-of-type) {
                         margin-bottom: 0.125rem;

@@ -46,4 +46,6 @@ library.add(
     faClipboard
 )
 
-dom.i2svg()
+export default new Promise(resolve => {
+    dom.i2svg({ callback: resolve })
+})

@@ -1,4 +1,6 @@
 import imagesLoaded from 'imagesloaded'
+import fontsPromise from './fonts'
+import fontAwesomePromise from './fontawesome'
 
 const $root = document.getElementsByTagName('body')[0]
 const $loading = document.getElementById('loading')
@@ -75,11 +77,13 @@ class Particle {
  */
 Promise.all([
     new Promise(resolve => {
-        imagesLoaded($root, { background: true }, resolve)
+        setTimeout(resolve, 500)
     }),
     new Promise(resolve => {
-        setTimeout(resolve, 2000)
+        imagesLoaded($root, { background: true }, resolve)
     }),
+    fontsPromise,
+    fontAwesomePromise,
 ]).then(() => {
     $button.classList.add('active')
 })

@@ -159,7 +159,8 @@ $bg: hsl($base_hue, 8%, 8%);
                 height: (100% / metallic(1));
                 display: flex;
                 flex-direction: column;
-                padding: 2rem;
+                justify-content: center;
+                padding: 0 2.5rem;
                 & > li {
                     width: 100%;
                     display: flex;
@@ -209,7 +210,16 @@ $bg: hsl($base_hue, 8%, 8%);
             & > .other {
                 width: 100vw;
                 height: calc(100vh - 100vw);
-                background: rgba(white, 0.5);
+                background: rgba(white, 0.25);
+                & > .name {
+                    display: none;
+                }
+                & > .profile {
+                    height: 100%;
+                    width: (100% / metallic(1));
+                    padding: 0;
+                    margin: 0 auto;
+                }
             }
         }
     }

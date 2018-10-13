@@ -12,7 +12,7 @@
         "dev": "./node_modules/.bin/parcel src/index.pug",
         "build": "./node_modules/.bin/parcel build src/index.pug --experimental-scope-hoisting",
         "lint": "npm run lint:eslint && npm run lint:stylelint",
-        "lint:eslint": "./node_modules/.bin/eslint src --ext .js --ignore-path .gitignore",
+        "lint:eslint": "./node_modules/.bin/eslint src --ext .js --ignore-path .gitignore --fix",
         "lint:stylelint": "./node_modules/.bin/stylelint src/**/*.vue src/**/*.s?css --ignore-pattern .gitignore"
     },
     "husky": {

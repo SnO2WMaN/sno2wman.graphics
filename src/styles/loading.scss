@@ -18,7 +18,6 @@ $shadow: rgba(darken($bg, 20%), 0.75);
     align-items: center;
     user-select: none;
     z-index: 9000;
-    visibility: hidden;
     & > .bg {
         position: absolute;
         top: 0;

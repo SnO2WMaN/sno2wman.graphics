@@ -1,6 +1,13 @@
 @import './constants';
 @import './colors';
 
+$bg: hsl($base_hue, 15%, 95%);
+$grad1: hsl(160, 85%, 65%);
+$grad2: hsl(280, 85%, 65%);
+$grad3: hsl(190, 85%, 65%);
+$text: hsl(hue($bg), 9%, 25%);
+$shadow: rgba(darken($bg, 20%), 0.75);
+
 #loading {
     position: absolute;
     width: 100%;
@@ -11,6 +18,7 @@
     align-items: center;
     user-select: none;
     z-index: 9000;
+    visibility: hidden;
     & > .bg {
         position: absolute;
         top: 0;
@@ -18,14 +26,14 @@
         size: 100%;
         z-index: -1;
         & > .rect {
-            background: $loading_bg;
+            background: $bg;
             position: absolute;
             width: 50%;
             height: 100%;
             transition-property: transform;
-            transition-duration: 1.25s;
-            transition-delay: 2.25s;
-            transition-timing-function: $easeInOutExpo;
+            transition-duration: 1s;
+            transition-delay: 2.5s;
+            transition-timing-function: cubic-bezier(1, 0.03, 0.345, 0.905);
             &:nth-of-type(1) {
                 left: 0;
                 transform-origin: left;
@@ -261,8 +269,8 @@
         & > p {
             color: $text;
             font-family: 'Cutive Mono', monospace;
-            font-size: 1rem;
-            letter-spacing: 0.125rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.05rem;
             position: relative;
             transition-property: filter;
             transition-duration: inherit;
@@ -272,7 +280,7 @@
                 transition-property: transform, opacity;
                 transition-duration: 0.5s;
                 transition-timing-function: $easeOutBack;
-                @for $i from 0 to 7 {
+                @for $i from 0 to 10 {
                     &:nth-of-type(#{$i + 1}) {
                         transition-delay: $i * 0.05s;
                     }
@@ -322,7 +330,7 @@
                     filter: blur(0.5px);
                 }
                 &:before {
-                    opacity: 0.3;
+                    opacity: 0.25;
                     box-shadow: 0 2px 6px $shadow inset;
                 }
             }

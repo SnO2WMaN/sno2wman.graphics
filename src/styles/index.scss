@@ -5,8 +5,6 @@
 
 @import './constants';
 @import './colors';
-@import './keyframes';
-
 :root {
     font-size: 14px;
     overflow: hidden;
@@ -14,20 +12,6 @@
     height: 100vh;
 }
 
-#credit {
-    position: absolute;
-    z-index: 9999;
-    bottom: 2.5vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    & > p {
-        color: $text;
-        font-size: 0.9rem;
-        letter-spacing: 0.025rem;
-        font-family: 'Cutive Mono', monospace;
-    }
-}
-
+@import './credit';
 @import './loading';
 @import './profile';

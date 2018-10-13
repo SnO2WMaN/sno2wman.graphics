@@ -3,5 +3,6 @@ module.exports = {
     plugins: {
         'postcss-sorting': {},
         'postcss-short': {},
+        'css-mqpacker': {},
     },
 }

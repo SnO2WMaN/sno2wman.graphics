@@ -78,7 +78,7 @@ Promise.all([
         imagesLoaded($root, { background: true }, resolve)
     }),
     new Promise(resolve => {
-        setTimeout(resolve, 1000)
+        setTimeout(resolve, 2000)
     }),
 ]).then(() => {
     $button.classList.add('active')

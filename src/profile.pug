@@ -1,61 +1,61 @@
 #profile
-    .bg
-        .pattern
-    .card
-        .social
-            ul.links
-                -
-                    $links = {
-                        twitter:"https://twitter.com/SnO2WMaN",
-                        steam:"https://steamcommunity.com/id/SnO2WMaN",
-                        github:"https://github.com/SnO2WMaN",
-                        tumblr:"https://sno2wman.tumblr.com",
-                        twitch:"https://www.twitch.tv/sno2wman",
-                        spotify:"https://open.spotify.com/user/sno2wman",
-                        codepen:"https://codepen.io/SnO2WMaN"
-                    }
-                    $copies = {
-                        discord:"SnO2WMaN#9459"
-                    }
-                li.mail
-                    a.link(href="mailto:sno2wman.official@gmail.com")
-                    .icon-wrap
-                        i.fas.fa-envelope
-                    .guide
-                        i.fas.fa-external-link-alt
-                each $link,$social in $links
-                    li(class=$social)
-                        a.link(href=$link target="_blank")
-                        .icon-wrap
-                            i.fab(class="fa-"+$social)
-                        .guide
-                            i.fas.fa-external-link-alt
-                each $copy,$social in $copies  
-                    li.copy(class=$social data-clipboard-text=$copy)
-                        .icon-wrap
-                            i.fab(class="fa-"+$social)
-                        .guide
-                            i.fas.fa-clipboard
-        .other
-            .name
-                h1 SnO2WMaN
-                h2 Webdesigning Machine
-                h2 Made In 2001
-            ul.profile
-                -
-                    $profiles={
-                        gender:["Male","mars"],
-                        age:["17","clock"],
-                        birthday:["2001.06.22","birthday-cake"],
-                        live:["Japan,Nagoya","umbrella-beach"],
-                        religion:["Pastafarianism","pastafarianism"],
-                        job:["Student","fist-raised"],
-                    }
-                each $profile,$title in $profiles
-                    li(class=$title)
-                        .left
-                            .icon-wrap
-                                i.fas.fa-fw(class="fa-"+$profile[1])
-                            p #{$title.toUpperCase()}
-                        .right
-                            p #{$profile[0]}
+	.bg
+		.pattern
+	.card
+		.social
+			ul.links
+				-
+					$links = {
+						twitter:"https://twitter.com/SnO2WMaN",
+						steam:"https://steamcommunity.com/id/SnO2WMaN",
+						github:"https://github.com/SnO2WMaN",
+						tumblr:"https://sno2wman.tumblr.com",
+						twitch:"https://www.twitch.tv/sno2wman",
+						spotify:"https://open.spotify.com/user/sno2wman",
+						codepen:"https://codepen.io/SnO2WMaN"
+					}
+					$copies = {
+						discord:"SnO2WMaN#9459"
+					}
+				li.mail
+					a.link(href="mailto:sno2wman.official@gmail.com")
+					.icon-wrap
+						i.fas.fa-envelope
+					.guide
+						i.fas.fa-external-link-alt
+				each $link,$social in $links
+					li(class=$social)
+						a.link(href=$link target="_blank")
+						.icon-wrap
+							i.fab(class="fa-"+$social)
+						.guide
+							i.fas.fa-external-link-alt
+				each $copy,$social in $copies  
+					li.clipboard(class=$social data-clipboard-text=$copy)
+						.icon-wrap
+							i.fab(class="fa-"+$social)
+						.guide
+							i.fas.fa-clipboard
+		.other
+			.top
+				h1 SnO2WMaN
+				h2 Webdesigning Machine
+				h2 Made In 2001
+			.bottom
+				ul.details
+					-
+						$details={
+							gender:["Male","mars"],
+							age:["17","clock"],
+							birthday:["2001.06.22","birthday-cake"],
+							live:["Japan,Nagoya","umbrella-beach"],
+							religion:["Pastafarianism","pastafarianism"],
+						}
+					each $detail,$detailName in $details
+						li(class=$detailName)
+							.left
+								.icon-wrap
+									i.fas.fa-fw(class="fa-"+$detail[1])
+								p #{$detailName.toUpperCase()}
+							.right
+								p #{$detail[0]}

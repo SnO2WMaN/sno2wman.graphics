@@ -134,7 +134,7 @@ $bg: hsl($base_hue, 8%, 8%);
 					}
 					@for $i from 0 to $links {
 						&:nth-of-type(#{$i + 1}) {
-							$deg: $i / $links * 360deg + 8deg;
+							$deg: $i / $links * 360deg;
 							$sin: sin($deg);
 							$cos: cos($deg);
 							top: calc(#{50% + $sin * 50%} - #{$size} / 2);
@@ -155,6 +155,7 @@ $bg: hsl($base_hue, 8%, 8%);
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
+				user-select: none;
 				& > h1 {
 					color: rgba(white, 0.8);
 					font-size: 2rem;
@@ -175,13 +176,55 @@ $bg: hsl($base_hue, 8%, 8%);
 			& > .bottom {
 				width: 100%;
 				height: (100% / metallic(1));
+				overflow-y: scroll;
+				&::-webkit-scrollbar {
+					width: 0.5rem;
+				}
+				&::-webkit-scrollbar-button {
+					display: none;
+				}
+				&::-webkit-scrollbar-track {
+					background: rgba(black, 0.25);
+				}
+				&::-webkit-scrollbar-thumb {
+					background-color: rgba(white, 0.25);
+				}
+				& > .description,
+				& > .details {
+					padding: 0 2rem;
+				}
+				& > .description {
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					& > .text {
+						padding: 1rem;
+						width: 100%;
+						background: linear-gradient(
+							rgba(white, 0.4),
+							rgba(white, 0.56)
+						);
+						& > p {
+							font-family: 'Sawarabi Gothic', serif;
+							font-feature-settings: 'palt';
+							font-size: 0.85rem;
+							letter-spacing: 1px;
+							color: rgba(black, 0.75);
+							position: relative;
+							&:not(:last-of-type) {
+								margin-bottom: 0.5rem;
+							}
+						}
+					}
+				}
 				& > .details {
 					width: 100%;
 					height: 100%;
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
-					padding: 0 2.5rem;
 					& > li {
 						width: 100%;
 						display: flex;
@@ -196,6 +239,7 @@ $bg: hsl($base_hue, 8%, 8%);
 						& > .left {
 							display: flex;
 							align-items: center;
+							user-select: none;
 							& > .icon-wrap {
 								font-size: 1rem;
 								color: rgba(white, 0.5);
@@ -213,7 +257,7 @@ $bg: hsl($base_hue, 8%, 8%);
 							justify-content: flex-end;
 							& > p {
 								font-family: 'Assistant', sans-serif;
-								color: rgba(white, 0.8);
+								color: rgba(white, 0.75);
 								font-size: 1rem;
 								letter-spacing: 0.05rem;
 							}
@@ -232,15 +276,22 @@ $bg: hsl($base_hue, 8%, 8%);
 			& > .other {
 				width: 100vw;
 				height: calc(100vh - 100vw);
-				background: rgba(white, 0.25);
+				background: rgba(white, 0.125);
+				overflow-x: scroll;
 				& > .top {
 					display: none;
 				}
 				& > .bottom {
+					width: 200vw;
+					height: 100%;
+					display: flex;
+					& > .description,
+					& > .details {
+						width: 100vw;
+						padding: 0 (100vw / (metallic(1) + 1) / 2);
+					}
 					& > .details {
 						height: 100%;
-						width: (100% / metallic(1));
-						padding: 0;
 						margin: 0 auto;
 					}
 				}

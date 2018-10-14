@@ -17,12 +17,6 @@
 					$copies = {
 						discord:"SnO2WMaN#9459"
 					}
-				li.mail
-					a.link(href="mailto:sno2wman.official@gmail.com")
-					.icon-wrap
-						i.fas.fa-envelope
-					.guide
-						i.fas.fa-external-link-alt
 				each $link,$social in $links
 					li(class=$social)
 						a.link(href=$link target="_blank")
@@ -36,12 +30,39 @@
 							i.fab(class="fa-"+$social)
 						.guide
 							i.fas.fa-clipboard
+				li.mail
+					a.link(href="mailto:sno2wman.official@gmail.com")
+					.icon-wrap
+						i.fas.fa-envelope
+					.guide
+						i.fas.fa-external-link-alt
 		.other
 			.top
 				h1 SnO2WMaN
 				h2 Webdesigning Machine
 				h2 Made In 2001
 			.bottom
+				.description
+					.text
+						p ナード活動をしている学生です。
+						p 	
+							|ウェブデザインをしたり、
+							br
+							|ボクセルを作っています。
+						p 
+							|飲食物の中では
+							br
+							|ペプシが最も好きです。
+						p 	
+							|ボクセルでのお仕事や、
+							br
+							|ウェブ制作の仕事を
+							br
+							|募集しています。
+						p 
+							|成果物はTumblrやTwitterを
+							br
+							|参考にしてください。
 				ul.details
 					-
 						$details={

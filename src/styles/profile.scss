@@ -177,18 +177,6 @@ $bg: hsl($base_hue, 8%, 8%);
 				width: 100%;
 				height: (100% / metallic(1));
 				overflow-y: scroll;
-				&::-webkit-scrollbar {
-					width: 0.5rem;
-				}
-				&::-webkit-scrollbar-button {
-					display: none;
-				}
-				&::-webkit-scrollbar-track {
-					background: rgba(black, 0.25);
-				}
-				&::-webkit-scrollbar-thumb {
-					background-color: rgba(white, 0.25);
-				}
 				& > .description,
 				& > .details {
 					padding: 0 2rem;
@@ -266,31 +254,37 @@ $bg: hsl($base_hue, 8%, 8%);
 				}
 			}
 		}
+		@media screen and (min-width: $mq-mobile) {
+			& > .other {
+				& > .bottom {
+					&::-webkit-scrollbar {
+						width: 0.5rem;
+					}
+					&::-webkit-scrollbar-button {
+						display: none;
+					}
+					&::-webkit-scrollbar-track {
+						background: rgba(black, 0.25);
+					}
+					&::-webkit-scrollbar-thumb {
+						background-color: rgba(white, 0.25);
+					}
+				}
+			}
+		}
 		@media screen and (max-width: $mq-mobile) {
 			background: transparent;
 			size: 100%;
 			flex-direction: column;
-			& > .social {
-				size: 100vw;
-			}
 			& > .other {
-				width: 100vw;
-				height: calc(100vh - 100vw);
 				background: rgba(white, 0.125);
 				overflow-x: scroll;
 				& > .top {
 					display: none;
 				}
 				& > .bottom {
-					width: 200vw;
 					height: 100%;
 					display: flex;
-					overflow-y: hidden;
-					& > .description,
-					& > .details {
-						width: 100vw;
-						padding: 0 (100vw / (metallic(1) + 1) / 2);
-					}
 					& > .description {
 						& > .text {
 							padding: 0;
@@ -299,7 +293,7 @@ $bg: hsl($base_hue, 8%, 8%);
 								text-align: center;
 								color: rgba(white, 0.5);
 								&:not(:last-of-type) {
-									margin-bottom: 0.75rem;
+									margin-bottom: 0.5rem;
 								}
 							}
 						}
@@ -308,6 +302,47 @@ $bg: hsl($base_hue, 8%, 8%);
 						padding: 0 (100vw / (metallic(1) + 1) / 2);
 						height: 100%;
 						margin: 0 auto;
+					}
+				}
+			}
+			@media (orientation: portrait) {
+				flex-direction: column;
+				& > .social {
+					size: 100vw;
+				}
+				& > .other {
+					width: 100vw;
+					height: calc(100vh - 100vw);
+					& > .bottom {
+						width: 200vw;
+						overflow-y: hidden;
+						overflow-x: scroll;
+						& > .description,
+						& > .details {
+							width: 100vw;
+							padding: 0 (100vw / (metallic(1) + 1) / 2);
+						}
+					}
+				}
+			}
+			@media (orientation: landscape) {
+				flex-direction: row;
+				& > .social {
+					size: 100vh;
+				}
+				& > .other {
+					width: calc(100vw - 100vh);
+					height: 100vh;
+					& > .bottom {
+						height: 200vh;
+						flex-direction: column;
+						overflow-x: hidden;
+						overflow-y: scroll;
+						& > .description,
+						& > .details {
+							height: 100vh;
+							padding: 0 2rem;
+						}
 					}
 				}
 			}

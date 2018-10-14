@@ -75,22 +75,6 @@ class Particle {
 }
 
 /**
- * Loading
- */
-Promise.all([
-	new Promise(resolve => {
-		setTimeout(resolve, 500)
-	}),
-	new Promise(resolve => {
-		imagesLoaded($root, { background: true }, resolve)
-	}),
-	fontsPromise,
-	fontAwesomePromise,
-]).then(() => {
-	$button.classList.add('active')
-})
-
-/**
  * Button Click
  */
 $button.addEventListener('click', e => {
@@ -148,6 +132,22 @@ function draw() {
 	raf = requestAnimationFrame(draw)
 }
 raf = requestAnimationFrame(draw)
+
+/**
+ * Loading
+ */
+Promise.all([
+	new Promise(resolve => {
+		setTimeout(resolve, 500)
+	}),
+	new Promise(resolve => {
+		imagesLoaded($root, { background: true }, resolve)
+	}),
+	fontsPromise,
+	fontAwesomePromise,
+]).then(() => {
+	$button.classList.add('active')
+})
 
 /**
  * Dispose

@@ -2,6 +2,18 @@
 @import './colors';
 
 $bg: hsl($base_hue, 8%, 8%);
+$brandcolors: (
+	twitter: #1da1f2,
+	tumblr: #35465c,
+	twitch: #6441a5,
+	discord: #7289da,
+	spotify: #1db954,
+	steam: #2b3647,
+	github: #24292e,
+	codepen: #191a1d,
+	mail: #d93025,
+	amazon: #ff9900,
+);
 
 #profile {
 	width: 100vw;
@@ -92,17 +104,6 @@ $bg: hsl($base_hue, 8%, 8%);
 						size: 100%;
 						z-index: 5;
 					}
-					$colors: (
-						twitter: #1da1f2,
-						tumblr: #35465c,
-						twitch: #6441a5,
-						discord: #7289da,
-						spotify: #1db954,
-						steam: #2b3647,
-						github: #24292e,
-						codepen: #191a1d,
-						mail: #d93025,
-					);
 					& > .icon-wrap {
 						position: absolute;
 						z-index: 1;
@@ -120,15 +121,34 @@ $bg: hsl($base_hue, 8%, 8%);
 						font-size: 0.75rem;
 						opacity: 0.25;
 					}
-					@each $brand, $color in $colors {
+					@each $brand
+						in (
+							'tumblr',
+							'steam',
+							'mail',
+							'discord',
+							'twitter',
+							'spotify',
+							'twitch',
+							'codepen',
+							'github'
+						)
+					{
 						&.#{$brand} {
 							$rotate: 29deg;
 							$mix: 15%;
 							&:before {
-								border-bottom-color: $color;
+								border-bottom-color: map-get(
+									$brandcolors,
+									$brand
+								);
 							}
 							& > .icon-wrap {
-								color: mix(white, $color, 80%);
+								color: mix(
+									white,
+									map-get($brandcolors, $brand),
+									80%
+								);
 							}
 						}
 					}
@@ -177,29 +197,31 @@ $bg: hsl($base_hue, 8%, 8%);
 				width: 100%;
 				height: (100% / metallic(1));
 				overflow-y: scroll;
-				& > .description,
-				& > .details {
-					padding: 0 2rem;
-				}
-				& > .description {
+				& > section {
 					height: 100%;
+					padding: 0 3rem;
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
+					& > .title {
+						font-family: 'Poppins', sans-serif;
+						color: rgba(white, 0.325);
+						font-size: 1.125rem;
+						letter-spacing: 0.4rem;
+						margin-bottom: 1rem;
+						font-weight: 400;
+					}
+				}
+				& > .description {
 					& > .text {
-						padding: 1rem;
 						width: 100%;
-						background: linear-gradient(
-							rgba(white, 0.25),
-							rgba(white, 0.4)
-						);
 						& > p {
 							font-family: 'Sawarabi Gothic', serif;
 							font-feature-settings: 'palt';
-							font-size: 0.85rem;
+							font-size: 0.8rem;
 							letter-spacing: 1px;
-							color: rgba(black, 0.75);
+							color: rgba(white, 0.5);
 							position: relative;
 							&:not(:last-of-type) {
 								margin-bottom: 0.5rem;
@@ -208,46 +230,101 @@ $bg: hsl($base_hue, 8%, 8%);
 					}
 				}
 				& > .details {
-					width: 100%;
-					height: 100%;
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					& > li {
+					& > ul {
 						width: 100%;
 						display: flex;
-						align-items: center;
-						&:not(:last-of-type) {
-							margin-bottom: 1rem;
-						}
-						& > .left,
-						& > .right {
-							width: 50%;
-						}
-						& > .left {
+						flex-direction: column;
+						& > li {
+							width: 100%;
 							display: flex;
 							align-items: center;
-							user-select: none;
-							& > .icon-wrap {
-								font-size: 1rem;
-								color: rgba(white, 0.5);
-								margin-right: 1rem;
+							&:not(:last-of-type) {
+								margin-bottom: 1rem;
 							}
-							& > p {
-								font-family: 'Assistant', sans-serif;
-								color: rgba(white, 0.5);
-								font-size: 0.7rem;
-								letter-spacing: 0.2rem;
+							& > .left,
+							& > .right {
+								width: 50%;
+							}
+							& > .left {
+								display: flex;
+								align-items: center;
+								user-select: none;
+								& > .icon-wrap {
+									font-size: 1rem;
+									color: rgba(white, 0.375);
+									margin-right: 0.75rem;
+								}
+								& > p {
+									font-family: 'Poppins', sans-serif;
+									color: rgba(white, 0.375);
+									font-size: 0.7rem;
+									letter-spacing: 0.2rem;
+								}
+							}
+							& > .right {
+								display: flex;
+								justify-content: flex-end;
+								& > p {
+									font-family: 'Assistant', sans-serif;
+									color: rgba(white, 0.5);
+									font-size: 1rem;
+									letter-spacing: 0.05rem;
+								}
 							}
 						}
-						& > .right {
+					}
+				}
+				& > .donation {
+					& > .wishlists {
+						display: flex;
+						flex-direction: column;
+						& > li {
+							position: relative;
 							display: flex;
-							justify-content: flex-end;
-							& > p {
-								font-family: 'Assistant', sans-serif;
+							flex-direction: row;
+							align-items: center;
+							background: rgba(white, 0.25);
+							transition-property: background-color;
+							transition-duration: 0.05s;
+							transition-timing-function: $easeInOutQuad;
+							&:hover,
+							&:active {
+								background: rgba(white, 0.4);
+							}
+							& > a {
+								position: absolute 0;
+								size: 100%;
+								z-index: 2;
+							}
+							& > .icon-wrap {
+								size: 2.75rem;
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								font-size: 1.5rem;
 								color: rgba(white, 0.75);
-								font-size: 1rem;
-								letter-spacing: 0.05rem;
+							}
+							& > p {
+								height: 100%;
+								padding: 0 1.5rem;
+								font-family: 'Sawarabi Gothic', serif;
+								font-feature-settings: 'palt';
+								font-size: 0.8rem;
+								letter-spacing: 1px;
+								color: rgba(white, 0.75);
+							}
+							&:not(:last-of-type) {
+								margin-bottom: 1rem;
+							}
+							@each $brand in ('amazon', 'steam') {
+								&.#{$brand} {
+									& > .icon-wrap {
+										background: rgba(
+											map-get($brandcolors, $brand),
+											0.6
+										);
+									}
+								}
 							}
 						}
 					}
@@ -258,7 +335,7 @@ $bg: hsl($base_hue, 8%, 8%);
 			& > .other {
 				& > .bottom {
 					&::-webkit-scrollbar {
-						width: 0.5rem;
+						width: 0.3rem;
 					}
 					&::-webkit-scrollbar-button {
 						display: none;
@@ -276,6 +353,7 @@ $bg: hsl($base_hue, 8%, 8%);
 			background: transparent;
 			size: 100%;
 			flex-direction: column;
+			$sections: 3;
 			& > .other {
 				background: rgba(white, 0.125);
 				overflow-x: scroll;
@@ -298,11 +376,6 @@ $bg: hsl($base_hue, 8%, 8%);
 							}
 						}
 					}
-					& > .details {
-						padding: 0 (100vw / (metallic(1) + 1) / 2);
-						height: 100%;
-						margin: 0 auto;
-					}
 				}
 			}
 			@media (orientation: portrait) {
@@ -314,11 +387,10 @@ $bg: hsl($base_hue, 8%, 8%);
 					width: 100vw;
 					height: calc(100vh - 100vw);
 					& > .bottom {
-						width: 200vw;
+						width: 100vw * $sections;
 						overflow-y: hidden;
 						overflow-x: scroll;
-						& > .description,
-						& > .details {
+						& > section {
 							width: 100vw;
 							padding: 0 (100vw / (metallic(1) + 1) / 2);
 						}
@@ -334,12 +406,11 @@ $bg: hsl($base_hue, 8%, 8%);
 					width: calc(100vw - 100vh);
 					height: 100vh;
 					& > .bottom {
-						height: 200vh;
+						height: 100vh * $sections;
 						flex-direction: column;
 						overflow-x: hidden;
 						overflow-y: scroll;
-						& > .description,
-						& > .details {
+						& > section {
 							height: 100vh;
 							padding: 0 2rem;
 						}

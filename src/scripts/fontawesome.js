@@ -34,6 +34,7 @@ import { faCodepen } from '@fortawesome/free-brands-svg-icons/faCodepen'
 import { faTumblr } from '@fortawesome/free-brands-svg-icons/faTumblr'
 import { faSteam } from '@fortawesome/free-brands-svg-icons/faSteam'
 import { faTwitch } from '@fortawesome/free-brands-svg-icons/faTwitch'
+import { faAmazon } from '@fortawesome/free-brands-svg-icons/faAmazon'
 
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope'
 import { faMars } from '@fortawesome/free-solid-svg-icons/faMars'
@@ -54,6 +55,7 @@ library.add(
 	faSteam,
 	faTumblr,
 	faTwitch,
+	faAmazon,
 	// SOLID
 	faEnvelope,
 	faMars,

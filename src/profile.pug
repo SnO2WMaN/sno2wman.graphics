@@ -1,8 +1,13 @@
+mixin split($text)
+	each $char in $text.split("")
+		span #{$char}
+
 #profile
 	.bg
 		.pattern
 	.card
 		.social
+			canvas
 			ul.links
 				-
 					$links = {
@@ -36,14 +41,19 @@
 						i.fas.fa-envelope
 					.guide
 						i.fas.fa-external-link-alt
-		.other
+		.prof
 			.top
-				h1 SnO2WMaN
-				h2 Webdesigning Machine
-				h2 Made In 2001
+				.covers
+					.cover
+					.cover
+				p SnO2WMaN
+				p Webdesigning Machine
+				p Made In 2001
 			.bottom
+				canvas
 				section.description
-					h1.title DESCRIPTION
+					h1.title 
+						+split("DESCRIPTION")
 					.text
 						p ナード的活動をしています。
 						p 	
@@ -65,7 +75,8 @@
 							br
 							|参考にしてください。
 				section.details
-					h1.title DETAILS
+					h1.title
+						+split("DETAILS")
 					ul
 						-
 							$details={
@@ -84,7 +95,8 @@
 								.right
 									p #{$detail[0]}
 				section.donation
-					h1.title DONATION
+					h1.title
+						+split("DONATION")
 					ul.wishlists
 						li.amazon
 							a(href="http://amzn.asia/3su4rbU" target="_blank")

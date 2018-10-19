@@ -40,25 +40,59 @@ $brandcolors: (
 		height: ($mq-mobile / metallic(1));
 		background: rgba(white, 0.1);
 		display: flex;
+		transform: scaleX(0);
+		transition-property: transform;
+		transition-duration: 0.8s;
+		transition-timing-function: cubic-bezier(1, 0.085, 0.355, 0.95);
+		&.animate {
+			transform: scaleX(1);
+		}
 		& > .social {
 			position: relative;
 			size: ($mq-mobile / metallic(1));
+			overflow: hidden;
 			&:before {
 				content: '';
-				position: absolute 0;
-				size: 100%;
+				position: absolute;
+				size: 100% * sqrt(2);
+				top: ((1 - sqrt(2)) / 2) * 100%;
+				left: ((1 - sqrt(2)) / 2) * 100%;
 				background: conic-gradient(from -22.5deg, white, black);
-				opacity: 0.25;
+				z-index: 0;
+				opacity: 0;
+				transform: rotate(-1turn);
+				transition-property: transform, opacity;
+				transition-duration: 1s;
+				transition-timing-function: cubic-bezier(1, 0.085, 0.355, 0.95);
+			}
+			&.animate {
+				&:before {
+					opacity: 0.25;
+					transform: rotate(0);
+				}
+			}
+			& > canvas {
+				position: absolute;
+				size: 100%;
+				top: 0;
+				left: 0;
+				z-index: 1;
 			}
 			& > .links {
 				position: absolute 0;
 				margin: auto;
 				size: (100% / metallic(1));
+				z-index: 2;
 				& > li {
 					$size: 3.6rem;
 					$links: 9;
 					position: absolute;
 					size: $size;
+					opacity: 0;
+					transform: translateY(25%);
+					transition-property: transform, opacity;
+					transition-duration: 0.5s;
+					transition-timing-function: $easeInOutCubic;
 					&.clipboard {
 						cursor: pointer;
 					}
@@ -154,42 +188,115 @@ $brandcolors: (
 					}
 					@for $i from 0 to $links {
 						&:nth-of-type(#{$i + 1}) {
-							$deg: $i / $links * 360deg;
+							$deg: $i / $links * 360deg - (360deg / $links);
 							$sin: sin($deg);
 							$cos: cos($deg);
 							top: calc(#{50% + $sin * 50%} - #{$size} / 2);
 							left: calc(#{50% + $cos * 50%} - #{$size} / 2);
+							transition-delay: $i * 0.075s;
 						}
 					}
 				}
 			}
+			&.animate {
+				& > .links {
+					& > li {
+						opacity: 1;
+						transform: translate(0);
+					}
+				}
+			}
 		}
-		& > .other {
+		& > .prof {
 			width: ($mq-mobile / (metallic(1) + 1));
 			height: 100%;
 			& > .top {
 				width: 100%;
 				height: (100% / (metallic(1) + 1));
-				background: rgba(white, 0.1);
+				background-color: transparent;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				user-select: none;
-				& > h1 {
-					color: rgba(white, 0.8);
-					font-size: 2rem;
-					font-family: 'Dosis', sans-serif;
-					letter-spacing: 0.25rem;
-					margin-bottom: 0.5rem;
+				position: relative;
+				transition-property: background-color;
+				transition-duration: 0.2s;
+				transition-delay: 1.1s;
+				transition-timing-function: linear;
+				&.animate {
+					background-color: rgba(white, 0.1);
 				}
-				& > h2 {
-					color: rgba(white, 0.5);
-					font-size: 0.9rem;
-					font-family: 'Assistant', sans-serif;
-					letter-spacing: 0.05rem;
+				& > .covers {
+					position: absolute;
+					size: 100%;
+					overflow: hidden;
+					& > .cover {
+						position: absolute;
+						size: 100%;
+						background: rgba(white, 0.1);
+						transform: translateX(-100%);
+						transition-property: transform;
+						transition-duration: 0.8s;
+						transition-timing-function: cubic-bezier(
+							1,
+							0.085,
+							0.355,
+							0.95
+						);
+						transform-origin: left;
+
+						@for $i from 0 to 2 {
+							&:nth-of-type(#{$i + 1}) {
+								transition-delay: 0.4s + $i * 0.1s;
+							}
+						}
+					}
+				}
+				&.animate {
+					& > .covers {
+						& > .cover {
+							transform: translateX(100%);
+						}
+					}
+				}
+				& > p {
+					transform: translateY(-50%);
+					opacity: 0;
+					transition-property: transform, opacity;
+					transition-duration: 0.5s;
+					transition-timing-function: cubic-bezier(
+						1,
+						0.085,
+						0.355,
+						0.95
+					);
+					&:nth-of-type(1) {
+						color: rgba(white, 0.8);
+						font-size: 2rem;
+						font-family: 'Dosis', sans-serif;
+						letter-spacing: 0.25rem;
+						margin-bottom: 0.5rem;
+					}
+					&:not(:nth-of-type(1)) {
+						color: rgba(white, 0.5);
+						font-size: 0.9rem;
+						font-family: 'Assistant', sans-serif;
+						letter-spacing: 0.05rem;
+					}
 					&:not(:last-of-type) {
 						margin-bottom: 0.125rem;
+					}
+					@for $i from 0 to 3 {
+						&:nth-of-type(#{$i + 1}) {
+							transition-delay: 1.2s + $i * 0.05s;
+						}
+					}
+				}
+				&.animate {
+					& > p {
+						transform: translateY(0);
+						opacity: 1;
 					}
 				}
 			}
@@ -197,20 +304,52 @@ $brandcolors: (
 				width: 100%;
 				height: (100% / metallic(1));
 				overflow-y: scroll;
+				position: relative;
+				& > canvas {
+					position: absolute;
+					top: 0;
+					left: 0;
+					size: 100%;
+				}
 				& > section {
 					height: 100%;
 					padding: 0 3rem;
 					display: flex;
+					overflow: hidden;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
+					position: relative;
+					z-index: 1;
 					& > .title {
 						font-family: 'Poppins', sans-serif;
-						color: rgba(white, 0.325);
+						color: rgba(white, 0.75);
 						font-size: 1.125rem;
 						letter-spacing: 0.4rem;
 						margin-bottom: 1rem;
 						font-weight: 400;
+						user-select: none;
+						& > span {
+							display: inline-block;
+							transform: translateY(25%);
+							opacity: 0;
+							transition-property: transform, opacity;
+							transition-duration: 0.25s;
+							transition-timing-function: $easeInOutCubic;
+							@for $i from 0 to 12 {
+								&:nth-of-type(#{$i + 1}) {
+									transition-delay: 0.5s + $i * 0.05s;
+								}
+							}
+						}
+					}
+					&.animate {
+						& > .title {
+							& > span {
+								opacity: 1;
+								transform: translate(0);
+							}
+						}
 					}
 				}
 				& > .description {
@@ -223,8 +362,26 @@ $brandcolors: (
 							letter-spacing: 1px;
 							color: rgba(white, 0.5);
 							position: relative;
+							transform: translateX(-5%);
+							opacity: 0;
+							transition-property: transform, opacity;
+							transition-duration: 0.5s;
+							transition-timing-function: $easeOutCubic;
+							@for $i from 0 to 5 {
+								&:nth-of-type(#{$i + 1}) {
+									transition-delay: 1s + $i * 0.05s;
+								}
+							}
 							&:not(:last-of-type) {
 								margin-bottom: 0.5rem;
+							}
+						}
+					}
+					&.animate {
+						& > .text {
+							& > p {
+								opacity: 1;
+								transform: translateX(0);
 							}
 						}
 					}
@@ -271,6 +428,60 @@ $brandcolors: (
 									letter-spacing: 0.05rem;
 								}
 							}
+							@for $i from 0 to 5 {
+								&:nth-of-type(#{$i + 1}) {
+									& > .left {
+										& > .icon-wrap {
+											opacity: 0;
+											transform: translateX(-50%);
+											transition-property: transform,
+												opacity;
+											transition-duration: 0.5s;
+											transition-delay: 0.5s +
+												($i * 0.1s);
+											transition-timing-function: ease;
+										}
+										& > p {
+											opacity: 0;
+											transform: translateY(25%);
+											transition-property: transform,
+												opacity;
+											transition-duration: 0.75s;
+											transition-delay: 0.5s +
+												($i * 0.1s);
+											transition-timing-function: $easeOutCubic;
+										}
+									}
+									& > .right {
+										opacity: 0;
+										transform: translateX(25%);
+										transition-property: transform, opacity;
+										transition-duration: 0.75s;
+										transition-delay: 0.5s + ($i * 0.1s);
+										transition-timing-function: $easeOutCubic;
+									}
+								}
+							}
+						}
+					}
+					&.animate {
+						& > ul {
+							& > li {
+								& > .left {
+									& > .icon-wrap {
+										opacity: 1;
+										transform: translateY(0);
+									}
+									& > p {
+										opacity: 1;
+										transform: translateY(0);
+									}
+								}
+								& > .right {
+									opacity: 1;
+									transform: translateX(0);
+								}
+							}
 						}
 					}
 				}
@@ -278,6 +489,11 @@ $brandcolors: (
 					& > .wishlists {
 						display: flex;
 						flex-direction: column;
+						opacity: 0;
+						transition-property: opacity;
+						transition-duration: 0.3s;
+						transition-delay: 0.125s;
+						transition-timing-function: $easeInOutQuad;
 						& > li {
 							position: relative;
 							display: flex;
@@ -287,22 +503,33 @@ $brandcolors: (
 							transition-property: background-color;
 							transition-duration: 0.05s;
 							transition-timing-function: $easeInOutQuad;
-							&:hover,
-							&:active {
-								background: rgba(white, 0.4);
-							}
+
+							user-select: none;
 							& > a {
 								position: absolute 0;
 								size: 100%;
 								z-index: 2;
+								visibility: hidden;
 							}
+
 							& > .icon-wrap {
+								position: relative;
 								size: 2.75rem;
 								display: flex;
 								justify-content: center;
 								align-items: center;
 								font-size: 1.5rem;
-								color: rgba(white, 0.75);
+								color: white;
+								overflow: hidden;
+								&:before {
+									content: '';
+									position: absolute;
+									size: (100% * sqrt(2));
+									top: (50% * (1 - sqrt(2)));
+									left: (50% * (1 - sqrt(2)));
+									border-radius: 50%;
+									z-index: 0;
+								}
 							}
 							& > p {
 								height: 100%;
@@ -319,11 +546,71 @@ $brandcolors: (
 							@each $brand in ('amazon', 'steam') {
 								&.#{$brand} {
 									& > .icon-wrap {
-										background: rgba(
-											map-get($brandcolors, $brand),
-											0.6
-										);
+										&:before {
+											background: rgba(
+												map-get($brandcolors, $brand),
+												0.5
+											);
+										}
 									}
+								}
+							}
+							@for $i from 0 to 5 {
+								&:nth-of-type(#{$i + 1}) {
+									& > .icon-wrap {
+										transform: scale(0);
+										opacity: 0;
+										transition-property: transform, opacity;
+										transition-duration: 0.5s;
+										transition-delay: 0.25s + ($i * 0.1s);
+										transition-timing-function: $easeInQuint;
+
+										&:before {
+											transform: scale(0);
+											opacity: 0;
+											transition-property: transform,
+												opacity;
+											transition-duration: 0.5s;
+											transition-delay: 0.75s +
+												($i * 0.1s);
+											transition-timing-function: $easeOutQuint;
+										}
+									}
+									& > p {
+										transform: translateY(50%);
+										opacity: 0;
+										transition-property: transform, opacity;
+										transition-duration: 0.75s;
+										transition-delay: 0.5s + ($i * 0.1s);
+										transition-timing-function: $easeOutCubic;
+									}
+								}
+							}
+						}
+					}
+					&.animate {
+						& > .wishlists {
+							opacity: 1;
+							& > li {
+								& > .icon-wrap {
+									transform: scale(1);
+									opacity: 1;
+
+									&:before {
+										transform: scale(1);
+										opacity: 1;
+									}
+								}
+								& > p {
+									opacity: 1;
+									transform: translateY(0);
+								}
+								&:hover,
+								&:active {
+									background: rgba(white, 0.4);
+								}
+								& > a {
+									visibility: visible;
 								}
 							}
 						}
@@ -332,7 +619,7 @@ $brandcolors: (
 			}
 		}
 		@media screen and (min-width: $mq-mobile) {
-			& > .other {
+			& > .prof {
 				& > .bottom {
 					&::-webkit-scrollbar {
 						width: 0.3rem;
@@ -354,11 +641,12 @@ $brandcolors: (
 			size: 100%;
 			flex-direction: column;
 			$sections: 3;
-			& > .other {
+			& > .prof {
 				background: rgba(white, 0.125);
 				overflow-x: scroll;
 				& > .top {
-					display: none;
+					height: 0;
+					visibility: hidden;
 				}
 				& > .bottom {
 					height: 100%;
@@ -383,15 +671,15 @@ $brandcolors: (
 				& > .social {
 					size: 100vw;
 				}
-				& > .other {
+				& > .prof {
 					width: 100vw;
 					height: calc(100vh - 100vw);
 					& > .bottom {
-						width: 100vw * $sections;
 						overflow-y: hidden;
 						overflow-x: scroll;
 						& > section {
-							width: 100vw;
+							min-width: 100vw;
+							max-width: 100vw;
 							padding: 0 (100vw / (metallic(1) + 1) / 2);
 						}
 					}
@@ -402,14 +690,15 @@ $brandcolors: (
 				& > .social {
 					size: 100vh;
 				}
-				& > .other {
+				& > .prof {
 					width: calc(100vw - 100vh);
 					height: 100vh;
 					& > .bottom {
-						height: 100vh * $sections;
+						height: 100vh;
 						flex-direction: column;
 						overflow-x: hidden;
 						overflow-y: scroll;
+						display: block;
 						& > section {
 							height: 100vh;
 							padding: 0 2rem;

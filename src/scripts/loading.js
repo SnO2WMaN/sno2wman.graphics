@@ -22,8 +22,8 @@ let particles = []
 class Particle {
 	/**
 	 *
-	 * @param {Number} x Position X
-	 * @param {Number} y Position Y
+	 * @param {Number} x Coordinate of X
+	 * @param {Number} y Coordinate of Y
 	 */
 	constructor(x, y) {
 		// size
@@ -48,7 +48,7 @@ class Particle {
 	}
 	/**
 	 *
-	 * @param {CanvasRenderingContext2D } ctx Context
+	 * @param {CanvasRenderingContext2D } ctx Canvas Rendering Context 2D
 	 */
 	step(ctx) {
 		ctx.fillStyle = `hsla(${this.hue},75%,76%,${Math.sqrt(
@@ -57,6 +57,7 @@ class Particle {
 		ctx.beginPath()
 		ctx.arc(this.x, this.y, Math.abs(this.r), 0, 2 * Math.PI)
 		ctx.fill()
+		ctx.closePath()
 
 		this.x += this.cos * this.v
 		this.y += this.sin * this.v
@@ -102,10 +103,9 @@ function addParticles(x, y) {
  * Resize
  */
 window.addEventListener('resize', () => {
-	$canvas.width = window.innerWidth
-	$canvas.height = window.innerHeight
+	$canvas.width = $canvas.clientWidth
+	$canvas.height = $canvas.clientHeight
 })
-window.dispatchEvent(new Event('resize'))
 
 /**
  * Draw
@@ -116,17 +116,17 @@ function draw() {
 	ctx.clearRect(0, 0, $canvas.width, $canvas.height)
 	ctx.globalCompositeOperation = 'hard-light'
 	particles = particles.filter(particle => particle.isAlive())
-	particles.forEach(particle => {
-		particle.step(ctx)
-	})
 	if (!$loading.classList.contains('clicked') && Math.random() < 0.25) {
 		particles.push(
 			new Particle(
-				$canvas.width * Math.random(),
-				$canvas.height * Math.random()
+				$canvas.clientWidth * Math.random(),
+				$canvas.clientHeight * Math.random()
 			)
 		)
 	}
+	particles.forEach(particle => {
+		particle.step(ctx)
+	})
 	// Info
 	$infoParticles.innerHTML = `${particles.length}`.padStart(4, '0')
 	raf = requestAnimationFrame(draw)

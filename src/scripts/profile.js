@@ -54,8 +54,12 @@ $card.addEventListener(
 					}
 				})
 		})
+		$profBottom.classList.add('scrollable')
 		$profBottom.querySelectorAll('section')[0].classList.add('animate')
 	},
 	{ once: true }
 )
-$card.classList.add('animate')
+
+export default function start() {
+	$card.classList.add('animate')
+}

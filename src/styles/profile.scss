@@ -303,8 +303,10 @@ $brandcolors: (
 			& > .bottom {
 				width: 100%;
 				height: (100% / metallic(1));
-				overflow-y: scroll;
 				position: relative;
+				&.scrollable {
+					overflow-y: scroll;
+				}
 				& > canvas {
 					position: absolute;
 					top: 0;
@@ -643,7 +645,6 @@ $brandcolors: (
 			$sections: 3;
 			& > .prof {
 				background: rgba(white, 0.125);
-				overflow-x: scroll;
 				& > .top {
 					height: 0;
 					visibility: hidden;
@@ -675,8 +676,10 @@ $brandcolors: (
 					width: 100vw;
 					height: calc(100vh - 100vw);
 					& > .bottom {
-						overflow-y: hidden;
-						overflow-x: scroll;
+						&.scrollable {
+							overflow-x: scroll;
+							overflow-y: hidden;
+						}
 						& > section {
 							min-width: 100vw;
 							max-width: 100vw;
@@ -696,8 +699,10 @@ $brandcolors: (
 					& > .bottom {
 						height: 100vh;
 						flex-direction: column;
-						overflow-x: hidden;
-						overflow-y: scroll;
+						&.scrollable {
+							overflow-x: hidden;
+							overflow-y: scroll;
+						}
 						display: block;
 						& > section {
 							height: 100vh;

@@ -2,6 +2,8 @@ import imagesLoaded from 'imagesloaded'
 import fontsPromise from './fonts'
 import fontAwesomePromise from './fontawesome'
 
+import profile from './profile'
+
 const debug = process.env.NODE_ENV === 'development'
 
 const $root = document.getElementsByTagName('body')[0]
@@ -156,6 +158,7 @@ Promise.all([
 function dispose() {
 	cancelAnimationFrame(raf)
 	$loading.style.display = 'none'
+	profile()
 }
 
 if (debug) {

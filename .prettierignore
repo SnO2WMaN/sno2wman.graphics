@@ -1,0 +1,15 @@
+# DIRECTORY
+assets
+static
+.nuxt
+dist
+
+# SETTING FILE
+.*rc
+.*ignore
+.editorconfig
+
+# OTHER
+LICENCE
+*.log
+yarn.lock

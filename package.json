@@ -13,13 +13,15 @@
 		"build": "./node_modules/.bin/nuxt build",
 		"start": "./node_modules/.bin/nuxt start",
 		"generate": "./node_modules/.bin/nuxt generate",
+		"clean": "npm run lint && npm run format",
 		"lint": "npm run lint:eslint && npm run lint:stylelint",
-		"lint:eslint": "./node_modules/.bin/eslint . --ext .js,.vue --ignore-path .gitignore",
-		"lint:stylelint": "./node_modules/.bin/stylelint **/*.vue **/*.s?css --ignore-pattern .gitignore"
+		"lint:eslint": "./node_modules/.bin/eslint . --ext .js,.vue --ignore-path .gitignore --fix",
+		"lint:stylelint": "./node_modules/.bin/stylelint **/*.vue **/*.s?css --ignore-pattern .gitignore",
+		"format": "./node_modules/.bin/prettier ./**/* --write --ignore-path .prettierignore"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm run lint"
+			"pre-commit": "npm run clean"
 		}
 	},
 	"browserslist": [
@@ -40,12 +42,18 @@
 		"babel-core": "^6.26.3",
 		"babel-eslint": "^10.0.1",
 		"babel-preset-env": "^1.7.0",
+		"css-mqpacker": "^7.0.0",
 		"eslint": "^5.7.0",
 		"eslint-config-prettier": "^3.1.0",
 		"eslint-plugin-prettier": "^3.0.0",
-		"eslint-plugin-vue": "^5.0.0-beta.3",
+		"eslint-plugin-vue": "^4.7.1",
 		"husky": "^1.1.2",
-		"prettier": "^1.14.3",
+		"node-sass": "^4.10.0",
+		"postcss-scss": "^2.0.0",
+		"postcss-short": "^5.0.0",
+		"postcss-sorting": "^4.0.0",
+		"prettier": "^1.15.2",
+		"sass-loader": "^7.1.0",
 		"stylelint": "^9.6.0",
 		"stylelint-config-prettier": "^4.0.0",
 		"stylelint-config-recommended-scss": "^3.2.0",

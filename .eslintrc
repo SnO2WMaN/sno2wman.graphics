@@ -15,6 +15,15 @@
 	"plugins": ["prettier", "vue"],
 	"rules": {
 		"prettier/prettier": "error",
-		"vue/html-indent": ["error", "tab"]
+		"vue/html-indent": ["error", "tab"],
+		"vue/max-attributes-per-line": ["off"],
+		"vue/html-self-closing": [
+			"error",
+			{
+				"html": {
+					"void": "any"
+				}
+			}
+		]
 	}
 }

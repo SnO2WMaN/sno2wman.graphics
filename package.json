@@ -9,11 +9,13 @@
 		"url": "https://sno2wman.graphics"
 	},
 	"scripts": {
-		"dev": "./node_modules/.bin/parcel src/index.pug",
-		"build": "./node_modules/.bin/parcel build src/index.pug --experimental-scope-hoisting",
+		"dev": "./node_modules/.bin/nuxt --hostname 0.0.0.0 --port 3000",
+		"build": "./node_modules/.bin/nuxt build",
+		"start": "./node_modules/.bin/nuxt start",
+		"generate": "./node_modules/.bin/nuxt generate",
 		"lint": "npm run lint:eslint && npm run lint:stylelint",
-		"lint:eslint": "./node_modules/.bin/eslint src --ext .js --ignore-path .gitignore --fix",
-		"lint:stylelint": "./node_modules/.bin/stylelint src/**/*.vue src/**/*.s?css --ignore-pattern .gitignore"
+		"lint:eslint": "./node_modules/.bin/eslint . --ext .js,.vue --ignore-path .gitignore",
+		"lint:stylelint": "./node_modules/.bin/stylelint **/*.vue **/*.s?css --ignore-pattern .gitignore"
 	},
 	"husky": {
 		"hooks": {
@@ -27,33 +29,23 @@
 		"not dead"
 	],
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "^1.2.4",
-		"@fortawesome/free-brands-svg-icons": "^5.3.1",
-		"@fortawesome/free-solid-svg-icons": "^5.3.1",
 		"awesome-sass-easing": "^1.1.2",
-		"clipboard": "^2.0.1",
-		"imagesloaded": "^4.1.4",
 		"mathsass": "^0.10.1",
 		"minireset.css": "^0.0.3",
-		"sass-metallic-ratio": "^0.0.3",
-		"webfontloader": "^1.6.28"
+		"nuxt": "^2.2.0",
+		"nuxt-sass-resources-loader": "^2.0.5",
+		"sass-metallic-ratio": "^0.0.3"
 	},
 	"devDependencies": {
-		"autoprefixer": "^9.1.5",
 		"babel-core": "^6.26.3",
+		"babel-eslint": "^10.0.1",
 		"babel-preset-env": "^1.7.0",
-		"css-mqpacker": "^7.0.0",
 		"eslint": "^5.7.0",
-		"eslint-config-precure": "^3.1.0",
+		"eslint-config-prettier": "^3.1.0",
+		"eslint-plugin-prettier": "^3.0.0",
+		"eslint-plugin-vue": "^5.0.0-beta.3",
 		"husky": "^1.1.2",
-		"node-sass": "^4.9.3",
-		"node-sass-package-importer": "^5.2.0",
-		"parcel-bundler": "^1.10.3",
-		"postcss-scss": "^2.0.0",
-		"postcss-short": "^5.0.0",
-		"postcss-sorting": "^4.0.0",
 		"prettier": "^1.14.3",
-		"pug": "^2.0.3",
 		"stylelint": "^9.6.0",
 		"stylelint-config-prettier": "^4.0.0",
 		"stylelint-config-recommended-scss": "^3.2.0",

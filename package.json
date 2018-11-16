@@ -11,7 +11,7 @@
 	"scripts": {
 		"dev": "./node_modules/.bin/nuxt --hostname 0.0.0.0 --port 3000",
 		"build": "./node_modules/.bin/nuxt build",
-		"start": "./node_modules/.bin/nuxt start",
+		"start": "./node_modules/.bin/nuxt start --hostname 0.0.0.0 --port 3000",
 		"generate": "./node_modules/.bin/nuxt generate",
 		"clean": "npm run lint && npm run format",
 		"lint": "npm run lint:eslint && npm run lint:stylelint",
@@ -31,12 +31,18 @@
 		"not dead"
 	],
 	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.8",
+		"@fortawesome/free-brands-svg-icons": "^5.5.0",
+		"@fortawesome/free-solid-svg-icons": "^5.5.0",
+		"@fortawesome/vue-fontawesome": "^0.1.2",
 		"awesome-sass-easing": "^1.1.2",
 		"mathsass": "^0.10.1",
 		"minireset.css": "^0.0.3",
 		"nuxt": "^2.2.0",
 		"nuxt-sass-resources-loader": "^2.0.5",
-		"sass-metallic-ratio": "^0.0.3"
+		"sass-metallic-ratio": "^0.0.3",
+		"underscore": "^1.9.1",
+		"webfontloader": "^1.6.28"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",

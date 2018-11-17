@@ -3,21 +3,3 @@ $tablet: 769px;
 $desktop: 1024px;
 $widescreen: 1216px;
 $fullhd: 1408px;
-
-$navigation-width: 320px;
-
-$brandcolors: (
-	twitter: #1da1f2,
-	discord: #7289da,
-	tumblr: #35465c,
-	github: #333,
-);
-
-@keyframes y-0-50 {
-	from {
-		transform: translateY(0%);
-	}
-	100% {
-		transform: translateY(50%);
-	}
-}

@@ -15,7 +15,8 @@ module.exports = {
 			},
 			{
 				name: 'viewport',
-				content: 'width=device-width, initial-scale=1.0',
+				content:
+					'width=device-width,initial-scale=1.0,user-scalable=no',
 			},
 			{
 				'http-equip': 'X-UA-Compatible',
@@ -30,7 +31,7 @@ module.exports = {
 			},
 			{
 				href:
-					'https://fonts.googleapis.com/css?family=Press+Start+2P:300,400',
+					'https://fonts.googleapis.com/css?family=Press+Start+2P|Source+Sans+Pro:300,400,700|Montserrat:400,500,700',
 				rel: 'stylesheet',
 			},
 		],

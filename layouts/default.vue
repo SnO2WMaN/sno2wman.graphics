@@ -20,12 +20,7 @@ export default {
 	width: 100vw;
 	height: 100vh;
 	position: relative;
-	& > .globalnav {
-		position: absolute;
-		left: 0;
-		top: 0;
-		z-index: 9999;
-	}
+	overflow: hidden;
 	& > .nuxt {
 		width: 100%;
 		height: 100%;

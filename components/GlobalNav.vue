@@ -67,9 +67,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
 	faBriefcase,
 	faEnvelope,
-	faAddressCard,
-	faFeather,
 	faHandHoldingUsd,
+	faIdCard,
+	faPenNib,
+	faCoffee,
 } from '@fortawesome/free-solid-svg-icons'
 
 import Hamburger from '~/components/globalnav/Hamburger.vue'
@@ -85,9 +86,10 @@ export default {
 		return {
 			mobileOn: false,
 			menu: {
-				profile: { icon: faAddressCard, link: 'profile' },
+				profile: { icon: faIdCard, link: 'profile' },
 				business: { icon: faBriefcase, link: 'business' },
-				personal: { icon: faFeather, link: 'personal' },
+				personal: { icon: faCoffee, link: 'personal' },
+				blog: { icon: faPenNib, link: 'blog' },
 				contact: { icon: faEnvelope, link: 'contact' },
 				backers: { icon: faHandHoldingUsd, link: 'backers' },
 			},
@@ -108,7 +110,7 @@ export default {
 	left: 0;
 	top: 0;
 	& > .wrap {
-		width: $widescreen;
+		width: calc(#{$widescreen} - #{$outframe-width * 2});
 		display: flex;
 		padding-top: 2rem;
 		& > .home {
@@ -116,6 +118,7 @@ export default {
 			align-items: center;
 			position: relative;
 			z-index: 9000;
+			padding-left: 1rem;
 			& > .link {
 				position: absolute;
 				size: 100%;
@@ -139,6 +142,7 @@ export default {
 			justify-content: flex-end;
 			flex-grow: 2;
 			z-index: 9000;
+			padding-right: 1rem;
 			& > .menuitem {
 				padding: 0.5rem;
 				position: relative;
@@ -159,11 +163,11 @@ export default {
 				}
 				& > .name {
 					color: #3f3f3f;
-					font-size: 0.8rem;
+					font-size: 0.75rem;
 					line-height: 1em;
 					font-weight: 500;
 					font-family: 'Montserrat', sans-serif;
-					letter-spacing: 0.2rem;
+					letter-spacing: 0.1rem;
 				}
 			}
 		}
@@ -309,7 +313,7 @@ export default {
 			}
 			& > .menu {
 				& > .menuitem {
-					@for $i from 0 to 5 {
+					@for $i from 0 to 6 {
 						&:nth-of-type(#{$i + 1}) {
 							& > .icon {
 								transition: 0.175s $easeOutExpo;
@@ -349,7 +353,7 @@ export default {
 			}
 			& > .menu {
 				& > .menuitem {
-					@for $i from 0 to 5 {
+					@for $i from 0 to 6 {
 						&:nth-of-type(#{$i + 1}) {
 							& > .icon {
 								transition: 0.25s $easeInCubic;

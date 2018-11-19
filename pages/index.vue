@@ -1,10 +1,19 @@
 <template>
 	<div>
-		<header><CanvasWrapper class="canvas" /></header>
+		<header>
+			<CanvasWrapper
+				:init="background.init"
+				:render="background.render"
+				:once="background.once"
+				class="canvas"
+			/>
+		</header>
 	</div>
 </template>
 
 <script>
+import background from '~/exports/header.js'
+
 import CanvasWrapper from '~/components/CanvasWrapper'
 
 export default {
@@ -13,6 +22,11 @@ export default {
 	},
 	head() {
 		return { title: 'Index' }
+	},
+	data() {
+		return {
+			background,
+		}
 	},
 }
 </script>

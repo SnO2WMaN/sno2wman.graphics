@@ -15,7 +15,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-	border: 1rem #3f3f3f solid;
+	border: $outframe-width #3f3f3f solid;
 	background: #efefef;
 	width: 100vw;
 	height: 100vh;

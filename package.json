@@ -42,6 +42,7 @@
 		"nuxt": "^2.2.0",
 		"nuxt-sass-resources-loader": "^2.0.5",
 		"sass-metallic-ratio": "^0.0.3",
+		"simplex-noise": "^2.4.0",
 		"underscore": "^1.9.1",
 		"webfontloader": "^1.6.28"
 	},

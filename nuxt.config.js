@@ -31,7 +31,7 @@ module.exports = {
 			},
 			{
 				href:
-					'https://fonts.googleapis.com/css?family=Press+Start+2P|Source+Sans+Pro:300,400,700|Montserrat:400,500,700',
+					'https://fonts.googleapis.com/css?family=Press+Start+2P|Source+Sans+Pro:300,400,700|Montserrat:400,500,700|Noto+Sans+JP:400,500',
 				rel: 'stylesheet',
 			},
 		],
@@ -41,6 +41,11 @@ module.exports = {
 			name: 'index',
 			path: '/',
 			component: 'pages/index.vue',
+		},
+		{
+			name: 'backers',
+			path: '/',
+			component: 'pages/backers.vue',
 		},
 	],
 }

@@ -20,10 +20,11 @@ export default {
 	width: 100vw;
 	height: 100vh;
 	position: relative;
-	overflow: hidden;
+	overflow-x: hidden;
 	& > .nuxt {
 		width: 100%;
 		height: 100%;
+		overflow-y: scroll;
 	}
 }
 </style>

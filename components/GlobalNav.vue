@@ -28,7 +28,11 @@
 				</li>
 			</ul>
 		</div>
-		<Hamburger class="hamburger" @clicked="mobileOn = !mobileOn" />
+		<Hamburger
+			:active="mobileOn"
+			class="hamburger"
+			@clicked="mobileOn = !mobileOn"
+		/>
 		<transition :duration="{ enter: 850, leave: 1000 }" name="mobilenav">
 			<div v-show="mobileOn" class="mobilenav">
 				<div class="home" @click="mobileOn = false">
@@ -126,12 +130,12 @@ export default {
 			}
 			& > .icon {
 				size: 3rem;
-				border: #3f3f3f 0.25rem solid;
+				border: $text 0.25rem solid;
 				border-radius: 50%;
 				overflow: hidden;
 			}
 			& > h1 {
-				color: #3f3f3f;
+				color: $text;
 				margin-left: 1rem;
 				font-family: 'Press Start 2P', monospace;
 				line-height: 1em;
@@ -157,12 +161,12 @@ export default {
 					z-index: 1;
 				}
 				& > .icon {
-					color: #3f3f3f;
+					color: $text;
 					margin-right: 0.75rem;
 					font-size: 1rem;
 				}
 				& > .name {
-					color: #3f3f3f;
+					color: $text;
 					font-size: 0.75rem;
 					line-height: 1em;
 					font-weight: 500;
@@ -198,7 +202,7 @@ export default {
 			top: 0;
 			left: 0;
 			size: 100%;
-			background-color: rgba(white, 0.8);
+			background-color: rgba(white, 0.9);
 			z-index: -1;
 			opacity: 1;
 		}
@@ -214,13 +218,13 @@ export default {
 			}
 			& > .icon {
 				size: 3rem;
-				border: #3f3f3f 0.25rem solid;
+				border: $text 0.25rem solid;
 				border-radius: 50%;
 				overflow: hidden;
 			}
 			& > h1 {
 				font-size: 0.8rem;
-				color: #3f3f3f;
+				color: $text;
 				margin-left: 2rem;
 				font-family: 'Press Start 2P', monospace;
 				overflow: hidden;
@@ -246,13 +250,13 @@ export default {
 					z-index: 1;
 				}
 				& > .icon {
-					color: #3f3f3f;
+					color: $text;
 					margin-right: 1.25rem;
 					font-size: 0.8rem;
 					transform-origin: right;
 				}
 				& > .name {
-					color: #3f3f3f;
+					color: $text;
 					font-size: 0.75rem;
 					line-height: 1em;
 					font-weight: 700;

@@ -1,4 +1,7 @@
 module.exports = {
+	generate: {
+		fallback: true,
+	},
 	modules: ['nuxt-sass-resources-loader'],
 	css: ['minireset.css'],
 	sassResources: [

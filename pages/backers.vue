@@ -30,7 +30,7 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-const backers = require('~/assets/backers.json')
+import backers from '~/assets/backers.json'
 
 import NameCard from '~/components/backers/NameCard'
 import { faGrinSquintTears } from '@fortawesome/free-solid-svg-icons'
@@ -115,7 +115,7 @@ section.backers {
 	}
 	& > .card {
 		width: 22.5%;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 		margin-right: 2.5%;
 		@media screen and (max-width: $tablet) {
 			width: 100%;

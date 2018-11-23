@@ -19,15 +19,16 @@ export default {
 	components: {
 		FontAwesomeIcon,
 	},
+	props: {
+		active: { type: Boolean, default: false },
+	},
 	data() {
 		return {
 			icon: faBars,
-			active: false,
 		}
 	},
 	methods: {
 		clicked() {
-			this.active = !this.active
 			this.$emit('clicked')
 		},
 	},
@@ -50,7 +51,7 @@ export default {
 		& > .bar {
 			width: 100%;
 			height: 2px;
-			background-color: #3f3f3f;
+			background-color: $text;
 			transition: 0.4s transform $easeInOutCubic;
 			&:nth-of-type(1) {
 				transform-origin: 50% - (50% / sqrt(2));

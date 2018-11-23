@@ -3,7 +3,9 @@
 </template>
 
 <script>
-let raf
+import { throttle } from 'underscore'
+
+let raf, throttled
 export default {
 	name: 'CanvasWrapper',
 	props: {
@@ -19,13 +21,12 @@ export default {
 	},
 	computed: {},
 	mounted() {
-		this.$nextTick(() => {
-			this.fit()
-		})
-		window.addEventListener('resize', this.fit)
+		throttled = throttle(this.fit, 1000 / 30)
+		this.$nextTick(this.fit())
+		window.addEventListener('resize', throttled)
 	},
 	beforeDestroy() {
-		window.removeEventListener('resize', this.fit)
+		window.removeEventListener('resize', throttled)
 	},
 	methods: {
 		fit() {

@@ -34,7 +34,7 @@ module.exports = {
 			},
 			{
 				href:
-					'https://fonts.googleapis.com/css?family=Press+Start+2P|Source+Sans+Pro:300,400,700|Montserrat:400,500,700|Noto+Sans+JP:400,500',
+					'https://fonts.googleapis.com/css?family=Press+Start+2P|Source+Sans+Pro:400,500|Montserrat:400,500|Noto+Sans+JP:400,500',
 				rel: 'stylesheet',
 			},
 		],

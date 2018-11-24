@@ -117,6 +117,13 @@ section.backers {
 		width: 22.5%;
 		margin-bottom: 2rem;
 		margin-right: 2.5%;
+		@media screen and (min-width: $tablet) and (max-width: $widescreen) {
+			width: 47.5%;
+			margin-right: 0;
+			&:nth-of-type(2n + 1) {
+				margin-right: 5%;
+			}
+		}
 		@media screen and (max-width: $tablet) {
 			width: 100%;
 			margin-right: 0;

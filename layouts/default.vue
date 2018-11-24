@@ -25,6 +25,18 @@ export default {
 		width: 100%;
 		height: 100%;
 		overflow-y: scroll;
+		&::-webkit-scrollbar {
+			width: 0.3rem;
+		}
+		&::-webkit-scrollbar-button {
+			display: none;
+		}
+		&::-webkit-scrollbar-track {
+			background: rgba(black, 0.25);
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: rgba(white, 0.25);
+		}
 	}
 }
 </style>

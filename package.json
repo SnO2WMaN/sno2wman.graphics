@@ -37,6 +37,7 @@
 		"@fortawesome/vue-fontawesome": "^0.1.2",
 		"awesome-sass-easing": "^1.1.2",
 		"capitalize": "^2.0.0",
+		"gaussian": "^1.1.0",
 		"mathsass": "^0.10.1",
 		"minireset.css": "^0.0.3",
 		"nuxt": "^2.2.0",

@@ -50,5 +50,25 @@ module.exports = {
 			path: '/',
 			component: 'pages/backers.vue',
 		},
+		{
+			name: 'profile',
+			path: '/',
+			component: 'pages/profile.vue',
+		},
+		{
+			name: 'contact',
+			path: '/',
+			component: 'pages/contact.vue',
+		},
+		{
+			name: 'business',
+			path: '/',
+			component: 'pages/business.vue',
+		},
+		{
+			name: 'personal',
+			path: '/',
+			component: 'pages/personal.vue',
+		},
 	],
 }

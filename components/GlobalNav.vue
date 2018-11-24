@@ -16,7 +16,15 @@
 					:key="menuname"
 					class="menuitem"
 				>
+					<a
+						v-if="menuitem.a"
+						:href="menuitem.link"
+						target="_blank"
+						class="link"
+						@click="mobileOn = false"
+					/>
 					<nuxt-link
+						v-else
 						:to="menuitem.link"
 						class="link"
 						@click="mobileOn = false"
@@ -51,7 +59,13 @@
 						class="menuitem"
 						@click="mobileOn = false"
 					>
-						<nuxt-link :to="menuitem.link" class="link" />
+						<a
+							v-if="menuitem.a"
+							:href="menuitem.link"
+							target="_blank"
+							class="link"
+						/>
+						<nuxt-link v-else :to="menuitem.link" class="link" />
 						<div class="icon">
 							<FontAwesomeIcon
 								:icon="menuitem.icon"
@@ -78,7 +92,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import Hamburger from '~/components/globalnav/Hamburger.vue'
-import capitalize from 'capitalize'
 
 export default {
 	name: 'GlobalNav',
@@ -93,14 +106,15 @@ export default {
 				profile: { icon: faIdCard, link: 'profile' },
 				business: { icon: faBriefcase, link: 'business' },
 				personal: { icon: faCoffee, link: 'personal' },
-				blog: { icon: faPenNib, link: 'blog' },
+				blog: {
+					icon: faPenNib,
+					link: 'https://blog.sno2wman.graphics/',
+					a: true,
+				},
 				contact: { icon: faEnvelope, link: 'contact' },
 				backers: { icon: faHandHoldingUsd, link: 'backers' },
 			},
 		}
-	},
-	methods: {
-		capitalize,
 	},
 }
 </script>

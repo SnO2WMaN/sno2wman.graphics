@@ -105,8 +105,8 @@ export default {
 			flex-direction: column;
 			justify-content: flex-start;
 			font-family: 'Noto Sans JP', sans-serif;
-			& > .en {
-				font-family: 'Source Sans', sans-serif;
+			&.en {
+				font-family: 'Poppins', sans-serif;
 			}
 			& > .real {
 				font-family: 'Noto Sans JP', sans-serif;
@@ -116,7 +116,7 @@ export default {
 				font-size: 0.8rem;
 				letter-spacing: 1px;
 				font-weight: 400;
-				font-family: 'Source Sans', sans-serif;
+				font-family: 'Poppins', sans-serif;
 			}
 		}
 		& > .comment {

@@ -22,7 +22,7 @@ export default {
 	computed: {},
 	mounted() {
 		throttled = throttle(this.fit, 1000 / 30)
-		this.$nextTick(this.fit())
+		this.$nextTick(this.fit)
 		window.addEventListener('resize', throttled)
 	},
 	beforeDestroy() {

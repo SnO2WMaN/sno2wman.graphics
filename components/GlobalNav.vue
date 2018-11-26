@@ -127,6 +127,7 @@ export default {
 	position: absolute;
 	left: 0;
 	top: 0;
+	user-select: none;
 	& > .wrap {
 		width: calc(#{$widescreen} - #{$outframe-width * 2});
 		display: flex;
@@ -184,7 +185,7 @@ export default {
 					font-size: 0.75rem;
 					line-height: 1em;
 					font-weight: 500;
-					font-family: 'Montserrat', sans-serif;
+					font-family: 'Poppins', sans-serif;
 					letter-spacing: 0.1rem;
 				}
 			}
@@ -274,7 +275,7 @@ export default {
 					font-size: 0.75rem;
 					line-height: 1em;
 					font-weight: 700;
-					font-family: 'Montserrat', sans-serif;
+					font-family: 'Poppins', sans-serif;
 					letter-spacing: 0.2rem;
 					flex-grow: 2;
 					text-align: right;

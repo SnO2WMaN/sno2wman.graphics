@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import background from '~/exports/header.js'
+import background from '~/exports/index.js'
 
 import CanvasWrapper from '~/components/CanvasWrapper'
 
@@ -100,7 +100,7 @@ article {
 				margin-bottom: 1rem;
 			}
 			& > h2 {
-				font-family: 'Montserrat', sans-serif;
+				font-family: 'Poppins', sans-serif;
 				font-weight: 500;
 				color: $text;
 				letter-spacing: 0.1rem;

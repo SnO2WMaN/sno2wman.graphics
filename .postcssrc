@@ -1,6 +1,7 @@
 {
 	"parser": "postcss-scss",
 	"plugins": {
+		"css-mqpacker":{},
 		"postcss-sorting": {},
 		"postcss-short": {}
 	}

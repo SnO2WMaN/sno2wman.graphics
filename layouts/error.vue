@@ -1,11 +1,5 @@
 <template>
 	<article>
-		<CanvasWrapper
-			:init="background.init"
-			:render="background.render"
-			:once="background.once"
-			class="canvas"
-		/>
 		<div class="status">
 			<p>Status:</p>
 			<span>{{ error.statusCode }}</span>
@@ -21,7 +15,6 @@
 </template>
 
 <script>
-import background from '~/exports/404.js'
 import CanvasWrapper from '~/components/CanvasWrapper'
 
 export default {
@@ -34,9 +27,6 @@ export default {
 			type: Object,
 			default: null,
 		},
-	},
-	data() {
-		return { background }
 	},
 	head() {
 		return {

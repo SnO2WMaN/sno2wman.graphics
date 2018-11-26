@@ -1,7 +1,5 @@
 module.exports = {
-	generate: {
-		fallback: true,
-	},
+	//generate: {	fallback: true,},
 	modules: ['nuxt-sass-resources-loader'],
 	css: ['minireset.css'],
 	sassResources: [
@@ -34,7 +32,7 @@ module.exports = {
 			},
 			{
 				href:
-					'https://fonts.googleapis.com/css?family=Press+Start+2P|Source+Sans+Pro:400,500|Montserrat:400,500|Noto+Sans+JP:400,500',
+					'https://fonts.googleapis.com/css?family=Press+Start+2P|Poppins:400,500|Noto+Sans+JP:300:400,500',
 				rel: 'stylesheet',
 			},
 		],

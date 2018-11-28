@@ -121,6 +121,48 @@
 					</li>
 				</ul>
 			</div>
+			<div class="card wishlist">
+				<h1>WISHLIST</h1>
+				<h2>欲しい！</h2>
+				<ul class="socialslist">
+					<li
+						v-for="(social, key) in wishlist"
+						:key="key"
+						:class="key"
+					>
+						<div class="icon">
+							<img
+								v-if="Object.keys(socialsLogo).includes(key)"
+								:src="socialsLogo[key]"
+							/>
+							<FontAwesomeIcon
+								v-else
+								:icon="icons[key]"
+								fixed-width
+							/>
+						</div>
+						<span class="key">{{ capitalize(key) }}</span>
+						<div class="type">
+							<FontAwesomeIcon
+								v-if="Array.isArray(social)"
+								:icon="icons['copy']"
+								fixed-width
+							/>
+							<FontAwesomeIcon
+								v-else
+								:icon="icons['link']"
+								fixed-width
+							/>
+						</div>
+						<Clipboard
+							v-if="Array.isArray(social)"
+							:text="social[0]"
+							class="link"
+						/>
+						<a v-else :href="social" class="link" target="_blank" />
+					</li>
+				</ul>
+			</div>
 		</section>
 	</article>
 </template>
@@ -166,6 +208,7 @@ import {
 	faSoundcloud,
 	faYoutube,
 	faVimeo,
+	faAmazon,
 } from '@fortawesome/free-brands-svg-icons'
 
 let throttled, resizeThrottled
@@ -215,6 +258,7 @@ export default {
 				soundcloud: faSoundcloud,
 				youtube: faYoutube,
 				vimeo: faVimeo,
+				amazon: faAmazon,
 			},
 			socialsLogo: {
 				pixiv: require('~/assets/images/socials/pixiv.png'),
@@ -259,9 +303,15 @@ export default {
 				// mastadon: 'https://mstdn.jp/@SnO2WMaN',
 				discord: ['SnO2WMaN#9459', true],
 				qiita: 'https://qiita.com/SnO2WMaN',
+				amazon:
+					'https://www.amazon.co.jp/gp/profile/amzn1.account.AGNQ2CQRCY4BH6NT5KPADJFX4KKA',
 				// youtube: '',
 				// facebook: '',
 				// pixiv: '',
+			},
+			wishlist: {
+				amazon: 'http://amzn.asia/6lDCwzq',
+				steam: 'https://steamcommunity.com/id/SnO2WMaN/wishlist',
 			},
 		}
 	},
@@ -306,7 +356,6 @@ export default {
 <style lang="scss" scoped>
 section {
 	position: relative;
-
 	@media screen and (max-width: $widescreen) {
 		width: 100%;
 		display: flex;
@@ -357,21 +406,30 @@ section {
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
+		margin-bottom: 4rem;
+		&.profile,
+		&.skillsets,
+		&.wishlist {
+			left: 59%;
+		}
+		&.details,
+		&.socials {
+			right: 59%;
+		}
 		&.profile {
 			top: 0;
-			left: 57%;
 		}
 		&.details {
 			top: 120px;
-			right: 58%;
 		}
 		&.skillsets {
-			top: 320px;
-			left: 58%;
+			top: 300px;
 		}
 		&.socials {
-			top: 510px;
-			right: 57%;
+			top: 500px;
+		}
+		&.wishlist {
+			top: 1130px;
 		}
 		@media screen and (max-width: $widescreen) {
 			position: relative auto !important;
@@ -573,6 +631,7 @@ section {
 					youtube: #ff0000,
 					facebook: #3b5998,
 					pixiv: #0196fa,
+					amazon: #ff9900,
 				);
 				@each $social, $color in $socials {
 					&.#{$social} {

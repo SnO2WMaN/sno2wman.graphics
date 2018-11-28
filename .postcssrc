@@ -3,6 +3,7 @@
 	"plugins": {
 		"css-mqpacker":{},
 		"postcss-sorting": {},
-		"postcss-short": {}
+		"postcss-short": {},
+		"postcss-media-minmax":{}
 	}
 }

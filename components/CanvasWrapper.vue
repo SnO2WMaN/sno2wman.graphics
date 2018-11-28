@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { throttle } from 'underscore'
+import { throttle } from 'lodash'
 
 let raf, throttled
 export default {

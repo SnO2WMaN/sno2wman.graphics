@@ -1,8 +1,8 @@
 <template>
 	<article>
-		<PageHeader title="PROFILE" subtitle="アバウト・ミー" />
+		<PageHeader class="header" title="PROFILE" subtitle="アバウト・ミー" />
 		<section class="cards">
-			<img src="~/assets/images/standing.png" class="me" />
+			<div class="me"><img src="~/assets/images/standing.png" /></div>
 			<div class="card profile">
 				<h1>PROFILE</h1>
 				<h2>こいつはこんなやつ</h2>
@@ -119,6 +119,7 @@
 </template>
 
 <script>
+import { throttle } from 'lodash'
 import capitalize from 'capitalize'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Clipboard from '~/components/Clipboard'
@@ -159,7 +160,8 @@ import {
 	faYoutube,
 	faVimeo,
 } from '@fortawesome/free-brands-svg-icons'
-let throttled
+
+let throttled, resizeThrottled
 
 export default {
 	components: {
@@ -263,18 +265,36 @@ export default {
 		const $cards = this.$el.querySelector('section.cards')
 		const $me = $cards.querySelector('.me')
 		throttled = () => {
+			if (this.$el.scrollTop > $cards.offsetTop) {
+				$me.classList.add('sticky')
+			} else {
+				$me.classList.remove('sticky')
+			} /*
 			$me.style.transform = `translateY(${Math.max(
 				0,
 				this.$el.scrollTop - $cards.offsetTop
-			)}px)`
+			)}px)`*/
 		}
 		this.$el.addEventListener('scroll', throttled)
+		window.addEventListener(
+			'resize',
+			(resizeThrottled = throttle(() => {
+				this.resized()
+			}, 1000 / 60))
+		)
+		this.resized()
 	},
 	beforeDestroy() {
 		this.$el.removeEventListener('scroll', throttled)
+		window.removeEventListener('resize', resizeThrottled)
 	},
 	methods: {
 		capitalize,
+		resized() {
+			const $me = this.$el.querySelector('.cards > .me')
+			const headerWidth = this.$el.querySelector('.header').offsetWidth
+			$me.style.width = `${headerWidth}px`
+		},
 	},
 }
 </script>
@@ -305,8 +325,17 @@ section {
 		justify-content: center;
 		user-select: none;
 		pointer-events: none;
+		& > img {
+			height: 100%;
+		}
 		@media screen and (min-width: $tablet) and (max-width: $widescreen) {
-			left: (100% / 8);
+			justify-content: flex-start;
+			padding-left: 160px;
+		}
+		&.sticky {
+			position: fixed;
+			top: $outframe-width;
+			left: $outframe-width;
 			right: auto;
 		}
 	}

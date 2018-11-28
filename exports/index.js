@@ -1,5 +1,6 @@
 let rects = []
-let count = 0
+let count = 0,
+	frameCount = 0
 let hue = 0
 
 export default {
@@ -8,7 +9,7 @@ export default {
 	 * @param {CanvasRenderingContext2D} ctx context
 	 */
 	init(ctx) {
-		count = 0
+		frameCount = count = 0
 		rects.length = 0
 		const w = ctx.canvas.width,
 			h = ctx.canvas.height
@@ -34,13 +35,20 @@ export default {
 	 * @param {CanvasRenderingContext2D} ctx context
 	 */
 	render(ctx) {
-		if (100 <= count) {
+		if (frameCount != 6) {
+			frameCount++
+			return
+		}
+		if (15 <= count) {
+			frameCount = 0
 			this.init(ctx)
 		}
 		if (10 <= count) {
+			frameCount = 0
 			count++
 			return
 		}
+		frameCount = 0
 		count++
 		rects.forEach(rect => {
 			const trmp = Math.random() * count < 3e-2

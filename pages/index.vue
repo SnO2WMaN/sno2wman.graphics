@@ -7,7 +7,13 @@
 			class="canvas"
 		/>
 		<header>
-			<div class="image"><img src="~/assets/images/laptop.png" /></div>
+			<picture class="image">
+				<source
+					srcset="~/assets/images/laptop.webp"
+					type="image/webp"
+				/>
+				<img src="~/assets/images/laptop.png" />
+			</picture>
 			<div class="text">
 				<h1>SnO2WMaN</h1>
 				<h2>Voxel Stuff / Scary Frontend</h2>

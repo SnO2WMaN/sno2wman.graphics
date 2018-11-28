@@ -2,7 +2,14 @@
 	<article>
 		<PageHeader class="header" title="PROFILE" subtitle="アバウト・ミー" />
 		<section class="cards">
-			<div class="me"><img src="~/assets/images/standing.png" /></div>
+			<div class="me">
+				<picture>
+					<source
+						srcset="~/assets/images/standing.webp"
+						type="image/webp"/>
+					<img src="~/assets/images/standing.png"
+				/></picture>
+			</div>
 			<div class="card profile">
 				<h1>PROFILE</h1>
 				<h2>こいつはこんなやつ</h2>
@@ -322,8 +329,12 @@ section {
 		justify-content: center;
 		user-select: none;
 		pointer-events: none;
-		& > img {
+		& > picture {
 			height: 100%;
+			& > img,
+			& > source {
+				height: 100%;
+			}
 		}
 		@media screen and (min-width: $tablet) and (max-width: $widescreen) {
 			justify-content: flex-start;

@@ -7,7 +7,15 @@
 		>
 			<div class="home">
 				<nuxt-link class="link" to="/" @click="mobileOn = false" />
-				<div class="icon"><img src="~/assets/images/me.png" /></div>
+				<div class="icon">
+					<picture>
+						<source
+							srcset="~/assets/images/me.webp"
+							type="image/webp"
+						/>
+						<img src="~/assets/images/me.png" />
+					</picture>
+				</div>
 				<h1>SnO2WMaN</h1>
 			</div>
 			<ul class="menu">

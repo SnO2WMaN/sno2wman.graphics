@@ -262,7 +262,7 @@ export default {
 		return { title: 'Profile' }
 	},
 	mounted() {
-		this.$el.addEventListener('scroll', this.scroll)
+		this.$el.addEventListener('scroll', this.scrolled)
 		window.addEventListener(
 			'resize',
 			(resizeThrottled = throttle(() => {

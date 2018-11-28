@@ -24,6 +24,10 @@
 					:key="menuname"
 					class="menuitem"
 				>
+					<div
+						:class="{ selected: menuname == current }"
+						class="border"
+					/>
 					<a
 						v-if="menuitem.a"
 						:href="menuitem.link"
@@ -124,6 +128,11 @@ export default {
 			},
 		}
 	},
+	computed: {
+		current() {
+			return this.$route.name
+		},
+	},
 }
 </script>
 
@@ -177,6 +186,20 @@ export default {
 				align-items: center;
 				&:not(:last-of-type) {
 					margin-right: 1rem;
+				}
+				& > .border {
+					position: absolute;
+					width: (100% / (metallic(1) + 1));
+					bottom: 0;
+					left: 0;
+					right: 0;
+					margin: 0 auto;
+					border-bottom: 2px solid $text;
+					transform: scaleX(0);
+					transition: 0.25s transform $easeInOutCubic;
+					&.selected {
+						transform: scaleX(1);
+					}
 				}
 				& > .link {
 					position: absolute;
@@ -412,6 +435,21 @@ export default {
 					&:not(:last-of-type) {
 						margin-right: 0;
 						margin-bottom: 0.5rem;
+					}
+					& > .border {
+						position: absolute;
+						height: (100% / (metallic(1) + 1));
+						top: 0;
+						bottom: 0;
+						left: 0;
+						margin: auto 0;
+						border-left: 2px solid $text;
+						border-bottom: 0;
+						transform: scaleY(0);
+						transition: 0.25s transform $easeInOutCubic;
+						&.selected {
+							transform: scaleY(1);
+						}
 					}
 					& > .icon {
 						font-size: 1.1rem;

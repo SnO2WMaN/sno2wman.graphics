@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import GlobalNav from '~/components/GlobalNav'
+import GlobalNav from '~/components/globalnav/GlobalNav'
 
 export default {
 	components: { GlobalNav },

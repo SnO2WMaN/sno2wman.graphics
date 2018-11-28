@@ -1,9 +1,10 @@
 {
 	"parser": "postcss-scss",
 	"plugins": {
-		"css-mqpacker":{},
-		"postcss-sorting": {},
-		"postcss-short": {},
-		"postcss-media-minmax":{}
+		"css-mqpacker": {},
+		"postcss-sorting": {
+			"properties-order": "alphabetical"
+		},
+		"postcss-short": {}
 	}
 }

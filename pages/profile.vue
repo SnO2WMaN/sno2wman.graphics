@@ -163,6 +163,29 @@
 					</li>
 				</ul>
 			</div>
+			<div class="card donate">
+				<h1>DONATE</h1>
+				<h2>寄付について</h2>
+				<div class="texts">
+					<p>Kyashで寄付を受け付けています。</p>
+					<p>
+						もし寄付を頂けたら、
+						<nuxt-link class="link" to="backers">
+							支援者一覧
+						</nuxt-link>
+						に載せていただきます。
+					</p>
+				</div>
+				<div class="qrcode">
+					<picture>
+						<source
+							srcset="~assets/images/kyash_qrcode.webp"
+							type="image/webp"
+						/>
+						<img src="~assets/images/kyash_qrcode.webp" />
+					</picture>
+				</div>
+			</div>
 		</section>
 	</article>
 </template>
@@ -209,6 +232,7 @@ import {
 	faYoutube,
 	faVimeo,
 	faAmazon,
+	faPatreon,
 } from '@fortawesome/free-brands-svg-icons'
 
 let throttled, resizeThrottled
@@ -259,6 +283,7 @@ export default {
 				youtube: faYoutube,
 				vimeo: faVimeo,
 				amazon: faAmazon,
+				patreon: faPatreon,
 			},
 			socialsLogo: {
 				pixiv: require('~/assets/images/socials/pixiv.png'),
@@ -413,7 +438,8 @@ section {
 			left: 59%;
 		}
 		&.details,
-		&.socials {
+		&.socials,
+		&.donate {
 			right: 59%;
 		}
 		&.profile {
@@ -430,6 +456,9 @@ section {
 		}
 		&.wishlist {
 			top: 1130px;
+		}
+		&.donate {
+			top: 1120px;
 		}
 		@media screen and (max-width: $widescreen) {
 			position: relative auto !important;
@@ -501,11 +530,13 @@ section {
 		& > .texts {
 			& > p {
 				color: white;
-				font-size: 0.7rem;
+				font-size: 0.8rem;
 				font-family: 'Noto Sans JP', sans-serif;
-				letter-spacing: 1px;
 				line-height: 1.1em;
 				font-weight: 300;
+				& > .link {
+					color: white;
+				}
 				&:not(:last-of-type) {
 					margin-bottom: 0.5rem;
 				}
@@ -632,6 +663,7 @@ section {
 					facebook: #3b5998,
 					pixiv: #0196fa,
 					amazon: #ff9900,
+					patreon: #f96854,
 				);
 				@each $social, $color in $socials {
 					&.#{$social} {
@@ -709,6 +741,28 @@ section {
 					top: 0;
 					z-index: 5;
 					cursor: pointer;
+				}
+			}
+		}
+		& > .qrcode {
+			background: white;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			& > picture {
+				size: 300px;
+				& > source,
+				& > img {
+					height: 100%;
+				}
+				@media screen and (max-width: $tablet) {
+					width: 100%;
+					height: auto;
+					& > source,
+					& > img {
+						size: 100%;
+					}
 				}
 			}
 		}

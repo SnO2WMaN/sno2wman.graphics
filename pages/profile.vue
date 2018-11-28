@@ -262,26 +262,14 @@ export default {
 		return { title: 'Profile' }
 	},
 	mounted() {
-		const $cards = this.$el.querySelector('section.cards')
-		const $me = $cards.querySelector('.me')
-		throttled = () => {
-			if (this.$el.scrollTop > $cards.offsetTop) {
-				$me.classList.add('sticky')
-			} else {
-				$me.classList.remove('sticky')
-			} /*
-			$me.style.transform = `translateY(${Math.max(
-				0,
-				this.$el.scrollTop - $cards.offsetTop
-			)}px)`*/
-		}
-		this.$el.addEventListener('scroll', throttled)
+		this.$el.addEventListener('scroll', this.scroll)
 		window.addEventListener(
 			'resize',
 			(resizeThrottled = throttle(() => {
 				this.resized()
 			}, 1000 / 60))
 		)
+		this.scrolled()
 		this.resized()
 	},
 	beforeDestroy() {
@@ -290,6 +278,15 @@ export default {
 	},
 	methods: {
 		capitalize,
+		scrolled() {
+			const $cards = this.$el.querySelector('section.cards')
+			const $me = $cards.querySelector('.me')
+			if (this.$el.scrollTop > $cards.offsetTop) {
+				$me.classList.add('sticky')
+			} else {
+				$me.classList.remove('sticky')
+			}
+		},
 		resized() {
 			const $me = this.$el.querySelector('.cards > .me')
 			const headerWidth = this.$el.querySelector('.header').offsetWidth

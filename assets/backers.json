@@ -1,0 +1,48 @@
+[
+	{
+		"name": "P-Chan",
+		"image": "https://pbs.twimg.com/profile_images/1003437777436864513/QRaJ_Ze9.jpg",
+		"links": {
+			"twitter": "p1ch_jp",
+			"github": "p-chan"
+		}
+	},
+	{
+		"name": { "real": "金井俊裕", "id": "mirucons" },
+		"image": "https://pbs.twimg.com/profile_images/1038412201722183681/7tguUDoV.jpg",
+		"links": {
+			"web": "https://www.mirucon.com/",
+			"twitter": "mirucons",
+			"github": "mirucon"
+		}
+	},
+	{
+		"name": { "real": "渡邊達明", "id": "nabettu" },
+		"image": "https://pbs.twimg.com/profile_images/979589819847262208/y3-HUfZq.jpg",
+		"links": {
+			"web": "https://blog.nabettu.com",
+			"twitter": "nabettu",
+			"github": "nabettu"
+		}
+	},
+	{
+		"name": "新田聡一郎",
+		"comment": "テクニカル・サポート",
+		"image": "https://pbs.twimg.com/profile_images/990980609332801536/bX5Myakc.jpg",
+		"links": {
+			"web": "https://nitta.studio/",
+			"twitter": "soichiro_nitta",
+			"github": "soichiro-nitta"
+		}
+	},
+	{
+		"name": "ななき",
+		"comment": "テクニカル・サポート",
+		"image": "https://pbs.twimg.com/profile_images/980284251458301952/IAHOpSUs.jpg",
+		"links": {
+			"web": "https://nanaki.design/",
+			"twitter": "nanaki14",
+			"github": "nanaki14"
+		}
+	}
+]
